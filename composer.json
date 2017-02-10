@@ -1,0 +1,24 @@
+{
+  "name": "webmod/laravel-cms",
+  "description": "Laravel 5 based CMS Package.",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "Rory Hellyer",
+      "email": "rory@webmodularity.com"
+    }
+  ],
+  "repositories": [
+    {"type": "composer", "url": "https://toran.webmodularity.com/repo/private/"}
+  ],
+  "minimum-stability": "dev",
+  "autoload": {
+    "psr-4": {
+      "WebModularity\\LaravelCms\\": "src/"
+    }
+  },
+  "require": {
+    "php": ">=5.6.4",
+    "laravel/framework": "~5.4.0"
+  }
+}
