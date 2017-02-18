@@ -2,7 +2,6 @@
 
 namespace WebModularity\LaravelCms;
 
-use Illuminate\Contracts\Events\Dispatcher;
 use Illuminate\Support\ServiceProvider;
 
 class CmsServiceProvider extends ServiceProvider
@@ -19,7 +18,7 @@ class CmsServiceProvider extends ServiceProvider
         $this->mergeConfigFrom(__DIR__ . '/../config/cms.php', 'wm.cms');
     }
 
-    public function boot(Dispatcher $events)
+    public function boot()
     {
         // Config
         $this->publishes([__DIR__ . '/../config/cms.php' => config_path('wm/cms.php')], 'config');
