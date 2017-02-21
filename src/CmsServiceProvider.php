@@ -3,6 +3,8 @@
 namespace WebModularity\LaravelCms;
 
 use Illuminate\Support\ServiceProvider;
+use View;
+use WebModularity\LaravelAuth\User\LogUser;
 
 class CmsServiceProvider extends ServiceProvider
 {
@@ -23,6 +25,11 @@ class CmsServiceProvider extends ServiceProvider
         // Config
         $this->publishes([__DIR__ . '/../config/cms.php' => config_path('wm/cms.php')], 'config');
 
+        // View Composers
+        // recentLogins
+        View::composer('*', function ($view) {
+            $view->with('activeUserRecentLogins', LogUser::recentLogins(3)->get());
+        });
         // Migrations
         //$this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
     }
