@@ -27,7 +27,7 @@ class CmsServiceProvider extends ServiceProvider
 
         // View Composers
         // recentLogins
-        View::composer('home', function ($view) {
+        View::composer('*', function ($view) {
             $view->with('activeUserRecentLogins', LogUser::recentLogins(3)->get());
         });
         // Migrations
