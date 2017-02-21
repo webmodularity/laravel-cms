@@ -27,7 +27,7 @@ class CmsServiceProvider extends ServiceProvider
 
         // View Composers
         // recentLogins
-        View::composer('*', function ($view) {
+        View::composer('vendor.adminlte.partials.navbar.user-menu', function ($view) {
             $view->with('activeUserRecentLogins', LogUser::recentLogins(3)->get());
         });
         // Migrations
