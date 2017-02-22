@@ -26,9 +26,11 @@ class CmsServiceProvider extends ServiceProvider
         // Config
         $this->publishes([__DIR__ . '/../config/cms.php' => config_path('wm/cms.php')], 'config');
 
+        $this->loadViews();
+
         // View Composers
         // recentLogins
-        View::composer('vendor.adminlte.navbar.user-menu', function ($view) {
+        View::composer('vendor.wmcms.navbar.user-menu', function ($view) {
             $view->with(
                 'activeUserRecentLogins',
                 LogUser::where('user_id', Auth::user()->id)
@@ -39,5 +41,12 @@ class CmsServiceProvider extends ServiceProvider
         });
         // Migrations
         //$this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
+    }
+
+    private function loadViews()
+    {
+        $viewsPath = __DIR__ . '/../resources/views';
+        $this->loadViewsFrom($viewsPath, 'wmcms');
+        $this->publishes([$viewsPath => base_path('resources/views/vendor/wmcms')], 'views');
     }
 }
