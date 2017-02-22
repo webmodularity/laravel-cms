@@ -2,6 +2,7 @@
 
 namespace WebModularity\LaravelCms;
 
+use Auth;
 use Illuminate\Support\ServiceProvider;
 use View;
 use WebModularity\LaravelAuth\User\LogUser;
@@ -27,8 +28,13 @@ class CmsServiceProvider extends ServiceProvider
 
         // View Composers
         // recentLogins
-        View::composer('vendor.adminlte.partials.navbar.user-menu', function ($view) {
-            $view->with('activeUserRecentLogins', LogUser::recentLogins(3)->get());
+        View::composer('vendor.adminlte.navbar.user-menu', function ($view) {
+            $view->with(
+                'activeUserRecentLogins',
+                LogUser::where('user_id', Auth::user()->id)
+                    ->recentLogins(3)
+                    ->get()
+            );
         });
         // Migrations
         //$this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
