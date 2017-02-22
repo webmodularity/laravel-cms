@@ -30,7 +30,7 @@ class CmsServiceProvider extends ServiceProvider
 
         // View Composers
         // recentLogins
-        View::composer('vendor.wmcms.navbar.user-menu', function ($view) {
+        View::composer('wmcms::navbar.user-menu', function ($view) {
             $view->with(
                 'activeUserRecentLogins',
                 LogUser::where('user_id', Auth::user()->id)
