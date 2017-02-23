@@ -26,7 +26,7 @@
                     <tr>
                         <td><small>{{ $userLogin->logRequest->created_at->format('m/d/y h:ia') }}</small></td>
                         <td><small>{{ $userLogin->logRequest->ip_address }}</small></td>
-                        <td><small>{{ $userLogin->getLoginVia() }}</small></td>
+                        <td><small>{{ $userLogin->getVia() }}</small></td>
                     </tr>
                 @endforeach
                 </tbody>
