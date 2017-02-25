@@ -20,6 +20,8 @@
   "require": {
     "php": ">=5.6.4",
     "laravel/framework": "~5.4.0",
-    "webmod/laravel-user": "*"
+    "webmod/laravel-user": "*",
+    "webmod/laravel-log": "*",
+    "yajra/laravel-datatables-oracle": "^7.2"
   }
 }

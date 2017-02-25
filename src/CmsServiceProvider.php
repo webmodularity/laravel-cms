@@ -2,20 +2,25 @@
 
 namespace WebModularity\LaravelCms;
 
+use View;
 use Auth;
 use Illuminate\Support\ServiceProvider;
-use View;
+use WebModularity\LaravelLog\LogServiceProvider;
 use WebModularity\LaravelUser\LogUser;
+use WebModularity\LaravelUser\UserServiceProvider;
 
 class CmsServiceProvider extends ServiceProvider
 {
     public function register()
     {
-        // Register LaravelAuth Service Provider
-        $this->app->register('WebModularity\LaravelUser\UserServiceProvider');
+        // Register LaravelUser Service Provider
+        $this->app->register(UserServiceProvider::class);
+
+        // Register Datatables Service Provider
+        $this->app->register(Yajra\Datatables\DatatablesServiceProvider::class);
 
         // Register LaravelLog Service Provider
-        $this->app->register('WebModularity\LaravelLog\LogServiceProvider');
+        $this->app->register(LogServiceProvider::class);
 
         // Config
         $this->mergeConfigFrom(__DIR__ . '/../config/cms.php', 'wm.cms');
