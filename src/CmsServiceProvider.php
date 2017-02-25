@@ -34,7 +34,7 @@ class CmsServiceProvider extends ServiceProvider
             $view->with(
                 'activeUserRecentLogins',
                 LogUser::where('user_id', Auth::user()->id)
-                    ->with('logRequest.urlPath')
+                    ->with('logRequest.ipAddress')
                     ->recentLogins(3)
                     ->get()
             );
