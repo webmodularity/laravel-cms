@@ -41,7 +41,10 @@ class CmsServiceProvider extends ServiceProvider
                 'activeUserRecentLogins',
                 LogUser::where('user_id', Auth::user()->id)
                     ->with(['logRequest.ipAddress'])
-                    ->recentLogins(3)
+                    ->logins()
+                    ->latest()
+                    ->recentDays(30)
+                    ->limit(3)
                     ->get()
             );
         });
