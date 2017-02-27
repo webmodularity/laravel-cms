@@ -22,6 +22,8 @@
     "laravel/framework": "~5.4.0",
     "webmod/laravel-user": "*",
     "webmod/laravel-log": "*",
-    "yajra/laravel-datatables-oracle": "^7.2"
+    "yajra/laravel-datatables-oracle": "^7.2",
+    "yajra/laravel-datatables-buttons": "^1.1",
+    "yajra/laravel-datatables-html": "^1.0"
   }
 }
