@@ -40,7 +40,7 @@ class CmsServiceProvider extends ServiceProvider
             $view->with(
                 'activeUserRecentLogins',
                 LogUser::where('user_id', Auth::user()->id)
-                    ->with(['logRequest.ipAddress'])
+                    ->with(['logRequest', 'logRequest.ipAddress', 'socialProvider'])
                     ->logins()
                     ->latest()
                     ->recentDays(30)
