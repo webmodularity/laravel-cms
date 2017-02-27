@@ -8,6 +8,7 @@ use Illuminate\Support\ServiceProvider;
 use WebModularity\LaravelLog\LogServiceProvider;
 use WebModularity\LaravelUser\LogUser;
 use WebModularity\LaravelUser\UserServiceProvider;
+use Yajra\Datatables\ButtonsServiceProvider;
 use Yajra\Datatables\DatatablesServiceProvider;
 
 class CmsServiceProvider extends ServiceProvider
@@ -19,6 +20,9 @@ class CmsServiceProvider extends ServiceProvider
 
         // Register Datatables Service Provider
         $this->app->register(DatatablesServiceProvider::class);
+
+        // Register Datatables Buttons Service Provider
+        $this->app->register(ButtonsServiceProvider::class);
 
         // Register LaravelLog Service Provider
         $this->app->register(LogServiceProvider::class);
