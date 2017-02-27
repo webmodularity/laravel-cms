@@ -24,7 +24,7 @@
                 </tr>
                 @foreach($activeUserRecentLogins as $userLogin)
                     <tr>
-                        <td><small>{{ $userLogin->logRequest->created_at->format('m/d/y h:ia') }}</small></td>
+                        <td><small>{{ $userLogin->logRequest->created_at }}</small></td>
                         <td><small>{{ $userLogin->logRequest->ipAddress->ip_address }}</small></td>
                         <td><small>{{ $userLogin->getVia() }}</small></td>
                     </tr>
