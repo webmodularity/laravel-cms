@@ -33,7 +33,7 @@
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
                         <ul class="nav navbar-nav">
-                            {{-- @each('wmcms::partials.menu-item-top-nav', $adminlte->menu(), 'item') --}}
+                            @each('wmcms::partials.menu-item-top-nav', $adminlte->menu(), 'item')
                         </ul>
                     </div>
                     <!-- /.navbar-collapse -->
@@ -50,7 +50,7 @@
             <nav class="navbar navbar-static-top" role="navigation">
                 <!-- Sidebar toggle button-->
                 <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
-                    <span class="sr-only">{{ trans('adminlte::adminlte.toggle_navigation') }}</span>
+                    <span class="sr-only">Toggle Nav</span>
                 </a>
             @endif
                 <!-- Navbar Right Menu -->
