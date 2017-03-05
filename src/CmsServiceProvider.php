@@ -10,6 +10,7 @@ use WebModularity\LaravelUser\LogUser;
 use WebModularity\LaravelUser\UserServiceProvider;
 use Yajra\Datatables\ButtonsServiceProvider;
 use Yajra\Datatables\DatatablesServiceProvider;
+use JeroenNoten\LaravelAdminLte\ServiceProvider as AdminLteServiceProvider;
 
 class CmsServiceProvider extends ServiceProvider
 {
@@ -28,7 +29,7 @@ class CmsServiceProvider extends ServiceProvider
         $this->app->register(LogServiceProvider::class);
 
         // Register AdminLTE
-        $this->app->register(JeroenNoten\LaravelAdminLte\ServiceProvider::class);
+        $this->app->register(AdminLteServiceProvider::class);
 
         // Config
         $this->mergeConfigFrom(__DIR__ . '/../config/cms.php', 'wm.cms');
