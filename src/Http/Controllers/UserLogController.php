@@ -15,7 +15,7 @@ class UserLogController extends Controller
      */
     public function index(UserLogDataTable $userLogDataTable)
     {
-        return $userLogDataTable->render('user-log.index');
+        return $userLogDataTable->render('wmcms:user-log.index');
     }
 
     /**
