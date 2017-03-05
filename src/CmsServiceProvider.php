@@ -49,8 +49,11 @@ class CmsServiceProvider extends ServiceProvider
         });
 
         // View Composers
+        //AdminLTE
+        View::composer('wmcms::page', function ($view) {
+            $view->with('adminlte', $this->app->make('adminlte'));
+        });
         // recentLogins
-        /*
         View::composer('wmcms::navbar.user-menu', function ($view) {
             $view->with(
                 'activeUserRecentLogins',
@@ -63,7 +66,7 @@ class CmsServiceProvider extends ServiceProvider
                     ->get()
             );
         });
-        */
+
         // Migrations
         //$this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
     }
