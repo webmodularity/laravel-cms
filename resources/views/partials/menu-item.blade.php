@@ -19,7 +19,7 @@
         </a>
         @if (isset($item['submenu']))
             <ul class="{{ $item['submenu_class'] }}">
-                @each('adminlte::partials.menu-item', $item['submenu'], 'item')
+                @each('wmcms::partials.menu-item', $item['submenu'], 'item')
             </ul>
         @endif
     </li>
