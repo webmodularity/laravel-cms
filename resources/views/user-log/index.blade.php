@@ -17,12 +17,12 @@
         </div>
         <!-- /.box-header -->
         <div class="box-body">
-            {!! $dataTable->table(['class' => "table table-hover table-bordered"]) !!}
+
         </div>
         <!-- /.box-body -->
     </div>
 @stop
 
 @push('js')
-{!! $dataTable->scripts() !!}
+
 @endpush
