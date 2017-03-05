@@ -1,4 +1,4 @@
-@extends('wmcms::page')
+{{-- @extends('wmcms::page') --}}
 
 @section('title', 'User Log')
 
