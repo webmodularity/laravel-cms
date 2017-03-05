@@ -85,7 +85,7 @@
 
                 <!-- Sidebar Menu -->
                 <ul class="sidebar-menu">
-                    @each('wmcms::partials.menu-item', $adminlte->menu(), 'item')
+                    {{-- @each('wmcms::partials.menu-item', $adminlte->menu(), 'item') --}}
                 </ul>
                 <!-- /.sidebar-menu -->
             </section>
