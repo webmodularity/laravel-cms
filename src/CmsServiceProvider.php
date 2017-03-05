@@ -2,6 +2,7 @@
 
 namespace WebModularity\LaravelCms;
 
+use Maatwebsite\Excel\ExcelServiceProvider;
 use View;
 use Auth;
 use Illuminate\Support\ServiceProvider;
@@ -31,6 +32,9 @@ class CmsServiceProvider extends ServiceProvider
 
         // Register AdminLTE
         $this->app->register(AdminLteServiceProvider::class);
+
+        // Register AdminLTE
+        $this->app->register(ExcelServiceProvider::class);
 
         // Config
         $this->mergeConfigFrom(__DIR__ . '/../config/cms.php', 'wm.cms');
