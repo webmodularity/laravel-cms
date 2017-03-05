@@ -1,4 +1,4 @@
-@extends('adminlte::page')
+@extends('wmcms::page')
 
 @section('title', 'User Log')
 
