@@ -11,6 +11,7 @@ use WebModularity\LaravelUser\UserServiceProvider;
 use Yajra\Datatables\ButtonsServiceProvider;
 use Yajra\Datatables\DatatablesServiceProvider;
 use JeroenNoten\LaravelAdminLte\ServiceProvider as AdminLteServiceProvider;
+use JeroenNoten\LaravelAdminLte\Http\ViewComposers\AdminLteComposer;
 
 class CmsServiceProvider extends ServiceProvider
 {
@@ -50,9 +51,7 @@ class CmsServiceProvider extends ServiceProvider
 
         // View Composers
         //AdminLTE
-        View::composer('wmcms::page', function ($view) {
-            $view->with('adminlte', $this->app->make('adminlte'));
-        });
+        View::composer('adminlte::page', AdminLteComposer::class);
         // recentLogins
         View::composer('wmcms::navbar.user-menu', function ($view) {
             $view->with(
