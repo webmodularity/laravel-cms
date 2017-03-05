@@ -50,6 +50,7 @@ class CmsServiceProvider extends ServiceProvider
 
         // View Composers
         // recentLogins
+        /*
         View::composer('wmcms::navbar.user-menu', function ($view) {
             $view->with(
                 'activeUserRecentLogins',
@@ -62,6 +63,7 @@ class CmsServiceProvider extends ServiceProvider
                     ->get()
             );
         });
+        */
         // Migrations
         //$this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
     }
