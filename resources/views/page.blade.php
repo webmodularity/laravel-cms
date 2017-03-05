@@ -33,7 +33,7 @@
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
                         <ul class="nav navbar-nav">
-                            @each('wmcms::partials.menu-item-top-nav', $adminlte->menu(), 'item')
+                            {{-- @each('wmcms::partials.menu-item-top-nav', $adminlte->menu(), 'item') --}}
                         </ul>
                     </div>
                     <!-- /.navbar-collapse -->
@@ -85,7 +85,7 @@
 
                 <!-- Sidebar Menu -->
                 <ul class="sidebar-menu">
-                    @each('wmcms::partials.menu-item', $adminlte->menu(), 'item')
+                    {{-- @each('wmcms::partials.menu-item', $adminlte->menu(), 'item') --}}
                 </ul>
                 <!-- /.sidebar-menu -->
             </section>
