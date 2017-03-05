@@ -51,7 +51,7 @@ class CmsServiceProvider extends ServiceProvider
 
         // View Composers
         //AdminLTE
-        View::composer('adminlte::page', AdminLteComposer::class);
+        View::composer('wmcms::page', AdminLteComposer::class);
         // recentLogins
         View::composer('wmcms::navbar.user-menu', function ($view) {
             $view->with(
