@@ -27,6 +27,9 @@ class CmsServiceProvider extends ServiceProvider
         // Register LaravelLog Service Provider
         $this->app->register(LogServiceProvider::class);
 
+        // Register AdminLTE
+        $this->app->register(JeroenNoten\LaravelAdminLte\ServiceProvider::class);
+
         // Config
         $this->mergeConfigFrom(__DIR__ . '/../config/cms.php', 'wm.cms');
     }
