@@ -58,7 +58,7 @@ class CmsServiceProvider extends ServiceProvider
         View::composer('wmcms::page', AdminLteComposer::class);
         // recentLogins
         View::composer('wmcms::navbar.user-menu', function ($view) {
-            \Debugbar::addMessage(Auth::user()->id);
+            \Debugbar::addMessage(Auth::user());
             \Debugbar::addMessage(LogUser::where('user_id', Auth::user()->id)
                 ->with(['logRequest', 'logRequest.ipAddress', 'socialProvider'])
                 //->logins()
