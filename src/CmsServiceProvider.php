@@ -2,7 +2,6 @@
 
 namespace WebModularity\LaravelCms;
 
-use Maatwebsite\Excel\ExcelServiceProvider;
 use View;
 use Auth;
 use Illuminate\Support\ServiceProvider;
@@ -13,6 +12,7 @@ use Yajra\Datatables\ButtonsServiceProvider;
 use Yajra\Datatables\DatatablesServiceProvider;
 use JeroenNoten\LaravelAdminLte\ServiceProvider as AdminLteServiceProvider;
 use JeroenNoten\LaravelAdminLte\Http\ViewComposers\AdminLteComposer;
+use Maatwebsite\Excel\ExcelServiceProvider;
 
 class CmsServiceProvider extends ServiceProvider
 {
@@ -52,14 +52,6 @@ class CmsServiceProvider extends ServiceProvider
         View::composer('wmcms::page', AdminLteComposer::class);
         // recentLogins
         View::composer('wmcms::navbar.user-menu', function ($view) {
-            \Debugbar::addMessage(Auth::user());
-            \Debugbar::addMessage(LogUser::where('user_id', Auth::user()->id)
-                ->with(['logRequest', 'logRequest.ipAddress', 'socialProvider'])
-                //->logins()
-                //->latest()
-                //->recentDays(30)
-                ->limit(3)
-                ->get());
             $view->with(
                 'activeUserRecentLogins',
                 LogUser::where('user_id', Auth::user()->id)
