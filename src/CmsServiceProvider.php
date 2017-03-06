@@ -47,12 +47,6 @@ class CmsServiceProvider extends ServiceProvider
 
         $this->loadViews();
 
-        $this->app->make('router')->group(['namespace' => 'WebModularity\LaravelCms\Http\Controllers'], function () {
-            $this->app->make('router')->resource('user-log', 'UserLogController', ['only' => [
-                'index', 'show'
-            ]]);
-        });
-
         // View Composers
         //AdminLTE
         View::composer('wmcms::page', AdminLteComposer::class);
