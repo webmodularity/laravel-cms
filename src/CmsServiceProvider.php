@@ -60,9 +60,9 @@ class CmsServiceProvider extends ServiceProvider
         View::composer('wmcms::navbar.user-menu', function ($view) {
             \Debugbar::addMessage(LogUser::where('user_id', Auth::user()->id)
                 ->with(['logRequest', 'logRequest.ipAddress', 'socialProvider'])
-                ->logins()
+                //->logins()
                 ->latest()
-                ->recentDays(30)
+                //->recentDays(30)
                 ->limit(3)
                 ->get());
             $view->with(
