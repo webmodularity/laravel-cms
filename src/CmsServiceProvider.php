@@ -58,6 +58,7 @@ class CmsServiceProvider extends ServiceProvider
         View::composer('wmcms::page', AdminLteComposer::class);
         // recentLogins
         View::composer('wmcms::navbar.user-menu', function ($view) {
+            \Debugbar::addMessage('view composer running');
             $view->with(
                 'activeUserRecentLogins',
                 LogUser::where('user_id', Auth::user()->id)
