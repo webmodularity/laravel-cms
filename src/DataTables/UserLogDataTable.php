@@ -53,14 +53,7 @@ class UserLogDataTable extends DataTable
     {
         return $this->builder()
             ->columns($this->getColumns())
-            ->parameters([
-                'dom' => "<'row'<'col-sm-6'B><'col-sm-6'f>>" .
-                    "<'row'<'col-sm-12'tr>>" .
-                    "<'row'<'col-sm-5'i><'col-sm-7'p>>",
-                'buttons' => ['export', 'wmcopy', 'print', 'reset'],
-                'order' => [[0, "desc"]],
-                'responsive' => true
-            ]);
+            ->parameters($this->getBuilderParameters());
             //->addAction(
             //    [
             //        'className' => 'all text-center',
@@ -68,6 +61,18 @@ class UserLogDataTable extends DataTable
             //        'title' => 'Details'
             //    ]
             //);
+    }
+
+    protected function getBuilderParameters()
+    {
+        return [
+            'dom' => "<'row'<'col-sm-6'B><'col-sm-6'f>>" .
+                "<'row'<'col-sm-12'tr>>" .
+                "<'row'<'col-sm-5'i><'col-sm-7'p>>",
+            'buttons' => ['export', 'wmcopy', 'print', 'reset'],
+            'order' => [[0, "desc"]],
+            'responsive' => true
+        ];
     }
 
     /**
