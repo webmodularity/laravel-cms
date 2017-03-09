@@ -5,9 +5,8 @@ namespace WebModularity\LaravelCms\DataTables;
 use Carbon\Carbon;
 use WebModularity\LaravelUser\LogUser;
 use Yajra\Datatables\Html\Column;
-use Yajra\Datatables\Services\DataTable;
 
-class UserLogDataTable extends DataTable
+class UserLogDataTable extends CmsDataTable
 {
     /**
      * Build DataTable class.
