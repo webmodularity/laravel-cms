@@ -23,6 +23,7 @@
         <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.1.1/css/responsive.dataTables.min.css') }}">
         <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.2.4/css/buttons.dataTables.min.css">
         <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.2.4/css/buttons.bootstrap.min.css">
+        <link rel="stylesheet" href="{{ asset('vendor/wmcms/buttons.wm.dataTables.css') }}">
     @endif
 
     @yield('adminlte_css')
@@ -46,7 +47,7 @@
     <script src="https://cdn.datatables.net/buttons/1.2.4/js/dataTables.buttons.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/1.2.4/js/buttons.bootstrap.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/1.2.4/js/buttons.html5.min.js"></script>
-    <script src="{{ asset('vendor/datatables/buttons.server-side.js') }}"></script>
+    <script src="{{ asset('vendor/wmcms/js/buttons.server-side.js') }}"></script>
 @endif
 
 @yield('adminlte_js')
