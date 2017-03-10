@@ -1,1 +1,1 @@
-<a href="{{ url('edit', [$id])  }}" class="btn btn-primary">Edit</a>
+<a href="{{ route('regions.edit', ['id' => $id])  }}" class="btn btn-primary">Edit</a>
