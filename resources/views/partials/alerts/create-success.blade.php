@@ -1,7 +1,7 @@
-@if(session()->has('update_success'))
+@if(session()->has('create_success'))
     <div class="callout callout-success">
-        <h4>You have successfully updated this record!</h4>
+        <h4>You have successfully created a new record!</h4>
 
-        <p>{{ session('update_success') }}</p>
+        <p>{{ session('create_success') }}</p>
     </div>
 @endif()
