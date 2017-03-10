@@ -1,0 +1,1 @@
+<a href="{{ $id }}/edit" class="btn btn-success">Edit</a>
