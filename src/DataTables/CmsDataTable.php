@@ -16,6 +16,6 @@ class CmsDataTable extends DataTable
         return "\n$('<div class=\"row buttons-container\"><div class=\"col-sm-12\"></div></div>')
                     .prependTo( $('#dataTableBuilder_wrapper') );
                 $('#dataTableBuilder').DataTable().buttons().container()
-                    .appendTo( $('#dataTableBuilder_wrapper .buttons-container div:eq(0)') );\n";
+                    .appendTo( $('#dataTableBuilder_wrapper .buttons-container div:eq(1)') );\n";
     }
 }
