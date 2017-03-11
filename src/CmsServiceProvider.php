@@ -92,6 +92,7 @@ class CmsServiceProvider extends ServiceProvider
         "<'row'<'col-sm-12'tr>>" +
         "<'row'<'col-sm-5'i><'col-sm-7'p>>"
         });
+    });
 </script>
 EOT;
         });
