@@ -4,6 +4,7 @@ namespace WebModularity\LaravelCms;
 
 use View;
 use Auth;
+use Blade;
 use Illuminate\Support\ServiceProvider;
 use WebModularity\LaravelLog\LogServiceProvider;
 use WebModularity\LaravelUser\LogUser;
@@ -46,6 +47,7 @@ class CmsServiceProvider extends ServiceProvider
         $this->publishes([__DIR__ . '/../config/cms.php' => config_path('wm/cms.php')], 'config');
 
         $this->loadViews();
+        $this->loadBlade();
 
         // View Composers
         //AdminLTE
@@ -73,5 +75,25 @@ class CmsServiceProvider extends ServiceProvider
         $viewsPath = __DIR__ . '/../resources/views';
         $this->loadViewsFrom($viewsPath, 'wmcms');
         $this->publishes([$viewsPath => base_path('resources/views/vendor/wmcms')], 'views');
+    }
+
+    private function loadBlade()
+    {
+        Blade::directive('dt-defaults', function () {
+            return <<< EOT
+<script>
+    $.extend(true, $.fn.dataTable.defaults, {
+        language: {
+            search: "<div class="has-feedback">_INPUT_<span class="glyphicon glyphicon-search form-control-feedback"></span></div>",
+            searchPlaceholder: "Search...",
+            lengthMenu: "Results per page: _MENU_"
+        },
+        dom: "<'row'<'col-sm-9'B><'col-sm-3'<'pull-right'l>f>>" +
+        "<'row'<'col-sm-12'tr>>" +
+        "<'row'<'col-sm-5'i><'col-sm-7'p>>"
+    });
+</script>
+EOT;
+        });
     }
 }
