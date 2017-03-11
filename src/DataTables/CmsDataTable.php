@@ -15,9 +15,9 @@ class CmsDataTable extends DataTable
     {
         return <<< EOT
 $('.delete-confirm-button').click(function(){
-    var id = $(this).data(\"id\");
-    var token = $(this).data(\"token\");
-    var recordIdent = $(this).data('record-ident');
+    var id = $(this).data("id");
+    var token = $(this).data("token");
+    var recordIdent = $(this).data("record-ident");
     var dtApi = new $.fn.dataTable.Api( settings );
     swal({
         title: 'Delete This Record?',
