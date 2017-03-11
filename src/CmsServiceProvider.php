@@ -88,7 +88,7 @@ class CmsServiceProvider extends ServiceProvider
             searchPlaceholder: "Search...",
             lengthMenu: "Results per page: _MENU_"
         },
-        dom: "<'row'<'col-sm-9'><'col-sm-3'<'pull-right'l>f>>" +
+        dom: "<'row'<'col-sm-9'B><'col-sm-3'<'pull-right'l>f>>" +
         "<'row'<'col-sm-12'tr>>" +
         "<'row'<'col-sm-5'i><'col-sm-7'p>>"
     });
