@@ -57,7 +57,7 @@ $('.delete-confirm-button').click(function(){
             }
         });
     });
-});";
+});
 EOT;
     }
 }
