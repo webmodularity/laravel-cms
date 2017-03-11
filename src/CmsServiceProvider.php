@@ -80,7 +80,7 @@ class CmsServiceProvider extends ServiceProvider
     private function loadBlade()
     {
         Blade::directive('dt-defaults', function () {
-            return <<< EOT
+            echo <<< EOT
 <script>
     $.extend(true, $.fn.dataTable.defaults, {
         language: {
