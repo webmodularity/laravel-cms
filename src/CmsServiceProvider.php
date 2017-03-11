@@ -79,7 +79,7 @@ class CmsServiceProvider extends ServiceProvider
 
     private function loadBlade()
     {
-        Blade::directive('dtdefaults', function () {
+        Blade::directive('dtdefaults', function ($dtTableId = 'dataTableBuilder') {
             return <<< EOT
 <script>
     $.extend(true, $.fn.dataTable.defaults, {
@@ -92,7 +92,7 @@ class CmsServiceProvider extends ServiceProvider
         "<'row'<'col-sm-12'tr>>" +
         "<'row'<'col-sm-5'i><'col-sm-7'p>>",
         initComplete: function() {
-            $('#dataTableBuilder_filter').appendTo( $('.box-tools:eq(0)') );
+            $('#{$dtTableId}_filter').appendTo( $('.box-tools:eq(0)') );
         }
     });
 </script>
