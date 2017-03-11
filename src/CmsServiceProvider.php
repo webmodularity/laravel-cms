@@ -80,20 +80,21 @@ class CmsServiceProvider extends ServiceProvider
     private function loadBlade()
     {
         Blade::directive('dt-defaults', function () {
-            echo <<< EOT
+            return "<?php <<< EOT
 <script>
     $.extend(true, $.fn.dataTable.defaults, {
         language: {
-            search: "<div class="has-feedback">_INPUT_<span class="glyphicon glyphicon-search form-control-feedback"></span></div>",
-            searchPlaceholder: "Search...",
-            lengthMenu: "Results per page: _MENU_"
+            search: \"<div class='has-feedback'>_INPUT_<span class='glyphicon glyphicon-search form-control-feedback'></span></div>\",
+            searchPlaceholder: \"Search...\",
+            lengthMenu: \"Results per page: _MENU_\"
         },
-        dom: "<'row'<'col-sm-9'B><'col-sm-3'<'pull-right'l>f>>" +
-        "<'row'<'col-sm-12'tr>>" +
-        "<'row'<'col-sm-5'i><'col-sm-7'p>>"
-    });
+        dom: \"<'row'<'col-sm-9'B><'col-sm-3'<'pull-right'l>f>>\" +
+        \"<'row'<'col-sm-12'tr>>\" +
+        \"<'row'<'col-sm-5'i><'col-sm-7'p>>\"
+        });
 </script>
 EOT;
+?>";
         });
     }
 }
