@@ -40,6 +40,11 @@ class CmsDataTable extends DataTable
         //
     }
 
+    protected function getColumns()
+    {
+        return [];
+    }
+
     protected function getOrder()
     {
         return [[0, 'asc']];
