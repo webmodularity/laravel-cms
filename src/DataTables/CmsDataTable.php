@@ -120,7 +120,7 @@ $('.restore-confirm-button').click(function(){
     var recordIdent = $(this).data("record-ident");
     var dtApi = new $.fn.dataTable.Api( settings );
     swal({
-        title: 'Restore (Un-Delete) This Record?',
+        title: 'Restore This Record?',
         text: recordIdent,
         type: 'warning',
         showCancelButton: true,
