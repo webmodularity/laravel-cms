@@ -92,10 +92,11 @@ $('.delete-confirm-button').click(function(){
                     title: 'Successfully Deleted Record',
                     text: response.success,
                     type: 'success',
-                    timer: 5000,
                     confirmButtonClass: 'btn-primary',
+                },
+                function() {
+                    dtApi.ajax.reload(null, false);
                 });
-                dtApi.ajax.reload(null, false);
             },
             error: function () {
                 swal({
@@ -143,8 +144,10 @@ $('.restore-confirm-button').click(function(){
                     type: 'success',
                     timer: 5000,
                     confirmButtonClass: 'btn-primary',
+                },
+                function() {
+                    dtApi.ajax.reload(null, false);
                 });
-                dtApi.ajax.reload(null, false);
             },
             error: function () {
                 swal({
@@ -193,8 +196,10 @@ $('.perma-delete-confirm-button').click(function(){
                     type: 'success',
                     timer: 5000,
                     confirmButtonClass: 'btn-primary',
+                },
+                function() {
+                    dtApi.ajax.reload(null, false);
                 });
-                dtApi.ajax.reload(null, false);
             },
             error: function () {
                 swal({
