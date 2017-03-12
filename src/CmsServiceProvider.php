@@ -80,7 +80,7 @@ class CmsServiceProvider extends ServiceProvider
     private function loadBlade()
     {
         Blade::directive('dtdefaults', function ($dtTableId = 'dataTableBuilder') {
-            $dtIdName = trim($dtTableId, "''");
+            $dtIdName = trim($dtTableId, "'");
             return <<< EOT
 <script>
     $.extend(true, $.fn.dataTable.defaults, {
