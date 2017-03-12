@@ -79,25 +79,33 @@ class CmsServiceProvider extends ServiceProvider
 
     private function loadBlade()
     {
-        Blade::directive('dtdefaults', function ($dtTableId) {
-            $dtIdName = !empty($dtTableId) ? trim($dtTableId, "'") : 'dataTableBuilder';
-            return <<< EOT
-<script>
+        Blade::directive('dtdefaults', function ($dtTableIds) {
+            $inits = [];
+            $dtTableIds = $dtTableIds ?: 'dataTableBuilder';
+            $tableIds = explode(',', $dtTableIds);
+            foreach ($tableIds as $tableId) {
+                $tableId = trim(trim($tableId), "'");
+                $inits[] = "$('#".$tableId."_filter').appendTo($('#".$tableId."').closest('div.box').find('div.box-header div.box-tools'));";
+            }
+            $script = "<script>
     $.extend(true, $.fn.dataTable.defaults, {
         language: {
-            search: "<div class='has-feedback'>_INPUT_<span class='glyphicon glyphicon-search form-control-feedback'></span></div>",
-            searchPlaceholder: "Search...",
-            lengthMenu: "Results per page: _MENU_"
+            search: \"<div class='has-feedback'>_INPUT_<span class='glyphicon glyphicon-search form-control-feedback'></span></div>\",
+            searchPlaceholder: \"Search...\",
+            lengthMenu: \"Results per page: _MENU_\"
         },
-        dom: "<'row'<'col-sm-9'B><'col-sm-3'<'pull-right'l>f>>" +
-        "<'row'<'col-sm-12'tr>>" +
-        "<'row'<'col-sm-5'i><'col-sm-7'p>>",
+        dom: \"<'row'<'col-sm-9'B><'col-sm-3'<'pull-right'l>f>>\" +
+        \"<'row'<'col-sm-12'tr>>\" +
+        \"<'row'<'col-sm-5'i><'col-sm-7'p>>\",
         initComplete: function() {
-            $('#{$dtIdName}_filter').appendTo($('#{$dtIdName}').closest('div.box').find('div.box-header div.box-tools'));
-        }
+        }";
+
+            foreach ($inits as $init) {
+                $script .= $init . "\n";
+            }
+        $script .= "}
     });
-</script>
-EOT;
+</script>";
         });
     }
 }
