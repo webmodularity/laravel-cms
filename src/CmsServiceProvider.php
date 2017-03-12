@@ -85,7 +85,7 @@ class CmsServiceProvider extends ServiceProvider
 <script>
     $.extend(true, $.fn.dataTable.defaults, {
         language: {
-            search: "",
+            search: "<div class='has-feedback'>_INPUT_<span class='glyphicon glyphicon-search form-control-feedback'></span></div>",
             searchPlaceholder: "Search...",
             lengthMenu: "Results per page: _MENU_"
         },
