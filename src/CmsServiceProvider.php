@@ -91,10 +91,7 @@ class CmsServiceProvider extends ServiceProvider
         },
         dom: "<'row'<'col-sm-9'B><'col-sm-3'<'pull-right'l>f>>" +
         "<'row'<'col-sm-12'tr>>" +
-        "<'row'<'col-sm-5'i><'col-sm-7'p>>",
-        initComplete: function() {
-            $('#{$dtIdName}_filter').appendTo( $('#{$dtIdName}').closest('.box-tools') );
-        }
+        "<'row'<'col-sm-5'i><'col-sm-7'p>>"
     });
 </script>
 EOT;
