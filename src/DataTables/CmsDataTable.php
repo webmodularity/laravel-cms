@@ -136,10 +136,10 @@ $('.restore-confirm-button').click(function(){
             data: {
                 '_token': token,
             },
-            success: function () {
+            success: function (response) {
                 swal({
                     title: 'Successfully Restored Record',
-                    text: recordIdent,
+                    text: response.success,
                     type: 'success',
                     timer: 3000,
                     confirmButtonClass: 'btn-primary',
