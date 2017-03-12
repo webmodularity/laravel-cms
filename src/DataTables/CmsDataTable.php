@@ -169,7 +169,7 @@ $('.perma-delete-confirm-button').click(function(){
     var recordIdent = $(this).data("record-ident");
     var dtApi = new $.fn.dataTable.Api( settings );
     swal({
-        title: 'Delete This Record PERMANENTLY?',
+        title: 'Permanently Delete This Record?',
         text: recordIdent,
         type: 'error',
         showCancelButton: true,
