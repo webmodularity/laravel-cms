@@ -12,7 +12,7 @@
             <h3 class="box-title">User Log</h3>
 
             <div class="box-tools pull-right">
-                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+
             </div>
         </div>
         <!-- /.box-header -->
@@ -24,5 +24,6 @@
 @stop
 
 @push('js')
+@dtdefaults()
 {!! $dataTable->scripts() !!}
 @endpush
