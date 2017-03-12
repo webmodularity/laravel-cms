@@ -104,6 +104,8 @@ class CmsServiceProvider extends ServiceProvider
         $script .= "}
     });
 </script>";
+
+        return $script;
         });
     }
 }
