@@ -122,7 +122,7 @@ $('.restore-confirm-button').click(function(){
     swal({
         title: 'Restore This Record?',
         text: recordIdent,
-        type: 'info',
+        type: 'warning',
         showCancelButton: true,
         confirmButtonClass: 'btn-success',
         confirmButtonText: 'Yes, restore it!',
