@@ -142,7 +142,6 @@ $('.restore-confirm-button').click(function(){
                     title: 'Successfully Restored Record',
                     text: response.success,
                     type: 'success',
-                    timer: 5000,
                     confirmButtonClass: 'btn-primary',
                 },
                 function() {
@@ -194,7 +193,6 @@ $('.perma-delete-confirm-button').click(function(){
                     title: 'Permanently Deleted Record',
                     text: response.success,
                     type: 'success',
-                    timer: 5000,
                     confirmButtonClass: 'btn-primary',
                 },
                 function() {
