@@ -11,6 +11,11 @@ class CmsDataTable extends DataTable
         //
     }
 
+    protected function getButtons()
+    {
+        return ['wmcopy', 'wmcolvis', 'export'];
+    }
+
     protected function getDeleteConfirmAlert()
     {
         return <<< EOT

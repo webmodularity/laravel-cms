@@ -65,7 +65,7 @@ class UserLogDataTable extends CmsDataTable
     protected function getBuilderParameters()
     {
         return [
-            'buttons' => ['export', 'wmcopy', 'print', 'reset'],
+            'buttons' => $this->getButtons(),
             'order' => [[0, "desc"]],
             'responsive' => true
         ];
