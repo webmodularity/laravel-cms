@@ -93,7 +93,7 @@ class CmsServiceProvider extends ServiceProvider
         "<'row'<'col-sm-12'tr>>" +
         "<'row'<'col-sm-5'i><'col-sm-7'p>>",
         initComplete: function() {
-            $('#{$dtIdName}_filter').appendTo( $('#{$dtIdName}').closest('div.box-tools') );
+            $('#{$dtIdName}_filter').appendTo( $('#{$dtIdName}').closest('.box-tools') );
         }
     });
 </script>
