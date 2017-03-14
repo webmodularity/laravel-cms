@@ -41,7 +41,7 @@
 
 <script src="{{ asset('vendor/adminlte/plugins/jQuery/jquery-2.2.3.min.js') }}"></script>
 <script src="{{ asset('vendor/adminlte/bootstrap/js/bootstrap.min.js') }}"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+<script src="{{ asset('vendor/adminlte/plugins/select2/select2.min.js') }}"></script>
 @if(config('adminlte.plugins.datatables'))
     <!-- DataTables -->
     <script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
