@@ -125,16 +125,9 @@
 @section('adminlte_js')
     <script>
         $(function() {
-            if (localStorage.getItem('collapse-sidebar')) {
-                $('body').addClass("sidebar-collapse");
-            }
-
             $('.sidebar-toggle').click(function() {
-                if ($('body').hasClass("sidebar-collapse")) {
-                    localStorage.setItem('collapse-sidebar', true);
-                } else {
-                    localStorage.setItem('collapse-sidebar', false);
-                }
+                var isCollapsed = $('body').hasClass("sidebar-collapse");
+                $.ajax("{{ route('collapse-sidebar') }}?state="+ isCollapsed ? 1 : 0);
             });
         });
     </script>
