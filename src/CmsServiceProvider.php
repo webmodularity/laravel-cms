@@ -68,7 +68,7 @@ class CmsServiceProvider extends ServiceProvider
         });
         // States
         View::composer(['wmcms::partials.form.address'], function ($view) {
-            $view->with('stateList', AddressState::select(['id', 'iso'])->orderBy('iso', 'asc')->get()->toArray());
+            $view->with('stateList', AddressState::select(['id', 'iso'])->where('country_id', 1)->orderBy('iso', 'asc')->get()->toArray());
         });
 
         // Migrations
