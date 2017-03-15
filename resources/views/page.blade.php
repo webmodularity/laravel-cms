@@ -123,6 +123,21 @@
 @stop
 
 @section('adminlte_js')
+    <script>
+        $(function() {
+            if (localStorage.getItem('collapse-sidebar')) {
+                $('body').addClass("sidebar-collapse");
+            }
+
+            $('.sidebar-toggle').click(function() {
+                if ($('body').hasClass("sidebar-collapse")) {
+                    localStorage.setItem('collapse-sidebar', true);
+                } else {
+                    localStorage.setItem('collapse-sidebar', false);
+                }
+            });
+        });
+    </script>
     <script src="{{ asset('vendor/adminlte/dist/js/app.min.js') }}"></script>
     @stack('js')
     @yield('js')

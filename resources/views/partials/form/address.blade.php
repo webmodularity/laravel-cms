@@ -24,7 +24,7 @@
     </div>
     <div class="col-sm-3">
         <div class="form-group {{ $errors->has('address.state_id') ? 'has-error' : '' }}">
-            <select class="form-control" style="width: 100%;" name="address.state_id" id="address-state_id" data-placeholder="State...">
+            <select class="form-control" style="width: 100%;" name="address.state_id" id="address-state_id" data-placeholder="State">
                 <option></option>
                 @foreach($stateList as $state)
                     <option value="{{ $state['id'] }}"{{ $state_id == $state['id'] ? ' selected' : '' }}>{{ $state['iso'] }}</option>
