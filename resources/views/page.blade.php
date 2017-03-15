@@ -126,8 +126,8 @@
     <script>
         $(function() {
             $('.sidebar-toggle').click(function() {
-                var isCollapsed = $('body').hasClass("sidebar-collapse");
-                $.ajax("{{ route('collapse-sidebar') }}?state="+ isCollapsed ? 1 : 0);
+                var isCollapsed = $('body').hasClass("sidebar-collapse") ? 1 : 0;
+                $.ajax("{{ route('collapse-sidebar') }}?state="+ isCollapsed);
             });
         });
     </script>
