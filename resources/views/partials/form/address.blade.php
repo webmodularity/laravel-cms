@@ -52,8 +52,6 @@
 
 @push('js')
 <script type="text/javascript">
-    $('#address-state_id').select2({
-        minimumResultsForSearch: Infinity
-    });
+    $('#address-state_id').select2();
 </script>
 @endpush
