@@ -6,6 +6,7 @@ use View;
 use Auth;
 use Blade;
 use Illuminate\Support\ServiceProvider;
+use WebModularity\LaravelContact\AddressState;
 use WebModularity\LaravelLog\LogServiceProvider;
 use WebModularity\LaravelUser\LogUser;
 use WebModularity\LaravelUser\UserServiceProvider;
@@ -64,6 +65,10 @@ class CmsServiceProvider extends ServiceProvider
                     ->limit(3)
                     ->get()
             );
+        });
+        // States
+        View::composer(['wmcms::partials.form.address'], function ($view) {
+            $view->with('stateList', AddressState::select(['id', 'iso'])->orderBy('iso', 'asc')->get()->toArray());
         });
 
         // Migrations
