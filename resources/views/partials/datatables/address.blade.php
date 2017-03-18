@@ -1,4 +1,4 @@
 <address class="no-margin">
     {{ $street }}<br />
-    {{ $city }}, {{ $state }} {{ $zip }}
+    {{ $city }}{{ !empty($street) ? ',' : '' }} {{ $state }} {{ $zip }}
 </address>
