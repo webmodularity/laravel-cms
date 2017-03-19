@@ -9,7 +9,12 @@ $addressSettings[$addressField] = [
     <div class="col-sm-12">
         <div class="form-group {{ $errors->has($addressField . '.street') ? 'has-error' : '' }}">
             <label class="control-label" for="{{ $addressField }}[street]">{{ $addressSettings[$addressField]['label'] }}</label>
-            <input type="text" name="{{ $addressField }}[street]" class="form-control" value="{{ $street }}" placeholder="Street Address"{{ $addressSettings[$addressField]['required'] ? ' required' : '' }} />
+            <div class="input-group">
+                <input type="text" name="{{ $addressField }}[street]" class="form-control" value="{{ $street }}" placeholder="Street Address"{{ $addressSettings[$addressField]['required'] ? ' required' : '' }} />
+                <span class="input-group-addon">
+                    <i class="fa fa-close" id="{{ $addressField }}-address-clear"></i>
+                </span>
+            </div>
             @if ($errors->has($addressField . '.street'))
                 <span class="help-block">
                     <strong>{{ $errors->first($addressField . '.street') }}</strong>
