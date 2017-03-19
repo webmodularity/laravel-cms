@@ -15,7 +15,7 @@ $addressSettings[$addressField] = [
             <input type="text" name="{{ $addressField }}[street]" id="{{ $addressField }}-street" class="form-control" value="{{ $street }}" placeholder="Street Address"{{ $addressSettings[$addressField]['required'] ? ' required' : '' }} />
                 @if(!$addressSettings[$addressField]['required'])
                 <span class="input-group-addon">
-                    <i class="fa fa-close" id="{{ $addressField }}-address-clear" data-toggle="tooltip" data-placement="left" title="Clear Address"></i>
+                    <i class="fa fa-close" id="{{ $addressField }}-address-clear" style="cursor: pointer;" data-toggle="tooltip" data-placement="left" title="Clear Address"></i>
                 </span>
                 @endif()
             @if(!$addressSettings[$addressField]['required'])
