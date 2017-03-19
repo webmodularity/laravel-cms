@@ -9,12 +9,18 @@ $addressSettings[$addressField] = [
     <div class="col-sm-12">
         <div class="form-group {{ $errors->has($addressField . '.street') ? 'has-error' : '' }}">
             <label class="control-label" for="{{ $addressField }}[street]">{{ $addressSettings[$addressField]['label'] }}</label>
-            <div class="input-group">
-                <input type="text" name="{{ $addressField }}[street]" id="{{ $addressField }}-street" class="form-control" value="{{ $street }}" placeholder="Street Address"{{ $addressSettings[$addressField]['required'] ? ' required' : '' }} />
+            @if(!$addressSettings[$addressField]['required'])
+                <div class="input-group">
+            @endif()
+            <input type="text" name="{{ $addressField }}[street]" id="{{ $addressField }}-street" class="form-control" value="{{ $street }}" placeholder="Street Address"{{ $addressSettings[$addressField]['required'] ? ' required' : '' }} />
+                @if(!$addressSettings[$addressField]['required'])
                 <span class="input-group-addon">
-                    <i class="fa fa-close" id="{{ $addressField }}-address-clear"></i>
+                    <i class="fa fa-close" id="{{ $addressField }}-address-clear" data-toggle="tooltip" data-placement="left" title="Clear Address"></i>
                 </span>
+                @endif()
+            @if(!$addressSettings[$addressField]['required'])
             </div>
+            @endif()
             @if ($errors->has($addressField . '.street'))
                 <span class="help-block">
                     <strong>{{ $errors->first($addressField . '.street') }}</strong>
@@ -64,11 +70,13 @@ $addressSettings[$addressField] = [
 @push('js')
 <script type="text/javascript">
     $('#{{ $addressField }}-state').select2();
+    @if(!$addressSettings[$addressField]['required'])
     $('#{{ $addressField }}-address-clear').click(function() {
         $('#{{ $addressField }}-street').val('');
         $('#{{ $addressField }}-city').val('');
         $('#{{ $addressField }}-state').val('').trigger("change");
         $('#{{ $addressField }}-zip').val('');
     });
+    @endif()
 </script>
 @endpush
