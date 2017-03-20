@@ -8,7 +8,7 @@ $addressSettings[$addressField] = [
 <div class="row">
     <div class="col-sm-12">
         <div class="form-group {{ $errors->has($addressField . '.street') ? 'has-error' : '' }}">
-            <label class="control-label" for="{{ $addressField }}[street]">{{ $addressSettings[$addressField]['label'] }}</label>
+            <label class="control-label" for="{{ $addressField }}[street]">{{ $addressSettings[$addressField]['label'] }}{{ !$addressSettings[$addressField]['required'] ? ' (Optional)' : '' }}</label>
             @if(!$addressSettings[$addressField]['required'])
                 <div class="input-group">
             @endif()
