@@ -42,7 +42,7 @@ $addressSettings[$addressField] = [
     </div>
     <div class="col-sm-3">
         <div class="form-group {{ $errors->has($addressField . '.state_id') ? 'has-error' : '' }}">
-            <select class="form-control" style="width: 100%;" name="{{ $addressField }}[state_id]" id="{{ $addressField }}-state" data-placeholder="State"{{ $addressSettings[$addressField]['required'] ? ' required' : '' }}>
+            <select class="form-control select2" style="width: 100%;" name="{{ $addressField }}[state_id]" id="{{ $addressField }}-state" data-placeholder="State"{{ $addressSettings[$addressField]['required'] ? ' required' : '' }}>
                 <option></option>
                 @foreach($stateList as $state)
                     <option value="{{ $state['id'] }}"{{ $state_id == $state['id'] ? ' selected' : '' }}>{{ $state['iso'] }}</option>

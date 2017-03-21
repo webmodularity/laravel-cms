@@ -58,5 +58,20 @@
 
 @yield('adminlte_js')
 
+<script>
+    $(function () {
+        $("button[type='reset']").on("click", function(event){
+            event.preventDefault();
+            var myForm = $(this).closest('form').get(0);
+            myForm.reset();
+            $(myForm).find("select.select2").each(
+                function () {
+                    $(this).select2().val($(this).find('option:selected').val()).trigger("change")
+                }
+            );
+        });
+    });
+</script>
+
 </body>
 </html>
