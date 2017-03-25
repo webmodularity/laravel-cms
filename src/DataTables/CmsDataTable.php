@@ -98,10 +98,11 @@ $('.delete-confirm-button').click(function(){
                     dtApi.ajax.reload(null, false);
                 });
             },
-            error: function (response) {
+            error: function (xhr, status, error) {
+                console.log(error);
                 swal({
                     title: 'Delete Failed!',
-                    text: response.errors.error
+                    text: xhr.responseText
                         || 'An unknown server error was encountered when attempting to delete this record.',
                     type: 'error',
                     confirmButtonClass: 'btn-primary',
