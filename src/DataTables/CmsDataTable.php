@@ -90,7 +90,7 @@ $('.delete-confirm-button').click(function(){
             success: function (response) {
                 swal({
                     title: 'Successfully Deleted Record',
-                    text: JSON.parse(response.success),
+                    text: JSON.parse(response),
                     type: 'success',
                     confirmButtonClass: 'btn-primary',
                 },
