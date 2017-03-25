@@ -90,7 +90,7 @@ $('.delete-confirm-button').click(function(){
             success: function (response) {
                 swal({
                     title: 'Successfully Deleted Record',
-                    text: response.success,
+                    text: JSON.parse(response.success),
                     type: 'success',
                     confirmButtonClass: 'btn-primary',
                 },
@@ -101,7 +101,7 @@ $('.delete-confirm-button').click(function(){
             error: function (xhr, status, error) {
                 swal({
                     title: 'Delete Failed!',
-                    text: xhr.responseText
+                    text: JSON.parse(xhr.responseText)
                         || 'An unknown server error was encountered when attempting to delete this record.',
                     type: 'error',
                     confirmButtonClass: 'btn-primary',
