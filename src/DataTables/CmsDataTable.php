@@ -101,7 +101,8 @@ $('.delete-confirm-button').click(function(){
             error: function () {
                 swal({
                     title: 'Delete Failed!',
-                    text: 'An unknown server error was encountered when attempting to delete this record.',
+                    text: response.errors.error
+                        || 'An unknown server error was encountered when attempting to delete this record.',
                     type: 'error',
                     confirmButtonClass: 'btn-primary',
                 });
