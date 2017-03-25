@@ -98,7 +98,7 @@ $('.delete-confirm-button').click(function(){
                     dtApi.ajax.reload(null, false);
                 });
             },
-            error: function () {
+            error: function (response) {
                 swal({
                     title: 'Delete Failed!',
                     text: response.errors.error
