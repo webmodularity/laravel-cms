@@ -99,7 +99,6 @@ $('.delete-confirm-button').click(function(){
                 });
             },
             error: function (xhr, status, error) {
-                console.log(error);
                 swal({
                     title: 'Delete Failed!',
                     text: xhr.responseText
