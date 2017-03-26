@@ -90,7 +90,7 @@ $('.delete-confirm-button').click(function(){
             success: function (response) {
                 swal({
                     title: 'Successfully Deleted Record',
-                    text: JSON.parse(response.success),
+                    text: response.success,
                     type: 'success',
                     confirmButtonClass: 'btn-primary',
                 },
@@ -141,7 +141,7 @@ $('.restore-confirm-button').click(function(){
             success: function (response) {
                 swal({
                     title: 'Successfully Restored Record',
-                    text: JSON.parse(response.success),
+                    text: response.success,
                     type: 'success',
                     confirmButtonClass: 'btn-primary',
                 },
@@ -193,7 +193,7 @@ $('.perma-delete-confirm-button').click(function(){
             success: function (response) {
                 swal({
                     title: 'Permanently Deleted Record',
-                    text: JSON.parse(response.success),
+                    text: response.success,
                     type: 'success',
                     confirmButtonClass: 'btn-primary',
                 },
