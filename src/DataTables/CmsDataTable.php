@@ -90,7 +90,7 @@ $('.delete-confirm-button').click(function(){
             success: function (response) {
                 swal({
                     title: 'Successfully Deleted Record',
-                    text: JSON.parse(response),
+                    text: JSON.parse(response.success),
                     type: 'success',
                     confirmButtonClass: 'btn-primary',
                 },
@@ -141,7 +141,7 @@ $('.restore-confirm-button').click(function(){
             success: function (response) {
                 swal({
                     title: 'Successfully Restored Record',
-                    text: response.success,
+                    text: JSON.parse(response.success),
                     type: 'success',
                     confirmButtonClass: 'btn-primary',
                 },
@@ -149,10 +149,11 @@ $('.restore-confirm-button').click(function(){
                     dtApi.ajax.reload(null, false);
                 });
             },
-            error: function () {
+            error: function (xhr, status, error) {
                 swal({
                     title: 'Restore Failed!',
-                    text: 'An unknown server error was encountered when attempting to restore this record.',
+                    text: JSON.parse(xhr.responseText)
+                        || 'An unknown server error was encountered when attempting to restore this record.',
                     type: 'error',
                     confirmButtonClass: 'btn-primary',
                 });
@@ -192,7 +193,7 @@ $('.perma-delete-confirm-button').click(function(){
             success: function (response) {
                 swal({
                     title: 'Permanently Deleted Record',
-                    text: response.success,
+                    text: JSON.parse(response.success),
                     type: 'success',
                     confirmButtonClass: 'btn-primary',
                 },
@@ -200,10 +201,11 @@ $('.perma-delete-confirm-button').click(function(){
                     dtApi.ajax.reload(null, false);
                 });
             },
-            error: function () {
+            error: function (xhr, status, error) {
                 swal({
                     title: 'Permanent Delete Failed!',
-                    text: 'An unknown server error was encountered when attempting to delete this record.',
+                    text: JSON.parse(xhr.responseText)
+                        || 'An unknown server error was encountered when attempting to delete this record.',
                     type: 'error',
                     confirmButtonClass: 'btn-primary',
                 });
