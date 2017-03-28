@@ -21,6 +21,7 @@ trait RecyclableDataTable
 
     protected function recycleQuery($query)
     {
-        return $query->onlyTrashed();
+        return $query
+            ->onlyTrashed();
     }
 }
