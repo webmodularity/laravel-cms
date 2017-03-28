@@ -43,4 +43,15 @@ trait RecyclableDataTable
 
         return $filtered;
     }
+
+    protected function recycleGetButtons()
+    {
+        return ['recycle', 'wmcopy', 'wmcolvis', 'export'];
+    }
+
+    protected function recycleGetDrawCallback()
+    {
+        return $this->getRestoreConfirmAlert() . "\n"
+            . $this->getPermaDeleteConfirmAlert();
+    }
 }
