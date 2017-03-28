@@ -19,4 +19,8 @@ trait RecyclableDataTable
             });
     }
 
+    protected function recycleQuery($query)
+    {
+        return $query->onlyTrashed();
+    }
 }
