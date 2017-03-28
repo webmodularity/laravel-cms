@@ -6,7 +6,6 @@ use Carbon\Carbon;
 
 trait RecyclableDataTable
 {
-
     protected function recycleDataTable($dataTable)
     {
         return $dataTable
@@ -19,9 +18,28 @@ trait RecyclableDataTable
             });
     }
 
+    /**
+     * Get the query object to be processed by dataTables.
+     *
+     * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Query\Builder|\Illuminate\Support\Collection
+     */
     protected function recycleQuery($query)
     {
         return $query
             ->onlyTrashed();
+    }
+
+    /**
+     * Get columns.
+     *
+     * @return array
+     */
+    protected function recycleGetColumns($columns)
+    {
+        $filtered = array_where($columns, function ($value, $key) {
+            return !is_string($value) || ($value != 'updated_at' && $value != 'created_at');
+        });
+
+        return array_push($filtered, 'deleted_at');
     }
 }
