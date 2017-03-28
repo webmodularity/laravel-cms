@@ -39,7 +39,8 @@ trait RecyclableDataTable
         $filtered = array_where($columns, function ($value, $key) {
             return !is_string($value) || ($value != 'updated_at' && $value != 'created_at');
         });
+        array_push($filtered, 'deleted_at');
 
-        return array_push($filtered, 'deleted_at');
+        return $filtered;
     }
 }
