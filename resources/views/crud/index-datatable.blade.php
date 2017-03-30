@@ -1,4 +1,4 @@
-@extends('page')
+@extends('wmcms::page')
 
 @section('title', $title)
 
