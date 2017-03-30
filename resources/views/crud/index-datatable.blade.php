@@ -1,12 +1,10 @@
 @extends('wmcms::page')
 
-@section('title', $title)
-
 @section('content_header')
-    <h1>{{ $title }}<small>Active Records</small></h1>
+    <h1>@yield('title')<small>Active Records</small></h1>
     <ol class="breadcrumb">
         <li><a href="{{ route('dashboard') }}"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">{{ $title }}</li>
+        <li class="active">@yield('title')</li>
     </ol>
 @stop
 
@@ -15,7 +13,7 @@
         <div class="col-sm-12">
             <div class="box box-primary">
                 <div class="box-header with-border">
-                    <h3 class="box-title">{{ $title }}</h3>
+                    <h3 class="box-title">@yield('title')</h3>
                     <div class="box-tools pull-right">
 
                     </div><!-- /.box-tools -->
