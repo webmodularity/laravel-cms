@@ -101,7 +101,7 @@
 
             <!-- Content Header (Page header) -->
             <section class="content-header">
-                @yield('header-title')
+                @yield('header_title')
                 <ol class="breadcrumb">
                     <li><a href="{{ route('dashboard') }}"><i class="fa fa-dashboard"></i> Home</a></li>
                     @yield('breadcrumbs')
