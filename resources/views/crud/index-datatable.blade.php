@@ -1,6 +1,6 @@
 @extends('page')
 
-@section('title', {{ $title }})
+@section('title', $title)
 
 @section('content_header')
     <h1>{{ $title }}<small>Active Records</small></h1>
