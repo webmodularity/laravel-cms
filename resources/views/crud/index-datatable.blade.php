@@ -1,6 +1,6 @@
 @extends('wmcms::page')
 
-@section('header_title')
+@section('header-title')
     <h1>@yield('title')<small>Active Records</small></h1>
 @endsection
 
