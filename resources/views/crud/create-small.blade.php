@@ -38,7 +38,7 @@
                 <div class="box-body">
                     <table id="recently-added" class="table table-hover table-bordered">
                         <thead>
-                        @yield('recent-header-rows')
+                        @yield('recent-header-row')
                         </thead>
                         <tbody>
                         @yield('recent-rows')
