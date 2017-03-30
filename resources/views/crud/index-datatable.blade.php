@@ -1,12 +1,12 @@
 @extends('wmcms::page')
 
-@section('content_header')
+@section('header_title')
     <h1>@yield('title')<small>Active Records</small></h1>
-    <ol class="breadcrumb">
-        <li><a href="{{ route('dashboard') }}"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">@yield('title')</li>
-    </ol>
-@stop
+@endsection
+
+@section('breadcrumbs')
+    <li class="active">@yield('title')</li>
+@endsection
 
 @section('content')
     <div class="row">
