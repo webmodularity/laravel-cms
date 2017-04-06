@@ -1,4 +1,5 @@
 @foreach($phones as $phone)
+    {!! dd($phone) !!}
     @php
     switch ($phone->pivot['phone_type_id'])
     {
