@@ -1,1 +1,3 @@
-@each('wmcms::partials.phone', $phones, 'phone')
+@foreach($phones as $phone)
+    {{ var_dump($phone) }}
+@endforeach
