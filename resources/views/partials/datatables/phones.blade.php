@@ -1,20 +1,21 @@
 @foreach($phones as $phone)
-    <i class="fa fa-fw fa-@php
-    switch ($phone->pivot->phone_type_id)
+    @php
+    switch ($phone->pivot['phone_type_id'])
     {
         case \WebModularity\LaravelContact\Phone::TYPE_MOBILE:
-            echo "mobile-phone";
+            $phoneIcon = "mobile-phone";
             break;
         case \WebModularity\LaravelContact\Phone::TYPE_FAX:
-            echo "fax";
+            $phoneIcon = "fax";
             break;
         case \WebModularity\LaravelContact\Phone::TYPE_HOME;
-            echo "home";
+            $phoneIcon = "home";
             break;
         default:
-            echo "phone";
+            $phoneIcon = "phone";
     }
-    @endphp"></i>
+    @endphp
+    <i class="fa fa-fw fa-{{ $phoneIcon }}"></i>
     @include('wmcms::partials.phone', ['phone' => $phone])
     @if(!$loop->last)
         <br />
