@@ -1,0 +1,1 @@
+@each('wmcms::partials.phone', $person->phones, $phone)
