@@ -1,6 +1,6 @@
 @foreach($phones as $phone)
     <i class="fa fa-fw fa-@php
-    switch ($phone->pivot['phone_type_id'])
+    switch ($phone->pivot->phone_type_id)
     {
         case \WebModularity\LaravelContact\Phone::TYPE_MOBILE:
             echo "mobile-phone";
