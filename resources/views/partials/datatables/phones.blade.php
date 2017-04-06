@@ -14,4 +14,7 @@ use WebModularity\LaravelContact\Phone;
     }
     ?>"></i>&nbsp;
     @include('wmcms::partials.phone', ['phone' => $phone])
+    @if(!$phone->last)
+        <br />
+    @endif
 @endforeach
