@@ -1,18 +1,20 @@
-<?php
-use WebModularity\LaravelContact\Phone;
-?>
 @foreach($phones as $phone)
-    <i class="fa fa-fw fa-<?php
-    if (Phone::TYPE_MOBILE) {
-        echo "mobile-phone";
-    } elseif (Phone::TYPE_FAX) {
-        echo "fax";
-    } elseif (Phone::TYPE_HOME) {
-        echo "home";
-    } else {
-        echo "phone";
+    <i class="fa fa-fw fa-@php
+    switch ($phone->pivot['phone_type_id'])
+    {
+        case \WebModularity\LaravelContact\Phone::TYPE_MOBILE:
+            echo "mobile-phone";
+            break;
+        case \WebModularity\LaravelContact\Phone::TYPE_FAX:
+            echo "fax";
+            break;
+        case \WebModularity\LaravelContact\Phone::TYPE_HOME;
+            echo "home";
+            break;
+        default:
+            echo "phone";
     }
-    ?>"></i>&nbsp;
+    @endphp"></i>&nbsp;
     @include('wmcms::partials.phone', ['phone' => $phone])
     @if(!$loop->last)
         <br />
