@@ -14,7 +14,7 @@
         default:
             echo "phone";
     }
-    @endphp"></i>&nbsp;
+    @endphp"></i>
     @include('wmcms::partials.phone', ['phone' => $phone])
     @if(!$loop->last)
         <br />
