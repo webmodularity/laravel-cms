@@ -12,7 +12,7 @@ $addressSettings[$addressField] = [
             @if(!$addressSettings[$addressField]['required'])
                 <div class="input-group">
             @endif()
-            <input type="text" name="{{ $addressField }}[street]" id="{{ $addressField }}-street" class="form-control" value="{{ $street }}" placeholder="Street Address"{{ $addressSettings[$addressField]['required'] ? ' required' : '' }} />
+            <input type="text" name="{{ $addressField }}[street]" id="{{ $addressField }}-street" class="form-control" value="{{ ${$addressField}['street'] }}" placeholder="Street Address"{{ $addressSettings[$addressField]['required'] ? ' required' : '' }} />
                 @if(!$addressSettings[$addressField]['required'])
                 <span class="input-group-addon">
                     <i class="fa fa-close" id="{{ $addressField }}-address-clear" style="cursor: pointer;" data-toggle="tooltip" data-placement="left" title="Clear Address"></i>
@@ -32,7 +32,7 @@ $addressSettings[$addressField] = [
 <div class="row">
     <div class="col-sm-5">
         <div class="form-group {{ $errors->has($addressField . '.city') ? 'has-error' : '' }}">
-            <input type="text" name="{{ $addressField }}[city]" id="{{ $addressField }}-city" class="form-control" value="{{ $city }}" placeholder="City"{{ $addressSettings[$addressField]['required'] ? ' required' : '' }} />
+            <input type="text" name="{{ $addressField }}[city]" id="{{ $addressField }}-city" class="form-control" value="{{ ${$addressField}['city'] }}" placeholder="City"{{ $addressSettings[$addressField]['required'] ? ' required' : '' }} />
             @if ($errors->has($addressField . '.city'))
                 <span class="help-block">
                     <strong>{{ $errors->first($addressField . '.city') }}</strong>
@@ -45,7 +45,7 @@ $addressSettings[$addressField] = [
             <select class="form-control select2" style="width: 100%;" name="{{ $addressField }}[state_id]" id="{{ $addressField }}-state" data-placeholder="State"{{ $addressSettings[$addressField]['required'] ? ' required' : '' }}>
                 <option></option>
                 @foreach($stateList as $state)
-                    <option value="{{ $state['id'] }}"{{ $state_id == $state['id'] ? ' selected' : '' }}>{{ $state['iso'] }}</option>
+                    <option value="{{ $state['id'] }}"{{ ${$addressField}['state_id'] == $state['id'] ? ' selected' : '' }}>{{ $state['iso'] }}</option>
                 @endforeach()
             </select>
             @if ($errors->has($addressField . '.state_id'))
@@ -57,7 +57,7 @@ $addressSettings[$addressField] = [
     </div>
     <div class="col-sm-4">
         <div class="form-group {{ $errors->has($addressField . '.zip') ? 'has-error' : '' }}">
-            <input type="text" name="{{ $addressField }}[zip]" id="{{ $addressField }}-zip" class="form-control" value="{{ $zip }}" placeholder="Zip"{{ $addressSettings[$addressField]['required'] ? ' required' : '' }} />
+            <input type="text" name="{{ $addressField }}[zip]" id="{{ $addressField }}-zip" class="form-control" value="{{ ${$addressField}['zip'] }}" placeholder="Zip"{{ $addressSettings[$addressField]['required'] ? ' required' : '' }} />
             @if ($errors->has($addressField . '.zip'))
                 <span class="help-block">
                     <strong>{{ $errors->first($addressField . '.zip') }}</strong>
