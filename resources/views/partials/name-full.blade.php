@@ -1,0 +1,1 @@
+{{ $name['first_name'] }} {{ !empty($name['middle_name']) ? $name['middle_name'] . ' ' : '' }} {{ $name['last_name'] }}
