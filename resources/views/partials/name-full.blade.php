@@ -1,1 +1,3 @@
-{{ $name['first_name'] }} {{ !empty($name['middle_name']) ? $name['middle_name'] . ' ' : '' }} {{ $name['last_name'] }}
+@if(isset($person) && !empty($person))
+{{ $person['first_name'] }} {{ !empty($person['middle_name']) ? $person['middle_name'] . ' ' : '' }} {{ $person['last_name'] }}
+@endif
