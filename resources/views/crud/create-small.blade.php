@@ -13,6 +13,7 @@
                     {!! csrf_field() !!}
 
                     <div class="box-body">
+                    @include('wmcms::partials.form.success')
                     @include('wmcms::partials.form.error-summary')
                     @yield('form')
                     <!-- /.box-body -->
