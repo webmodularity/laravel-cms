@@ -9,8 +9,8 @@
         <li class="user-header">
             <img src="{{ Auth::user()->avatar_url ? Auth::user()->avatar_url : 'https://cdn.webmodularity.com/img/user_default.png' }}" class="img-circle" alt="User Image">
             <p>
-                {{ Auth::user()->person->getFullName() }}
-                <small>{{  Auth::user()->person->email }}</small>
+                @include('wmcms::partials.name-short', ['person' => Auth::user()->person])
+                <small>{{ Auth::user()->person->email }}</small>
             </p>
         </li>
         <!-- Menu Body -->
