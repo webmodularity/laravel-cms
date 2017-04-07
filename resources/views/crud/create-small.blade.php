@@ -19,7 +19,7 @@
                     </div>
 
                     <div class="box-footer">
-                        <button type="submit" class="btn btn-primary pull-right">@yield('submit-title')</button>
+                        <button type="submit" class="btn btn-primary pull-right">Create</button>
                     </div>
                 </form>
             </div>
