@@ -66,7 +66,7 @@
             "ordering": true,
             "info": true,
             "autoWidth": true,
-            "order": {{ $relatedDefaultOrder or '[[0, "asc"]]' }}
+            "order": {!! $relatedDefaultOrder or '[[0, "asc"]]' !!}
         });
     });
 </script>
