@@ -40,7 +40,7 @@ $addressSettings[$addressField] = [
             @endif
         </div>
     </div>
-    <div class="col-sm-3">
+    <div class="col-sm-3 col-xs-5">
         <div class="form-group {{ $errors->has($addressField . '.state_id') ? 'has-error' : '' }}">
             <select class="form-control select2" style="width: 100%;" name="{{ $addressField }}[state_id]" id="{{ $addressField }}-state" data-placeholder="State"{{ $addressSettings[$addressField]['required'] ? ' required' : '' }}>
                 <option></option>
@@ -55,7 +55,7 @@ $addressSettings[$addressField] = [
             @endif
         </div>
     </div>
-    <div class="col-sm-4">
+    <div class="col-sm-4 col-xs-7">
         <div class="form-group {{ $errors->has($addressField . '.zip') ? 'has-error' : '' }}">
             <input type="text" name="{{ $addressField }}[zip]" id="{{ $addressField }}-zip" class="form-control" value="{{ ${$addressField}['zip'] }}" placeholder="Zip"{{ $addressSettings[$addressField]['required'] ? ' required' : '' }} />
             @if ($errors->has($addressField . '.zip'))
