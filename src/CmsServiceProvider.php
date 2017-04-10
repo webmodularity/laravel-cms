@@ -15,6 +15,7 @@ use Yajra\Datatables\DatatablesServiceProvider;
 use JeroenNoten\LaravelAdminLte\ServiceProvider as AdminLteServiceProvider;
 use JeroenNoten\LaravelAdminLte\Http\ViewComposers\AdminLteComposer;
 use Maatwebsite\Excel\ExcelServiceProvider;
+use Sineld\BladeSet\BladeSetServiceProvider;
 
 class CmsServiceProvider extends ServiceProvider
 {
@@ -37,6 +38,9 @@ class CmsServiceProvider extends ServiceProvider
 
         // Register AdminLTE
         $this->app->register(ExcelServiceProvider::class);
+
+        // Blade Set
+        $this->app->register(BladeSetServiceProvider::class);
 
         // Config
         $this->mergeConfigFrom(__DIR__ . '/../config/cms.php', 'wm.cms');
