@@ -40,7 +40,7 @@
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-                <table id="@yield('related-table-id')" class="table table-hover table-bordered">
+                <table id="{{ $relatedTableId }}" class="table table-hover table-bordered">
                     <thead>
                         @yield('related-header-row')
                     </thead>
