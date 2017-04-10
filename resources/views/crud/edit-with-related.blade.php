@@ -55,6 +55,8 @@
 </div>
 @endsection
 
+@section('related-default-order', '[[0, "asc"]]')
+
 @push('js')
 @dtdefaults('@yield('related-table-id')')
 <script>
@@ -66,7 +68,7 @@
             "ordering": true,
             "info": true,
             "autoWidth": true,
-            "order": [[0, "asc"]]
+            "order": @yield('related-default-order')
         });
     });
 </script>
