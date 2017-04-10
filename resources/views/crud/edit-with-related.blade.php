@@ -30,11 +30,28 @@
         </div>
     </div>
     <div class="col-sm-6">
+        <div class="box box-primary">
+            <div class="box-header with-border">
+                <h3 class="box-title">@yield('related-box-title') <em>@yield('box-title')</em></h3>
+
+                <div class="box-tools pull-right">
+
+                </div>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+                <table id="@yield('related-table-id')" class="table table-hover table-bordered">
+                    <thead>
+                        @yield('related-header-rows')
+                    </thead>
+                    <tbody>
+                        @yield('related-rows')
+                    </tbody>
+                </table>
+            </div>
+            <!-- /.box-body -->
+        </div>
 
     </div>
 </div>
 @endsection
-
-@push('js')
-@dtdefaults()
-@endpush
