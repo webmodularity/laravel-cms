@@ -55,20 +55,18 @@
 </div>
 @endsection
 
-@section('related-default-order', '[[0, "asc"]]')
-
 @push('js')
-@dtdefaults('@yield('related-table-id')')
+@dtdefaults('{{ $relatedTableId or 'related-table' }}')
 <script>
     $(function () {
-        $('#@yield('related-table-id')').DataTable({
+        $('#{{ $relatedTableId or 'related-table' }}').DataTable({
             "paging": true,
             "lengthChange": false,
             "searching": true,
             "ordering": true,
             "info": true,
             "autoWidth": true,
-            "order": @yield('related-default-order')
+            "order": {{ $relatedDefaultOrder or '[[0, "asc"]]' }}
         });
     });
 </script>
