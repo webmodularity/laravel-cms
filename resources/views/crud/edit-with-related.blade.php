@@ -42,7 +42,7 @@
             <div class="box-body">
                 <table id="@yield('related-table-id')" class="table table-hover table-bordered">
                     <thead>
-                        @yield('related-header-rows')
+                        @yield('related-header-row')
                     </thead>
                     <tbody>
                         @yield('related-rows')
@@ -51,7 +51,6 @@
             </div>
             <!-- /.box-body -->
         </div>
-
     </div>
 </div>
 @endsection
