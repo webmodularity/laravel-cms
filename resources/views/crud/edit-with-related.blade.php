@@ -81,7 +81,11 @@
 @endsection
 
 @push('js')
+@if(isset($related2TableId))
+@dtdefaults('{{ $relatedTableId . ',' . $related2TableId }}')
+@else
 @dtdefaults('{{ $relatedTableId or 'related-table' }}')
+@endif
 <script>
     $(function () {
         $('#{{ $relatedTableId or 'related-table' }}').DataTable({
