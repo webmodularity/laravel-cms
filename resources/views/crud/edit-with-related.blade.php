@@ -82,7 +82,7 @@
 
 @push('js')
 @if(isset($related2TableId))
-@dtdefaults('{!! $relatedTableId . ',' . $related2TableId !!}')
+@dtdefaults('{{ $relatedTableId }},{{ $related2TableId }}')
 @else
 @dtdefaults('{{ $relatedTableId or 'related-table' }}')
 @endif
