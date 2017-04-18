@@ -1,4 +1,1 @@
-@include('wmcms::crud.actions.recycle', [
-    'id' => isset($recordId) ? $recordId : $id,
-    'recordIdent' => isset($recordIdent) ? $recordIdent : $name
-])
+@include('wmcms::crud.actions.recycle', ['recordIdent' => isset($recordIdent) ? $recordIdent : $name])
