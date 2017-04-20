@@ -38,7 +38,8 @@ class UserLogDataTable extends CmsDataTable
             ->orderColumn('created_at', '`log_users`.created_at $1')
             ->addColumn('social_provider_name', function (LogUser $logUser) {
                 return !is_null($logUser->socialProvider) ? $logUser->socialProvider->getName() : null;
-            });
+            })
+            ->rawColumns(['action']);
     }
 
     /**
