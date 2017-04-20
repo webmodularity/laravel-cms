@@ -18,8 +18,8 @@ class UserLogDataTable extends CmsDataTable
         return $this->datatables
             ->eloquent($this->query())
             ->addColumn('ip_address', function (LogUser $logUser) {
-                return isset($logUser->logRequest->ipAddress) && !empty($logUser->logRequest->ipAddress)
-                    ? $logUser->logRequest->ipAddress
+                return isset($logUser->logRequest->ipAddress) && !empty($logUser->logRequest->ipAddress->ip)
+                    ? $logUser->logRequest->ipAddress->ip
                     : null;
             })
             ->filterColumn('ip_address', function ($query, $keyword) {
