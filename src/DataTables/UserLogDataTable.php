@@ -25,6 +25,7 @@ class UserLogDataTable extends CmsDataTable
             ->filterColumn('ip_address', function ($query, $keyword) {
                 $query->whereRaw("INET6_NTOA(ip) like ?", ["%$keyword%"]);
             })
+            ->orderColumn('ip_address', 'ip $1')
             ->editColumn('created_at', function (LogUser $logUser) {
                 return $logUser->created_at ? with(new Carbon($logUser->created_at))->format('m/d/Y h:i:sa') : '';
             })
