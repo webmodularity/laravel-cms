@@ -31,6 +31,7 @@ class UserLogDataTable extends CmsDataTable
             ->filterColumn('created_at', function ($query, $keyword) {
                 $query->whereRaw("DATE_FORMAT(`log_users`.created_at,'%m/%d/%Y %h:%i:%s%p') like ?", ["%$keyword%"]);
             })
+            ->orderColumn('created_at', '`log_users`.created_at $1')
             ->addColumn('social_provider_name', function (LogUser $logUser) {
                 return !is_null($logUser->socialProvider) ? $logUser->socialProvider->getName() : null;
             });
