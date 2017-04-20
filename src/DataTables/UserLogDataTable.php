@@ -77,15 +77,6 @@ class UserLogDataTable extends CmsDataTable
             //);
     }
 
-    protected function getBuilderParameters()
-    {
-        return [
-            'buttons' => $this->getButtons(),
-            'order' => [[0, "desc"]],
-            'responsive' => true
-        ];
-    }
-
     /**
      * Get columns.
      *
@@ -175,6 +166,17 @@ class UserLogDataTable extends CmsDataTable
                 ]
             )
         ];
+    }
+
+    protected function getBuilderParameters()
+    {
+        return array_merge(
+            parent::getBuilderParameters(),
+            [
+                'responsive' => true,
+                'pageLength' => 50
+            ]
+        );
     }
 
     /**
