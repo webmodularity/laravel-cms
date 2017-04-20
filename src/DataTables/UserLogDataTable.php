@@ -8,6 +8,8 @@ use Yajra\Datatables\Html\Column;
 
 class UserLogDataTable extends CmsDataTable
 {
+    protected $actionView = 'wmcms::crud.actions.details';
+
     /**
      * Build DataTable class.
      *
@@ -17,6 +19,7 @@ class UserLogDataTable extends CmsDataTable
     {
         return $this->datatables
             ->eloquent($this->query())
+            ->addColumn('action', $this->actionView)
             ->addColumn('ip_address', function (LogUser $logUser) {
                 return isset($logUser->logRequest->ipAddress) && !empty($logUser->logRequest->ipAddress->ip)
                     ? $logUser->logRequest->ipAddress->ip
