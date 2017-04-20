@@ -17,6 +17,14 @@ class UserLogDataTable extends CmsDataTable
     {
         return $this->datatables
             ->eloquent($this->query())
+            ->addColumn('ip_address', function (LogUser $logUser) {
+                return isset($logUser->logRequest->ipAddress) && !empty($logUser->logRequest->ipAddress)
+                    ? $logUser->logRequest->ipAddress
+                    : null;
+            })
+            ->filterColumn('ip_address', function ($query, $keyword) {
+                $query->whereRaw("INET6_NTOA(ip) like ?", ["%$keyword%"]);
+            })
             ->editColumn('created_at', function (LogUser $logUser) {
                 return $logUser->created_at ? with(new Carbon($logUser->created_at))->format('m/d/Y h:i:sa') : '';
             })
@@ -35,15 +43,20 @@ class UserLogDataTable extends CmsDataTable
      */
     public function query()
     {
-        $query = LogUser::with([
-            'logRequest',
-            'logRequest.ipAddress',
-            'logRequest.urlPath',
-            'logRequest.requestMethod',
-            'user.person',
-            'userAction',
-            'socialProvider'
-        ]);
+        $query = LogUser::query()
+            ->leftJoin('log_requests', 'log_users.log_request_id', '=', 'log_requests.id')
+            ->leftJoin('log_ip_addresses', 'log_requests.ip_address_id', '=', 'log_ip_addresses.id')
+            ->with(
+                [
+                    'logRequest',
+                    'logRequest.ipAddress',
+                    'logRequest.urlPath',
+                    'logRequest.requestMethod',
+                    'user.person',
+                    'userAction',
+                    'socialProvider'
+                ]
+            );
 
         return $this->applyScopes($query);
     }
@@ -95,11 +108,9 @@ class UserLogDataTable extends CmsDataTable
             ),
             new Column(
                 [
-                    'data' => 'log_request.ip_address.ip',
-                    'name' => 'logRequest.ipAddress.ip',
+                    'data' => 'ip_address',
                     'title' => 'IP',
-                    'className' => 'min-tablet-l',
-                    'searchable' => false
+                    'className' => 'min-tablet-l'
                 ]
             ),
             new Column(
