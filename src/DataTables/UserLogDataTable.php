@@ -66,20 +66,6 @@ class UserLogDataTable extends CmsDataTable
         return $this->applyScopes($query);
     }
 
-    public function html()
-    {
-        return $this->builder()
-            ->columns($this->getColumns())
-            ->parameters($this->getBuilderParameters());
-            //->addAction(
-            //    [
-            //        'className' => 'all text-center',
-            //        'render' => "function(){ return '<i class=\'fa fa-eye\'></i>';}",
-            //        'title' => 'Details'
-            //    ]
-            //);
-    }
-
     /**
      * Get columns.
      *
