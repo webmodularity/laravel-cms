@@ -110,14 +110,14 @@ class LogUserDataTable extends CmsDataTable
             ),
             new Column(
                 [
-                    'data' => 'log_requests.log_request_methods.method',
+                    'data' => 'log_request_methods.method',
                     'title' => 'Method',
                     'className' => 'desktop'
                 ]
             ),
             new Column(
                 [
-                    'data' => 'log_requests.log_url_paths.url_path',
+                    'data' => 'log_url_paths.url_path',
                     'title' => 'URL',
                     'className' => 'desktop',
                     'render' => 'function() {
