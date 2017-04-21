@@ -36,13 +36,22 @@ class LogUserDataTable extends CmsDataTable
                 $query->whereRaw("DATE_FORMAT(`log_users`.created_at,'%m/%d/%Y %h:%i:%s%p') like ?", ["%$keyword%"]);
             })
             ->orderColumn('created_at', '`log_users`.created_at $1')
+            ->addColumn('email', function (LogUser $logUser) {
+                return !is_null($logUser->user) && !is_null($logUser->user->person) && !empty($logUser->user->person->email)
+                    ? $logUser->user->person->email
+                    : null;
+            })
+            ->filterColumn('email', function ($query, $keyword) {
+                $query->whereRaw("people.email like ?", ["%$keyword%"]);
+            })
+            ->orderColumn('email', 'people.email $1')
             ->addColumn('social_provider_name', function (LogUser $logUser) {
                 return !is_null($logUser->socialProvider) ? $logUser->socialProvider->getName() : null;
             })
             ->filterColumn('social_provider_name', function ($query, $keyword) {
                 $query->whereRaw(
                     "user_social_providers.slug like ?",
-                    ["%keyword%"]
+                    ["%$keyword%"]
                 );
             })
             ->orderColumn('social_provider_name', 'user_social_providers.slug $1')
@@ -89,8 +98,7 @@ class LogUserDataTable extends CmsDataTable
             ),
             new Column(
                 [
-                    'data' => 'people.email',
-                    'name' => 'user.person.email',
+                    'data' => 'email',
                     'title' => 'User',
                     'className' => 'max-desktop'
                 ]
