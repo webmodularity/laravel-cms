@@ -1,11 +1,11 @@
 @extends('wmcms::crud.show-with-related')
 
 @section('title', 'User Log - ' . $logUser->user->person->email . ' ' . $logUser->userAction->slug)
-@section('box-title', $logUser->created_at->format('m/d/Y h:i:sa'))
+@section('box-title', $logUser->user->person->email . ' ' . $logUser->userAction->slug)
 @section('record-id', $logUser->id)
 
 @section('header-title')
-    <h1>User Log Details</h1>
+    <h1>User Log Details<small>{{ $logUser->created_at->format('m/d/Y h:i:sa') }}</small></h1>
 @endsection
 
 @section('breadcrumbs')
@@ -20,7 +20,7 @@
 
 @section('related-box-title', 'User Log:')
 @var('relatedTableId', 'user-logs')
-@var('relatedDefaultOrder', '[[3, "desc"]]')
+@var('relatedDefaultOrder', '[[1, "desc"]]')
 
 @section('related-header-row')
     <tr>
