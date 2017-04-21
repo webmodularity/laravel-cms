@@ -5,7 +5,6 @@ namespace WebModularity\LaravelCms\Http\Controllers;
 use Illuminate\View\View;
 use WebModularity\LaravelCms\DataTables\UserLogDataTable;
 use WebModularity\LaravelUser\LogUser;
-use Illuminate\Http\Request;
 
 class UserLogController extends Controller
 {
@@ -27,7 +26,7 @@ class UserLogController extends Controller
      */
     public function show(LogUser $logUser)
     {
-        dd($logUser->user);
+        dd($logUser);
         $recentUserLogs = LogUser::where('user_id', $logUser->user_id)
             ->orderBy('log_users.created_at', 'desc')
             ->limit(10)
