@@ -9,7 +9,7 @@
 @endsection
 
 @section('breadcrumbs')
-    <li><a href="{{ route('user-log.index') }}">User Log</a></li>
+    <li><a href="{{ route('log-user.index') }}">User Log</a></li>
     <li class="active">{{ $logUser->created_at->format('m/d/Y h:i:sa') }}</li>
 @endsection
 
