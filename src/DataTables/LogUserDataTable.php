@@ -36,15 +36,6 @@ class LogUserDataTable extends CmsDataTable
                 $query->whereRaw("DATE_FORMAT(`log_users`.created_at,'%m/%d/%Y %h:%i:%s%p') like ?", ["%$keyword%"]);
             })
             ->orderColumn('created_at', '`log_users`.created_at $1')
-            ->addColumn('email', function (LogUser $logUser) {
-                return !is_null($logUser->user) && !is_null($logUser->user->person) && !empty($logUser->user->person->email)
-                    ? $logUser->user->person->email
-                    : null;
-            })
-            ->filterColumn('email', function ($query, $keyword) {
-                $query->whereRaw("people.email like ?", ["%$keyword%"]);
-            })
-            ->orderColumn('email', 'people.email $1')
             ->addColumn('social_provider_name', function (LogUser $logUser) {
                 return !is_null($logUser->socialProvider) ? $logUser->socialProvider->getName() : null;
             })
@@ -69,13 +60,18 @@ class LogUserDataTable extends CmsDataTable
             ->select('log_users.*')
             ->leftJoin('log_requests', 'log_users.log_request_id', '=', 'log_requests.id')
             ->leftJoin('log_ip_addresses', 'log_requests.ip_address_id', '=', 'log_ip_addresses.id')
-            ->leftJoin('log_url_paths', 'log_requests.url_path_id', '=', 'log_url_paths.id')
-            ->leftJoin('log_request_methods', 'log_requests.request_method_id', '=', 'log_request_methods.id')
-            ->leftJoin('log_user_actions', 'log_users.user_action_id', '=', 'log_user_actions.id')
             ->leftJoin('user_social_providers', 'log_users.social_provider_id', '=', 'user_social_providers.id')
             ->leftJoin('users', 'log_users.user_id', '=', 'users.id')
             ->leftJoin('people', 'users.person_id', '=', 'people.id')
-            ->with(['socialProvider', 'logRequest.ipAddress', 'user.person', 'userAction'])
+            ->with([
+                'logRequest',
+                'logRequest.ipAddress',
+                'logRequest.urlPath',
+                'logRequest.requestMethod',
+                'user.person',
+                'userAction',
+                'socialProvider'
+            ])
             ->orderBy('log_users.id', 'desc');
 
         return $this->applyScopes($query);
@@ -98,7 +94,7 @@ class LogUserDataTable extends CmsDataTable
             ),
             new Column(
                 [
-                    'data' => 'email',
+                    'data' => 'user.person.email',
                     'title' => 'User',
                     'className' => 'max-desktop'
                 ]
@@ -120,7 +116,7 @@ class LogUserDataTable extends CmsDataTable
             ),
             new Column(
                 [
-                    'data' => 'log_request_methods.method',
+                    'data' => 'log_request.request_method.method',
                     'name' => 'logRequest.requestMethod.method',
                     'title' => 'Method',
                     'className' => 'desktop'
@@ -128,7 +124,7 @@ class LogUserDataTable extends CmsDataTable
             ),
             new Column(
                 [
-                    'data' => 'log_url_paths.url_path',
+                    'data' => 'log_request.url_path.url_path',
                     'name' => 'logRequest.urlPath.url_path',
                     'title' => 'URL',
                     'className' => 'desktop',
@@ -156,7 +152,7 @@ class LogUserDataTable extends CmsDataTable
             ),
             new Column(
                 [
-                    'data' => 'log_requests.session_id',
+                    'data' => 'log_request.session_id',
                     'name' => 'logRequest.session_id',
                     'title' => 'Session ID',
                     'className' => 'desktop',
