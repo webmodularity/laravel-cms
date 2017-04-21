@@ -17,7 +17,7 @@
 @section('details')
     @include('user-log.details')
     @include('wmcms::partials.form.timestamps', [
-                'created_at' => $person->created_at
+                'created_at' => $logUser->created_at
             ])
 @endsection
 
