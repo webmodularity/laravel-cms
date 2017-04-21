@@ -40,7 +40,7 @@
                 {{ $userLog->created_at->format('m/d/Y h:i:sa') }}
             </td>
             <td>{{ $userLog->logRequest->ipAddress->ip }}</td>
-            <td>{{ $userLog->logUserAction->slug }}</td>
+            <td>{{ $userLog->userAction->slug }}</td>
         </tr>
     @endforeach
 @endsection
