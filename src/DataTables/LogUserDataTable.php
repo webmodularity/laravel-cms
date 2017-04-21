@@ -113,6 +113,7 @@ class LogUserDataTable extends CmsDataTable
             new Column(
                 [
                     'data' => 'log_user_actions.slug',
+                    'name' => 'userAction.slug',
                     'title' => 'Action',
                     'className' => 'min-tablet-l'
                 ]
@@ -120,6 +121,7 @@ class LogUserDataTable extends CmsDataTable
             new Column(
                 [
                     'data' => 'log_request_methods.method',
+                    'name' => 'logRequest.requestMethod.method',
                     'title' => 'Method',
                     'className' => 'desktop'
                 ]
@@ -127,6 +129,7 @@ class LogUserDataTable extends CmsDataTable
             new Column(
                 [
                     'data' => 'log_url_paths.url_path',
+                    'name' => 'logRequest.urlPath.url_path',
                     'title' => 'URL',
                     'className' => 'desktop',
                     'render' => 'function() {
@@ -154,6 +157,7 @@ class LogUserDataTable extends CmsDataTable
             new Column(
                 [
                     'data' => 'log_requests.session_id',
+                    'name' => 'logRequest.session_id',
                     'title' => 'Session ID',
                     'className' => 'desktop',
                     'render' => 'function() {
