@@ -15,7 +15,7 @@
 
 
 @section('details')
-    @include('log-user.details')
+    @include('wmcms::log-user.details')
 @endsection
 
 @section('related-box-title', 'User Log:')
