@@ -20,7 +20,7 @@
 
 @section('related-box-title', 'Recent User Log:')
 @var('relatedTableId', 'user-logs')
-@var('relatedDefaultOrder', '[[1, "desc"], [0, "desc"]]')
+@var('relatedDefaultOrder', '[[0, "desc"]]')
 
 @section('related-header-row')
     <tr>
