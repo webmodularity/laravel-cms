@@ -39,7 +39,7 @@
                 data-sort="{{ $userLog->created_at->format('U') }}">
                 {{ $userLog->created_at->format('m/d/Y h:i:sa') }}
             </td>
-            <td>{{ $userLog->ipAddress->ip }}</td>
+            <td>{{ $userLog->logRequest->ipAddress->ip }}</td>
             <td>{{ $userLog->logUserAction->slug }}</td>
         </tr>
     @endforeach
