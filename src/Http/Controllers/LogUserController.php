@@ -3,19 +3,19 @@
 namespace WebModularity\LaravelCms\Http\Controllers;
 
 use Illuminate\View\View;
-use WebModularity\LaravelCms\DataTables\UserLogDataTable;
+use WebModularity\LaravelCms\DataTables\LogUserDataTable;
 use WebModularity\LaravelUser\LogUser;
 
-class UserLogController extends Controller
+class LogUserController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return mixed
      */
-    public function index(UserLogDataTable $userLogDataTable)
+    public function index(LogUserDataTable $logUserDataTable)
     {
-        return $userLogDataTable->render('wmcms::user-log.index');
+        return $logUserDataTable->render('wmcms::log-user.index');
     }
 
     /**
@@ -31,6 +31,6 @@ class UserLogController extends Controller
             ->orderBy('log_users.created_at', 'desc')
             ->limit(10)
             ->get();
-        return view('wmcms::user-log.show')->with('logUser', $logUser)->with('userLogs', $recentUserLogs);
+        return view('wmcms::log-user.show')->with('logUser', $logUser)->with('userLogs', $recentUserLogs);
     }
 }

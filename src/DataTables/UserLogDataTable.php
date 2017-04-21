@@ -6,7 +6,7 @@ use Carbon\Carbon;
 use WebModularity\LaravelUser\LogUser;
 use Yajra\Datatables\Html\Column;
 
-class UserLogDataTable extends CmsDataTable
+class LogUserDataTable extends CmsDataTable
 {
     protected $actionView = 'wmcms::crud.actions.details';
 
