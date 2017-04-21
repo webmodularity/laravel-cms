@@ -56,7 +56,6 @@ class LogUserDataTable extends CmsDataTable
             ->with(
                 [
                     'logRequest',
-                    'logRequest.ipAddress',
                     'logRequest.urlPath',
                     'logRequest.requestMethod',
                     'user.person',
