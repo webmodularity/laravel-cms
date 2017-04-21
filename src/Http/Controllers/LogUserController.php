@@ -26,7 +26,6 @@ class LogUserController extends Controller
      */
     public function show(LogUser $logUser)
     {
-        dd($logUser);
         $recentUserLogs = LogUser::where('user_id', $logUser->user_id)
             ->orderBy('log_users.created_at', 'desc')
             ->limit(10)
