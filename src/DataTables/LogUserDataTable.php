@@ -50,6 +50,7 @@ class LogUserDataTable extends CmsDataTable
     public function query()
     {
         $query = LogUser::query()
+            ->select('log_users.*')
             ->leftJoin('log_requests', 'log_users.log_request_id', '=', 'log_requests.id')
             ->leftJoin('log_ip_addresses', 'log_requests.ip_address_id', '=', 'log_ip_addresses.id')
             ->with(
@@ -167,6 +168,11 @@ class LogUserDataTable extends CmsDataTable
                 'pageLength' => 50
             ]
         );
+    }
+
+    protected function getOrder()
+    {
+        return [[0, "asc"]];
     }
 
     /**
