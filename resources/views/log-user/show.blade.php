@@ -15,7 +15,7 @@
 
 
 @section('details')
-    @include('user-log.details')
+    @include('log-user.details')
 @endsection
 
 @section('related-box-title', 'User Log:')
