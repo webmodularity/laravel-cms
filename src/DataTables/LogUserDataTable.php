@@ -98,7 +98,7 @@ class LogUserDataTable extends CmsDataTable
             ),
             new Column(
                 [
-                    'data' => 'user_action.slug',
+                    'data' => 'log_user_actions.slug',
                     'title' => 'Action',
                     'className' => 'min-tablet-l'
                 ]
