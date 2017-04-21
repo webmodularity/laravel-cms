@@ -39,6 +39,13 @@ class LogUserDataTable extends CmsDataTable
             ->addColumn('social_provider_name', function (LogUser $logUser) {
                 return !is_null($logUser->socialProvider) ? $logUser->socialProvider->getName() : null;
             })
+            ->filterColumn('social_provider_name', function ($query, $keyword) {
+                $query->whereRaw(
+                    "user_social_providers.slug like ?",
+                    ["%keyword%"]
+                );
+            })
+            ->orderColumn('social_provider_name', 'user_social_providers.slug $1')
             ->rawColumns(['action']);
     }
 
@@ -56,6 +63,7 @@ class LogUserDataTable extends CmsDataTable
             ->leftJoin('log_url_paths', 'log_requests.url_path_id', '=', 'log_url_paths.id')
             ->leftJoin('log_request_methods', 'log_requests.request_method_id', '=', 'log_request_methods.id')
             ->leftJoin('log_user_actions', 'log_users.user_action_id', '=', 'log_user_actions.id')
+            ->leftJoin('log_ip_addresses', 'log_requests.ip_address_id', '=', 'log_ip_addresses.id')
             ->with(
                 [
                     'user.person',
@@ -105,16 +113,14 @@ class LogUserDataTable extends CmsDataTable
             ),
             new Column(
                 [
-                    'data' => 'log_request.request_method.method',
-                    'name' => 'logRequest.requestMethod.method',
+                    'data' => 'log_requests.log_request_methods.method',
                     'title' => 'Method',
                     'className' => 'desktop'
                 ]
             ),
             new Column(
                 [
-                    'data' => 'log_request.url_path.url_path',
-                    'name' => 'logRequest.urlPath.url_path',
+                    'data' => 'log_requests.log_url_paths.url_path',
                     'title' => 'URL',
                     'className' => 'desktop',
                     'render' => 'function() {
@@ -129,7 +135,6 @@ class LogUserDataTable extends CmsDataTable
             new Column(
                 [
                     'data' => 'social_provider_name',
-                    'name' => 'socialProvider.slug',
                     'title' => 'Social',
                     'className' => 'desktop',
                     'render' => 'function() {
@@ -142,8 +147,7 @@ class LogUserDataTable extends CmsDataTable
             ),
             new Column(
                 [
-                    'data' => 'log_request.session_id',
-                    'name' => 'logRequest.session_id',
+                    'data' => 'log_requests.session_id',
                     'title' => 'Session ID',
                     'className' => 'desktop',
                     'render' => 'function() {
