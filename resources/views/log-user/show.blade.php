@@ -5,7 +5,7 @@
 @section('record-id', $logUser->id)
 
 @section('header-title')
-    <h1>$logUser->userAction->slug<small>{{ $logUser->created_at->format('m/d/Y h:i:sa') }}</small></h1>
+    <h1>{{ $logUser->userAction->slug }}<small>{{ $logUser->created_at->format('m/d/Y h:i:sa') }}</small></h1>
 @endsection
 
 @section('breadcrumbs')
