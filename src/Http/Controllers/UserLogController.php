@@ -47,7 +47,7 @@ class UserLogController extends Controller
      */
     public function show(LogUser $logUser)
     {
-        //
+        return view('wmcms::user-log.show');
     }
 
     /**
