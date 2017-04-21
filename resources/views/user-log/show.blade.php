@@ -1,6 +1,6 @@
 @extends('wmcms::crud.show-with-related')
 
-@section('title', 'User Log - ' . $logUser->user->person->email . ' ' . $logUser->logUserAction->slug)
+@section('title', 'User Log - ' . $logUser->user->person->email . ' ' . $logUser->userAction->slug)
 @section('box-title', $logUser->created_at->format('m/d/Y h:i:sa'))
 @section('record-id', $logUser->id)
 
