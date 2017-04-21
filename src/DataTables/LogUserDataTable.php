@@ -75,7 +75,7 @@ class LogUserDataTable extends CmsDataTable
             ->leftJoin('user_social_providers', 'log_users.social_provider_id', '=', 'user_social_providers.id')
             ->leftJoin('users', 'log_users.user_id', '=', 'users.id')
             ->leftJoin('people', 'users.person_id', '=', 'people.id')
-            ->with(['socialProvider', 'logRequest.ipAddress', 'user.person'])
+            ->with(['socialProvider', 'logRequest.ipAddress', 'user.person', 'userAction'])
             ->orderBy('log_users.id', 'desc');
 
         return $this->applyScopes($query);
