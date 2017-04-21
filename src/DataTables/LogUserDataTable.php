@@ -64,7 +64,7 @@ class LogUserDataTable extends CmsDataTable
                     'socialProvider'
                 ]
             )
-        ->orderBy('`log_users`.id', 'desc');
+            ->orderBy('log_users.id', 'desc');
 
         return $this->applyScopes($query);
     }
