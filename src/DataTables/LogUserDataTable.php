@@ -172,7 +172,7 @@ class LogUserDataTable extends CmsDataTable
 
     protected function getOrder()
     {
-        return [[0, "asc"]];
+        return [[0, "desc"]];
     }
 
     /**
