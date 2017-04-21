@@ -89,7 +89,7 @@ class LogUserDataTable extends CmsDataTable
             ),
             new Column(
                 [
-                    'data' => 'email',
+                    'data' => 'person.email',
                     'name' => 'people.email',
                     'title' => 'User',
                     'className' => 'max-desktop'
