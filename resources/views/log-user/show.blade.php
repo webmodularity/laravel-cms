@@ -1,7 +1,7 @@
 @extends('wmcms::crud.show-with-related')
 
 @section('title', 'User Log - ' . $logUser->user->person->email . ' ' . $logUser->userAction->slug)
-@section('box-title', $logUser->user->person->email . ' ' . $logUser->userAction->slug)
+@section('box-title', $logUser->user->person->email)
 @section('record-id', $logUser->id)
 
 @section('header-title')
@@ -18,7 +18,7 @@
     @include('wmcms::log-user.details')
 @endsection
 
-@section('related-box-title', 'User Log:')
+@section('related-box-title', 'Recent User Log:')
 @var('relatedTableId', 'user-logs')
 @var('relatedDefaultOrder', '[[1, "desc"], [0, "desc"]]')
 
