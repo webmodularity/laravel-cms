@@ -25,7 +25,7 @@
 <div class="form-group">
     <label class="col-sm-2 control-label">Query String</label>
     <div class="col-sm-10">
-        <p class="form-control-static">{!! !is_null($logUser->logRequest->queryString) ? $logUser->logRequest->queryString->query_string : '<em>' . 'None' . '</em>' !!}</p>
+        <p class="form-control-static" style="-ms-word-break: break-all; word-break: break-all; word-break: break-word;">{!! !is_null($logUser->logRequest->queryString) ? $logUser->logRequest->queryString->query_string : '<em>' . 'None' . '</em>' !!}</p>
     </div>
 </div>
 <div class="form-group">
