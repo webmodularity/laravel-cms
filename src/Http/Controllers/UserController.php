@@ -14,6 +14,7 @@ use WebModularity\LaravelContact\Address;
 use WebModularity\LaravelContact\Phone;
 use WebModularity\LaravelCms\DataTables\UserDataTable;
 use WebModularity\LaravelCms\DataTables\UserRecycleDataTable;
+use WebModularity\LaravelUser\User;
 
 class UserController extends Controller
 {
