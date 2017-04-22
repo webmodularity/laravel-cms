@@ -34,7 +34,7 @@
 @section('related-rows')
     @foreach($userLogs as $userLog)
         <tr>
-            <td>{{ $userLog->id }}</td>
+            <td><a href="{{ route('log-user.show', ['id' => $userLog->id]) }}">{{ $userLog->id }}</a></td>
             <td data-order="{{ $userLog->created_at->format('U') }}"
                 data-sort="{{ $userLog->created_at->format('U') }}">
                 {{ $userLog->created_at->format('m/d/Y h:i:sa') }}
