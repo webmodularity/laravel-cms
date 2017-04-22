@@ -117,7 +117,12 @@ class UserDataTable extends CmsDataTable
                     'title' => 'ID'
                 ]
             ),
-            'person.email',
+            new Column(
+                [
+                    'data' => 'person.email',
+                    'title' => 'Email'
+                ]
+            ),
             new Column(
                 [
                     'data' => 'full_name',
