@@ -24,6 +24,6 @@ class UserController extends Controller
      */
     public function index(UserDataTable $dataTable)
     {
-        return $dataTable->render('users.index');
+        return $dataTable->render('wmcms::users.index');
     }
 }
