@@ -82,6 +82,13 @@ class UserDataTable extends CmsDataTable
             ->filterColumn('updated_at', function ($query, $keyword) {
                 $query->whereRaw("DATE_FORMAT(users.updated_at,'%m/%d/%Y %h:%i:%s%p') like ?", ["%$keyword%"]);
             })
+            ->addColumn('user_role', function (User $user) {
+                return studly_case($user->role->slug);
+            })
+            ->filterColumn('user_role', function ($query, $keyword) {
+                $query->orWhereRaw("REPLACE(user_roles.slug, '-', '') like ?", ["%$keyword%"]);
+            })
+            ->orderColumn('user_role', 'user_roles.slug $1')
             ->rawColumns(['phones', 'address_primary', 'action']);
     }
 
@@ -94,11 +101,12 @@ class UserDataTable extends CmsDataTable
     {
         $query = User::query()
             ->select('users.*')
+            ->leftJoin('user_roles', 'user_roles.id', '=', 'users.role_id')
             ->leftJoin('people', 'people.id', '=', 'users.person_id')
             ->leftJoin('address_person', 'people.id', '=', 'address_person.person_id')
             ->leftJoin('addresses', 'address_person.address_id', '=', 'addresses.id')
             ->leftJoin('address_states', 'addresses.state_id', '=', 'address_states.id')
-            ->with(['person', 'person.addresses', 'person.phones']);
+            ->with(['role', 'person.addresses', 'person.phones']);
 
         return $this->applyScopes($query);
     }
@@ -121,6 +129,12 @@ class UserDataTable extends CmsDataTable
                 [
                     'data' => 'person.email',
                     'title' => 'Email'
+                ]
+            ),
+            new Column(
+                [
+                    'data' => 'user_role',
+                    'title' => 'Role'
                 ]
             ),
             new Column(
