@@ -45,7 +45,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('users.create', ['recentlyAdded' => User::orderBy('id', 'desc')->limit(10)->get()]);
+        return view('wmcms::users.create', ['recentlyAdded' => User::orderBy('id', 'desc')->limit(10)->get()]);
     }
 
     /**
