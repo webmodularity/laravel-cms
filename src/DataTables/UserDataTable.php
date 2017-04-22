@@ -8,7 +8,7 @@ use Yajra\Datatables\Html\Column;
 
 class UserDataTable extends CmsDataTable
 {
-    protected $actionView = 'wmcms::user.actions.index';
+    protected $actionView = 'wmcms::users.actions.index';
 
     /**
      * Build DataTable class.
