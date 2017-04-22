@@ -93,6 +93,7 @@ class UserDataTable extends CmsDataTable
     public function query()
     {
         $query = User::query()
+            ->select('users.*')
             ->leftJoin('people', 'people.id', '=', 'users.person_id')
             ->leftJoin('address_person', 'people.id', '=', 'address_person.person_id')
             ->leftJoin('addresses', 'address_person.address_id', '=', 'addresses.id')
