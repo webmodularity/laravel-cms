@@ -1,4 +1,4 @@
 @extends('wmcms::crud.index-datatable')
 
-@section('title', 'User')
-@section('box-title', 'User')
+@section('title', 'Users')
+@section('box-title', 'Users')
