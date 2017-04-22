@@ -18,7 +18,7 @@
     @include('wmcms::log-user.details')
 @endsection
 
-@section('related-box-title', 'Recent User Log:')
+@section('related-box-title', 'Recent User Activity:')
 @var('relatedTableId', 'user-logs')
 @var('relatedDefaultOrder', '[[0, "desc"]]')
 
