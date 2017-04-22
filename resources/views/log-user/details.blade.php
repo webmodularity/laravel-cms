@@ -19,6 +19,6 @@
 <div class="form-group">
     <label class="col-sm-2 control-label">Social Provider</label>
     <div class="col-sm-10">
-        <p class="form-control-static">{{ !is_null($logUser->socialProvider) ? $logUser->socialProvider->getName() : '<em>' . 'None' . '</em>' }}</p>
+        <p class="form-control-static">{!! !is_null($logUser->socialProvider) ? $logUser->socialProvider->getName() : '<em>' . 'None' . '</em>' !!}</p>
     </div>
 </div>
