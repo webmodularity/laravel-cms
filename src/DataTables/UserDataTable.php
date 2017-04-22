@@ -96,7 +96,6 @@ class UserDataTable extends CmsDataTable
             ->leftJoin('address_person', 'people.id', '=', 'address_person.person_id')
             ->leftJoin('addresses', 'address_person.address_id', '=', 'addresses.id')
             ->leftJoin('address_states', 'addresses.state_id', '=', 'address_states.id')
-            ->hasUser(false)
             ->with(['person.addresses', 'person.phones']);
 
         return $this->applyScopes($query);
