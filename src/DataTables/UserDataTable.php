@@ -17,7 +17,7 @@ class UserDataTable extends CmsDataTable
      */
     public function dataTable()
     {
-        \Log::critical($this->query());
+        \Log::critical($this->query()->get());
         return $this->datatables
             ->eloquent($this->query())
             ->addColumn('action', $this->actionView)
