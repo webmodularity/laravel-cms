@@ -43,12 +43,24 @@
 <div class="form-group">
     <label class="col-sm-2 control-label">Session ID</label>
     <div class="col-sm-10">
-        <p class="form-control-static">{{ $logUser->logRequest->session_id }}</p>
+        <p class="form-control-static" style="-ms-word-break: break-all; word-break: break-all; word-break: break-word;">{{ $logUser->logRequest->session_id }}</p>
+    </div>
+</div>
+<div class="form-group">
+    <label class="col-sm-2 control-label">IP Address</label>
+    <div class="col-sm-10">
+        <p class="form-control-static">{!! !is_null($logUser->logRequest->ipAddress) ? $logUser->logRequest->ipAddress->ip : '<em>' . 'None' . '</em>' !!}</p>
     </div>
 </div>
 <div class="form-group">
     <label class="col-sm-2 control-label">User</label>
     <div class="col-sm-10">
         <p class="form-control-static">{{ $logUser->user->person->email }}</p>
+    </div>
+</div>
+<div class="form-group">
+    <label class="col-sm-2 control-label">User-Agent</label>
+    <div class="col-sm-10">
+        <p class="form-control-static" style="-ms-word-break: break-all; word-break: break-all; word-break: break-word;">{{ $logUser->logRequest->userAgent->user_agent }}</p>
     </div>
 </div>
