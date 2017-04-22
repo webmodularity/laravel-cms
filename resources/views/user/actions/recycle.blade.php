@@ -1,0 +1,1 @@
+@include('wmcms::crud.actions.recycle', ['recordIdent' => $email])
