@@ -15,7 +15,7 @@
 @section('form-action', route('users.store'))
 
 @section('form')
-    @include('users.form')
+    @include('wmcms::users.form')
 @endsection
 
 @section('recent-box-title', 'Recently Added Users')
