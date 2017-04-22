@@ -1,1 +1,1 @@
-@include('wmcms::crud.actions.index', ['recordIdent' => $email])
+@include('wmcms::crud.actions.index', ['recordIdent' => $person->email])
