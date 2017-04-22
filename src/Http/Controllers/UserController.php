@@ -13,7 +13,7 @@ use Illuminate\Http\JsonResponse;
 use WebModularity\LaravelContact\Address;
 use WebModularity\LaravelContact\Phone;
 use WebModularity\LaravelCms\DataTables\UserDataTable;
-//use WebModularity\LaravelCms\DataTables\PersonRecycleDataTable;
+use WebModularity\LaravelCms\DataTables\UserRecycleDataTable;
 
 class UserController extends Controller
 {
@@ -25,5 +25,15 @@ class UserController extends Controller
     public function index(UserDataTable $dataTable)
     {
         return $dataTable->render('wmcms::users.index');
+    }
+
+    /**
+     * Display trashed listings.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function recycle(UserRecycleDataTable $dataTable)
+    {
+        return $dataTable->render('wmcms::users.recycle');
     }
 }

@@ -172,7 +172,7 @@ class UserDataTable extends CmsDataTable
 
     protected function getOrder()
     {
-        return [[2, "asc"]];
+        return [[1, "asc"]];
     }
 
     /**
