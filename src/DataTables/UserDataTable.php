@@ -101,7 +101,7 @@ class UserDataTable extends CmsDataTable
     {
         $query = User::query()
             ->select('users.*')
-            ->where('role_id', '<=', Auth::user()->role_id)
+            ->visibleByRole(Auth::user()->role_id)
             ->leftJoin('user_roles', 'user_roles.id', '=', 'users.role_id')
             ->leftJoin('people', 'people.id', '=', 'users.person_id')
             ->leftJoin('address_person', 'people.id', '=', 'address_person.person_id')

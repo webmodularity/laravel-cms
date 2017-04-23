@@ -80,7 +80,7 @@ class CmsServiceProvider extends ServiceProvider
             $view->with(
                 'userRoles',
                 UserRole::select(['id', 'slug'])
-                    ->where('id', '<=', Auth::user()->role_id)
+                    ->visibleByRole(Auth::user()->role_id)
                     ->orderBy('id', 'asc')
                     ->get()
                     ->toArray()
