@@ -77,11 +77,14 @@ class CmsServiceProvider extends ServiceProvider
         });
         // User Roles
         View::composer(['wmcms::users.form'], function ($view) {
-            $view->with('userRoles', UserRole::select(['id', 'slug'])
-                ->where('id', '<=', Auth::user()->role_id)
-                ->orderBy('id', 'asc')
-                ->get()
-                ->toArray());
+            $view->with(
+                'userRoles',
+                UserRole::select(['id', 'slug'])
+                    ->where('id', '<=', Auth::user()->role_id)
+                    ->orderBy('id', 'asc')
+                    ->get()
+                    ->toArray()
+            );
         });
 
         // Migrations
