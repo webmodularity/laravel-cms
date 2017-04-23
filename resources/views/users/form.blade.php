@@ -29,7 +29,7 @@
 </div>
 
 <div class="row">
-    <div class="col-md-5">
+    <div class="col-md-8 col-lg-5">
         <div class="form-group {{ $errors->has('first_name') ? 'has-error' : '' }}">
             <label class="control-label" for="first_name">Name (Optional)</label>
             <input type="text" name="first_name" class="form-control" value="{{ old('first_name',  isset($person->first_name) ? $person->first_name : null) }}" placeholder="First" />
@@ -40,7 +40,7 @@
             @endif
         </div>
     </div>
-    <div class="col-md-2">
+    <div class="col-md-4 col-lg-2">
         <div class="form-group {{ $errors->has('middle_name') ? 'has-error' : '' }}">
             <label class="control-label hidden-xs hidden-sm" for="middle_name">&nbsp;</label>
             <input type="text" name="middle_name" class="form-control" value="{{ old('middle_name',  isset($person->middle_name) ? $person->middle_name : null) }}" placeholder="Middle" />
@@ -51,7 +51,7 @@
             @endif
         </div>
     </div>
-    <div class="col-md-5">
+    <div class="col-md-12 col-lg-5">
         <div class="form-group {{ $errors->has('last_name') ? 'has-error' : '' }}">
             <label class="control-label hidden-xs hidden-sm" for="last_name">&nbsp;</label>
             <input type="text" name="last_name" class="form-control" value="{{ old('last_name',  isset($person->last_name) ? $person->last_name : null) }}" placeholder="Last" />
