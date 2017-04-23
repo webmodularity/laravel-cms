@@ -5,6 +5,7 @@ namespace WebModularity\LaravelCms\DataTables;
 use WebModularity\LaravelUser\User;
 use Carbon\Carbon;
 use Yajra\Datatables\Html\Column;
+use Auth;
 
 class UserDataTable extends CmsDataTable
 {
@@ -100,6 +101,7 @@ class UserDataTable extends CmsDataTable
     {
         $query = User::query()
             ->select('users.*')
+            ->where('role_id', '<=', Auth::user()->role_id)
             ->leftJoin('user_roles', 'user_roles.id', '=', 'users.role_id')
             ->leftJoin('people', 'people.id', '=', 'users.person_id')
             ->leftJoin('address_person', 'people.id', '=', 'address_person.person_id')

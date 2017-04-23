@@ -62,7 +62,7 @@ class CmsServiceProvider extends ServiceProvider
         View::composer('wmcms::navbar.user-menu', function ($view) {
             $view->with(
                 'activeUserRecentLogins',
-                LogUser::where('user_id', Auth::user()->id)
+                LogUser::where('user_id', Auth::id())
                     ->with(['logRequest', 'logRequest.ipAddress', 'socialProvider'])
                     ->logins()
                     ->latest()
@@ -77,7 +77,11 @@ class CmsServiceProvider extends ServiceProvider
         });
         // User Roles
         View::composer(['wmcms::users.form'], function ($view) {
-            $view->with('userRoles', UserRole::select(['id', 'slug'])->orderBy('id', 'asc')->get()->toArray());
+            $view->with('userRoles', UserRole::select(['id', 'slug'])
+                ->where('id', '<=', Auth::user()->role_id)
+                ->orderBy('id', 'asc')
+                ->get()
+                ->toArray());
         });
 
         // Migrations
