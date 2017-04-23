@@ -11,7 +11,7 @@
             @endif
         </div>
     </div>
-    <div class="col-md-4">
+    <div class="col-sm-4">
         <div class="form-group {{ $errors->has('role_id') ? 'has-error' : '' }}">
             <label class="control-label" for="role_id">Role</label>
             <select class="form-control" style="width: 100%;" name="role_id" id="role_id" required>
