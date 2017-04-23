@@ -42,7 +42,7 @@
     </div>
     <div class="col-xs-4 col-sm-2 col-md-4 col-lg-2">
         <div class="form-group {{ $errors->has('middle_name') ? 'has-error' : '' }}">
-            <label class="control-label hidden-sm hidden-lg" for="middle_name">&nbsp;</label>
+            <label class="control-label" for="middle_name">&nbsp;</label>
             <input type="text" name="middle_name" class="form-control" value="{{ old('middle_name',  isset($person->middle_name) ? $person->middle_name : null) }}" placeholder="Middle" />
             @if ($errors->has('middle_name'))
                 <span class="help-block">
@@ -53,7 +53,7 @@
     </div>
     <div class="col-xs-12 col-sm-5 col-md-12 col-lg-5">
         <div class="form-group {{ $errors->has('last_name') ? 'has-error' : '' }}">
-            <label class="control-label hidden-sm hidden-lg" for="last_name">&nbsp;</label>
+            <label class="control-label hidden-xs hidden-md" for="last_name">&nbsp;</label>
             <input type="text" name="last_name" class="form-control" value="{{ old('last_name',  isset($person->last_name) ? $person->last_name : null) }}" placeholder="Last" />
             @if ($errors->has('last_name'))
                 <span class="help-block">
