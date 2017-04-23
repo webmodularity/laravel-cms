@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="row">
-        <div class="col-sm-6">
+        <div class="col-md-6">
             <div class="box box-primary">
                 <div class="box-header with-border">
                     <h3 class="box-title">@yield('box-title')</h3>
@@ -26,7 +26,7 @@
             </div>
         </div>
 
-        <div class="col-sm-6">
+        <div class="col-md-6">
             <div class="box box-primary">
                 <div class="box-header with-border">
                     <h3 class="box-title">@yield('recent-box-title')</h3>
