@@ -53,7 +53,7 @@
     </div>
     <div class="col-md-12 col-lg-5">
         <div class="form-group {{ $errors->has('last_name') ? 'has-error' : '' }}">
-            <label class="control-label hidden-xs hidden-sm" for="last_name">&nbsp;</label>
+            <label class="control-label hidden-xs hidden-sm hidden-md" for="last_name">&nbsp;</label>
             <input type="text" name="last_name" class="form-control" value="{{ old('last_name',  isset($person->last_name) ? $person->last_name : null) }}" placeholder="Last" />
             @if ($errors->has('last_name'))
                 <span class="help-block">
