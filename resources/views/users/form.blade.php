@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col-sm-12">
+    <div class="col-sm-8">
         <div class="form-group {{ $errors->has('email') ? 'has-error' : '' }}">
             <label class="control-label" for="email">Email</label>
             <input type="email" name="email" class="form-control" value="{{ old('email',  isset($person->email) ? $person->email : null) }}"
@@ -7,6 +7,21 @@
             @if ($errors->has('email'))
                 <span class="help-block">
                     <strong>{{ $errors->first('email') }}</strong>
+                </span>
+            @endif
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="form-group {{ $errors->has('role_id') ? 'has-error' : '' }}">
+            <label class="control-label" for="role_id">Role</label>
+            <select class="form-control" style="width: 100%;" name="role_id" id="role_id" required>
+                @foreach($userRoles as $userRole)
+                    <option value="{{ $userRole['id'] }}"{{ old('role_id', isset($role_id) ? $role_id : null) == $userRole['id'] ? ' selected' : '' }}>{{ studly_case($userRole['slug']) }}</option>
+                @endforeach()
+            </select>
+            @if ($errors->has('role_id'))
+                <span class="help-block">
+                    <strong>{{ $errors->first('role_id') }}</strong>
                 </span>
             @endif
         </div>

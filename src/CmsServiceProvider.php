@@ -16,6 +16,7 @@ use JeroenNoten\LaravelAdminLte\ServiceProvider as AdminLteServiceProvider;
 use JeroenNoten\LaravelAdminLte\Http\ViewComposers\AdminLteComposer;
 use Maatwebsite\Excel\ExcelServiceProvider;
 use Sineld\BladeSet\BladeSetServiceProvider;
+use WebModularity\LaravelUser\UserRole;
 
 class CmsServiceProvider extends ServiceProvider
 {
@@ -73,6 +74,10 @@ class CmsServiceProvider extends ServiceProvider
         // States
         View::composer(['wmcms::partials.form.address'], function ($view) {
             $view->with('stateList', AddressState::select(['id', 'iso'])->where('country_id', 1)->orderBy('iso', 'asc')->get()->toArray());
+        });
+        // User Roles
+        View::composer(['wmcms::users.form'], function ($view) {
+            $view->with('userRoles', UserRole::select(['id', 'slug'])->orderBy('id', 'asc')->get()->toArray());
         });
 
         // Migrations
