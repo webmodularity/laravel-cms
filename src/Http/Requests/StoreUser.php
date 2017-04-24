@@ -26,10 +26,10 @@ class StoreUser extends FormRequest
     {
         $emailUnique = $this->method() == 'POST'
             ? Rule::unique('people')->where(function ($query) {
-                $query->hasUser();
+                $query->withCount('user')->having('user_count', '>', 0);
             })
             : Rule::unique('people')->where(function ($query) {
-                $query->hasUser();
+                $query->withCount('user')->having('user_count', '>', 0);
             })
                 ->ignore($this->person->id);
 
