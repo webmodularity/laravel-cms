@@ -27,6 +27,8 @@
         </div>
     </div>
 </div>
+{{ Route::current()->getActionName() }}
+{{ Route::current()->getActionMethod() }}
 @if(Route::is('create'))
 <div class="row">
     <div class="col-sm-12">
