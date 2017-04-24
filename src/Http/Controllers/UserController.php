@@ -4,7 +4,6 @@ namespace WebModularity\LaravelCms\Http\Controllers;
 
 /**
 use App\Equipment\EquipmentRequest;
-use App\Http\Requests\StorePerson;
 use WebModularity\LaravelContact\Person;
 use App\Branch;
 use App\Http\Requests\StoreBranch;
@@ -15,6 +14,7 @@ use WebModularity\LaravelContact\Phone;
 use WebModularity\LaravelCms\DataTables\UserDataTable;
 use WebModularity\LaravelCms\DataTables\UserRecycleDataTable;
 use WebModularity\LaravelUser\User;
+use WebModularity\LaravelCms\Http\Requests\StoreUser;
 
 class UserController extends Controller
 {
@@ -51,10 +51,10 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  StorePerson  $request
+     * @param  StoreUser  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StorePerson $request)
+    public function store(StoreUser $request)
     {
         $person = Person::create(request(['email', 'first_name', 'middle_name', 'last_name']));
         // Address

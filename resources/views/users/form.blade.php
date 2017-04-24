@@ -32,7 +32,7 @@
     <div class="col-sm-12">
         <div class="form-group {{ $errors->has('login_types') ? 'has-error' : '' }}">
             <label class="control-label" for="login_types">Login Methods</label>
-            <select class="form-control select2" style="width: 100%;" name="login_types[]" id="login_types" multiple="multiple" required>
+            <select class="form-control select2" style="width: 100%;" name="login_types[]" id="login_types" multiple="multiple">
                 @foreach($loginTypes as $loginTypeId => $loginType)
                     <option value="{{ $loginTypeId }}"{{ is_array(old('login_types')) && in_array($loginTypeId, array_keys(old('login_types'))) ? ' selected' : '' }}>{{ $loginType }}</option>
                 @endforeach()
