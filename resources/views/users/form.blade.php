@@ -27,11 +27,12 @@
         </div>
     </div>
 </div>
+@if(Route::currentRouteAction() == 'create')
 <div class="row">
     <div class="col-sm-12">
         <div class="form-group {{ $errors->has('login_types') ? 'has-error' : '' }}">
             <label class="control-label" for="login_types">Login Types</label>
-            <select class="form-control select2" style="width: 100%;" name="login_types" id="login_types" multiple required>
+            <select class="form-control select2" style="width: 100%;" name="login_types[]" id="login_types" multiple="multiple" required>
                 @foreach($loginTypes as $loginTypeId => $loginType)
                     <option value="{{ $loginTypeId }}"{{ old('login_types', isset($login_types) ? $login_types : null) == $loginTypeId ? ' selected' : '' }}>{{ $loginType }}</option>
                 @endforeach()
@@ -44,6 +45,7 @@
         </div>
     </div>
 </div>
+@endif
 <div class="row">
     <div class="col-xs-8 col-sm-5 col-md-8 col-lg-5">
         <div class="form-group {{ $errors->has('first_name') ? 'has-error' : '' }}">
