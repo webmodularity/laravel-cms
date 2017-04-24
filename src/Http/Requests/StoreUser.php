@@ -26,20 +26,18 @@ class StoreUser extends FormRequest
     public function rules()
     {
         $emailUnique = $this->method() == 'POST'
-            ? Rule::unique('people')->where(function ($query) {
+            ? Rule::unique('people', 'id')->where(function ($query) {
                 $query->whereExists(function ($query) {
                     $query->select(DB::raw(1))
                         ->from('users')
-                        ->leftJoin('people', 'users.person_id', '=', 'people.id')
-                        ->whereNotNull('users.person_id');
+                        ->leftJoin('people', 'users.person_id', '=', 'people.id');
                 });
             })
-            : Rule::unique('people')->where(function ($query) {
+            : Rule::unique('people', 'id')->where(function ($query) {
                 $query->whereExists(function ($query) {
                     $query->select(DB::raw(1))
                         ->from('users')
-                        ->leftJoin('people', 'users.person_id', '=', 'people.id')
-                        ->whereNotNull('users.person_id');
+                        ->leftJoin('people', 'users.person_id', '=', 'people.id');
                 });
             })
                 ->ignore($this->person->id);
