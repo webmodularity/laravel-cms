@@ -30,16 +30,16 @@
 @if(Route::current()->getActionMethod() == 'create')
 <div class="row">
     <div class="col-sm-12">
-        <div class="form-group {{ $errors->has('login_methods') ? 'has-error' : '' }}">
+        <div class="form-group {{ $errors->has('login_methods[]') ? 'has-error' : '' }}">
             <label class="control-label" for="login_methods">Login Methods</label>
             <select class="form-control select2" style="width: 100%;" name="login_methods[]" id="login_methods" multiple="multiple">
                 @foreach($loginMethods as $loginMethodId => $loginMethod)
                     <option value="{{ $loginMethodId }}"{{ is_array(old('login_methods')) && in_array($loginMethodId, array_keys(old('login_methods'))) ? ' selected' : '' }}>{{ $loginMethod }}</option>
                 @endforeach()
             </select>
-            @if ($errors->has('login_methods'))
+            @if ($errors->has('login_methods[]'))
                 <span class="help-block">
-                    <strong>{{ $errors->first('login_methods') }}</strong>
+                    <strong>{{ $errors->first('login_methods[]') }}</strong>
                 </span>
             @endif
         </div>
