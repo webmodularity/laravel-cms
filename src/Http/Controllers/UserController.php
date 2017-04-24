@@ -62,6 +62,10 @@ class UserController extends Controller
         $this->syncPrimaryAddress($person);
         // Phones
         $this->syncPhones($person);
+        $user = User::create([
+            'person_id' => $person->id,
+            'role_id' => request('role_id')
+        ]);
         session()->flash('success', "You have created ".$person->email.".");
         return redirect()->route('users.create');
     }
