@@ -94,22 +94,22 @@ class CmsServiceProvider extends ServiceProvider
                     ->toArray()
             );
         });
-        // Login Types
+        // Login Methods
         View::composer(['wmcms::users.form'], function ($view) {
-            $loginTypes = [];
+            $loginMethods = [];
             if (config('wm.user.methods.local', false)) {
-                $loginTypes[0] = 'Local';
+                $loginMethods[0] = 'Local';
             }
             $socialLogins = UserSocialProvider::select(['id', 'slug'])
                 ->where('status', true)
                 ->orderBy('slug', 'asc')
                 ->get();
             foreach ($socialLogins as $socialLogin) {
-                $loginTypes[$socialLogin->id] = $socialLogin->getName();
+                $loginMethods[$socialLogin->id] = $socialLogin->getName();
             }
             $view->with(
-                'loginTypes',
-                $loginTypes
+                'loginMethods',
+                $loginMethods
             );
         });
 
