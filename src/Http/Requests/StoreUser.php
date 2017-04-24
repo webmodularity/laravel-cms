@@ -24,12 +24,21 @@ class StoreUser extends FormRequest
      */
     public function rules()
     {
-        //$emailUnique = $this->method() == 'POST'
-        //    ? Rule::unique('people')
-        //    : Rule::unique('people')->ignore($this->person->id);
+        $emailUnique = $this->method() == 'POST'
+            ? Rule::unique('people')->where(function ($query) {
+                $query->hasUser();
+            })
+            : Rule::unique('people')->where(function ($query) {
+                $query->hasUser();
+            })
+                ->ignore($this->person->id);
 
         return [
-            'email' => 'required|email',
+            'email' => [
+                'required',
+                'email',
+                $emailUnique
+            ],
             'role_id' => 'exists:user_roles,id',
             'login_methods.*' => 'loginMethod',
             'first_name' => 'max:255',

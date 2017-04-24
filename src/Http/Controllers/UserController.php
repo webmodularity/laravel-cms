@@ -10,6 +10,7 @@ use App\Http\Requests\StoreBranch;
 use Illuminate\Http\JsonResponse;
 **/
 use WebModularity\LaravelContact\Address;
+use WebModularity\LaravelContact\Person;
 use WebModularity\LaravelContact\Phone;
 use WebModularity\LaravelCms\DataTables\UserDataTable;
 use WebModularity\LaravelCms\DataTables\UserRecycleDataTable;
@@ -56,8 +57,7 @@ class UserController extends Controller
      */
     public function store(StoreUser $request)
     {
-        dd('passed validation');
-        $person = Person::create(request(['email', 'first_name', 'middle_name', 'last_name']));
+        $person = Person::firstOrCreate(request(['email'], ['first_name', 'middle_name', 'last_name']));
         // Address
         $this->syncPrimaryAddress($person);
         // Phones
