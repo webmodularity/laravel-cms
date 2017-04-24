@@ -56,6 +56,7 @@ class UserController extends Controller
      */
     public function store(StoreUser $request)
     {
+        dd('passed validation');
         $person = Person::create(request(['email', 'first_name', 'middle_name', 'last_name']));
         // Address
         $this->syncPrimaryAddress($person);
