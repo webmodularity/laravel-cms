@@ -34,7 +34,11 @@ class StoreUser extends FormRequest
                 });
             })
             : Rule::unique('people')->where(function ($query) {
-                $query->with('user')->having('user_count', '>', 0);
+                $query->whereExists(function ($query) {
+                    $query->select(DB::raw(1))
+                        ->from('users')
+                        ->leftJoin('people', 'users.person_id', '=', 'people.id');
+                });
             })
                 ->ignore($this->person->id);
 
