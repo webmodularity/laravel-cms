@@ -2,6 +2,7 @@
 
 namespace WebModularity\LaravelCms\Http\Requests;
 
+use DB;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
@@ -26,9 +27,11 @@ class StoreUser extends FormRequest
     {
         $emailUnique = $this->method() == 'POST'
             ? Rule::unique('people')->where(function ($query) {
-                $query->select('COUNT(users.person_id) as user_count')
-                    ->join('users', 'users.person_id', '=', 'people.id')
-                    ->having('user_count', '>', 0);
+                $query->whereExists(function ($query) {
+                    $query->select(DB::raw(1))
+                        ->from('users')
+                        ->leftJoin('people', 'users.person_id', '=', 'people.id');
+                });
             })
             : Rule::unique('people')->where(function ($query) {
                 $query->with('user')->having('user_count', '>', 0);

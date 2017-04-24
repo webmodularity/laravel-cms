@@ -63,7 +63,7 @@ class UserController extends Controller
         // Phones
         $this->syncPhones($person);
         session()->flash('success', "You have created ".$person->email.".");
-        return redirect()->route('people.create');
+        return redirect()->route('users.create');
     }
 
     /**
