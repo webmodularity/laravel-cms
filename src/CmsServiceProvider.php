@@ -10,6 +10,7 @@ use WebModularity\LaravelContact\AddressState;
 use WebModularity\LaravelLog\LogServiceProvider;
 use WebModularity\LaravelUser\LogUser;
 use WebModularity\LaravelUser\UserServiceProvider;
+use WebModularity\LaravelUser\UserSocialProvider;
 use Yajra\Datatables\ButtonsServiceProvider;
 use Yajra\Datatables\DatatablesServiceProvider;
 use JeroenNoten\LaravelAdminLte\ServiceProvider as AdminLteServiceProvider;
@@ -99,7 +100,7 @@ class CmsServiceProvider extends ServiceProvider
             if (config('wm.user.modes.local', false)) {
                 $loginTypes[0] = 'Local';
             }
-            $socialLogins = UserRole::select(['id', 'slug'])
+            $socialLogins = UserSocialProvider::select(['id', 'slug'])
                 ->where('status', true)
                 ->orderBy('slug', 'asc')
                 ->get();
