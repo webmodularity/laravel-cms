@@ -97,7 +97,7 @@ class CmsServiceProvider extends ServiceProvider
         // Login Types
         View::composer(['wmcms::users.form'], function ($view) {
             $loginTypes = [];
-            if (config('wm.user.modes.local', false)) {
+            if (config('wm.user.methods.local', false)) {
                 $loginTypes[0] = 'Local';
             }
             $socialLogins = UserSocialProvider::select(['id', 'slug'])

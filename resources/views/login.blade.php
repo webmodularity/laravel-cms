@@ -16,7 +16,7 @@
         <!-- /.login-logo -->
         <div class="login-box-body">
             <p class="login-box-msg">{{ trans('adminlte::adminlte.login_message') }}</p>
-            @if(config('wm.user.modes.local'))
+            @if(config('wm.user.methods.local'))
                 <form action="{{ url(config('adminlte.login_url', 'login')) }}" method="post">
                     {!! csrf_field() !!}
 
@@ -69,9 +69,9 @@
                 </div>
             @endif()
             <!-- Social Logins -->
-            @if(config('wm.user.modes.social'))
+            @if(config('wm.user.methods.social'))
                 <div class="social-auth-links text-center">
-                @if(config('wm.user.modes.local') && config('wm.user.modes.social'))
+                @if(config('wm.user.methods.local') && config('wm.user.methods.social'))
                     <p class="text-center">- OR -</p>
                 @endif()
                     @foreach($socialProviders as $socialProvider)
