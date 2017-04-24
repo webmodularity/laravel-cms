@@ -27,6 +27,7 @@
         </div>
     </div>
 </div>
+{{ Route::currentRouteAction() }}
 @if(Route::currentRouteAction() == 'create')
 <div class="row">
     <div class="col-sm-12">
