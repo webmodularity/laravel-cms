@@ -28,7 +28,7 @@ class StoreUser extends FormRequest
         $emailUnique = $this->method() == 'POST'
             ? Rule::unique('people')->where(function ($query) {
                 $query->leftJoin('users', 'users.person_id', '=', 'people.id')
-                    ->whereNotNull('users.id');
+                    ->having('users.id', '>', 0);
             })
             : Rule::unique('people')->where(function ($query) {
                 $query->leftJoin('users', 'users.person_id', '=', 'people.id')
