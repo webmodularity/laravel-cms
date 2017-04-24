@@ -30,14 +30,16 @@ class StoreUser extends FormRequest
                 $query->whereExists(function ($query) {
                     $query->select(DB::raw(1))
                         ->from('users')
-                        ->leftJoin('people', 'users.person_id', '=', 'people.id');
+                        ->leftJoin('people', 'users.person_id', '=', 'people.id')
+                        ->whereNotNull('users.person_id');
                 });
             })
             : Rule::unique('people')->where(function ($query) {
                 $query->whereExists(function ($query) {
                     $query->select(DB::raw(1))
                         ->from('users')
-                        ->leftJoin('people', 'users.person_id', '=', 'people.id');
+                        ->leftJoin('people', 'users.person_id', '=', 'people.id')
+                        ->whereNotNull('users.person_id');
                 });
             })
                 ->ignore($this->person->id);
