@@ -73,7 +73,14 @@ class CmsServiceProvider extends ServiceProvider
         });
         // States
         View::composer(['wmcms::partials.form.address'], function ($view) {
-            $view->with('stateList', AddressState::select(['id', 'iso'])->where('country_id', 1)->orderBy('iso', 'asc')->get()->toArray());
+            $view->with(
+                'stateList',
+                AddressState::select(['id', 'iso'])
+                    ->where('country_id', 1)
+                    ->orderBy('iso', 'asc')
+                    ->get()
+                    ->toArray()
+            );
         });
         // User Roles
         View::composer(['wmcms::users.form'], function ($view) {
@@ -84,6 +91,24 @@ class CmsServiceProvider extends ServiceProvider
                     ->orderBy('id', 'asc')
                     ->get()
                     ->toArray()
+            );
+        });
+        // Login Types
+        View::composer(['wmcms::users.form'], function ($view) {
+            $loginTypes = [];
+            if (config('wm.user.modes.local', false)) {
+                $loginTypes[0] = 'Local';
+            }
+            $socialLogins = UserRole::select(['id', 'slug'])
+                ->where('status', true)
+                ->orderBy('slug', 'asc')
+                ->get();
+            foreach ($socialLogins as $socialLogin) {
+                $loginTypes[$socialLogin->id] = $socialLogin->getName();
+            }
+            $view->with(
+                'loginTypes',
+                $loginTypes
             );
         });
 
