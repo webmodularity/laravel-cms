@@ -27,8 +27,7 @@
         </div>
     </div>
 </div>
-{{ Route::currentRouteAction() }}
-@if(Route::currentRouteAction() == 'create')
+@if(Route::is('create'))
 <div class="row">
     <div class="col-sm-12">
         <div class="form-group {{ $errors->has('login_types') ? 'has-error' : '' }}">
