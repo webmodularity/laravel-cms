@@ -146,6 +146,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.3.4/jquery.inputmask.bundle.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.3.4/bindings/inputmask.binding.min.js"></script>
 <script type="text/javascript">
-    $('#login_types').select2();
+    $('#login_methods').select2();
 </script>
 @endpush
