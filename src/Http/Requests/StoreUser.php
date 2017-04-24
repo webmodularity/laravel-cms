@@ -31,7 +31,7 @@ class StoreUser extends FormRequest
         return [
             'email' => 'required|email',
             'role_id' => 'exists:user_roles,id',
-            'login_methods.*' => 'login-method',
+            'login_methods.*' => 'loginMethod',
             'first_name' => 'max:255',
             'middle_name' => 'max:255',
             'last_name' => 'max:255',
