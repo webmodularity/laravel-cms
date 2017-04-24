@@ -34,7 +34,7 @@
             <label class="control-label" for="login_types">Login Types</label>
             <select class="form-control select2" style="width: 100%;" name="login_types[]" id="login_types" multiple="multiple" required>
                 @foreach($loginTypes as $loginTypeId => $loginType)
-                    <option value="{{ $loginTypeId }}"{{ old('login_types', isset($login_types) ? $login_types : null) == $loginTypeId ? ' selected' : '' }}>{{ $loginType }}</option>
+                    <option value="{{ $loginTypeId }}"{{ is_array(old('login_types')) && in_array($loginTypeId, array_keys(old('login_types'))) ? ' selected' : '' }}>{{ $loginType }}</option>
                 @endforeach()
             </select>
             @if ($errors->has('login_types'))
