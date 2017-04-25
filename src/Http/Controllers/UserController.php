@@ -57,9 +57,7 @@ class UserController extends Controller
      */
     public function store(StoreUser $request)
     {
-        $names = request(['first_name', 'middle_name', 'last_name']);
-        \Log::critical($names);
-        $person = Person::firstOrCreate(request(['email'], $names));
+        $person = Person::firstOrCreate(request(['email']), request(['first_name', 'middle_name', 'last_name']));
         // Address
         $this->syncPrimaryAddress($person);
         // Phones
