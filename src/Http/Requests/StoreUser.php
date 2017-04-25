@@ -2,9 +2,7 @@
 
 namespace WebModularity\LaravelCms\Http\Requests;
 
-use DB;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
 class StoreUser extends FormRequest
 {
