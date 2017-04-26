@@ -38,7 +38,7 @@
                     @endif
                 </div>
 
-                <div class="form-group has-feedback{{ $errors->has('email') ? 'has-error' : '' }}">
+                <div class="form-group has-feedback{{ $errors->has('email') ? ' has-error' : '' }}">
                     <input type="email" name="email" class="form-control" value="{{ old('email') }}" placeholder="Email" required>
                     <span class="fa fa-envelope form-control-feedback"></span>
                     @if ($errors->has('email'))
@@ -47,7 +47,7 @@
                         </span>
                     @endif
                 </div>
-                <div class="form-group has-feedback{{ $errors->has('password') ? 'has-error' : '' }}">
+                <div class="form-group has-feedback{{ $errors->has('password') ? ' has-error' : '' }}">
                     <input type="password" name="password" class="form-control" placeholder="Password" required>
                     <span class="fa fa-lock form-control-feedback"></span>
                     @if ($errors->has('password'))
@@ -56,7 +56,7 @@
                         </span>
                     @endif
                 </div>
-                <div class="form-group has-feedback{{ $errors->has('password_confirmation') ? 'has-error' : '' }}" required>
+                <div class="form-group has-feedback{{ $errors->has('password_confirmation') ? ' has-error' : '' }}" required>
                     <input type="password" name="password_confirmation" class="form-control" placeholder="Confirm Password">
                     <span class="fa fa-lock form-control-feedback"></span>
                     @if ($errors->has('password_confirmation'))
