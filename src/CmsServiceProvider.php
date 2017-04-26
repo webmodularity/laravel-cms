@@ -96,10 +96,7 @@ class CmsServiceProvider extends ServiceProvider
         });
         // Login Methods
         View::composer(['wmcms::users.form'], function ($view) {
-            $loginMethods = [];
-            if (config('wm.user.methods.local', false)) {
-                $loginMethods[0] = 'Local';
-            }
+            $loginMethods = [0 => 'Local'];
             $socialLogins = UserSocialProvider::select(['id', 'slug'])
                 ->where('status', true)
                 ->orderBy('slug', 'asc')
