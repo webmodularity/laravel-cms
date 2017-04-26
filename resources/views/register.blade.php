@@ -18,37 +18,31 @@
             <form action="{{ url('register') }}" method="post">
                 {!! csrf_field() !!}
 
-                <div class="form-group has-feedback {{ $errors->has('name') ? 'has-error' : '' }}">
-                    <input type="text" name="name" class="form-control" value="{{ old('name') }}"
-                           placeholder="{{ trans('adminlte::adminlte.full_name') }}">
-                    <span class="glyphicon glyphicon-user form-control-feedback"></span>
-                    @if ($errors->has('name'))
-                        <span class="help-block">
-                            <strong>{{ $errors->first('name') }}</strong>
-                        </span>
-                    @endif
-                </div>
-
-                <div class="form-group has-feedback {{ $errors->has('person.first_name') ? ' has-error' : '' }}">
-                    <input id="person[first_name]" type="text" class="form-control" name="person[first_name]"
-                           value="{{ old('person.first_name') }}" placeholder="First Name">
-                    <span class="glyphicon glyphicon-user form-control-feedback"></span>
-                    @if ($errors->has('person.first_name'))
-                        <span class="help-block">
-                            <strong>{{ $errors->first('person.first_name') }}</strong>
-                        </span>
-                    @endif
-                </div>
-
-                <div class="form-group has-feedback {{ $errors->has('person.last_name') ? ' has-error' : '' }}">
-                    <input id="person[last_name]" type="text" class="form-control" name="person[last_name]"
-                           value="{{ old('person.last_name') }}" placeholder="Last Name">
-                    <span class="glyphicon glyphicon-user form-control-feedback"></span>
-                    @if ($errors->has('person.last_name'))
-                        <span class="help-block">
-                            <strong>{{ $errors->first('person.last_name') }}</strong>
-                        </span>
-                    @endif
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group has-feedback {{ $errors->has('person.first_name') ? ' has-error' : '' }}">
+                            <input id="person[first_name]" type="text" class="form-control" name="person[first_name]"
+                                   value="{{ old('person.first_name') }}" placeholder="First Name">
+                            <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                            @if ($errors->has('person.first_name'))
+                                <span class="help-block">
+                                    <strong>{{ $errors->first('person.first_name') }}</strong>
+                                </span>
+                            @endif
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group has-feedback {{ $errors->has('person.last_name') ? ' has-error' : '' }}">
+                            <input id="person[last_name]" type="text" class="form-control" name="person[last_name]"
+                                   value="{{ old('person.last_name') }}" placeholder="Last Name">
+                            <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                            @if ($errors->has('person.last_name'))
+                                <span class="help-block">
+                                    <strong>{{ $errors->first('person.last_name') }}</strong>
+                                </span>
+                            @endif
+                        </div>
+                    </div>
                 </div>
 
                 <div class="form-group has-feedback {{ $errors->has('email') ? 'has-error' : '' }}">
@@ -86,8 +80,7 @@
                 >{{ trans('adminlte::adminlte.register') }}</button>
             </form>
             <div class="auth-links">
-                <a href="{{ url('login') }}"
-                   class="text-center">{{ trans('adminlte::adminlte.i_already_have_a_membership') }}</a>
+                <a href="{{ url('login') }}" class="text-center">I already have a user account.</a>
             </div>
         </div>
         <!-- /.form-box -->
