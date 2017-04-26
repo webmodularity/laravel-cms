@@ -1,4 +1,4 @@
-@extends('adminlte::master')
+@extends('wmcms::master')
 
 @section('adminlte_css')
     <link rel="stylesheet" href="{{ asset('vendor/adminlte/plugins/iCheck/square/blue.css') }}">
