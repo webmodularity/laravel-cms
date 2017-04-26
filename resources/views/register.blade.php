@@ -18,29 +18,24 @@
             <form action="{{ url('register') }}" method="post">
                 {!! csrf_field() !!}
 
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="form-group {{ $errors->has('first_name') ? ' has-error' : '' }}">
-                            <input id="first_name" type="text" class="form-control" name="first_name"
-                                   value="{{ old('first_name') }}" placeholder="First Name">
-                            @if ($errors->has('first_name'))
-                                <span class="help-block">
-                                    <strong>{{ $errors->first('first_name') }}</strong>
-                                </span>
-                            @endif
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="form-group {{ $errors->has('last_name') ? ' has-error' : '' }}">
-                            <input id="last_name" type="text" class="form-control" name="last_name"
-                                   value="{{ old('last_name') }}" placeholder="Last Name">
-                            @if ($errors->has('last_name'))
-                                <span class="help-block">
-                                    <strong>{{ $errors->first('last_name') }}</strong>
-                                </span>
-                            @endif
-                        </div>
-                    </div>
+                <div class="form-group has-feedback {{ $errors->has('first_name') ? ' has-error' : '' }}">
+                    <input id="first_name" type="text" class="form-control" name="first_name" value="{{ old('first_name') }}" placeholder="First Name">
+                    <span class="fa fa-user-o form-control-feedback"></span>
+                    @if ($errors->has('first_name'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('first_name') }}</strong>
+                        </span>
+                    @endif
+                </div>
+
+                <div class="form-group has-feedback {{ $errors->has('last_name') ? ' has-error' : '' }}">
+                    <input id="last_name" type="text" class="form-control" name="last_name" value="{{ old('last_name') }}" placeholder="Last Name">
+                    <span class="fa fa-user-o form-control-feedback"></span>
+                    @if ($errors->has('last_name'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('last_name') }}</strong>
+                        </span>
+                    @endif
                 </div>
 
                 <div class="form-group has-feedback {{ $errors->has('email') ? 'has-error' : '' }}">
