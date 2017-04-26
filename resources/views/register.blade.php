@@ -20,7 +20,7 @@
 
                 <div class="form-group has-feedback{{ $errors->has('first_name') ? ' has-error' : '' }}">
                     <input id="first_name" type="text" class="form-control" name="first_name" value="{{ old('first_name') }}" placeholder="First Name">
-                    <span class="fa fa-user-o form-control-feedback"></span>
+                    <span class="fa fa-user form-control-feedback"></span>
                     @if ($errors->has('first_name'))
                         <span class="help-block">
                             <strong>{{ $errors->first('first_name') }}</strong>
@@ -30,7 +30,7 @@
 
                 <div class="form-group has-feedback{{ $errors->has('last_name') ? ' has-error' : '' }}">
                     <input id="last_name" type="text" class="form-control" name="last_name" value="{{ old('last_name') }}" placeholder="Last Name">
-                    <span class="fa fa-user-o form-control-feedback"></span>
+                    <span class="fa fa-user form-control-feedback"></span>
                     @if ($errors->has('last_name'))
                         <span class="help-block">
                             <strong>{{ $errors->first('last_name') }}</strong>
@@ -40,7 +40,7 @@
 
                 <div class="form-group has-feedback{{ $errors->has('email') ? 'has-error' : '' }}">
                     <input type="email" name="email" class="form-control" value="{{ old('email') }}" placeholder="Email" required>
-                    <span class="fa fa-envelope-o form-control-feedback"></span>
+                    <span class="fa fa-envelope form-control-feedback"></span>
                     @if ($errors->has('email'))
                         <span class="help-block">
                             <strong>{{ $errors->first('email') }}</strong>
