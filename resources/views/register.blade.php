@@ -19,7 +19,7 @@
                 {!! csrf_field() !!}
 
                 <div class="form-group has-feedback{{ $errors->has('first_name') ? ' has-error' : '' }}">
-                    <input id="first_name" type="text" class="form-control" name="first_name" value="{{ old('first_name') }}" placeholder="First Name">
+                    <input id="first_name" type="text" class="form-control" name="first_name" value="{{ old('first_name') }}" placeholder="First Name" required>
                     <span class="fa fa-user form-control-feedback"></span>
                     @if ($errors->has('first_name'))
                         <span class="help-block">
@@ -29,7 +29,7 @@
                 </div>
 
                 <div class="form-group has-feedback{{ $errors->has('last_name') ? ' has-error' : '' }}">
-                    <input id="last_name" type="text" class="form-control" name="last_name" value="{{ old('last_name') }}" placeholder="Last Name">
+                    <input id="last_name" type="text" class="form-control" name="last_name" value="{{ old('last_name') }}" placeholder="Last Name" required>
                     <span class="fa fa-user form-control-feedback"></span>
                     @if ($errors->has('last_name'))
                         <span class="help-block">
