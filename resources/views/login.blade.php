@@ -61,7 +61,7 @@
                 <a href="{{ url('password/reset') }}" class="text-center">Forgot Password?</a>
                 @if (config('wm.user.register', false))
                     <br />
-                    <a href="{{ url('register') }}" class="text-center">Register New User</a>
+                    <a href="{{ url('register') }}" class="text-center">Register new user account.</a>
                 @endif
             </div>
             <!-- Social Logins -->
