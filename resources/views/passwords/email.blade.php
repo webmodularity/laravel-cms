@@ -24,7 +24,7 @@
                 {!! csrf_field() !!}
 
                 <div class="form-group has-feedback {{ $errors->has('email') ? 'has-error' : '' }}">
-                    <input type="email" name="email" class="form-control" value="{{ $email or old('email') }}" placeholder="Email">
+                    <input type="email" name="email" class="form-control" value="{{ $email or old('email') }}" placeholder="Email" required>
                     <span class="fa fa-envelope form-control-feedback"></span>
                     @if ($errors->has('email'))
                         <span class="help-block">
