@@ -72,6 +72,17 @@
             <div class="auth-links">
                 <a href="{{ url('login') }}" class="text-center">I already have a user account.</a>
             </div>
+            <!-- Social Logins -->
+            @if(config('wm.user.social'))
+                <div class="social-auth-links text-center">
+                    <p class="text-center">- OR -</p>
+                    @foreach($socialProviders as $socialProvider)
+                        <a href="social/{{ $socialProvider->slug }}" class="btn btn-block btn-social btn-{{ $socialProvider->slug }}">
+                            <i class="fa fa-{{ $socialProvider->slug }}"></i> Register with {{ $socialProvider->getName() }}
+                        </a>
+                    @endforeach
+                </div>
+            @endif()
         </div>
         <!-- /.form-box -->
     </div><!-- /.register-box -->
