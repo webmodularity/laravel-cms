@@ -16,11 +16,13 @@
         <!-- /.login-logo -->
         <div class="login-box-body">
             <p class="login-box-msg">{{ trans('adminlte::adminlte.login_message') }}</p>
-            @if(session()->has('info'))
-                <div class="callout callout-warning">
-                    <p>{{ session('info') }}</p>
-                </div>
+            @foreach(['danger', 'warning', 'info', 'success'] as $calloutType)
+                @if(session()->has($calloutType))
+                    <div class="callout callout-{{ $calloutType }}">
+                        <p>{{ session($calloutType) }}</p>
+                    </div>
                 @endif
+            @endforeach
             <form action="{{ url(config('adminlte.login_url', 'login')) }}" method="post">
                 {!! csrf_field() !!}
 
