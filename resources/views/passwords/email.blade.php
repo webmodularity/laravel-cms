@@ -16,7 +16,7 @@
         <div class="login-box-body">
             <p class="login-box-msg">Reset Password</p>
             @if (session('status'))
-                <div class="alert alert-success">
+                <div class="callout callout-success">
                     {{ session('status') }}
                 </div>
             @endif
