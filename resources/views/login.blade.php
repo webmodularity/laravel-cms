@@ -16,7 +16,7 @@
         <!-- /.login-logo -->
         <div class="login-box-body">
             <p class="login-box-msg">{{ trans('adminlte::adminlte.login_message') }}</p>
-            @foreach(['danger', 'warning', 'info', 'success'] as $calloutType)
+            @foreach(['danger', 'success', 'warning', 'info'] as $calloutType)
                 @if(session()->has($calloutType))
                     <div class="callout callout-{{ $calloutType }}">
                         <p>{{ session($calloutType) }}</p>
