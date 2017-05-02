@@ -65,7 +65,7 @@
                 </div>
             </form>
             <div class="auth-links">
-                <a href="{{ url('password/reset') }}" class="text-center">Forgot Password?</a>
+                <a href="{{ url('password/reset') }}" class="text-center">Forgot password?</a>
                 @if (config('wm.user.register', false))
                     <br />
                     <a href="{{ url('register') }}" class="text-center">Register new user account.</a>
