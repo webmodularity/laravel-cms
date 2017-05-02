@@ -28,23 +28,30 @@
     </div>
 </div>
 @if(Route::current()->getActionMethod() == 'create')
-<div class="row">
-    <div class="col-sm-12">
-        <div class="form-group {{ $errors->has('login_methods.*') ? 'has-error' : '' }}">
-            <label class="control-label" for="login_methods">Login Methods</label>
-            <select class="form-control select2" style="width: 100%;" name="login_methods[]" id="login_methods" multiple="multiple">
-                @foreach($loginMethods as $loginMethodId => $loginMethod)
-                    <option value="{{ $loginMethodId }}"{{ is_array(old('login_methods')) && in_array($loginMethodId, array_keys(old('login_methods'))) ? ' selected' : '' }}>{{ $loginMethod }}</option>
-                @endforeach()
-            </select>
-            @if ($errors->has('login_methods.*'))
-                <span class="help-block">
-                    <strong>{{ $errors->first('login_methods.*') }}</strong>
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="form-group {{ $errors->has('password') ? 'has-error' : '' }}">
+                <label class="control-label" for="password">Password</label>
+                <input type="password" name="password" class="form-control" placeholder="Password">
+                @if ($errors->has('password'))
+                    <span class="help-block">
+                    <strong>{{ $errors->first('password') }}</strong>
                 </span>
-            @endif
+                @endif
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="form-group {{ $errors->has('password_confirmation') ? 'has-error' : '' }}">
+                <label class="control-label"></label>
+                <input type="password" name="password_confirmation" class="form-control" placeholder="Confirm Password">
+                @if ($errors->has('password_confirmation'))
+                    <span class="help-block">
+                    <strong>{{ $errors->first('password_confirmation') }}</strong>
+                </span>
+                @endif
+            </div>
         </div>
     </div>
-</div>
 @endif
 <div class="row">
     <div class="col-xs-8 col-sm-5 col-md-8 col-lg-5">
