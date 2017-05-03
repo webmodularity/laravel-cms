@@ -31,7 +31,7 @@
     <div class="row">
         <div class="col-sm-6">
             <div class="form-group {{ $errors->has('password') ? 'has-error' : '' }}">
-                <label class="control-label" for="password">Password</label>
+                <label class="control-label" for="password">Password (Optional)</label>
                 <input type="password" name="password" class="form-control" placeholder="Password">
                 @if ($errors->has('password'))
                     <span class="help-block">
