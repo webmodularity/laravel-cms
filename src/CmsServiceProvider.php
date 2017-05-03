@@ -94,21 +94,6 @@ class CmsServiceProvider extends ServiceProvider
                     ->toArray()
             );
         });
-        // Login Methods
-        View::composer(['wmcms::users.form'], function ($view) {
-            $loginMethods = [0 => 'Local'];
-            $socialLogins = UserSocialProvider::select(['id', 'slug'])
-                ->where('status', true)
-                ->orderBy('slug', 'asc')
-                ->get();
-            foreach ($socialLogins as $socialLogin) {
-                $loginMethods[$socialLogin->id] = $socialLogin->getName();
-            }
-            $view->with(
-                'loginMethods',
-                $loginMethods
-            );
-        });
 
         // Migrations
         //$this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
