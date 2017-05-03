@@ -42,7 +42,7 @@
         </div>
         <div class="col-sm-6">
             <div class="form-group {{ $errors->has('password_confirmation') ? 'has-error' : '' }}">
-                <label class="control-label"></label>
+                <label class="control-label hidden-xs">&nbsp;</label>
                 <input type="password" name="password_confirmation" class="form-control" placeholder="Confirm Password">
                 @if ($errors->has('password_confirmation'))
                     <span class="help-block">
