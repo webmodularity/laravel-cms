@@ -107,19 +107,20 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  StorePerson  $request
-     * @param  Person  $person
+     * @param  StoreUser  $request
+     * @param  User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(StorePerson $request, Person $person)
+    public function update(StoreUser $request, User $user)
     {
-        $person->update(request(['email', 'first_name', 'middle_name', 'last_name']));
+        dd($user);
+        //$user->update(request(['email', 'first_name', 'middle_name', 'last_name']));
         // Address
-        $this->syncPrimaryAddress($person);
+        $this->syncPrimaryAddress($user->person);
         // Phones
-        $this->syncPhones($person);
-        session()->flash('success', "You have updated ".$person->email.".");
-        return redirect()->route('people.edit', ['id' => $person->id]);
+        $this->syncPhones($user->person);
+        session()->flash('success', "You have updated ".$user->person->email.".");
+        return redirect()->route('users.edit', ['id' => $user->id]);
     }
 
     /**
