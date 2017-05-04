@@ -16,7 +16,7 @@
             <label class="control-label" for="role_id">Role</label>
             <select class="form-control" style="width: 100%;" name="role_id" id="role_id" required>
                 @foreach($userRoles as $userRole)
-                    <option value="{{ $userRole['id'] }}"{{ old('role_id', isset($role_id) ? $role_id : null) == $userRole['id'] ? ' selected' : '' }}>{{ studly_case($userRole['slug']) }}</option>
+                    <option value="{{ $userRole['id'] }}"{{ old('role_id', isset($role_id) ? $role_id : 1) == $userRole['id'] ? ' selected' : '' }}>{{ studly_case($userRole['slug']) }}</option>
                 @endforeach()
             </select>
             @if ($errors->has('role_id'))
