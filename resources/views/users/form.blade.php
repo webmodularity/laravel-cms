@@ -54,6 +54,20 @@
     </div>
 @endif
 <div class="row">
+    <div class="col-sm-12">
+        <div class="form-group {{ $errors->has('avatar_url') ? 'has-error' : '' }}">
+            <label class="control-label" for="email">Avatar URL (Optional)</label>
+            <input type="url" name="avatar_url" class="form-control" value="{{ old('avatar_url',  isset($avatar_url) ? $avatar_url : null) }}"
+                   placeholder="Email Address" required />
+            @if ($errors->has('avatar_url'))
+                <span class="help-block">
+                    <strong>{{ $errors->first('avatar_url') }}</strong>
+                </span>
+            @endif
+        </div>
+    </div>
+</div>
+<div class="row">
     <div class="col-xs-8 col-sm-5 col-md-8 col-lg-5">
         <div class="form-group {{ $errors->has('first_name') ? 'has-error' : '' }}">
             <label class="control-label" for="first_name">Name (Optional)</label>
