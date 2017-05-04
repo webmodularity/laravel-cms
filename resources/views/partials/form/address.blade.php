@@ -45,7 +45,7 @@ $addressSettings[$addressField] = [
             <select class="form-control" style="width: 100%;" name="{{ $addressField }}[state_id]" id="{{ $addressField }}-state"{{ $addressSettings[$addressField]['required'] ? ' required' : '' }}>
                 <option disabled selected hidden>State</option>
                 @foreach($stateList as $state)
-                    <option value="{{ $state['id'] }}"{{ ${$addressField}['state_id'] == $state['id'] ? ' selected' : '' }}>{{ $state['iso'] }}</option>
+                    <option value="{{ $state['id'] }}"{{ (isset(${$addressField}['state_id']) && ${$addressField}['state_id'] == $state['id']) ? ' selected' : '' }}>{{ $state['iso'] }}</option>
                 @endforeach()
             </select>
             @if ($errors->has($addressField . '.state_id'))
