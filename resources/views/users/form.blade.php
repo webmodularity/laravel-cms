@@ -2,7 +2,7 @@
     <div class="col-sm-8">
         <div class="form-group {{ $errors->has('email') ? 'has-error' : '' }}">
             <label class="control-label" for="email">Email</label>
-            <input type="email" name="email" class="form-control" value="{{ old('email',  isset($person->email) ? $person->email : null) }}"
+            <input type="email" name="email" class="form-control" value="{{ old('email',  isset($user->person->email) ? $user->person->email : null) }}"
                    placeholder="Email Address" required />
             @if ($errors->has('email'))
                 <span class="help-block">
@@ -16,7 +16,7 @@
             <label class="control-label" for="role_id">Role</label>
             <select class="form-control" style="width: 100%;" name="role_id" id="role_id" required>
                 @foreach($userRoles as $userRole)
-                    <option value="{{ $userRole['id'] }}"{{ old('role_id', isset($role_id) ? $role_id : 1) == $userRole['id'] ? ' selected' : '' }}>{{ studly_case($userRole['slug']) }}</option>
+                    <option value="{{ $userRole['id'] }}"{{ old('role_id', isset($user->role_id) ? $user->role_id : 1) == $userRole['id'] ? ' selected' : '' }}>{{ studly_case($userRole['slug']) }}</option>
                 @endforeach()
             </select>
             @if ($errors->has('role_id'))
@@ -57,7 +57,7 @@
     <div class="col-xs-8 col-sm-5 col-md-8 col-lg-5">
         <div class="form-group {{ $errors->has('first_name') ? 'has-error' : '' }}">
             <label class="control-label" for="first_name">Name (Optional)</label>
-            <input type="text" name="first_name" class="form-control" value="{{ old('first_name',  isset($person->first_name) ? $person->first_name : null) }}" placeholder="First" />
+            <input type="text" name="first_name" class="form-control" value="{{ old('first_name',  isset($user->person->first_name) ? $user->person->first_name : null) }}" placeholder="First" />
             @if ($errors->has('first_name'))
                 <span class="help-block">
                     <strong>{{ $errors->first('first_name') }}</strong>
@@ -68,7 +68,7 @@
     <div class="col-xs-4 col-sm-2 col-md-4 col-lg-2">
         <div class="form-group {{ $errors->has('middle_name') ? 'has-error' : '' }}">
             <label class="control-label" for="middle_name">&nbsp;</label>
-            <input type="text" name="middle_name" class="form-control" value="{{ old('middle_name',  isset($person->middle_name) ? $person->middle_name : null) }}" placeholder="Middle" />
+            <input type="text" name="middle_name" class="form-control" value="{{ old('middle_name',  isset($user->person->middle_name) ? $user->person->middle_name : null) }}" placeholder="Middle" />
             @if ($errors->has('middle_name'))
                 <span class="help-block">
                     <strong>{{ $errors->first('middle_name') }}</strong>
@@ -79,7 +79,7 @@
     <div class="col-xs-12 col-sm-5 col-md-12 col-lg-5">
         <div class="form-group {{ $errors->has('last_name') ? 'has-error' : '' }}">
             <label class="control-label hidden-xs hidden-md" for="last_name">&nbsp;</label>
-            <input type="text" name="last_name" class="form-control" value="{{ old('last_name',  isset($person->last_name) ? $person->last_name : null) }}" placeholder="Last" />
+            <input type="text" name="last_name" class="form-control" value="{{ old('last_name',  isset($user->person->last_name) ? $user->person->last_name : null) }}" placeholder="Last" />
             @if ($errors->has('last_name'))
                 <span class="help-block">
                     <strong>{{ $errors->first('last_name') }}</strong>
@@ -92,7 +92,7 @@
     <div class="col-sm-12">
         <div class="form-group {{ $errors->has('avatar_url') ? 'has-error' : '' }}">
             <label class="control-label" for="email">Avatar URL (Optional)</label>
-            <input type="url" name="avatar_url" class="form-control" value="{{ old('avatar_url',  isset($avatar_url) ? $avatar_url : null) }}" placeholder="Avatar URL">
+            <input type="url" name="avatar_url" class="form-control" value="{{ old('avatar_url',  isset($user->avatar_url) ? $user->avatar_url : null) }}" placeholder="Avatar URL">
             @if ($errors->has('avatar_url'))
                 <span class="help-block">
                     <strong>{{ $errors->first('avatar_url') }}</strong>
