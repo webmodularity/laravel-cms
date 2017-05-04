@@ -113,8 +113,8 @@ class UserController extends Controller
      */
     public function update(StoreUser $request, User $user)
     {
-        dd($user);
-        //$user->update(request(['email', 'first_name', 'middle_name', 'last_name']));
+        $user->update(request(['role_id', 'avatar_url']));
+        $user->person->update(request(['email', 'first_name', 'middle_name', 'last_name']));
         // Address
         $this->syncPrimaryAddress($user->person);
         // Phones
