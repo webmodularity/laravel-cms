@@ -45,7 +45,7 @@ class StoreUser extends FormRequest
         if ($this->method() == 'POST') {
             $rules['password'] = 'nullable|min:6|confirmed';
         }
-        \Log::warning($rules);
+        \Log::warning($this);
         return $rules;
     }
 }
