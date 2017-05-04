@@ -27,19 +27,24 @@ class StoreUser extends FormRequest
             ? 'userPersonUnique'
             : 'userPersonUnique:' . $this->id;
 
-        return [
+        $rules = [
             'email' => [
                 'required',
                 'email',
                 $emailUnique
             ],
             'role_id' => 'exists:user_roles,id',
-            'login_methods.*' => 'loginMethod',
             'first_name' => 'max:255',
             'middle_name' => 'max:255',
             'last_name' => 'max:255',
             'address' => 'nullable|address',
             'phones.*' => 'nullable|phone'
         ];
+
+        if ($this->method() == 'POST') {
+            $rules['password'] = 'nullable|min:6|confirmed';
+        }
+
+        return $rules;
     }
 }
