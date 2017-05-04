@@ -79,32 +79,29 @@ class UserController extends Controller
      * @param  Person  $person
      * @return \Illuminate\Http\Response
      */
-    public function edit(Person $person)
+    public function edit(User $user)
     {
-        $person->load([
-            'addresses',
-            'phones',
-            'userInvitations',
-            'userInvitations.socialProvider',
-            'userInvitations.role'
+        $user->load([
+            'person',
+            'person.addresses',
+            'person.phones'
         ]);
-        $primaryAddress = $person->addresses->first(function ($value, $key) {
+        $primaryAddress = $user->person->addresses->first(function ($value, $key) {
             return $value->pivot->address_type_id === Address::TYPE_PRIMARY;
         });
         $phones = [
-            'mobile' => $person->phones->first(function ($value, $key) {
+            'mobile' => $user->person->phones->first(function ($value, $key) {
                 return $value->pivot->phone_type_id === Phone::TYPE_MOBILE;
             }),
-            'office' => $person->phones->first(function ($value, $key) {
+            'office' => $user->person->phones->first(function ($value, $key) {
                 return $value->pivot->phone_type_id === Phone::TYPE_OFFICE;
             }),
-            'fax' => $person->phones->first(function ($value, $key) {
+            'fax' => $user->person->phones->first(function ($value, $key) {
                 return $value->pivot->phone_type_id === Phone::TYPE_FAX;
             })
         ];
-        $equipmentRequests = EquipmentRequest::where('person_id', $person->id)->get();
 
-        return view('people.edit', compact(['person', 'primaryAddress', 'phones', 'equipmentRequests']));
+        return view('wmcms::users.edit', compact(['user', 'primaryAddress', 'phones']));
     }
 
     /**
