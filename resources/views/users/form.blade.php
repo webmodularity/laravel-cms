@@ -92,7 +92,7 @@
     <div class="col-sm-12">
         <div class="form-group {{ $errors->has('avatar_url') ? 'has-error' : '' }}">
             <label class="control-label" for="email">Avatar URL (Optional)</label>
-            <input type="url" name="avatar_url" class="form-control" value="{{ old('avatar_url',  isset($avatar_url) ? $avatar_url : null) }}" placeholder="Avatar URL" required />
+            <input type="url" name="avatar_url" class="form-control" value="{{ old('avatar_url',  isset($avatar_url) ? $avatar_url : null) }}" placeholder="Avatar URL">
             @if ($errors->has('avatar_url'))
                 <span class="help-block">
                     <strong>{{ $errors->first('avatar_url') }}</strong>
