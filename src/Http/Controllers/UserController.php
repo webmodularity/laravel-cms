@@ -57,15 +57,17 @@ class UserController extends Controller
      */
     public function store(StoreUser $request)
     {
-        dd(request(['email']));
         $person = Person::firstOrCreate(request(['email']), request(['first_name', 'middle_name', 'last_name']));
         // Address
         $this->syncPrimaryAddress($person);
         // Phones
         $this->syncPhones($person);
-        $user = User::create([
-            'person_id' => $person->id,
-            'role_id' => request('role_id')
+        // User
+        $password = !empty(request('password')) ? bcrypt(request('password')) : null;
+        $person->user()->create([
+            'role_id' => request('role_id'),
+            'avatar_url' => request('avatar_url'),
+            'password' => $password
         ]);
         session()->flash('success', "You have created ".$person->email.".");
         return redirect()->route('users.create');
