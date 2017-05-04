@@ -25,7 +25,7 @@ class StoreUser extends FormRequest
     {
         $emailUnique = $this->method() == 'POST'
             ? 'userPersonUnique'
-            : 'userPersonUnique:' . $this->id;
+            : 'userPersonUnique:' . $this->route('user');
 
         $rules = [
             'email' => [
