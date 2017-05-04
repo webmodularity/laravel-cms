@@ -16,7 +16,7 @@
 @section('form-action', route('users.update', ['id' => $user->id]))
 
 @section('form')
-    @include('people.form')
+    @include('wmcms::users.form')
     @include('wmcms::partials.form.timestamps', [
                 'created_at' => $user->created_at,
                 'updated_at' => $user->updated_at
