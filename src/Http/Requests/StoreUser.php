@@ -25,7 +25,7 @@ class StoreUser extends FormRequest
     {
         $emailUnique = $this->method() == 'POST'
             ? 'userPersonUnique'
-            : 'userPersonUnique:' . $this->route('user');
+            : 'userPersonUnique:' . $this->route('user')->id;
 
         $rules = [
             'email' => [
@@ -45,7 +45,6 @@ class StoreUser extends FormRequest
         if ($this->method() == 'POST') {
             $rules['password'] = 'nullable|min:6|confirmed';
         }
-        \Log::warning($this);
         return $rules;
     }
 }
