@@ -1,6 +1,6 @@
 @extends('wmcms::crud.edit-with-related')
 
-@section('title', 'Person - ' . $user->person->email)
+@section('title', 'User - ' . $user->person->email)
 @section('box-title', $user->person->email)
 @section('record-id', $user->id)
 
