@@ -16,9 +16,12 @@ use WebModularity\LaravelCms\DataTables\UserDataTable;
 use WebModularity\LaravelCms\DataTables\UserRecycleDataTable;
 use WebModularity\LaravelUser\User;
 use WebModularity\LaravelCms\Http\Requests\StoreUser;
+use WebModularity\LaravelContact\Http\Controllers\SyncsPhonesInputToPerson;
 
 class UserController extends Controller
 {
+    use SyncsPhonesInputToPerson;
+
     /**
      * Display a listing of the resource.
      *
@@ -118,7 +121,7 @@ class UserController extends Controller
         // Address
         $this->syncPrimaryAddress($user->person);
         // Phones
-        $this->syncPhones($user->person);
+        $this->syncPhonesToPerson($user->person);
         session()->flash('success', "You have updated ".$user->person->email.".");
         return redirect()->route('users.edit', ['id' => $user->id]);
     }
@@ -209,21 +212,5 @@ class UserController extends Controller
             }
         }
         $person->addresses()->sync($addressId);
-    }
-
-    protected function syncPhones(Person $person)
-    {
-        $phoneIds = [];
-        foreach ((array) request('phones') as $phoneKey => $phoneValue) {
-            if (!is_null(Phone::splitFull($phoneValue))) {
-                $phone = Phone::firstOrCreate(Phone::splitFull($phoneValue));
-                if (!is_null($phone)) {
-                    $phoneIds[$phone->id] = [
-                        'phone_type_id' => constant(Phone::class . '::TYPE_' . strtoupper($phoneKey))
-                    ];
-                }
-            }
-        }
-        $person->phones()->sync($phoneIds);
     }
 }
