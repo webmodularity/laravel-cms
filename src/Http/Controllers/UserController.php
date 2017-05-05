@@ -16,11 +16,11 @@ use WebModularity\LaravelCms\DataTables\UserDataTable;
 use WebModularity\LaravelCms\DataTables\UserRecycleDataTable;
 use WebModularity\LaravelUser\User;
 use WebModularity\LaravelCms\Http\Requests\StoreUser;
-use WebModularity\LaravelContact\Http\Controllers\SyncsPhonesInputToPerson;
+use WebModularity\LaravelContact\Http\Controllers\SyncsInputToPerson;
 
 class UserController extends Controller
 {
-    use SyncsPhonesInputToPerson;
+    use SyncsInputToPerson;
 
     /**
      * Display a listing of the resource.
@@ -62,9 +62,9 @@ class UserController extends Controller
     {
         $person = Person::firstOrCreate(request(['email']), request(['first_name', 'middle_name', 'last_name']));
         // Address
-        $this->syncPrimaryAddress($person);
+        $this->syncAddressToPerson($person);
         // Phones
-        $this->syncPhones($person);
+        $this->syncPhonesToPerson($person);
         // User
         $password = !empty(request('password')) ? bcrypt(request('password')) : null;
         $person->user()->create([
@@ -119,7 +119,7 @@ class UserController extends Controller
         $user->update(request(['role_id', 'avatar_url']));
         $user->person->update(request(['email', 'first_name', 'middle_name', 'last_name']));
         // Address
-        $this->syncPrimaryAddress($user->person);
+        $this->syncAddressToPerson($user->person);
         // Phones
         $this->syncPhonesToPerson($user->person);
         session()->flash('success', "You have updated ".$user->person->email.".");
@@ -199,18 +199,5 @@ class UserController extends Controller
         }
 
         return false;
-    }
-
-    protected function syncPrimaryAddress($person)
-    {
-        $addressInput = (array) request('address');
-        $addressId = [];
-        if (isset($addressInput['street']) && !empty($addressInput['street'])) {
-            $address = Address::firstOrCreate($addressInput);
-            if (!is_null($address)) {
-                $addressId[$address->id] = ['address_type_id' => Address::TYPE_PRIMARY];
-            }
-        }
-        $person->addresses()->sync($addressId);
     }
 }
