@@ -1,4 +1,4 @@
-@extends('wmcms::page')
+@extends('wmcms::crud.edit-sm6')
 
 @section('content')
 <div class="row">
