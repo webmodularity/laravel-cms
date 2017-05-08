@@ -1,3 +1,8 @@
+<?php
+$relatedTableId = isset($relatedTableId) && !empty($relatedTableId)
+    ? $relatedTableId
+    : 'related-table';
+?>
 <div class="box box-primary">
     <div class="box-header with-border">
         <h3 class="box-title">{!! $boxTitle or 'Related' !!}</h3>
@@ -7,12 +12,12 @@
     </div>
     <!-- /.box-header -->
     <div class="box-body">
-        <table id="{{ $relatedTableId or 'related-table' }}" class="table table-hover table-bordered">
+        <table id="{{ $relatedTableId }}" class="table table-hover table-bordered">
             <thead>
-            @yield(($relatedTableId or 'related-table') . '-header')
+                @yield($relatedTableId . '-header')
             </thead>
             <tbody>
-            @yield(($relatedTableId or 'related-table') . '-rows')
+                @yield($relatedTableId . '-rows')
             </tbody>
         </table>
     </div>
@@ -20,10 +25,10 @@
 </div>
 
 @push('js')
-@dtdefaults('{{ $relatedTableId or 'related-table' }}')
+@dtdefaults('{{ $relatedTableId }}')
 <script>
     $(function () {
-        $('#{{ $relatedTableId or 'related-table' }}').DataTable({
+        $('#{{ $relatedTableId }}').DataTable({
             "paging": true,
             "lengthChange": false,
             "searching": true,
