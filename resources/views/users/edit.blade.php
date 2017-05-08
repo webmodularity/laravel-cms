@@ -22,24 +22,6 @@
             ])
 @endsection
 
-@section('related-user-social-logins-header')
-    <tr>
-        <th>Social</th>
-        <th>User ID</th>
-        <th>Email</th>
-    </tr>
-@endsection
-
-@section('related-user-social-logins-rows')
-    @foreach($user->socialProviders as $socialProvider)
-        <tr>
-            <td>{{ $socialProvider->getName() }}</td>
-            <td>{{ $socialProvider->pivot->uid }}</td>
-            <td>{{ $socialProvider->pivot->email }}</td>
-        </tr>
-    @endforeach
-@endsection
-
 @section('content')
     <div class="row">
         <div class="col-sm-6">
@@ -49,11 +31,53 @@
             ])
         </div>
         <div class="col-sm-6">
-            @include('wmcms::crud.related-box', [
-                'boxTitle' => 'Social Logins: <em>' . $user->person->email . '</em>',
-                'relatedTableId' => 'related-user-social-logins',
-                'defaultOrder' => '[[3, "desc"]]'
-            ])
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Social Logins: <em>{{ $user->person->email }}</em></h3>
+                    <div class="box-tools pull-right">
+
+                    </div>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <table id="related-user-social-logins" class="table table-hover table-bordered">
+                        <thead>
+                        <tr>
+                            <th>Social</th>
+                            <th>User ID</th>
+                            <th>Email</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($user->socialProviders as $socialProvider)
+                            <tr>
+                                <td>{{ $socialProvider->getName() }}</td>
+                                <td>{{ $socialProvider->pivot->uid }}</td>
+                                <td>{{ $socialProvider->pivot->email }}</td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /.box-body -->
+            </div>
         </div>
     </div>
 @endsection
+
+@push('js')
+@dtdefaults('related-user-social-logins')
+<script>
+    $(function () {
+        $('#related-user-social-logins').DataTable({
+            "paging": true,
+            "lengthChange": false,
+            "searching": true,
+            "ordering": true,
+            "info": true,
+            "autoWidth": true,
+            "order": [[3, "desc"]]
+        });
+    });
+</script>
+@endpush
