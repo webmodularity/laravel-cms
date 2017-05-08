@@ -1,8 +1,8 @@
 <div class="box box-primary">
     <div class="box-header with-border">
-        <h3 class="box-title"><em>@yield('box-title')</em></h3>
+        <h3 class="box-title">{!! $boxTitle !!}</h3>
         <div class="box-tools pull-right">
-            <label class="label label-primary">ID: @yield('record-id')</label>
+            <label class="label label-primary">ID: {{ $recordId }}</label>
         </div><!-- /.box-tools -->
     </div>
     <!-- /.box-header -->
