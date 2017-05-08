@@ -9,10 +9,10 @@
     <div class="box-body">
         <table id="{{ $relatedTableId or 'related-table' }}" class="table table-hover table-bordered">
             <thead>
-            @yield($relatedTableId or 'related-table' . '-header')
+            @yield($relatedTableId . '-header')
             </thead>
             <tbody>
-            @yield($relatedTableId or 'related-table' . '-rows')
+            @yield($relatedTableId . '-rows')
             </tbody>
         </table>
     </div>
