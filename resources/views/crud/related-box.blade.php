@@ -1,6 +1,6 @@
 <div class="box box-primary">
     <div class="box-header with-border">
-        <h3 class="box-title">{{ $boxTitle or 'Related' }}</h3>
+        <h3 class="box-title">{!! $boxTitle or 'Related' !!}</h3>
         <div class="box-tools pull-right">
 
         </div>
