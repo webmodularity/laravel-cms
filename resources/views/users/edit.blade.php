@@ -76,7 +76,7 @@
             "ordering": true,
             "info": true,
             "autoWidth": true,
-            "order": [[3, "desc"]]
+            "order": [[0, "asc"]]
         });
     });
 </script>
