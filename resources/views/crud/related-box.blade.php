@@ -9,12 +9,29 @@
     <div class="box-body">
         <table id="{{ $relatedTableId or 'related-table' }}" class="table table-hover table-bordered">
             <thead>
-            @yield("$relatedTableId-header")
+            @yield($relatedTableId or 'related-table' . '-header')
             </thead>
             <tbody>
-            @yield("$relatedTableId-rows")
+            @yield($relatedTableId or 'related-table' . '-rows')
             </tbody>
         </table>
     </div>
     <!-- /.box-body -->
 </div>
+
+@push('js')
+@dtdefaults('{{ $relatedTableId or 'related-table' }}')
+<script>
+    $(function () {
+        $('#{{ $relatedTableId or 'related-table' }}').DataTable({
+            "paging": true,
+            "lengthChange": false,
+            "searching": true,
+            "ordering": true,
+            "info": true,
+            "autoWidth": true,
+            "order": {!! $defaultOrder or '[[0, "asc"]]' !!}
+        });
+    });
+</script>
+@endpush
