@@ -37,7 +37,7 @@ class StoreUser extends FormRequest
             'first_name' => 'max:255',
             'middle_name' => 'max:255',
             'last_name' => 'max:255',
-            'avatar_url' => 'url|max:255',
+            'avatar_url' => 'nullable|url|max:255',
             'address' => 'nullable|address',
             'phones.*' => 'nullable|phone'
         ];
