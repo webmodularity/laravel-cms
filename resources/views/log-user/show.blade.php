@@ -14,7 +14,7 @@
     @include('wmcms::log-user.details')
 @endsection
 
-@section('related-header')
+@section('related-table-header')
     <tr>
         <th>ID</th>
         <th>Time</th>
@@ -23,7 +23,7 @@
     </tr>
 @endsection
 
-@section('related-rows')
+@section('related-table-rows')
     @foreach($userLogs as $userLog)
         <tr>
             <td><a href="{{ route('log-user.show', ['id' => $userLog->id]) }}">{{ $userLog->id }}</a></td>
