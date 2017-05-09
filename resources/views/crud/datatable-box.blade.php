@@ -3,15 +3,11 @@
         <h3 class="box-title">{!! $boxTitle !!}</h3>
         <div class="box-tools pull-right">
             @yield('box-tools')
-            <label class="label label-primary">ID: {{ $recordId }}</label>
         </div><!-- /.box-tools -->
-    </div>
+    </div><!-- /.box-header -->
     <!-- /.box-header -->
-    <!-- form start -->
-    <form class="form-horizontal">
-        <div class="box-body">
-        @yield('details')
-        <!-- /.box-body -->
-        </div>
-    </form>
+    <div class="box-body">
+        {!! $dataTable->table(['class' => "table table-hover table-bordered"]) !!}
+    </div>
+    <!-- /.box-body -->
 </div>
