@@ -10,13 +10,9 @@
 @endsection
 
 @section('content')
-    <div class="row">
-        <div class="col-sm-12">
-            @include('wmcms::crud.datatable-box', [
-                'boxTitle' => 'User Log'
-            ])
-        </div>
-    </div>
+    @include('wmcms::crud.datatable-box', [
+        'boxTitle' => 'User Log'
+    ])
 @stop
 
 @push('js')
