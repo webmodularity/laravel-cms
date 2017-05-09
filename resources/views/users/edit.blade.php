@@ -87,7 +87,7 @@
             var id = $(this).data("id");
             var token = $(this).data("token");
             var recordIdent = $(this).data("record-ident");
-            console.log($(this));
+            var row = $(this).parents('tr');
             swal({
                     title: 'Delete This Record?',
                     text: recordIdent,
@@ -114,7 +114,7 @@
                                     confirmButtonClass: 'btn-primary',
                                 },
                                 function() {
-                                    row.remove();
+                                    $('#related-user-social-logins').row(row).remove().draw();
                                 });
                         },
                         error: function (xhr, status, error) {
