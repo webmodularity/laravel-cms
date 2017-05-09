@@ -1,8 +1,6 @@
-@extends('wmcms::crud.create-with-recent')
+@extends('wmcms::page')
 
 @section('title', 'User - Create')
-@section('box-title', 'Create User')
-
 @section('header-title')
     <h1>User<small>Create New</small></h1>
 @endsection
@@ -13,14 +11,11 @@
 @endsection
 
 @section('form-action', route('users.store'))
-
 @section('form')
     @include('wmcms::users.form')
 @endsection
 
-@section('recent-box-title', 'Recently Added Users')
-
-@section('recent-header-row')
+@section('recent-header')
     <tr>
         <th>ID</th>
         <th>Email</th>
@@ -40,4 +35,19 @@
             <td>{{ $recent->created_at->format('m/d/Y h:i:sa') }}</td>
         </tr>
     @endforeach
+@endsection
+
+@section('content')
+    <div class="row">
+        <div class="col-sm-6">
+            @include('wmcms::crud.create-box', [
+                'boxTitle' => 'Create User'
+            ])
+        </div>
+        <div class="col-sm-6">
+            @include('wmcms::crud.create-recent-box', [
+                'boxTitle' => 'Recently Added Users'
+            ])
+        </div>
+    </div>
 @endsection
