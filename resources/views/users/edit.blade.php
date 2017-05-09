@@ -99,7 +99,7 @@
                 },
                 function() {
                     $.ajax({
-                        url: location.pathname.replace(/\/+$/, '') + '/social-logins/' +id,
+                        url: location.pathname.replace(/\/?$/, '') + '/social-logins/' +id,
                         method: 'POST',
                         data: {
                             '_method': 'DELETE',
