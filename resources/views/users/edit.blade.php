@@ -107,7 +107,7 @@
                         },
                         success: function (response) {
                             swal({
-                                    title: 'Successfully Deleted Record',
+                                    title: 'Successfully Unlinked Social Login',
                                     text: response,
                                     type: 'success',
                                     confirmButtonClass: 'btn-primary',
@@ -119,9 +119,8 @@
                         error: function (xhr, status, error) {
                             swal({
                                 title: 'Delete Failed!',
-                                //text: JSON.parse(xhr.responseText)
-                                text: 'Failed',
-                                //|| 'An unknown server error was encountered when attempting to delete this record.',
+                                text: JSON.parse(xhr.responseText)
+                                    || 'An unknown server error was encountered when attempting to delete this record.',
                                 type: 'error',
                                 confirmButtonClass: 'btn-primary',
                             });
