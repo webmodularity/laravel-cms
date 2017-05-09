@@ -151,7 +151,7 @@ class UserController extends Controller
      * @param  int $id
      * @return JsonResponse
      */
-    public function detachSocialLogin($id)
+    public function detachSocialLogin($userId, $id)
     {
         /**
         $person = Person::onlyTrashed()->findOrFail($id);
@@ -164,7 +164,7 @@ class UserController extends Controller
             $this->sendJsonFailureResponse();
         }
          **/
-        return $this->sendJsonSuccessResponse("Success Response: " . $id . ".");
+        return $this->sendJsonSuccessResponse("Success Response: User ID: (" . $userId . "), Social ID: (".$id.").");
     }
 
     /**
