@@ -1,9 +1,6 @@
-@extends('wmcms::crud.show-with-related')
+@extends('wmcms::crud.page')
 
 @section('title', 'User Log - ' . $logUser->userAction->slug . '::' . $logUser->user->person->email)
-@section('box-title', $logUser->user->person->email)
-@section('record-id', $logUser->id)
-
 @section('header-title')
     <h1>{{ $logUser->userAction->slug }}<small>{{ $logUser->created_at->format('m/d/Y h:i:sa') }}</small></h1>
 @endsection
@@ -13,16 +10,11 @@
     <li class="active">{{ $logUser->created_at->format('m/d/Y h:i:sa') }}</li>
 @endsection
 
-
 @section('details')
     @include('wmcms::log-user.details')
 @endsection
 
-@section('related-box-title', 'Recent User Activity:')
-@var('relatedTableId', 'user-logs')
-@var('relatedDefaultOrder', '[[0, "desc"]]')
-
-@section('related-header-row')
+@section('related-header')
     <tr>
         <th>ID</th>
         <th>Time</th>
@@ -43,4 +35,21 @@
             <td>{{ $userLog->userAction->slug }}</td>
         </tr>
     @endforeach
+@endsection
+
+@section('content')
+    <div class="row">
+        <div class="col-sm-6">
+            @include('wmcms::crud.show-box', [
+                'boxTitle' => $logUser->user->person->email,
+                'recordId' => $logUser->id
+            ])
+        </div>
+        <div class="col-sm-6">
+            @include('wmcms::crud.related-box', [
+                'boxTitle' => 'Recent User Activity: <em>' . $logUser->user->person->email . '</em>',
+                'defaultOrder' => '[[0, "desc"]]'
+            ])
+        </div>
+    </div>
 @endsection
