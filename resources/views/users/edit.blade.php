@@ -73,7 +73,7 @@
 @push('js')
 <script>
     $(function () {
-        $('#related-user-social-logins').DataTable({
+        var datatable = $('#related-user-social-logins').DataTable({
             "paging": true,
             "lengthChange": false,
             "searching": false,
@@ -114,7 +114,7 @@
                                     confirmButtonClass: 'btn-primary',
                                 },
                                 function() {
-                                    $('#related-user-social-logins').row(row).remove().draw();
+                                    datatable.row(row).remove().draw();
                                 });
                         },
                         error: function (xhr, status, error) {
