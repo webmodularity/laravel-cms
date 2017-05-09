@@ -46,7 +46,7 @@
                             <th>Social</th>
                             <th>User ID</th>
                             <th>Email</th>
-                            <th style="width: 40px;">Delete</th>
+                            <th style="width: 40px;" data-sortable="false">Delete</th>
                         </tr>
                         </thead>
                         <tbody>
