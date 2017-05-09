@@ -17,6 +17,7 @@ use WebModularity\LaravelCms\DataTables\UserRecycleDataTable;
 use WebModularity\LaravelUser\User;
 use WebModularity\LaravelCms\Http\Requests\StoreUser;
 use WebModularity\LaravelContact\Http\Controllers\SyncsInputToPerson;
+use WebModularity\LaravelUser\UserSocialProvider;
 
 class UserController extends Controller
 {
@@ -153,18 +154,14 @@ class UserController extends Controller
      */
     public function detachSocialLogin($userId, $id)
     {
-        /**
-        $person = Person::onlyTrashed()->findOrFail($id);
-        if ($this->deleteChecks($person) !== false) {
-            return $this->deleteChecks($person);
+        $user = User::find($userId);
+        $socialProvider = UserSocialProvider::find($id);
+        if (!is_null($user) && !is_null($socialProvider) && $user->socialProviders()->detach($socialProvider) > 0) {
+            return $this->sendJsonSuccessResponse("".$socialProvider->getName()." social login has been 
+             removed from " . $user->person->email . " user account.");
         }
-        if ($person->forceDelete()) {
-            return $this->sendJsonSuccessResponse("You have permanently deleted " . $person->email . ".");
-        } else {
-            $this->sendJsonFailureResponse();
-        }
-         **/
-        return $this->sendJsonSuccessResponse("Success Response: User ID: (" . $userId . "), Social ID: (".$id.").");
+
+        $this->sendJsonFailureResponse('Failed to unlink Social Login.');
     }
 
     /**
