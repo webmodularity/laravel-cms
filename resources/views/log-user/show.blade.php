@@ -1,4 +1,4 @@
-@extends('wmcms::crud.page')
+@extends('wmcms::page')
 
 @section('title', 'User Log - ' . $logUser->userAction->slug . '::' . $logUser->user->person->email)
 @section('header-title')
