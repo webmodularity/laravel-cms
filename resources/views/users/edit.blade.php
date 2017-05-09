@@ -114,7 +114,7 @@
                                     confirmButtonClass: 'btn-primary',
                                 },
                                 function() {
-                                    row.remove().draw();
+                                    row.remove();
                                 });
                         },
                         error: function (xhr, status, error) {
