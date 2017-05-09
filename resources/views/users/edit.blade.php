@@ -66,7 +66,6 @@
 @endsection
 
 @push('js')
-@dtdefaults('related-user-social-logins')
 <script>
     $(function () {
         $('#related-user-social-logins').DataTable({
