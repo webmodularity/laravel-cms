@@ -18,4 +18,14 @@ class Controller extends BaseController
         session(['collapse-sidebar' => $toggleState]);
         return response()->json();
     }
+
+    protected function sendJsonFailureResponse($error = null)
+    {
+        return response()->json($error, 422);
+    }
+
+    protected function sendJsonSuccessResponse($successMessage = '')
+    {
+        return response()->json($successMessage);
+    }
 }
