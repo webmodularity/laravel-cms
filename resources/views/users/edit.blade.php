@@ -35,7 +35,7 @@
                 <div class="box-header with-border">
                     <h3 class="box-title">Social Logins: <em>{{ $user->person->email }}</em></h3>
                     <div class="box-tools pull-right">
-
+                        <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#addSocialLogin"><span class="fa fa-plus"></span>&nbsp;Add Social Login</button>
                     </div>
                 </div>
                 <!-- /.box-header -->
@@ -67,6 +67,26 @@
                 <!-- /.box-body -->
             </div>
         </div>
+    </div>
+
+    <div id="addSocialLogin" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    <h4 class="modal-title">Add Social Login</h4>
+                </div>
+                <div class="modal-body">
+                    <p>One fine body…</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Add Social Login</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
     </div>
 @endsection
 
