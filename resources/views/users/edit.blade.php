@@ -46,7 +46,7 @@
                             <th>Social</th>
                             <th>User ID</th>
                             <th>Email</th>
-                            <th>Delete</th>
+                            <th style="width: 80px;">Delete</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -87,7 +87,6 @@
             var id = $(this).data("id");
             var token = $(this).data("token");
             var recordIdent = $(this).data("record-ident");
-            var dtApi = new $.fn.dataTable.Api( settings );
             swal({
                     title: 'Delete This Record?',
                     text: recordIdent,
@@ -114,7 +113,7 @@
                                     confirmButtonClass: 'btn-primary',
                                 },
                                 function() {
-                                    dtApi.ajax.reload(null, false);
+                                    alert('Success');
                                 });
                         },
                         error: function (xhr, status, error) {
