@@ -146,6 +146,28 @@ class UserController extends Controller
     }
 
     /**
+     * Detach specified social login from User
+     *
+     * @param  int $id
+     * @return JsonResponse
+     */
+    public function detachSocialLogin($id)
+    {
+        /**
+        $person = Person::onlyTrashed()->findOrFail($id);
+        if ($this->deleteChecks($person) !== false) {
+            return $this->deleteChecks($person);
+        }
+        if ($person->forceDelete()) {
+            return $this->sendJsonSuccessResponse("You have permanently deleted " . $person->email . ".");
+        } else {
+            $this->sendJsonFailureResponse();
+        }
+         **/
+        return $this->sendJsonSuccessResponse("Success Response: " . $id . ".");
+    }
+
+    /**
      * Un-delete the specified resource from the recycle bin.
      *
      * @param  int $id

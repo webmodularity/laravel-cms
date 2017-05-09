@@ -46,7 +46,7 @@
                             <th>Social</th>
                             <th>User ID</th>
                             <th>Email</th>
-                            <th style="width: 80px;">Delete</th>
+                            <th style="width: 40px;">Delete</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -99,7 +99,7 @@
                 },
                 function() {
                     $.ajax({
-                        url: location.pathname.replace(/\/+$/, '') + '/' +id,
+                        url: location.pathname.replace(/\/+$/, '') + '/social-logins/' +id,
                         method: 'POST',
                         data: {
                             '_method': 'DELETE',
