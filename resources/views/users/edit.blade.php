@@ -87,7 +87,7 @@
             var id = $(this).data("id");
             var token = $(this).data("token");
             var recordIdent = $(this).data("record-ident");
-            var row = $(this);
+            console.log($(this));
             swal({
                     title: 'Delete This Record?',
                     text: recordIdent,
