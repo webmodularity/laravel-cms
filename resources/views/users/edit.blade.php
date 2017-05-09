@@ -46,6 +46,7 @@
                             <th>Social</th>
                             <th>User ID</th>
                             <th>Email</th>
+                            <th>Delete</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -54,6 +55,10 @@
                                 <td>{{ $socialProvider->getName() }}</td>
                                 <td>{{ $socialProvider->pivot->uid }}</td>
                                 <td>{{ $socialProvider->pivot->email }}</td>
+                                <td>@include('wmcms::crud.actions.delete', [
+                                    'id' => $socialProvider->id,
+                                    'recordIdent' => $socialProvider->getName()
+                                ])</td>
                             </tr>
                         @endforeach
                         </tbody>
@@ -76,6 +81,53 @@
             "info": true,
             "autoWidth": true,
             "order": [[0, "asc"]]
+        });
+
+        $('.delete-confirm-button').click(function(){
+            var id = $(this).data("id");
+            var token = $(this).data("token");
+            var recordIdent = $(this).data("record-ident");
+            var dtApi = new $.fn.dataTable.Api( settings );
+            swal({
+                    title: 'Delete This Record?',
+                    text: recordIdent,
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonClass: 'btn-danger',
+                    confirmButtonText: 'Yes, delete it!',
+                    closeOnConfirm: false,
+                    showLoaderOnConfirm: true
+                },
+                function() {
+                    $.ajax({
+                        url: location.pathname.replace(/\/+$/, '') + '/' +id,
+                        method: 'POST',
+                        data: {
+                            '_method': 'DELETE',
+                            '_token': token,
+                        },
+                        success: function (response) {
+                            swal({
+                                    title: 'Successfully Deleted Record',
+                                    text: response,
+                                    type: 'success',
+                                    confirmButtonClass: 'btn-primary',
+                                },
+                                function() {
+                                    dtApi.ajax.reload(null, false);
+                                });
+                        },
+                        error: function (xhr, status, error) {
+                            swal({
+                                title: 'Delete Failed!',
+                                text: JSON.parse(xhr.responseText)
+                                || 'An unknown server error was encountered when attempting to delete this record.',
+                                type: 'error',
+                                confirmButtonClass: 'btn-primary',
+                            });
+                        }
+                    });
+                });
         });
     });
 </script>
