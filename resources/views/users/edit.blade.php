@@ -77,7 +77,7 @@
                     <h4 class="modal-title">Add Social Login</h4>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('users.social.attach') }}" method="post">
+                    <form action="{{ route('users.social.attach', ['user_id' => $user->id]) }}" method="post">
                     {!! csrf_field() !!}
 
                     </form>
