@@ -44,6 +44,7 @@
                         <thead>
                         <tr>
                             <th>Social</th>
+                            <th data-sortable="false">Avatar</th>
                             <th>User ID</th>
                             <th>Email</th>
                             <th style="width: 40px;" data-sortable="false">Delete</th>
@@ -53,6 +54,12 @@
                         @foreach($user->socialProviders as $socialProvider)
                             <tr>
                                 <td>{{ $socialProvider->getName() }}</td>
+                                <td>@if(!empty($socialProvider->pivot->avatar_url))
+                                        <img src="{{ $socialProvider->pivot->avatar_url }}" width="50" height="50" />
+                                    @else
+                                        <em>None</em>
+                                    @endif
+                                </td>
                                 <td>{{ $socialProvider->pivot->uid }}</td>
                                 <td>{{ $socialProvider->pivot->email }}</td>
                                 <td>@include('wmcms::crud.actions.delete', [
