@@ -79,7 +79,16 @@
                 <div class="modal-body">
                     <form action="{{ route('users.social.attach', ['user_id' => $user->id]) }}" method="post">
                     {!! csrf_field() !!}
-
+                        <div class="form-group {{ $errors->has('social.email') ? 'has-error' : '' }}">
+                            <label class="control-label" for="social[email]">Email</label>
+                            <input type="email" name="social[email]" class="form-control" value="{{ old('social.email') }}"
+                                   placeholder="Email Address" required />
+                            @if ($errors->has('social.email'))
+                                <span class="help-block">
+                                    <strong>{{ $errors->first('social.email') }}</strong>
+                                </span>
+                            @endif
+                        </div>
                     </form>
                 </div>
                 <div class="modal-footer">
