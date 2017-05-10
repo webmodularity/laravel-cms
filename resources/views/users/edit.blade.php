@@ -55,7 +55,7 @@
                             <tr>
                                 <td>{{ $socialProvider->getName() }}</td>
                                 <td>@if(!empty($socialProvider->pivot->avatar_url))
-                                        <img src="{{ $socialProvider->pivot->avatar_url }}" width="50" height="50" />
+                                        <img src="{{ $socialProvider->pivot->avatar_url }}" width="40" height="40" />
                                     @else
                                         <em>None</em>
                                     @endif
