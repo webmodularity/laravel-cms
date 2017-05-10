@@ -77,7 +77,10 @@
                     <h4 class="modal-title">Add Social Login</h4>
                 </div>
                 <div class="modal-body">
-                    <p>One fine body…</p>
+                    <form action="{{ route('users.social.attach') }}" method="post">
+                    {!! csrf_field() !!}
+
+                    </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
