@@ -184,6 +184,7 @@
         });
 
         $('#addSocialLoginButton').click(function(e){
+            console.log($(this).serialize());
             $.ajax({
                 type:"POST",
                 url:'{{ route('users.social.attach', ['user_id' => $user->id]) }}',
