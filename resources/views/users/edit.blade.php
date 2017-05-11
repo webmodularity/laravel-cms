@@ -110,11 +110,11 @@
                             <input type="url" name="social[avatar_url]" class="form-control" placeholder="Avatar URL" />
                             <span class="help-block"></span>
                         </div>
-                    </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-primary">Add Social Login</button>
+                    </form>
                 </div>
             </div>
             <!-- /.modal-content -->
@@ -184,9 +184,8 @@
         });
 
         $('#addSocialLoginForm').on('submit', function(event) {
-            alert('onSubmit fired');
-            console.log($(this).serialize());
             event.preventDefault();
+            console.log($(this).serialize());
             $.ajax({
                 type:"POST",
                 url:'{{ route('users.social.attach', ['user_id' => $user->id]) }}',
