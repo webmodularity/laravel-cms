@@ -184,8 +184,9 @@
         });
 
         $('#addSocialLoginForm').on('submit', function(event) {
-            event.preventDefault();
+            alert('onSubmit fired');
             console.log($(this).serialize());
+            event.preventDefault();
             $.ajax({
                 type:"POST",
                 url:'{{ route('users.social.attach', ['user_id' => $user->id]) }}',
