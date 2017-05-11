@@ -87,9 +87,19 @@
                     <form action="{{ route('users.social.attach', ['user_id' => $user->id]) }}" method="post">
                     {!! csrf_field() !!}
                         <div class="form-group">
+                            <label class="control-label" for="social[uid]">User ID</label>
+                            <input type="text" name="social[uid]" class="form-control" placeholder="User ID" required />
+                            <span class="help-block"></span>
+                        </div>
+                        <div class="form-group">
                             <label class="control-label" for="social[email]">Email</label>
                             <input type="email" name="social[email]" class="form-control" placeholder="Email Address" required />
                                 <span class="help-block"></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="social[avatar_url]">Avatar URL (Optional)</label>
+                            <input type="url" name="social[avatar_url]" class="form-control" placeholder="Avatar URL" />
+                            <span class="help-block"></span>
                         </div>
                     </form>
                 </div>
