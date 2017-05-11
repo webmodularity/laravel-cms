@@ -114,7 +114,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Add Social Login</button>
+                    <button type="button" class="btn btn-primary" id="addSocialLoginButton">Add Social Login</button>
                 </div>
             </div>
             <!-- /.modal-content -->
@@ -181,6 +181,21 @@
                         }
                     });
                 });
+        });
+
+        $('#addSocialLoginButton').click(function(e){
+            $.ajax({
+                type:"POST",
+                url:'{{ route('users.social.attach', ['user_id' => $user->id]) }}',
+                data:$(this).serialize(),
+                dataType: 'json',
+                success: function(data){
+                    console.log(data);
+                },
+                error: function(data){
+
+                }
+            })
         });
     });
 </script>
