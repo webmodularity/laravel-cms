@@ -84,7 +84,7 @@
                     <h4 class="modal-title">Add Social Login</h4>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('users.social.attach', ['user_id' => $user->id]) }}" method="post">
+                    <form action="{{ route('users.social.attach', ['user_id' => $user->id]) }}" method="post" id="addSocialLoginForm">
                         {!! csrf_field() !!}
                         <div class="form-group">
                             <label class="control-label" for="social_provider_id">Social Provider</label>
@@ -114,7 +114,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" id="addSocialLoginButton">Add Social Login</button>
+                    <button type="submit" class="btn btn-primary">Add Social Login</button>
                 </div>
             </div>
             <!-- /.modal-content -->
@@ -183,7 +183,8 @@
                 });
         });
 
-        $('#addSocialLoginButton').click(function(e){
+        $('#addSocialLoginForm').on('submit', function(event) {
+            event.preventDefault();
             console.log($(this).serialize());
             $.ajax({
                 type:"POST",
