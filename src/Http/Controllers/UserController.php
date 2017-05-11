@@ -165,6 +165,25 @@ class UserController extends Controller
     }
 
     /**
+     * Detach specified social login from User
+     *
+     * @param  int $id
+     * @return JsonResponse
+     */
+    public function attachSocialLogin($userId)
+    {
+        $user = User::find($userId);
+        return $this->sendJsonSuccessResponse($user->id);
+        $socialProvider = UserSocialProvider::find($id);
+        if (!is_null($user) && !is_null($socialProvider) && $user->socialProviders()->detach($socialProvider) > 0) {
+            return $this->sendJsonSuccessResponse("".$socialProvider->getName()." social login has been 
+             removed from " . $user->person->email . " user account.");
+        }
+
+        $this->sendJsonFailureResponse('Failed to unlink Social Login.');
+    }
+
+    /**
      * Un-delete the specified resource from the recycle bin.
      *
      * @param  int $id

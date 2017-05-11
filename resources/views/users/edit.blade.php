@@ -190,10 +190,12 @@
                 data:$(this).serialize(),
                 dataType: 'json',
                 success: function(data){
-                    console.log('Success' + data);
+                    console.log('Success');
+                    console.log(data);
                 },
                 error: function(data){
-                    console.log('Error:' + data);
+                    console.log('Error');
+                    console.log(data);
                 }
             })
         });
