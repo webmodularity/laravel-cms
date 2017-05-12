@@ -185,11 +185,12 @@
 
         $('#addSocialLoginForm').on('submit', function(event) {
             event.preventDefault();
-
-            var form = $("#addSocialLoginForm");
+            var form = $(this);
+            var submitButton = form.find(':submit');
             var formGroups = form.find("div.form-group");
             formGroups.removeClass('has-error');
             formGroups.find("span.help-block").remove();
+            submitButton.html('<i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i> <span class="sr-only">Loading...</span>');
             $.ajax({
                 type:"POST",
                 url:'{{ route('users.social.attach', ['user_id' => $user->id]) }}',
