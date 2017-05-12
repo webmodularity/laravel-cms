@@ -190,6 +190,7 @@
             var formGroups = form.find("div.form-group");
             formGroups.removeClass('has-error');
             formGroups.find("span.help-block").remove();
+            console.log(submitButton.val());
             submitButton.text('<i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i> <span class="sr-only">Loading...</span>');
             $.ajax({
                 type:"POST",
