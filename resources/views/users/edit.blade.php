@@ -87,6 +87,10 @@
                     <form action="{{ route('users.social.attach', ['user_id' => $user->id]) }}" method="post" id="addSocialLoginForm">
                         {!! csrf_field() !!}
                         <div class="form-group">
+                            <label class="control-label">User</label>
+                            <p>{{ $user->person->email }}</p>
+                        </div>
+                        <div class="form-group">
                             <label class="control-label" for="social_provider_id">Social Provider</label>
                             <select class="form-control" style="width: 100%;" name="social_provider_id" id="social_provider_id" required>
                                 @foreach($socialProviders as $socialProvider)
@@ -95,11 +99,11 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label class="control-label" for="uid">User ID</label>
-                            <input type="text" name="uid" class="form-control" placeholder="User ID" required />
+                            <label class="control-label" for="uid">Social User ID</label>
+                            <input type="text" name="uid" class="form-control" placeholder="Social User ID" required />
                         </div>
                         <div class="form-group">
-                            <label class="control-label" for="email">Email</label>
+                            <label class="control-label" for="email">Social User Email</label>
                             <input type="email" name="email" class="form-control" placeholder="Email Address" required />
                         </div>
                         <div class="form-group">
