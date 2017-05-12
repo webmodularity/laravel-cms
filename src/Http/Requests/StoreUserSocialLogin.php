@@ -3,6 +3,7 @@
 namespace WebModularity\LaravelCms\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use WebModularity\LaravelUser\User;
 
 class StoreUserSocialLogin extends FormRequest
 {
