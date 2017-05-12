@@ -27,7 +27,7 @@ class StoreUserSocialLogin extends FormRequest
         return [
             'email' => 'required|email',
             'social_provider_id' => 'required|exists:user_social_providers,id',
-            'uid' => 'required|max:255',
+            'uid' => 'required|numeric|max:255',
             'avatar_url' => 'nullable|url|max:255'
         ];
     }
