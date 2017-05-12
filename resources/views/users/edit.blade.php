@@ -183,7 +183,6 @@
                 });
         });
 
-        $(document).ajaxStart(function() { Pace.restart(); });
         $('#addSocialLoginForm').on('submit', function(event) {
             event.preventDefault();
 
