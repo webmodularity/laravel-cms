@@ -186,7 +186,7 @@
         $('#addSocialLoginForm').on('submit', function(event) {
             event.preventDefault();
             var form = $(this);
-            var submitButton = form.find("#addSocialLoginSubmit");
+            var submitButton = $("#addSocialLoginSubmit");
             var formGroups = form.find("div.form-group");
             formGroups.removeClass('has-error');
             formGroups.find("span.help-block").remove();
