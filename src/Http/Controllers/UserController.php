@@ -162,7 +162,7 @@ class UserController extends Controller
              removed from " . $user->person->email . " user account.");
         }
 
-        $this->sendJsonFailureResponse('Failed to unlink Social Login.');
+        return $this->sendJsonFailureResponse('Failed to unlink Social Login.');
     }
 
     /**
@@ -173,14 +173,14 @@ class UserController extends Controller
      */
     public function attachSocialLogin($userId, StoreUserSocialLogin $request)
     {
-        $this->sendJsonFailureResponse('Failed to unlink Social Login.');
+        return $this->sendJsonFailureResponse('Failed to unlink Social Login.');
         $socialProvider = UserSocialProvider::find($id);
         if (!is_null($user) && !is_null($socialProvider) && $user->socialProviders()->detach($socialProvider) > 0) {
             return $this->sendJsonSuccessResponse("".$socialProvider->getName()." social login has been 
              removed from " . $user->person->email . " user account.");
         }
 
-        $this->sendJsonFailureResponse('Failed to unlink Social Login.');
+        return $this->sendJsonFailureResponse('Failed to unlink Social Login.');
     }
 
     /**
