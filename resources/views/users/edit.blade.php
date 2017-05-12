@@ -196,7 +196,7 @@
                     $.each(data.responseJSON, function (index, value) {
                         console.log(index);
                         console.log(value);
-                        console.log($("#addsocialloginform div :input").length());
+                        console.log($("#addSocialLoginForm :input[name='"+index+"']").parent('div').attr('class'));
                     });
                 }
             })
