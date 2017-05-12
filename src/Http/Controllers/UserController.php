@@ -173,7 +173,7 @@ class UserController extends Controller
      */
     public function attachSocialLogin($userId, StoreUserSocialLogin $request)
     {
-        return $this->sendJsonFailureResponse('Failed to unlink Social Login.');
+        return $this->sendJsonSuccessResponse('Success');
         $socialProvider = UserSocialProvider::find($id);
         if (!is_null($user) && !is_null($socialProvider) && $user->socialProviders()->detach($socialProvider) > 0) {
             return $this->sendJsonSuccessResponse("".$socialProvider->getName()." social login has been 

@@ -191,7 +191,6 @@
                 data:$(this).serialize(),
                 dataType: 'json',
                 success: function(data){
-                    console.log('Success');
                     console.log(data.responseJSON);
                 },
                 error: function(data){
