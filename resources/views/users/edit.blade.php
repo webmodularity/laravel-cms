@@ -181,7 +181,10 @@
 
         $('#addSocialLoginForm').on('submit', function(event) {
             event.preventDefault();
-            console.log($(this).serialize());
+            var form = $("#addSocialLoginForm");
+            var formGroups = form.find("div.form-group");
+            formGroups.removeClass('has-error');
+            formGroups.find("span.help-block").remove();
             $.ajax({
                 type:"POST",
                 url:'{{ route('users.social.attach', ['user_id' => $user->id]) }}',
@@ -192,11 +195,10 @@
                     console.log(data.responseJSON);
                 },
                 error: function(data){
-                    console.log(data.responseJSON);
                     $.each(data.responseJSON, function (index, value) {
-                        console.log(index);
-                        console.log(value);
-                        $("#addSocialLoginForm :input[name='"+index+"']").parent('div').addClass('has-error');
+                        var errorFormGroup = form.find(":input[name='"+index+"']").parent('div.form-group');
+                        errorFormGroup.addClass('has-error');
+                        errorFormGroup.append("<span class=\"help-block\">"+value+"</span>");
                     });
                 }
             })
