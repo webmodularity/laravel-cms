@@ -167,7 +167,7 @@ class UserController extends Controller
     /**
      * Detach specified social login from User
      *
-     * @param  int $id
+     * @param  int $userId
      * @return JsonResponse
      */
     public function attachSocialLogin($userId)
