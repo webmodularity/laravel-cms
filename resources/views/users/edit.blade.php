@@ -190,7 +190,8 @@
             var formGroups = form.find("div.form-group");
             formGroups.removeClass('has-error');
             formGroups.find("span.help-block").remove();
-            submitButton.html('<i class="fa fa-spinner fa-pulse"></i> <span class="sr-only">Loading...</span>');
+            submitButton.html('<i class="fa fa-spinner fa-pulse"></i>&nbsp;Saving... <span class="sr-only">Saving...</span>');
+            submitButton.prop('disabled', true);
             $.ajax({
                 type:"POST",
                 url:'{{ route('users.social.attach', ['user_id' => $user->id]) }}',
