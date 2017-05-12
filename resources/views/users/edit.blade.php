@@ -183,8 +183,10 @@
                 });
         });
 
+        $(document).ajaxStart(function() { Pace.restart(); });
         $('#addSocialLoginForm').on('submit', function(event) {
             event.preventDefault();
+
             var form = $("#addSocialLoginForm");
             var formGroups = form.find("div.form-group");
             formGroups.removeClass('has-error');
