@@ -113,7 +113,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Add Social Login</button>
+                    <button type="submit" class="btn btn-primary" id="addSocialLoginSubmit">Add Social Login</button>
                     </form>
                 </div>
             </div>
@@ -186,7 +186,7 @@
         $('#addSocialLoginForm').on('submit', function(event) {
             event.preventDefault();
             var form = $(this);
-            var submitButton = form.find('button');
+            var submitButton = form.find("#addSocialLoginSubmit");
             var formGroups = form.find("div.form-group");
             formGroups.removeClass('has-error');
             formGroups.find("span.help-block").remove();
