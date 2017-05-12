@@ -194,7 +194,7 @@
                 error: function(data){
                     console.log(data.responseJSON);
                     $.each(data.responseJSON, function (index, value) {
-                        $("#addsocialloginform :input[name='"+index+"']").parent('div').addClass('hasError');
+                        console.log($("#addsocialloginform :input[name='"+index+"']").parent('div'));
                     });
                 }
             })
