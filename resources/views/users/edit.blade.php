@@ -193,11 +193,11 @@
                 dataType: 'json',
                 success: function(data){
                     console.log('Success');
-                    console.log(data);
+                    console.log($.parseJSON(data.responseText));
                 },
                 error: function(data){
                     console.log('Error');
-                    console.log(data);
+                    console.log($.parseJSON(data.responseText));
                 }
             })
         });
