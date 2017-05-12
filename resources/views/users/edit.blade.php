@@ -196,7 +196,7 @@
                     $.each(data.responseJSON, function (index, value) {
                         console.log(index);
                         console.log(value);
-                        $("#addSocialLoginForm :input[name='"+index+"']").parent('div').addClass('hasError');
+                        $("#addSocialLoginForm :input[name='"+index+"']").parent('div').addClass('has-error');
                     });
                 }
             })
