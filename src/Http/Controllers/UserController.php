@@ -9,6 +9,7 @@ use App\Branch;
 use App\Http\Requests\StoreBranch;
 use Illuminate\Http\JsonResponse;
 **/
+use WebModularity\LaravelCms\Http\Requests\StoreUserSocialLogin;
 use WebModularity\LaravelContact\Address;
 use WebModularity\LaravelContact\Person;
 use WebModularity\LaravelContact\Phone;
@@ -170,10 +171,9 @@ class UserController extends Controller
      * @param  int $userId
      * @return JsonResponse
      */
-    public function attachSocialLogin($userId)
+    public function attachSocialLogin($userId, StoreUserSocialLogin $request)
     {
-        $user = User::find($userId);
-        return $this->sendJsonSuccessResponse($user->id);
+        dd('validated attach');
         $socialProvider = UserSocialProvider::find($id);
         if (!is_null($user) && !is_null($socialProvider) && $user->socialProviders()->detach($socialProvider) > 0) {
             return $this->sendJsonSuccessResponse("".$socialProvider->getName()." social login has been 
