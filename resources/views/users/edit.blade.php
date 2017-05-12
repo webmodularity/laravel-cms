@@ -199,7 +199,7 @@
                 data:$(this).serialize(),
                 dataType: 'json',
                 success: function(data){
-                    console.log(data.responseJSON);
+                    console.log(data);
                 },
                 error: function(data){
                     submitButton.html(submitHtmlOrig);
