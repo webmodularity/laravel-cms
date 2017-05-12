@@ -96,18 +96,18 @@
                             <span class="help-block"></span>
                         </div>
                         <div class="form-group">
-                            <label class="control-label" for="social[uid]">User ID</label>
-                            <input type="text" name="social[uid]" class="form-control" placeholder="User ID" required />
+                            <label class="control-label" for="uid">User ID</label>
+                            <input type="text" name="uid" class="form-control" placeholder="User ID" required />
                             <span class="help-block"></span>
                         </div>
                         <div class="form-group">
-                            <label class="control-label" for="social[email]">Email</label>
-                            <input type="email" name="social[email]" class="form-control" placeholder="Email Address" required />
+                            <label class="control-label" for="email">Email</label>
+                            <input type="email" name="email" class="form-control" placeholder="Email Address" required />
                             <span class="help-block"></span>
                         </div>
                         <div class="form-group">
-                            <label class="control-label" for="social[avatar_url]">Avatar URL (Optional)</label>
-                            <input type="url" name="social[avatar_url]" class="form-control" placeholder="Avatar URL" />
+                            <label class="control-label" for="avatar_url">Avatar URL (Optional)</label>
+                            <input type="url" name="avatar_url" class="form-control" placeholder="Avatar URL" />
                             <span class="help-block"></span>
                         </div>
                 </div>
