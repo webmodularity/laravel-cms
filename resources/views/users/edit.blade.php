@@ -93,22 +93,18 @@
                                     <option value="{{ $socialProvider['id'] }}"{{ old('social_provider_id') == $socialProvider['id'] ? ' selected' : '' }}>{{ $socialProvider->getName() }}</option>
                                 @endforeach()
                             </select>
-                            <span class="help-block"></span>
                         </div>
                         <div class="form-group">
                             <label class="control-label" for="uid">User ID</label>
                             <input type="text" name="uid" class="form-control" placeholder="User ID" required />
-                            <span class="help-block"></span>
                         </div>
                         <div class="form-group">
                             <label class="control-label" for="email">Email</label>
                             <input type="email" name="email" class="form-control" placeholder="Email Address" required />
-                            <span class="help-block"></span>
                         </div>
                         <div class="form-group">
                             <label class="control-label" for="avatar_url">Avatar URL (Optional)</label>
                             <input type="url" name="avatar_url" class="form-control" placeholder="Avatar URL" />
-                            <span class="help-block"></span>
                         </div>
                 </div>
                 <div class="modal-footer">
@@ -196,8 +192,10 @@
                     console.log(data.responseJSON);
                 },
                 error: function(data){
-                    console.log('Error');
                     console.log(data.responseJSON);
+                    $.each(data.responseJSON, function (index, value) {
+                        console.log($("#addsocialloginform :input[name='"+index+"']").val());
+                    });
                 }
             })
         });
