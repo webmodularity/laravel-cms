@@ -190,6 +190,7 @@
             var formGroups = form.find("div.form-group");
             formGroups.removeClass('has-error');
             formGroups.find("span.help-block").remove();
+            var submitHtmlOrig = submitButton.html();
             submitButton.html('<i class="fa fa-spinner fa-pulse"></i>&nbsp;Saving... <span class="sr-only">Saving...</span>');
             submitButton.prop('disabled', true);
             $.ajax({
@@ -201,6 +202,8 @@
                     console.log(data.responseJSON);
                 },
                 error: function(data){
+                    submitButton.html(submitHtmlOrig);
+                    submitButton.prop('disabled', false);
                     $.each(data.responseJSON, function (index, value) {
                         var errorFormGroup = form.find(":input[name='"+index+"']").parent('div.form-group');
                         errorFormGroup.addClass('has-error');
