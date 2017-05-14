@@ -100,6 +100,7 @@
         var data = [
             @foreach($user->socialProviders as $socialProvider)
             [
+                "{{ $socialProvider->id }}",
                 "{{ $socialProvider->getName() }}",
                 "{{ $socialProvider->pivot->avatar_url }}",
                 "{{ $socialProvider->pivot->uid }}",
@@ -110,6 +111,7 @@
         var datatable = $('#related-user-social-logins').DataTable({
             data: data,
             columns: [
+                { visible: false }
                 { title: "Social" },
                 { title: "Avatar", orderable: false },
                 { title: "User ID" },
@@ -124,7 +126,7 @@
                             return '<em>None</em>';
                         }
                     },
-                    "targets": 1
+                    "targets": 2
                 }
             ],
             "paging": true,
