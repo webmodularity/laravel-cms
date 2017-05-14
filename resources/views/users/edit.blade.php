@@ -113,9 +113,10 @@
             columns: [
                 { visible: false },
                 { title: "Social" },
-                { title: "Avatar", orderable: false },
+                { title: "Avatar", orderable: false, searchable: false },
                 { title: "User ID" },
-                { title: "Email" }
+                { title: "Email" },
+                { title: "Delete", orderable: false, searchable: false },
             ],
             columnDefs: [
                 {
@@ -127,6 +128,12 @@
                         }
                     },
                     "targets": 2
+                },
+                {
+                    "render": function (data, type, row) {
+                        return '<button type="button" class="btn btn-xs btn-danger delete-confirm-button" data-id="'+row[0]+'" data-token="{{ csrf_token() }}" data-record-ident="'+row[1]+'"><i class="fa fa-trash-o"></i>&nbsp;Delete</button>';
+                    },
+                    "targets": 5
                 }
             ],
             "paging": true,
