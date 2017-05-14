@@ -40,31 +40,7 @@
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">
-                    <table id="related-user-social-logins" class="table table-hover table-bordered">
-                        <thead>
-                        <tr>
-                            <th>Social</th>
-                            <th data-sortable="false">Avatar</th>
-                            <th>User ID</th>
-                            <th>Email</th>
-                            <th style="width: 40px;" data-sortable="false">Delete</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        @foreach($user->socialProviders as $socialProvider)
-                            <tr>
-                                <td>{{ $socialProvider->getName() }}</td>
-                                <td>{{ $socialProvider->pivot->avatar_url }}</td>
-                                <td>{{ $socialProvider->pivot->uid }}</td>
-                                <td>{{ $socialProvider->pivot->email }}</td>
-                                <td>@include('wmcms::crud.actions.delete', [
-                                    'id' => $socialProvider->id,
-                                    'recordIdent' => $socialProvider->getName()
-                                ])</td>
-                            </tr>
-                        @endforeach
-                        </tbody>
-                    </table>
+                    <table id="related-user-social-logins" class="table table-hover table-bordered"></table>
                 </div>
                 <!-- /.box-body -->
             </div>
@@ -121,8 +97,23 @@
 @push('js')
 <script>
     $(function () {
+        var data = [
+            @foreach($user->socialProviders as $socialProvider)
+                "{{ $socialProvider->getName() }}",
+                "{{ $socialProvider->pivot->avatar_url }}",
+                "{{ $socialProvider->pivot->uid }}",
+                "{{ $socialProvider->pivot->email }}"
+            @endforeach
+        ];
         var datatable = $('#related-user-social-logins').DataTable({
-            "columnDefs": [
+            data: data,
+            columns: [
+                { title: "Social" },
+                { title: "Avatar", orderable: false },
+                { title: "User ID" },
+                { title: "Email" }
+            ],
+            columnDefs: [
                 {
                     "render": function (data, type, row) {
                         if (data) {
