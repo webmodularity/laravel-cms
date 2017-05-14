@@ -111,7 +111,7 @@
         var datatable = $('#related-user-social-logins').DataTable({
             data: data,
             columns: [
-                { visible: false }
+                { visible: false },
                 { title: "Social" },
                 { title: "Avatar", orderable: false },
                 { title: "User ID" },
