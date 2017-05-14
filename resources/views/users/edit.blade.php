@@ -54,12 +54,7 @@
                         @foreach($user->socialProviders as $socialProvider)
                             <tr>
                                 <td>{{ $socialProvider->getName() }}</td>
-                                <td>@if(!empty($socialProvider->pivot->avatar_url))
-                                        <img src="{{ $socialProvider->pivot->avatar_url }}" width="40" height="40" title="{{ $socialProvider->pivot->avatar_url }}" />
-                                    @else
-                                        <em>None</em>
-                                    @endif
-                                </td>
+                                <td>{{ $socialProvider->pivot->avatar_url }}</td>
                                 <td>{{ $socialProvider->pivot->uid }}</td>
                                 <td>{{ $socialProvider->pivot->email }}</td>
                                 <td>@include('wmcms::crud.actions.delete', [
@@ -127,6 +122,18 @@
 <script>
     $(function () {
         var datatable = $('#related-user-social-logins').DataTable({
+            "columnDefs": [
+                {
+                    "render": function (data, type, row) {
+                        if (data) {
+                            return '<img src="' + data + '" width="40" height="40" title="' + data + '" />';
+                        } else {
+                            return '<em>None</em>';
+                        }
+                    },
+                    "targets": 1
+                }
+            ],
             "paging": true,
             "lengthChange": false,
             "searching": false,
