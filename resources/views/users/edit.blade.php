@@ -120,20 +120,21 @@
             ],
             columnDefs: [
                 {
-                    "render": function (data, type, row) {
+                    render: function (data, type, row) {
                         if (data) {
                             return '<img src="' + data + '" width="40" height="40" title="' + data + '" />';
                         } else {
                             return '<em>None</em>';
                         }
                     },
-                    "targets": 2
+                    targets: 2
                 },
                 {
-                    "render": function (data, type, row) {
+                    render: function (data, type, row) {
                         return '<button type="button" class="btn btn-xs btn-danger delete-confirm-button" data-id="'+row[0]+'" data-token="{{ csrf_token() }}" data-record-ident="'+row[1]+'"><i class="fa fa-trash-o"></i>&nbsp;Delete</button>';
                     },
-                    "targets": 5
+                    width: "40px",
+                    targets: 5
                 }
             ],
             "paging": true,
