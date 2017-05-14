@@ -99,10 +99,12 @@
     $(function () {
         var data = [
             @foreach($user->socialProviders as $socialProvider)
+            [
                 "{{ $socialProvider->getName() }}",
                 "{{ $socialProvider->pivot->avatar_url }}",
                 "{{ $socialProvider->pivot->uid }}",
                 "{{ $socialProvider->pivot->email }}"
+            ]
             @endforeach
         ];
         var datatable = $('#related-user-social-logins').DataTable({
