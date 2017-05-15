@@ -180,6 +180,7 @@ class UserController extends Controller
              added to " . $user->person->email . ".");
         }
 
+        \Log::warning('Fell through attach method!');
         return $this->sendJsonFailureResponse('Failed to link Social Login.');
     }
 
