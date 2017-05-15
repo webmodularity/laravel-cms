@@ -174,7 +174,8 @@ class UserController extends Controller
     public function attachSocialLogin($userId, StoreUserSocialLogin $request)
     {
         $user = User::find($userId);
-        if (!is_null($user) && $user->socialProviders()->attach(request('social_provider_id'), request(['uid', 'email', 'avatar_url'])) > 0) {
+        if (!is_null($user)) {
+            $user->socialProviders()->attach(request('social_provider_id'), request(['uid', 'email', 'avatar_url']));
             return $this->sendJsonSuccessResponse("".$socialProvider->getName()." social login has been 
              added to " . $user->person->email . ".");
         }
