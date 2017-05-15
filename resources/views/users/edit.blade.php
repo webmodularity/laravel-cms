@@ -40,14 +40,14 @@
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">
-                    <table id="related-user-social-logins" class="table table-hover table-bordered"></table>
+                    <table id="userSocialLoginTable" class="table table-hover table-bordered"></table>
                 </div>
                 <!-- /.box-body -->
             </div>
         </div>
     </div>
 
-    <div id="addSocialLogin" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal fade" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -55,7 +55,7 @@
                     <h4 class="modal-title">Add Social Login</h4>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('users.social.attach', ['user_id' => $user->id]) }}" method="post" id="addSocialLoginForm">
+                    <form action="{{ route('users.social.attach', ['user_id' => $user->id]) }}" method="post" id="addUserSocialLoginForm">
                         {!! csrf_field() !!}
                         <div class="form-group">
                             <label class="control-label">User</label>
@@ -84,7 +84,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary" id="addSocialLoginSubmit">Add Social Login</button>
+                    <button type="submit" class="btn btn-primary" id="addUserSocialLoginSubmit">Add Social Login</button>
                     </form>
                 </div>
             </div>
@@ -97,7 +97,7 @@
 @push('js')
 <script>
     $(function () {
-        var data = [
+        var userSocialLoginData = [
             @foreach($user->socialProviders as $socialProvider)
             [
                 "{{ $socialProvider->id }}",
@@ -108,8 +108,8 @@
             ]
             @endforeach
         ];
-        var datatable = $('#related-user-social-logins').DataTable({
-            data: data,
+        var userSocialLoginDataTable = $('#userSocialLoginTable').DataTable({
+            data: userSocialLoginData,
             columns: [
                 { visible: false },
                 { title: "Social" },
@@ -177,7 +177,7 @@
                                     confirmButtonClass: 'btn-primary',
                                 },
                                 function() {
-                                    datatable.row(row).remove().draw();
+                                    userSocialLoginDataTable.row(row).remove().draw();
                                 });
                         },
                         error: function (xhr, status, error) {
@@ -193,10 +193,10 @@
                 });
         });
 
-        $('#addSocialLoginForm').on('submit', function(event) {
+        $('#addUserSocialLoginForm').on('submit', function(event) {
             event.preventDefault();
             var form = $(this);
-            var submitButton = $("#addSocialLoginSubmit");
+            var submitButton = $("#addUserSocialLoginSubmit");
             var formGroups = form.find("div.form-group");
             formGroups.removeClass('has-error');
             formGroups.find("span.help-block").remove();
