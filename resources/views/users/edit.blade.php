@@ -212,9 +212,10 @@
                     console.log($.parseJson(data));
                 },
                 error: function(data){
+                    var errorResponse = data.responseJSON instanceof Array ? data.responseJSON : [data.responseJSON];
                     submitButton.html(submitHtmlOrig);
                     submitButton.prop('disabled', false);
-                    $.each(data.responseJSON, function (index, value) {
+                    $.each(errorResponse, function (index, value) {
                         var errorFormGroup = form.find(":input[name='"+index+"']").parent('div.form-group');
                         errorFormGroup.addClass('has-error');
                         errorFormGroup.append("<span class=\"help-block\">"+value+"</span>");
