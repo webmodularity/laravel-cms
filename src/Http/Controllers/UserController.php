@@ -2,13 +2,6 @@
 
 namespace WebModularity\LaravelCms\Http\Controllers;
 
-/**
-use App\Equipment\EquipmentRequest;
-use WebModularity\LaravelContact\Person;
-use App\Branch;
-use App\Http\Requests\StoreBranch;
-use Illuminate\Http\JsonResponse;
-**/
 use WebModularity\LaravelCms\Http\Requests\StoreUserSocialLogin;
 use WebModularity\LaravelContact\Address;
 use WebModularity\LaravelContact\Person;

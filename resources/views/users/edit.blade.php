@@ -209,7 +209,7 @@
                 data:$(this).serialize(),
                 dataType: 'json',
                 success: function(data){
-                    console.log($.parseJson(data));
+                    console.log(data);
                 },
                 error: function(data){
                     var errorResponse = data.responseJSON instanceof Array ? data.responseJSON : [data.responseJSON];
@@ -219,8 +219,6 @@
                         var errorFormGroup = form.find(":input[name='"+index+"']").parent('div.form-group');
                         errorFormGroup.addClass('has-error');
                         errorFormGroup.append("<span class=\"help-block\">"+value+"</span>");
-                        console.log(index);
-                        console.log(value);
                     });
                 }
             })
