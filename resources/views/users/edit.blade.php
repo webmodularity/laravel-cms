@@ -210,7 +210,7 @@
                 dataType: 'json',
                 success: function(data){
                     console.log(data);
-                    var socialProviderName = form.find("#social_provider_id option:checked").val();
+                    var socialProviderName = form.find("#social_provider_id option:checked").text();
                     console.log(socialProviderName);
                 },
                 error: function(data){
