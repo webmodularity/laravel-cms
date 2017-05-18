@@ -211,7 +211,13 @@
                 success: function(data){
                     console.log(data);
                     var socialProviderName = form.find("#social_provider_id option:checked").text();
+                    var avatarUrlVal = form.find("input[name=avatar_url").val();
+                    var uidVal = form.find("input[name=uid").val();
+                    var emailVal = form.find("input[name=email").val();
                     console.log(socialProviderName);
+                    console.log(avatarUrlVal);
+                    console.log(uidVal);
+                    console.log(emailVal);
                 },
                 error: function(data){
                     var errorResponse = data.responseJSON instanceof Array ? data.responseJSON : [data.responseJSON];
