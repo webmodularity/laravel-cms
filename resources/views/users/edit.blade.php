@@ -210,6 +210,8 @@
                 dataType: 'json',
                 success: function(data){
                     console.log(data);
+                    var socialProviderName = form.find("#social_provider_id option:checked").val();
+                    console.log(socialProviderName);
                 },
                 error: function(data){
                     var errorResponse = data.responseJSON instanceof Array ? data.responseJSON : [data.responseJSON];
