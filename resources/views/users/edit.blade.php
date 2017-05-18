@@ -146,7 +146,7 @@
             "order": [[0, "asc"]]
         });
 
-        $('.delete-confirm-button').click(function(){
+        $('.delete-confirm-button').on('click', function(){
             var id = $(this).data("id");
             var token = $(this).data("token");
             var recordIdent = $(this).data("record-ident");
