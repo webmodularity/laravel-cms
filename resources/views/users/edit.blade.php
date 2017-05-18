@@ -216,7 +216,7 @@
                     var avatarUrlVal = form.find("input[name=avatar_url]").val();
                     var uidVal = form.find("input[name=uid]").val();
                     var emailVal = form.find("input[name=email]").val();
-                    userSocialLoginDataTable.add([socialProviderId, socialProviderName, avatarUrlVal, uidVal, emailVal]).draw();
+                    userSocialLoginDataTable.row.add([socialProviderId, socialProviderName, avatarUrlVal, uidVal, emailVal]).draw();
                 },
                 error: function(data){
                     var errorResponse = data.responseJSON instanceof Array ? data.responseJSON : [data.responseJSON];
