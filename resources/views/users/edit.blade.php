@@ -143,54 +143,55 @@
             "ordering": true,
             "info": true,
             "autoWidth": true,
-            "order": [[0, "asc"]]
-        });
-
-        $('.delete-confirm-button').on('click', function(){
-            var id = $(this).data("id");
-            var token = $(this).data("token");
-            var recordIdent = $(this).data("record-ident");
-            var row = $(this).parents('tr');
-            swal({
-                    title: 'Delete This Record?',
-                    text: recordIdent,
-                    type: 'warning',
-                    showCancelButton: true,
-                    confirmButtonClass: 'btn-danger',
-                    confirmButtonText: 'Yes, delete it!',
-                    closeOnConfirm: false,
-                    showLoaderOnConfirm: true
-                },
-                function() {
-                    $.ajax({
-                        url: location.pathname.replace(/\/?$/, '') + '/social-logins/' +id,
-                        method: 'POST',
-                        data: {
-                            '_method': 'DELETE',
-                            '_token': token,
+            "order": [[0, "asc"]],
+            "drawCallback": function (settings) {
+                $('.delete-confirm-button').click(function(){
+                    var id = $(this).data("id");
+                    var token = $(this).data("token");
+                    var recordIdent = $(this).data("record-ident");
+                    var row = $(this).parents('tr');
+                    swal({
+                            title: 'Delete This Record?',
+                            text: recordIdent,
+                            type: 'warning',
+                            showCancelButton: true,
+                            confirmButtonClass: 'btn-danger',
+                            confirmButtonText: 'Yes, delete it!',
+                            closeOnConfirm: false,
+                            showLoaderOnConfirm: true
                         },
-                        success: function (response) {
-                            swal({
-                                    title: 'Successfully Unlinked Social Login',
-                                    text: response,
-                                    type: 'success',
-                                    confirmButtonClass: 'btn-primary',
+                        function() {
+                            $.ajax({
+                                url: location.pathname.replace(/\/?$/, '') + '/social-logins/' +id,
+                                method: 'POST',
+                                data: {
+                                    '_method': 'DELETE',
+                                    '_token': token,
                                 },
-                                function() {
-                                    userSocialLoginDataTable.row(row).remove().draw();
-                                });
-                        },
-                        error: function (xhr, status, error) {
-                            swal({
-                                title: 'Delete Failed!',
-                                text: JSON.parse(xhr.responseText)
-                                    || 'An unknown server error was encountered when attempting to delete this record.',
-                                type: 'error',
-                                confirmButtonClass: 'btn-primary',
+                                success: function (response) {
+                                    swal({
+                                            title: 'Successfully Unlinked Social Login',
+                                            text: response,
+                                            type: 'success',
+                                            confirmButtonClass: 'btn-primary',
+                                        },
+                                        function() {
+                                            userSocialLoginDataTable.row(row).remove().draw();
+                                        });
+                                },
+                                error: function (xhr, status, error) {
+                                    swal({
+                                        title: 'Delete Failed!',
+                                        text: JSON.parse(xhr.responseText)
+                                        || 'An unknown server error was encountered when attempting to delete this record.',
+                                        type: 'error',
+                                        confirmButtonClass: 'btn-primary',
+                                    });
+                                }
                             });
-                        }
-                    });
+                        });
                 });
+            }
         });
 
         $('#addUserSocialLoginForm').on('submit', function(event) {
