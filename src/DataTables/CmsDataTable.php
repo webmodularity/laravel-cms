@@ -88,24 +88,11 @@ $('.delete-confirm-button').click(function(){
                 '_token': token,
             },
             success: function (response) {
-                swal({
-                    title: 'Successfully Deleted Record',
-                    text: response,
-                    type: 'success',
-                    confirmButtonClass: 'btn-primary',
-                },
-                function() {
-                    dtApi.ajax.reload(null, false);
-                });
+                dtApi.ajax.reload(null, false);
+                toastr.success(response, "Record Deleted");
             },
             error: function (xhr, status, error) {
-                swal({
-                    title: 'Delete Failed!',
-                    text: JSON.parse(xhr.responseText)
-                        || 'An unknown server error was encountered when attempting to delete this record.',
-                    type: 'error',
-                    confirmButtonClass: 'btn-primary',
-                });
+                toastr.error(JSON.parse(xhr.responseText) || 'An unknown server error was encountered when attempting to delete this record.', "Delete Failed");
             }
         });
     });
@@ -139,24 +126,11 @@ $('.restore-confirm-button').click(function(){
                 '_token': token,
             },
             success: function (response) {
-                swal({
-                    title: 'Successfully Restored Record',
-                    text: response,
-                    type: 'success',
-                    confirmButtonClass: 'btn-primary',
-                },
-                function() {
-                    dtApi.ajax.reload(null, false);
-                });
+                dtApi.ajax.reload(null, false);
+                toastr.success(response, "Record Restored");
             },
             error: function (xhr, status, error) {
-                swal({
-                    title: 'Restore Failed!',
-                    text: JSON.parse(xhr.responseText)
-                        || 'An unknown server error was encountered when attempting to restore this record.',
-                    type: 'error',
-                    confirmButtonClass: 'btn-primary',
-                });
+                toastr.error(JSON.parse(xhr.responseText) || 'An unknown server error was encountered when attempting to restore this record.', "Restore Failed");
             }
         });
     });
@@ -191,24 +165,11 @@ $('.perma-delete-confirm-button').click(function(){
                 '_token': token,
             },
             success: function (response) {
-                swal({
-                    title: 'Permanently Deleted Record',
-                    text: response,
-                    type: 'success',
-                    confirmButtonClass: 'btn-primary',
-                },
-                function() {
-                    dtApi.ajax.reload(null, false);
-                });
+                dtApi.ajax.reload(null, false);
+                toastr.success(response, "Record Deleted");
             },
             error: function (xhr, status, error) {
-                swal({
-                    title: 'Permanent Delete Failed!',
-                    text: JSON.parse(xhr.responseText)
-                        || 'An unknown server error was encountered when attempting to delete this record.',
-                    type: 'error',
-                    confirmButtonClass: 'btn-primary',
-                });
+                toastr.error(JSON.parse(xhr.responseText) || 'An unknown server error was encountered when attempting to delete this record.', "Delete Failed");
             }
         });
     });
