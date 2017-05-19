@@ -17,7 +17,6 @@ $relatedAjaxTableId = isset($relatedAjaxTableId) && !empty($relatedAjaxTableId)
     <!-- /.box-body -->
 </div>
 
-@section($relatedAjaxTableId . 'Order', '[[0, "asc"]]')
 <div id="add{{ $relatedAjaxTableId }}" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -61,7 +60,7 @@ $relatedAjaxTableId = isset($relatedAjaxTableId) && !empty($relatedAjaxTableId)
             "ordering": true,
             "info": true,
             "autoWidth": true,
-            "order": @yield($relatedAjaxTableId . 'Order'),
+            "order": {!! $order !!},
             "drawCallback": function (settings) {
                 $('.{{ $relatedAjaxTableId }}-delete-confirm-button').click(function(){
                     var id = $(this).data("id");

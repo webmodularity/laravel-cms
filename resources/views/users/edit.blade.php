@@ -34,6 +34,7 @@
             @include('wmcms::crud.related-box-ajax', [
                 'boxTitle' => "Social Logins: <em>".$user->person->email."</em>",
                 'addText' => "Add Social Login",
+                'order' => [[0, "asc"]],
                 'relatedAjaxTableId' => 'userSocialLogin'
             ])
         </div>
