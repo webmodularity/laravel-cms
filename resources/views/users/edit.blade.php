@@ -170,10 +170,12 @@
                                 },
                                 success: function (response) {
                                     userSocialLoginDataTable.row(row).remove().draw();
-                                    toastr.success(response, "Social Login Unlinked");
+                                    toastr.success(response);
+                                    swal.close();
                                 },
                                 error: function (xhr, status, error) {
-                                    toastr.error(JSON.parse(xhr.responseText) || 'An unknown server error was encountered when attempting to delete this record.', "Delete Failed");
+                                    toastr.error(JSON.parse(xhr.responseText) || 'An unknown server error was encountered when attempting to delete this record.');
+                                    swal.close();
                                 }
                             });
                         });
