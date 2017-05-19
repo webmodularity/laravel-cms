@@ -111,10 +111,9 @@
         </div>
         <div class="col-sm-6">
             @include('wmcms::crud.related-box-ajax', [
+                'relatedAjaxTableId' => 'userSocialLogin',
                 'boxTitle' => "Social Logins: <em>".$user->person->email."</em>",
                 'addText' => "Add Social Login",
-                'order' => '[[0, "asc"]]',
-                'relatedAjaxTableId' => 'userSocialLogin',
                 'deleteUrl' => "location.pathname.replace(/\/?$/, '') + '/social-logins/' +id",
                 'postUrl' => route('users.social.attach', ['user_id' => $user->id])
             ])

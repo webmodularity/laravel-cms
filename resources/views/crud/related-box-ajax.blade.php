@@ -2,6 +2,9 @@
 $relatedAjaxTableId = isset($relatedAjaxTableId) && !empty($relatedAjaxTableId)
     ? $relatedAjaxTableId
     : 'relatedAjaxTable';
+$order = isset($order) && !empty($order)
+    ? $order
+    : '[[0, "asc"]]';
 ?>
 <div class="box box-primary">
     <div class="box-header with-border">
@@ -62,7 +65,7 @@ $relatedAjaxTableId = isset($relatedAjaxTableId) && !empty($relatedAjaxTableId)
             "autoWidth": true,
             "order": {!! $order !!},
             "drawCallback": function (settings) {
-                $('.{{ $relatedAjaxTableId }}-delete-confirm-button').click(function(){
+                $("add{{ $relatedAjaxTableId }}Form").find('.delete-confirm-button').click(function(){
                     var id = $(this).data("id");
                     var token = $(this).data("token");
                     var recordIdent = $(this).data("record-ident");
