@@ -42,11 +42,11 @@
 @section('userSocialLoginRowAddData')
     var socialProviderSelected = form.find("#social_provider_id option:checked");
     var rowAddData = [
-    socialProviderSelected.val(),
-    socialProviderSelected.text(),
-    form.find("input[name=avatar_url]").val(),
-    form.find("input[name=uid]").val(),
-    form.find("input[name=email]").val()
+        socialProviderSelected.val(),
+        socialProviderSelected.text(),
+        form.find("input[name=avatar_url]").val(),
+        form.find("input[name=uid]").val(),
+        form.find("input[name=email]").val()
     ];
 @endsection
 
