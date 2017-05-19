@@ -218,7 +218,9 @@
                     }, 1000);
                 },
                 error: function(data){
-                    var errorResponse = data.responseJSON instanceof Array ? data.responseJSON : [data.responseJSON];
+                    //var errorResponse = data.responseJSON instanceof Array ? data.responseJSON : [data.responseJSON];
+                    var errorResponse = data.responseJSON;
+                    console.log(errorResponse);
                     submitButton.html(submitHtmlOrig);
                     submitButton.prop('disabled', false);
                     $.each(errorResponse, function (index, value) {
