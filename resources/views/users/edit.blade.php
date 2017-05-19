@@ -222,6 +222,8 @@
                     submitButton.html(submitHtmlOrig);
                     submitButton.prop('disabled', false);
                     $.each(errorResponse, function (index, value) {
+                        console.log(index);
+                        console.log(value);
                         var errorFormGroup = form.find(":input[name='"+index+"']").parent('div.form-group');
                         errorFormGroup.addClass('has-error');
                         errorFormGroup.append("<span class=\"help-block\">"+value+"</span>");
