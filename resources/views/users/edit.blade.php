@@ -198,7 +198,7 @@
                 url:'{{ route('users.social.attach', ['user_id' => $user->id]) }}',
                 data:$(this).serialize(),
                 dataType: 'json',
-                success: function(data){
+                success: function(data) {
                     toastr.success(data);
                     submitButton.html('<i class="fa fa-check"></i>&nbsp;Saved<span class="sr-only">Saved</span>');
                     submitButton.removeClass("btn-primary").addClass("btn-success");
@@ -217,13 +217,11 @@
                         $("#addSocialLogin").modal('hide');
                     }, 1000);
                 },
-                error: function(data){
-                    //var errorResponse = data.responseJSON instanceof Array ? data.responseJSON : [data.responseJSON];
-                    var errorResponse = data.responseJSON;
-                    console.log(errorResponse);
+                error: function(data) {
+                    toastr.error("An error occurred while saving. Please correct the errors and resubmit.");
                     submitButton.html(submitHtmlOrig);
                     submitButton.prop('disabled', false);
-                    $.each(errorResponse, function (index, value) {
+                    $.each(data.responseJSON, function (index, value) {
                         console.log(index);
                         console.log(value);
                         var errorFormGroup = form.find(":input[name='"+index+"']").parent('div.form-group');
