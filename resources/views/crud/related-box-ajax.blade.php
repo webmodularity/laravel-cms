@@ -10,7 +10,7 @@ $order = isset($order) && !empty($order)
     <div class="box-header with-border">
         <h3 class="box-title">{!! $boxTitle !!}</h3>
         <div class="box-tools pull-right">
-            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#add{{ $relatedAjaxTableId }}"><span class="fa fa-plus"></span>&nbsp;{{ $addText }}</button>
+            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#{{ $relatedAjaxTableId }}Modal"><span class="fa fa-plus"></span>&nbsp;{{ $addText }}</button>
         </div>
     </div>
     <!-- /.box-header -->
@@ -20,7 +20,7 @@ $order = isset($order) && !empty($order)
     <!-- /.box-body -->
 </div>
 
-<div id="add{{ $relatedAjaxTableId }}" class="modal fade" tabindex="-1" role="dialog">
+<div id="{{ $relatedAjaxTableId }}Modal" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -28,13 +28,13 @@ $order = isset($order) && !empty($order)
                 <h4 class="modal-title">{{ $addText }}</h4>
             </div>
             <div class="modal-body">
-                <form id="add{{ $relatedAjaxTableId }}Form">
+                <form id="{{ $relatedAjaxTableId }}Form">
                     {!! csrf_field() !!}
                     @yield($relatedAjaxTableId . 'Form')
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary" id="add{{ $relatedAjaxTableId }}Submit">{{ $addText }}</button>
+                <button type="submit" class="btn btn-primary" id="{{ $relatedAjaxTableId }}Submit">{{ $addText }}</button>
                 </form>
             </div>
         </div>
@@ -106,7 +106,7 @@ $order = isset($order) && !empty($order)
         $('#{{ $relatedAjaxTableId }}Form').on('submit', function(event) {
             event.preventDefault();
             var form = $(this);
-            var submitButton = $("#add{{ $relatedAjaxTableId }}Submit");
+            var submitButton = $("#{{ $relatedAjaxTableId }}Submit");
             var formGroups = form.find("div.form-group");
             formGroups.removeClass('has-error');
             formGroups.find("span.help-block").remove();
@@ -129,7 +129,7 @@ $order = isset($order) && !empty($order)
                         submitButton.removeClass("btn-success").addClass("btn-primary");
                         submitButton.prop('disabled', false);
                         form.trigger("reset");
-                        $("#add{{ $relatedAjaxTableId }}").modal('hide');
+                        $("#{{ $relatedAjaxTableId }}Modal").modal('hide');
                     }, 1000);
                 },
                 error: function(data) {
