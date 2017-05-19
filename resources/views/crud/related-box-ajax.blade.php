@@ -79,7 +79,7 @@ $relatedAjaxTableId = isset($relatedAjaxTableId) && !empty($relatedAjaxTableId)
                         },
                         function() {
                             $.ajax({
-                                url: @yield($relatedAjaxTableId . 'DeleteUrl'),
+                                url: {!! $deleteUrl !!},
                                 method: 'POST',
                                 data: {
                                     '_method': 'DELETE',
@@ -112,7 +112,7 @@ $relatedAjaxTableId = isset($relatedAjaxTableId) && !empty($relatedAjaxTableId)
             submitButton.prop('disabled', true);
             $.ajax({
                 type:"POST",
-                url:'@yield($relatedAjaxTableId . 'PostUrl')',
+                url:'{!! $postUrl !!},
                 data:$(this).serialize(),
                 dataType: 'json',
                 success: function(data) {

@@ -22,8 +22,6 @@
             ])
 @endsection
 
-@section('userSocialLoginDeleteUrl', "location.pathname.replace(/\/?$/, '') + '/social-logins/' +id")
-@section('userSocialLoginPostUrl', route('users.social.attach', ['user_id' => $user->id]))
 @section('userSocialLoginData')
     @foreach($user->socialProviders as $socialProvider)
         [
@@ -116,7 +114,9 @@
                 'boxTitle' => "Social Logins: <em>".$user->person->email."</em>",
                 'addText' => "Add Social Login",
                 'order' => '[[0, "asc"]]',
-                'relatedAjaxTableId' => 'userSocialLogin'
+                'relatedAjaxTableId' => 'userSocialLogin',
+                'deleteUrl' => "location.pathname.replace(/\/?$/, '') + '/social-logins/' +id",
+                'postUrl' => route('users.social.attach', ['user_id' => $user->id])
             ])
         </div>
     </div>
