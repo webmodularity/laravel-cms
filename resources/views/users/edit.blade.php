@@ -199,6 +199,9 @@
                 data:$(this).serialize(),
                 dataType: 'json',
                 success: function(data){
+                    toastr.success(data);
+                    submitButton.html('<i class="fa fa-check"></i>&nbsp;Saved<span class="sr-only">Saved</span>');
+                    submitButton.removeClass("btn-primary").addClass("btn-success");
                     var socialProviderSelected = form.find("#social_provider_id option:checked");
                     var socialProviderId = socialProviderSelected.val();
                     var socialProviderName = socialProviderSelected.text();
@@ -206,11 +209,13 @@
                     var uidVal = form.find("input[name=uid]").val();
                     var emailVal = form.find("input[name=email]").val();
                     userSocialLoginDataTable.row.add([socialProviderId, socialProviderName, avatarUrlVal, uidVal, emailVal]).draw();
-                    submitButton.html(submitHtmlOrig);
-                    submitButton.prop('disabled', false);
-                    form.trigger("reset");
-                    $("#addSocialLogin").modal('hide');
-                    toastr.success(data);
+                    setTimeout(function() {
+                        submitButton.html(submitHtmlOrig);
+                        submitButton.removeClass("btn-success").addClass("btn-primary");
+                        submitButton.prop('disabled', false);
+                        form.trigger("reset");
+                        $("#addSocialLogin").modal('hide');
+                    }, 1000);
                 },
                 error: function(data){
                     var errorResponse = data.responseJSON instanceof Array ? data.responseJSON : [data.responseJSON];
