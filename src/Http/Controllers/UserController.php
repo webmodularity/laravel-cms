@@ -2,6 +2,7 @@
 
 namespace WebModularity\LaravelCms\Http\Controllers;
 
+use Illuminate\Http\JsonResponse;
 use WebModularity\LaravelCms\Http\Requests\StoreUserSocialLogin;
 use WebModularity\LaravelContact\Address;
 use WebModularity\LaravelContact\Person;
@@ -25,16 +26,6 @@ class UserController extends Controller
     public function index(UserDataTable $dataTable)
     {
         return $dataTable->render('wmcms::users.index');
-    }
-
-    /**
-     * Display trashed listings.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function recycle(UserRecycleDataTable $dataTable)
-    {
-        return $dataTable->render('wmcms::users.recycle');
     }
 
     /**
@@ -74,7 +65,7 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  Person  $person
+     * @param  User  $user
      * @return \Illuminate\Http\Response
      */
     public function edit(User $user)
@@ -124,20 +115,35 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  Person $person
+     * @param  User $user
      * @return JsonResponse
      */
-    public function destroy(Person $person)
+    public function destroy(User $user)
     {
-        if ($this->deleteChecks($person) !== false) {
-            return $this->deleteChecks($person);
+        if ($user->delete() && $user->person->delete()) {
+            return $this->sendJsonSuccessResponse("You have successfully deleted " . $user->person->email . ".");
+        } else {
+            return $this->sendJsonFailureResponse("Failed to delete " . $user->person->email . ".");
+        }
+    }
+
+    /**
+     * Attach specified social login to User
+     *
+     * @param  int $userId
+     * @return JsonResponse
+     */
+    public function attachSocialLogin($userId, StoreUserSocialLogin $request)
+    {
+        $user = User::find($userId);
+        $socialProvider = UserSocialProvider::find(request('social_provider_id'));
+        if (!is_null($user) && !is_null($socialProvider)) {
+            $user->socialProviders()->attach($socialProvider, request(['uid', 'email', 'avatar_url']));
+            return $this->sendJsonSuccessResponse("".$socialProvider->getName()." social login has been 
+             added to " . $user->person->email . ".");
         }
 
-        if ($person->delete()) {
-            return $this->sendJsonSuccessResponse("You have successfully deleted " . $person->email . ".");
-        } else {
-            return $this->sendJsonFailureResponse();
-        }
+        return $this->sendJsonFailureResponse('Failed to link Social Login.');
     }
 
     /**
@@ -159,22 +165,13 @@ class UserController extends Controller
     }
 
     /**
-     * Detach specified social login from User
+     * Display trashed listings.
      *
-     * @param  int $userId
-     * @return JsonResponse
+     * @return \Illuminate\Http\Response
      */
-    public function attachSocialLogin($userId, StoreUserSocialLogin $request)
+    public function recycle(UserRecycleDataTable $dataTable)
     {
-        $user = User::find($userId);
-        $socialProvider = UserSocialProvider::find(request('social_provider_id'));
-        if (!is_null($user) && !is_null($socialProvider)) {
-            $user->socialProviders()->attach($socialProvider, request(['uid', 'email', 'avatar_url']));
-            return $this->sendJsonSuccessResponse("".$socialProvider->getName()." social login has been 
-             added to " . $user->person->email . ".");
-        }
-
-        return $this->sendJsonFailureResponse('Failed to link Social Login.');
+        return $dataTable->render('wmcms::users.recycle');
     }
 
     /**
@@ -214,20 +211,10 @@ class UserController extends Controller
 
     protected function deleteChecks($person)
     {
-        // User Invitations
-        if ($person->userInvitations->count() > 0) {
-            return $this->sendJsonFailureResponse(
-                $person->email
-                . ' is associated with (' . $person->userInvitations->count()
-                . ') User Invitation(s). Please remove those invitation(s) before deleting.'
-            );
-        }
         // User
         if (!is_null($person->user)) {
-            return $this->sendJsonFailureResponse(
-                $person->email
-                . ' is associated with one or more User Profiles. Please remove that user before deleting.'
-            );
+            return $this->sendJsonFailureResponse($person->email . ' is associated with one or more '
+                . 'User Profiles. Please remove the associated User before deleting.');
         }
 
         return false;
