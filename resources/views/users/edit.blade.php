@@ -22,25 +22,6 @@
             ])
 @endsection
 
-@section('content')
-    <div class="row">
-        <div class="col-sm-6">
-            @include('wmcms::crud.edit-box', [
-                'boxTitle' => $user->person->email,
-                'recordId' => $user->id
-            ])
-        </div>
-        <div class="col-sm-6">
-            @include('wmcms::crud.related-box-ajax', [
-                'boxTitle' => "Social Logins: <em>".$user->person->email."</em>",
-                'addText' => "Add Social Login",
-                'order' => '[[0, "asc"]]',
-                'relatedAjaxTableId' => 'userSocialLogin'
-            ])
-        </div>
-    </div>
-@endsection
-
 @section('userSocialLoginDeleteUrl', "location.pathname.replace(/\/?$/, '') + '/social-logins/' +id")
 @section('userSocialLoginPostUrl', route('users.social.attach', ['user_id' => $user->id]))
 @section('userSocialLoginData')
@@ -87,11 +68,11 @@
 @section('userSocialLoginRowAddData')
     var socialProviderSelected = form.find("#social_provider_id option:checked");
     var rowAddData = [
-        socialProviderSelected.val(),
-        socialProviderSelected.text(),
-        form.find("input[name=avatar_url]").val(),
-        form.find("input[name=uid]").val(),
-        form.find("input[name=email]").val()
+    socialProviderSelected.val(),
+    socialProviderSelected.text(),
+    form.find("input[name=avatar_url]").val(),
+    form.find("input[name=uid]").val(),
+    form.find("input[name=email]").val()
     ];
 @endsection
 
@@ -119,5 +100,24 @@
     <div class="form-group">
         <label class="control-label" for="avatar_url">Avatar URL (Optional)</label>
         <input type="url" name="avatar_url" class="form-control" placeholder="Avatar URL" />
+    </div>
+@endsection
+
+@section('content')
+    <div class="row">
+        <div class="col-sm-6">
+            @include('wmcms::crud.edit-box', [
+                'boxTitle' => $user->person->email,
+                'recordId' => $user->id
+            ])
+        </div>
+        <div class="col-sm-6">
+            @include('wmcms::crud.related-box-ajax', [
+                'boxTitle' => "Social Logins: <em>".$user->person->email."</em>",
+                'addText' => "Add Social Login",
+                'order' => '[[0, "asc"]]',
+                'relatedAjaxTableId' => 'userSocialLogin'
+            ])
+        </div>
     </div>
 @endsection
