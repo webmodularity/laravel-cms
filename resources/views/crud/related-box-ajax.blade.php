@@ -112,7 +112,7 @@ $relatedAjaxTableId = isset($relatedAjaxTableId) && !empty($relatedAjaxTableId)
             submitButton.prop('disabled', true);
             $.ajax({
                 type:"POST",
-                url:'{!! $postUrl !!},
+                url:'{!! $postUrl !!}',
                 data:$(this).serialize(),
                 dataType: 'json',
                 success: function(data) {
@@ -134,8 +134,6 @@ $relatedAjaxTableId = isset($relatedAjaxTableId) && !empty($relatedAjaxTableId)
                     submitButton.html(submitHtmlOrig);
                     submitButton.prop('disabled', false);
                     $.each(data.responseJSON, function (index, value) {
-                        console.log(index);
-                        console.log(value);
                         var errorFormGroup = form.find(":input[name='"+index+"']").parent('div.form-group');
                         errorFormGroup.addClass('has-error');
                         errorFormGroup.append("<span class=\"help-block\">"+value+"</span>");
