@@ -89,10 +89,12 @@ $('.delete-confirm-button').click(function(){
             },
             success: function (response) {
                 dtApi.ajax.reload(null, false);
-                toastr.success(response, "Record Deleted");
+                toastr.success(response);
+                swal.close();
             },
             error: function (xhr, status, error) {
-                toastr.error(JSON.parse(xhr.responseText) || 'An unknown server error was encountered when attempting to delete this record.', "Delete Failed");
+                toastr.error(JSON.parse(xhr.responseText) || 'An unknown server error was encountered when attempting to delete this record.');
+                swal.close();
             }
         });
     });
@@ -127,10 +129,12 @@ $('.restore-confirm-button').click(function(){
             },
             success: function (response) {
                 dtApi.ajax.reload(null, false);
-                toastr.success(response, "Record Restored");
+                toastr.success(response);
+                swal.close();
             },
             error: function (xhr, status, error) {
-                toastr.error(JSON.parse(xhr.responseText) || 'An unknown server error was encountered when attempting to restore this record.', "Restore Failed");
+                toastr.error(JSON.parse(xhr.responseText) || 'An unknown server error was encountered when attempting to restore this record.');
+                swal.close();
             }
         });
     });
@@ -166,10 +170,12 @@ $('.perma-delete-confirm-button').click(function(){
             },
             success: function (response) {
                 dtApi.ajax.reload(null, false);
-                toastr.success(response, "Record Deleted");
+                toastr.success(response);
+                swal.close();
             },
             error: function (xhr, status, error) {
-                toastr.error(JSON.parse(xhr.responseText) || 'An unknown server error was encountered when attempting to delete this record.', "Delete Failed");
+                toastr.error(JSON.parse(xhr.responseText) || 'An unknown server error was encountered when attempting to delete this record.');
+                swal.close();
             }
         });
     });
