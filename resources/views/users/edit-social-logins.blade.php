@@ -1,4 +1,3 @@
-{{-- Start Related Ajax Table --}}
 @section('userSocialLoginData')
     @foreach($user->socialProviders as $socialProvider)
         [
@@ -77,7 +76,6 @@
         <input type="url" name="avatar_url" class="form-control" placeholder="Avatar URL" />
     </div>
 @endsection
-{{-- End Related Ajax Table --}}
 
 @include('wmcms::crud.related-box-ajax', [
     'relatedAjaxTableId' => 'userSocialLogin',
