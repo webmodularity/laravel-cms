@@ -218,6 +218,10 @@
                     var uidVal = form.find("input[name=uid]").val();
                     var emailVal = form.find("input[name=email]").val();
                     userSocialLoginDataTable.row.add([socialProviderId, socialProviderName, avatarUrlVal, uidVal, emailVal]).draw();
+                    form.reset();
+                    $("#addSocialLogin").modal('hide');
+                    submitButton.html(submitHtmlOrig);
+                    submitButton.prop('disabled', false);
                 },
                 error: function(data){
                     var errorResponse = data.responseJSON instanceof Array ? data.responseJSON : [data.responseJSON];
