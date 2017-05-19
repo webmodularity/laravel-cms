@@ -65,7 +65,7 @@ $order = isset($order) && !empty($order)
             "autoWidth": true,
             "order": {!! $order !!},
             "drawCallback": function (settings) {
-                $("#{{ $relatedAjaxTableId }}Form").find(".delete-confirm-button").click(function(){
+                $("#{{ $relatedAjaxTableId }}Modal").find(".delete-confirm-button").click(function(){
                     var id = $(this).data("id");
                     var token = $(this).data("token");
                     var recordIdent = $(this).data("record-ident");
