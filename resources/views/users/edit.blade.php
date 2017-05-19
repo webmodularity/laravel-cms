@@ -218,7 +218,7 @@
                     var uidVal = form.find("input[name=uid]").val();
                     var emailVal = form.find("input[name=email]").val();
                     userSocialLoginDataTable.row.add([socialProviderId, socialProviderName, avatarUrlVal, uidVal, emailVal]).draw();
-                    form.reset();
+                    form.trigger("reset");
                     $("#addSocialLogin").modal('hide');
                     submitButton.html(submitHtmlOrig);
                     submitButton.prop('disabled', false);
