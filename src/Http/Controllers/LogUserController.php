@@ -27,7 +27,7 @@ class LogUserController extends Controller
     public function show(LogUser $logUser)
     {
         $recentUserLogs = LogUser::where('user_id', $logUser->user_id)
-            ->limit(25)
+            ->limit(50)
             ->get();
         return view('wmcms::log-user.show')->with('logUser', $logUser)->with('userLogs', $recentUserLogs);
     }

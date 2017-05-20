@@ -89,8 +89,10 @@ class UserController extends Controller
                 return $value->pivot->phone_type_id === Phone::TYPE_FAX;
             })
         ];
-
-        return view('wmcms::users.edit', compact(['user', 'primaryAddress', 'phones']));
+        $userLogs = LogUser::where('user_id', $user->id)
+            ->limit(50)
+            ->get();
+        return view('wmcms::users.edit', compact(['user', 'primaryAddress', 'phones', 'userLogs']));
     }
 
     /**
