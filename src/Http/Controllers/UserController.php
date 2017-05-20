@@ -9,6 +9,7 @@ use WebModularity\LaravelContact\Person;
 use WebModularity\LaravelContact\Phone;
 use WebModularity\LaravelCms\DataTables\UserDataTable;
 use WebModularity\LaravelCms\DataTables\UserRecycleDataTable;
+use WebModularity\LaravelUser\LogUser;
 use WebModularity\LaravelUser\User;
 use WebModularity\LaravelCms\Http\Requests\StoreUser;
 use WebModularity\LaravelContact\Http\Controllers\SyncsInputToPerson;
