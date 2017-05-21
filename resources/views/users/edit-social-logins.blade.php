@@ -79,7 +79,7 @@
 
 @include('wmcms::crud.related-box-ajax', [
     'relatedAjaxTableId' => 'userSocialLogin',
-    'boxTitle' => "Social Logins: <em>".$user->person->email."</em>",
+    'boxTitle' => "Social Logins",
     'addText' => "Add Social Login",
     'deleteUrl' => "location.pathname.replace(/\/?$/, '') + '/social-logins/' +id",
     'postUrl' => route('users.social.attach', ['user_id' => $user->id])
