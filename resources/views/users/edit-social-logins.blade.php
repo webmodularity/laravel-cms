@@ -35,6 +35,7 @@
     return '<button type="button" class="btn btn-xs btn-danger delete-confirm-button" data-id="'+row[0]+'" data-token="{{ csrf_token() }}" data-record-ident="'+row[1]+'"><i class="fa fa-trash-o"></i>&nbsp;Delete</button>';
     },
     width: "40px",
+    "className": "text-center",
     targets: 5
     }
 @endsection
