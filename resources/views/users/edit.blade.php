@@ -26,7 +26,7 @@
     { title: "Time" },
     { title: "IP" },
     { title: "Action" },
-    { title: "Show", orderable: false, searchable: false }
+    { title: "View", orderable: false, searchable: false }
 @endsection
 
 @section('userLogData')
@@ -43,7 +43,7 @@
 @section('userLogColumnDefs')
     {
         render: function (data, type, row) {
-            return '<a href="{{ route('log-user.index') }}/'+data+'" class="btn btn-xs btn-primary"><i class="fa fa-eye"></i></a>';
+            return '<a href="{{ route('log-user.index') }}/'+data+'" class="btn btn-xs btn-primary"><i class="fa fa-info-circle"></i></a>';
         },
         width: "20px",
         targets: 3
