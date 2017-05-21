@@ -46,7 +46,7 @@
             return '<a href="{{ route('log-user.index') }}/'+data+'" class="btn btn-xs btn-primary"><i class="fa fa-search-plus"></i></a>';
         },
         width: "20px",
-        "className": "dt-center",
+        "className": "text-center",
         targets: 3
     }
 @endsection
