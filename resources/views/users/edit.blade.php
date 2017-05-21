@@ -23,23 +23,31 @@
 @endsection
 
 @section('userLogColumns')
-    { visible: false },
     { title: "Time" },
     { title: "IP" },
     { title: "Action" },
-    { title: "Details", orderable: false, searchable: false }
+    { title: "Show", orderable: false, searchable: false }
 @endsection
 
 @section('userLogData')
     @foreach($userLogs as $userLog)
         [
-            "{{ $userLog->id }}",
             "{{ $userLog->created_at->format('m/d/Y h:i:sa') }}",
             "{{ $userLog->logRequest->ipAddress->ip }}",
             "{{ $userLog->userAction->slug }}",
-            ""
+            "{{ $userLog->id }}"
         ],
     @endforeach
+@endsection
+
+@section('userLogColumnDefs')
+    {
+        render: function (data, type, row) {
+            return '<a href="{{ route('log-user') }}/"+data+"" class="btn btn-primary"><i class="fa fa-eye"></i></a>';
+        },
+        width: "20px",
+        targets: 3
+    }
 @endsection
 
 @section('content')
@@ -55,7 +63,7 @@
             @include('wmcms::crud.related-box', [
                 'boxTitle' => 'Recent User Activity',
                 'relatedTableId' => 'userLog',
-                'defaultOrder' => '[[0, "desc"], [1, "desc"]]'
+                'defaultOrder' => '[[3, "desc"], [0, "desc"]]'
             ])
         </div>
     </div>
