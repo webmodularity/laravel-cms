@@ -43,7 +43,7 @@
 @section('userLogColumnDefs')
     {
         render: function (data, type, row) {
-            return '<a href="{{ route('log-user') }}/"+data+"" class="btn btn-primary"><i class="fa fa-eye"></i></a>';
+            return '<a href="{{ route('log-user.show') }}/"+data+"" class="btn btn-primary"><i class="fa fa-eye"></i></a>';
         },
         width: "20px",
         targets: 3
