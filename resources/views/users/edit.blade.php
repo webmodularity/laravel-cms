@@ -57,9 +57,9 @@
                 'boxTitle' => $user->person->email,
                 'recordId' => $user->id
             ])
+            @include('wmcms::users.edit-social-logins')
         </div>
         <div class="col-sm-6">
-            @include('wmcms::users.edit-social-logins')
             @include('wmcms::crud.related-box', [
                 'boxTitle' => 'Recent User Activity',
                 'relatedTableId' => 'userLog',
