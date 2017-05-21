@@ -1,7 +1,7 @@
 <?php
 $relatedTableId = isset($relatedTableId) && !empty($relatedTableId)
     ? $relatedTableId
-    : 'related-table';
+    : 'relatedTable';
 ?>
 <div class="box box-primary">
     <div class="box-header with-border">
@@ -12,14 +12,7 @@ $relatedTableId = isset($relatedTableId) && !empty($relatedTableId)
     </div>
     <!-- /.box-header -->
     <div class="box-body">
-        <table id="{{ $relatedTableId }}" class="table table-hover table-bordered">
-            <thead>
-                @yield($relatedTableId . '-header')
-            </thead>
-            <tbody>
-                @yield($relatedTableId . '-rows')
-            </tbody>
-        </table>
+        <table id="{{ $relatedTableId }}" class="table table-hover table-bordered"></table>
     </div>
     <!-- /.box-body -->
 </div>

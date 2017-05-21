@@ -2,9 +2,6 @@
 $relatedAjaxTableId = isset($relatedAjaxTableId) && !empty($relatedAjaxTableId)
     ? $relatedAjaxTableId
     : 'relatedAjaxTable';
-$order = isset($order) && !empty($order)
-    ? $order
-    : '[[0, "asc"]]';
 ?>
 <div class="box box-primary">
     <div class="box-header with-border">
@@ -62,7 +59,7 @@ $order = isset($order) && !empty($order)
             "ordering": true,
             "info": true,
             "autoWidth": true,
-            "order": {!! $order !!},
+            "order": {!! $order or '[[0, "asc"]]' !!},
             "drawCallback": function (settings) {
                 $("#{{ $relatedAjaxTableId }}Table").find(".delete-confirm-button").click(function(){
                     var id = $(this).data("id");
