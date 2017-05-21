@@ -28,7 +28,17 @@ $relatedTableId = isset($relatedTableId) && !empty($relatedTableId)
 @dtdefaults('{{ $relatedTableId }}')
 <script>
     $(function () {
+        $.fn.dataTable.moment('m/d/Y h:i:sa');
         $('#{{ $relatedTableId }}').DataTable({
+            data: [
+                @yield($relatedTableId . 'Data')
+            ],
+            columns: [
+                @yield($relatedTableId . 'Columns')
+            ],
+            columnDefs: [
+                @yield($relatedTableId . 'ColumnDefs')
+            ],
             "paging": true,
             "lengthChange": false,
             "searching": true,

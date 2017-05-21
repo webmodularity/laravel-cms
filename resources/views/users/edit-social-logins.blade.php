@@ -6,7 +6,7 @@
         "{{ $socialProvider->pivot->avatar_url }}",
         "{{ $socialProvider->pivot->uid }}",
         "{{ $socialProvider->pivot->email }}"
-        ]
+        ],
     @endforeach
 @endsection
 

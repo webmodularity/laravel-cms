@@ -46,11 +46,10 @@ $order = isset($order) && !empty($order)
 @push('js')
 <script>
     $(function () {
-        var {{ $relatedAjaxTableId }}Data = [
-            @yield($relatedAjaxTableId . 'Data')
-        ];
         var {{ $relatedAjaxTableId }}DataTable = $('#{{ $relatedAjaxTableId }}Table').DataTable({
-            data: {{ $relatedAjaxTableId }}Data,
+            data: [
+                @yield($relatedAjaxTableId . 'Data')
+            ],
             columns: [
                 @yield($relatedAjaxTableId . 'Columns')
             ],
