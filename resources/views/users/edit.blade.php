@@ -37,7 +37,7 @@
             "{{ $userLog->created_at->format('m/d/Y h:i:sa') }}",
             "{{ $userLog->logRequest->ipAddress->ip }}",
             "{{ $userLog->userAction->slug }}",
-            "{{ $userLog->id }}"
+            ""
         ],
     @endforeach
 @endsection
