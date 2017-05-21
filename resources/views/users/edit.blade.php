@@ -63,7 +63,7 @@
             @include('wmcms::crud.related-box', [
                 'boxTitle' => 'Recent User Activity',
                 'relatedTableId' => 'userLog',
-                'defaultOrder' => '[[3, "desc"], [0, "desc"]]'
+                'defaultOrder' => '[[0, "desc"]]'
             ])
         </div>
     </div>
