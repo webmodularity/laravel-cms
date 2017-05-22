@@ -2,12 +2,15 @@
 $relatedAjaxTableId = isset($relatedAjaxTableId) && !empty($relatedAjaxTableId)
     ? $relatedAjaxTableId
     : 'relatedAjaxTable';
+$relatedAjaxTableHeader = isset($relatedAjaxTableHeader)
+    ? $relatedAjaxTableHeader
+    : 'Create New Record';
 ?>
 <div class="box box-primary">
     <div class="box-header with-border">
         <h3 class="box-title">{!! $boxTitle !!}</h3>
         <div class="box-tools pull-right">
-            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#{{ $relatedAjaxTableId }}Modal"><span class="fa fa-plus"></span>&nbsp;{{ $addText }}</button>
+            <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#{{ $relatedAjaxTableId }}Modal"><span class="fa fa-plus"></span></button>
         </div>
     </div>
     <!-- /.box-header -->
@@ -22,7 +25,7 @@ $relatedAjaxTableId = isset($relatedAjaxTableId) && !empty($relatedAjaxTableId)
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                <h4 class="modal-title">{{ $addText }}</h4>
+                <h4 class="modal-title">{{ $relatedAjaxTableHeader }}</h4>
             </div>
             <div class="modal-body">
                 <form id="{{ $relatedAjaxTableId }}Form">
@@ -31,7 +34,7 @@ $relatedAjaxTableId = isset($relatedAjaxTableId) && !empty($relatedAjaxTableId)
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary" id="{{ $relatedAjaxTableId }}Submit">{{ $addText }}</button>
+                <button type="submit" class="btn btn-primary" id="{{ $relatedAjaxTableId }}Submit">Save</button>
                 </form>
             </div>
         </div>

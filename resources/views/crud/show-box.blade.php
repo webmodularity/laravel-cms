@@ -10,8 +10,7 @@
     <!-- form start -->
     <form class="form-horizontal">
         <div class="box-body">
-        @yield('details')
-        <!-- /.box-body -->
+            @yield('details')
         </div>
     </form>
 </div>
