@@ -41,6 +41,9 @@ $showModalSizeClass = isset($showModalSize) && in_array($showModalSize, ['lg', '
                 }
             );
         })
+        $("#{{ $showModalId }}Modal").on('hidden.bs.modal', function(e) {
+            $(this).find("div.modal-body").LoadingOverlay("hide");
+        })
     });
 </script>
 @endpush
