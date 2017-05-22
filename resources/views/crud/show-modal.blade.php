@@ -17,12 +17,9 @@ $showModalSizeClass = isset($showModalSize) && in_array($showModalSize, ['lg', '
                 <h4 class="modal-title">{!! $showModalHeader !!}</h4>
             </div>
             <div class="modal-body">
-                <div class="overlay">
-                    <i class="fa fa-refresh fa-spin"></i>
-                    <form class="form-horizontal">
-                        @yield($showModalId . 'Form')
-                    </form>
-                </div>
+                <form class="form-horizontal">
+                    @yield($showModalId . 'Form')
+                </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -32,3 +29,16 @@ $showModalSizeClass = isset($showModalSize) && in_array($showModalSize, ['lg', '
     </div>
     <!-- /.modal-dialog -->
 </div>
+
+@push('js')
+<script>
+    $(function () {
+        $("#{{ $showModalId }}Modal").find("div.modal-body").LoadingOverlay("show",
+            {
+                fontawesome: "fa fa-spinner fa-pulse fa-3x fa-fw",
+                image: false
+            }
+        );
+    });
+</script>
+@endpush

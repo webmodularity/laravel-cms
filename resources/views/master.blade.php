@@ -47,6 +47,8 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+<script src="//cdn.jsdelivr.net/jquery.loadingoverlay/1.5.3/loadingoverlay.min.js"></script>
+
 @if(config('adminlte.plugins.datatables'))
     <!-- DataTables -->
     <script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
