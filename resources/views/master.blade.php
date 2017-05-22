@@ -41,8 +41,8 @@
 
 @yield('body')
 
-<script src="{{ asset('js/app.js') }}"></script>
-<script src="{{ asset('vendor/adminlte/bootstrap/js/bootstrap.min.js') }}"></script>
+<script src="{{ mix('/js/app.js') }}"></script>
+<script src="{{ mix('/js/bootstrap.min.js') }}"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.min.js"></script>
