@@ -41,7 +41,7 @@
 
 @yield('body')
 
-<script src="{{ asset('vendor/adminlte/plugins/jQuery/jquery-2.2.3.min.js') }}"></script>
+<script src="{{ asset('public/js/app.js') }}"></script>
 <script src="{{ asset('vendor/adminlte/bootstrap/js/bootstrap.min.js') }}"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
@@ -63,21 +63,6 @@
 @endif
 
 @yield('adminlte_js')
-
-<script>
-    $(function () {
-        $("button[type='reset']").on("click", function(event){
-            event.preventDefault();
-            var myForm = $(this).closest('form').get(0);
-            myForm.reset();
-            $(myForm).find("select.select2").each(
-                function () {
-                    $(this).select2().val($(this).find('option:selected').val()).trigger("change")
-                }
-            );
-        });
-    });
-</script>
 
 </body>
 </html>

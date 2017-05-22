@@ -2,6 +2,7 @@
 
 namespace WebModularity\LaravelCms\Http\Controllers;
 
+use Illuminate\Http\JsonResponse;
 use Illuminate\View\View;
 use WebModularity\LaravelCms\DataTables\LogUserDataTable;
 use WebModularity\LaravelUser\LogUser;
@@ -22,13 +23,13 @@ class LogUserController extends Controller
      * Display the specified resource.
      *
      * @param  LogUser  $logUser
-     * @return View
+     * @return JsonResponse
      */
     public function show(LogUser $logUser)
     {
-        $recentUserLogs = LogUser::where('user_id', $logUser->user_id)
-            ->limit(50)
-            ->get();
-        return view('wmcms::log-user.show')->with('logUser', $logUser)->with('userLogs', $recentUserLogs);
+        return response()->json([
+            'createdAt' => $logUser->created_at->format('m/d/Y h:i:sa'),
+            $logUser->userAction->slug
+        ]);
     }
 }
