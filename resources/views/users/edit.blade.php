@@ -68,6 +68,5 @@
             @include('wmcms::users.edit-social-logins')
         </div>
     </div>
+    @include('wmcms::log-user.show-modal')
 @endsection
-
-@include('wmcms::log-user.show-modal')
