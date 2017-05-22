@@ -33,12 +33,14 @@ $showModalSizeClass = isset($showModalSize) && in_array($showModalSize, ['lg', '
 @push('js')
 <script>
     $(function () {
-        $("#{{ $showModalId }}Modal").find("div.modal-body").LoadingOverlay("show",
-            {
-                fontawesome: "fa fa-refresh fa-spin fa-3x fa-fw",
-                image: false
-            }
-        );
+        $("#{{ $showModalId }}Modal").on('shown.bs.modal', function(e) {
+            $(this).find("div.modal-body").LoadingOverlay("show",
+                {
+                    fontawesome: "fa fa-refresh fa-spin fa-3x fa-fw",
+                    image: false
+                }
+            );
+        })
     });
 </script>
 @endpush
