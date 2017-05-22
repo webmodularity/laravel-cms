@@ -43,7 +43,7 @@
 @section('userLogColumnDefs')
     {
         render: function (data, type, row) {
-            return '<a href="{{ route('log-user.index') }}/'+data+'" class="btn btn-xs btn-primary"><i class="fa fa-search-plus"></i></a>';
+            return '<button class="btn btn-xs btn-primary" data-toggle="modal" data-target="#userLogModal" data-id="'+data+'"><i class="fa fa-search-plus"></i></button>';
         },
         width: "20px",
         "className": "text-center",
