@@ -33,17 +33,19 @@ $showModalSizeClass = isset($showModalSize) && in_array($showModalSize, ['lg', '
 @push('js')
 <script>
     $(function () {
-        $("#{{ $showModalId }}Modal").on('shown.bs.modal', function(e) {
+        $("#{{ $showModalId }}Modal").on('shown.bs.modal', function(event) {
             $(this).find("div.modal-body").LoadingOverlay("show",
                 {
                     fontawesome: "fa fa-refresh fa-spin fa-3x fa-fw",
                     image: false
                 }
             );
-        })
-        $("#{{ $showModalId }}Modal").on('hide.bs.modal', function(e) {
+            var showId = $(event.relatedTarget).data('id');
+            alert(showId);
+        });
+        $("#{{ $showModalId }}Modal").on('hide.bs.modal', function(event) {
             $(this).find("div.modal-body").LoadingOverlay("hide");
-        })
+        });
     });
 </script>
 @endpush
