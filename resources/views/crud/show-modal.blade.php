@@ -19,10 +19,10 @@ $showModalSizeClass = isset($showModalSize) && in_array($showModalSize, ['lg', '
             <div class="modal-body">
                 <div class="overlay">
                     <i class="fa fa-refresh fa-spin"></i>
+                    <form class="form-horizontal">
+                        @yield($showModalId . 'Form')
+                    </form>
                 </div>
-                <form class="form-horizontal">
-                    @yield($showModalId . 'Form')
-                </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
