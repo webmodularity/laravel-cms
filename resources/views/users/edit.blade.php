@@ -69,5 +69,3 @@
         </div>
     </div>
 @endsection
-
-@include('wmcms::log-user.show-modal')
