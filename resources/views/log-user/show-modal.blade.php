@@ -69,5 +69,6 @@
 
 @include('wmcms::crud.show-modal', [
     'showModalId' => 'userLog',
-    'showModalHeader' => 'User Log Details'
+    'showModalHeader' => 'User Log Details',
+    'showModalSize' => 'lg'
 ])
