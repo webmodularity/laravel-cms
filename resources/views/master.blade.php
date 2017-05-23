@@ -19,7 +19,7 @@
     <!-- SweetAlert -->
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.min.css">
     <!-- Theme style -->
-    <link rel="stylesheet" href="{{ asset('vendor/adminlte/dist/css/AdminLTE.min.css') }}" />
+    <link rel="stylesheet" href="{{ mix('css/AdminLTE.min.css') }}" />
 
     @if(config('adminlte.plugins.datatables'))
     <!-- DataTables -->
