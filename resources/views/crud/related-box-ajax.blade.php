@@ -89,11 +89,11 @@ $relatedAjaxTableHeader = isset($relatedAjaxTableHeader)
                                 },
                                 success: function (response) {
                                     {{ $relatedAjaxTableId }}DataTable.row(row).remove().draw();
-                                    Toastr.success(response);
+                                    toastr.success(response);
                                     swal.close();
                                 },
                                 error: function (xhr, status, error) {
-                                    Toastr.error(JSON.parse(xhr.responseText) || 'An unknown server error was encountered when attempting to delete this record.');
+                                    toastr.error(JSON.parse(xhr.responseText) || 'An unknown server error was encountered when attempting to delete this record.');
                                     swal.close();
                                 }
                             });
@@ -118,7 +118,7 @@ $relatedAjaxTableHeader = isset($relatedAjaxTableHeader)
                 data:$(this).serialize(),
                 dataType: 'json',
                 success: function(data) {
-                    Toastr.success(data);
+                    toastr.success(data);
                     submitButton.html('<i class="fa fa-check"></i>&nbsp;Saved<span class="sr-only">Saved</span>');
                     submitButton.removeClass("btn-primary").addClass("btn-success");
                     @yield($relatedAjaxTableId . 'RowAddData')
@@ -132,7 +132,7 @@ $relatedAjaxTableHeader = isset($relatedAjaxTableHeader)
                     }, 1000);
                 },
                 error: function(data) {
-                    Toastr.error("An error occurred while saving. Please correct the errors and resubmit.");
+                    toastr.error("An error occurred while saving. Please correct the errors and resubmit.");
                     submitButton.html(submitHtmlOrig);
                     submitButton.prop('disabled', false);
                     $.each(data.responseJSON, function (index, value) {
