@@ -12,15 +12,6 @@
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ mix('css/AdminLTE.css') }}" />
 
-    @if(config('adminlte.plugins.datatables'))
-    <!-- DataTables -->
-        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.13/css/dataTables.bootstrap.min.css">
-        <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.1.1/css/responsive.dataTables.min.css">
-        <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.2.4/css/buttons.dataTables.min.css">
-        <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.2.4/css/buttons.bootstrap.min.css">
-        <link rel="stylesheet" href="{{ asset('vendor/wmcms/css/buttons.wm.dataTables.css') }}">
-    @endif
-
     @yield('adminlte_css')
 
     <!--[if lt IE 9]>
@@ -33,19 +24,6 @@
 @yield('body')
 
 <script src="{{ mix('/js/app.js') }}"></script>
-
-@if(config('adminlte.plugins.datatables'))
-    <!-- DataTables -->
-    <script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.13/js/dataTables.bootstrap.min.js"></script>
-    <script src="https://cdn.datatables.net/responsive/2.1.1/js/dataTables.responsive.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/1.2.4/js/dataTables.buttons.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/1.2.4/js/buttons.bootstrap.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/1.2.4/js/buttons.html5.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/1.2.4/js/buttons.colVis.min.js"></script>
-    <script src="//cdn.datatables.net/plug-ins/1.10.15/sorting/datetime-moment.js"></script>
-    <script src="{{ asset('vendor/wmcms/js/buttons.server-side.js') }}"></script>
-@endif
 
 @yield('adminlte_js')
 
