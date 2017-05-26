@@ -82,6 +82,13 @@ class UserDataTable extends CmsDataTable
             ->filterColumn('updated_at', function ($query, $keyword) {
                 $query->whereRaw("DATE_FORMAT(users.updated_at,'%m/%d/%Y %h:%i:%s%p') like ?", ["%$keyword%"]);
             })
+            ->addColumn('user_role', function (User $user) {
+                return studly_case($user->role->slug);
+            })
+            ->filterColumn('user_role', function ($query, $keyword) {
+                $query->orWhereRaw("REPLACE(user_roles.slug, '-', '') like ?", ["%$keyword%"]);
+            })
+            ->orderColumn('user_role', 'user_roles.slug $1')
             ->rawColumns(['phones', 'address_primary', 'action']);
     }
 
@@ -149,8 +156,7 @@ class UserDataTable extends CmsDataTable
                     'data' => 'address_primary',
                     'title' => 'Address'
                 ]
-            ),
-            'updated_at'
+            )
         ];
     }
 
