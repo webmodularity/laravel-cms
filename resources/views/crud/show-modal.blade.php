@@ -41,7 +41,6 @@ $showModalSizeClass = isset($showModalSize) && in_array($showModalSize, ['lg', '
                 }
             );
             var showId = $(event.relatedTarget).data('id');
-            alert(showId);
         });
         $("#{{ $showModalId }}Modal").on('hide.bs.modal', function(event) {
             $(this).find("div.modal-body").LoadingOverlay("hide");
