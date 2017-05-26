@@ -20,6 +20,7 @@ class UserDataTable extends CmsDataTable
     {
         return $this->datatables
             ->eloquent($this->query())
+            ->addColumn('action', $this->actionView)
             ->addColumn('full_name', function (User $user) {
                 return view('wmcms::partials.name-full')->with('person', $user->person);
             })
