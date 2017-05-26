@@ -20,6 +20,20 @@ class UserDataTable extends CmsDataTable
     {
         return $this->datatables
             ->eloquent($this->query())
+            ->addColumn('full_name', function (User $user) {
+                return view('wmcms::partials.name-full')->with('person', $user->person);
+            })
+            ->filterColumn('full_name', function ($query, $keyword) {
+                $query->whereRaw(
+                    "first_name like ?
+                        OR middle_name like ?
+                        OR last_name like ?
+                        OR CONCAT(first_name, ' ', last_name) like ?
+                        OR CONCAT(first_name, ' ', middle_name, ' ', last_name) like ?",
+                    ["$keyword%", "$keyword%", "$keyword%", "$keyword%", "$keyword%"]
+                );
+            })
+            ->orderColumn('full_name', 'last_name $1, first_name $1, middle_name $1')
             ->addColumn('phones', function (User $user) {
                 if (is_null($user->person->phones) || $user->person->phones->count() < 1) {
                     return null;
