@@ -156,7 +156,8 @@ class UserDataTable extends CmsDataTable
                     'data' => 'address_primary',
                     'title' => 'Address'
                 ]
-            )
+            ),
+            'updated_at'
         ];
     }
 
