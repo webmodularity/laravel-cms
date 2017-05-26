@@ -20,22 +20,47 @@ class UserDataTable extends CmsDataTable
     {
         return $this->datatables
             ->eloquent($this->query())
-            ->addColumn('action', $this->actionView)
-            ->addColumn('full_name', function (User $user) {
-                return view('wmcms::partials.name-full')->with('person', $user->person);
+            ->addColumn('phones', function (User $user) {
+                if (is_null($user->person->phones) || $user->person->phones->count() < 1) {
+                    return null;
+                }
+                return $user->person->phones->sortBy('pivot.phone_type_id')->map(function ($phone) {
+                    return view('wmcms::partials.phone-icon')->with('phone', $phone)->render();
+                })->implode('<br />');
             })
-            ->filterColumn('full_name', function ($query, $keyword) {
-                $query->whereRaw(
-                    "first_name like ?
-                        OR middle_name like ?
-                        OR last_name like ?
-                        OR CONCAT(first_name, ' ', last_name) like ?
-                        OR CONCAT(first_name, ' ', middle_name, ' ', last_name) like ?",
-                    ["$keyword%", "$keyword%", "$keyword%", "$keyword%", "$keyword%"]
+            ->filterColumn('phones', function ($query, $keyword) {
+                $query->orWhereRaw(
+                    "(
+                    select count(1) from `phones` inner join `person_phone` 
+                    ON `phones`.`id` = `person_phone`.`phone_id` where `people`.`id` = `person_phone`.`person_id`
+                        AND (
+                        CONCAT('(', area_code, ')', SUBSTR(number, 1, 3), '-', SUBSTR(number, 4, 4)) like ?
+                        OR CONCAT(SUBSTR(number, 1, 3), '-', SUBSTR(number, 4, 4)) = ?
+                        OR number like ?
+                        OR CONCAT('x', extension) like ?
+                        )
+                    ) >= 1",
+                    ["$keyword%", "$keyword", "%$keyword%", "%$keyword%", "$keyword%"]
                 );
             })
-            ->orderColumn('full_name', 'last_name $1, first_name $1, middle_name $1')
+            ->addColumn('address_primary', function (User $user) {
+                if (is_null($user->person->addresses) || $user->person->addresses->count() < 1) {
+                    return null;
+                }
 
+                return view('wmcms::partials.address', ['address' => $user->person->addresses->first()->toArray()]);
+            })
+            ->filterColumn('address_primary', function ($query, $keyword) {
+                $query->orWhereRaw(
+                    "(street like ? 
+                        OR city like ? 
+                        OR address_states.name like ? 
+                        OR zip like ? 
+                        OR CONCAT(city, ', ', iso) like ?)",
+                    ["%$keyword%", "%$keyword%", "%$keyword%", "%$keyword%", "$keyword%"]
+                );
+            })
+            ->orderColumn('address_primary', 'city $1, iso $1, zip, $1, street $1')
             ->editColumn('updated_at', function (User $user) {
                 return with(new Carbon($user->updated_at))->format('m/d/Y h:i:sa');
             })
