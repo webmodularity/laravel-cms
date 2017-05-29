@@ -40,11 +40,13 @@ $showModalSizeClass = isset($showModalSize) && in_array($showModalSize, ['lg', '
                     image: false
                 }
             );
+            alert('{{ $showModalAjaxUrl }}/' + showId);
+            console.log('{{ $showModalAjaxUrl }}/' + showId);
             var showId = $(event.relatedTarget).data('id');
             $.ajax({
                 type:"POST",
                 url:'{{ $showModalAjaxUrl }}/' + showId,
-                //data:$(this).serialize(),
+                //data: '',
                 dataType: 'json',
                 success: function(data) {
                     toastr.success(data);
