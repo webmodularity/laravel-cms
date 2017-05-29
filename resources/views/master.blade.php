@@ -24,7 +24,7 @@
 @yield('body')
 
 <script src="{{ mix('/js/app.js') }}"></script>
-
+<script src="{{ mix('/js/dt.js') }}"></script>
 @yield('adminlte_js')
 
 </body>
