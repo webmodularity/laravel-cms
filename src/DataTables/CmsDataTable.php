@@ -26,7 +26,7 @@ class CmsDataTable extends DataTable
             ->parameters($this->getBuilderParameters());
 
         return $this->actionView
-            ? $builder->addAction(['width' => '20px', 'printable' => false, 'className' => 'all'])
+            ? $builder->addAction(['width' => '40px', 'printable' => false, 'className' => 'all'])
             : $builder;
     }
 
