@@ -34,9 +34,11 @@ class LogUserController extends Controller
             'queryString' => isset($logUser->logRequest->queryString)
                 ? $logUser->logRequest->queryString->query_string : null,
             'isAjax' => $logUser->logRequest->is_ajax ? 'Yes' : 'No',
-            'socialProvider' => $logUser->socialProvider->getName(),
+            'socialProvider' => isset($logUser->socialProvider)
+                ? $logUser->socialProvider->getName() : null,
             'sessionId' => $logUser->logRequest->session_id,
-            'ipAddress' => $logUser->logRequest->ipAddress->ip,
+            'ipAddress' => isset($logUser->logRequest->ipAddress)
+                ? $logUser->logRequest->ipAddress->ip : null,
             'user' => $logUser->user->person->email,
             'userAgent' => $logUser->logRequest->userAgent->user_agent
         ]);
