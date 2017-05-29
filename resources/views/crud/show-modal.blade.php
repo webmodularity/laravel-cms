@@ -40,9 +40,9 @@ $showModalSizeClass = isset($showModalSize) && in_array($showModalSize, ['lg', '
                     image: false
                 }
             );
+            var showId = $(event.relatedTarget).data('id');
             alert('{{ $showModalAjaxUrl }}/' + showId);
             console.log('{{ $showModalAjaxUrl }}/' + showId);
-            var showId = $(event.relatedTarget).data('id');
             $.ajax({
                 type:"POST",
                 url:'{{ $showModalAjaxUrl }}/' + showId,
