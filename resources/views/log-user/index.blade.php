@@ -13,10 +13,11 @@
     @include('wmcms::crud.datatable-box', [
         'boxTitle' => 'User Log'
     ])
-    @include('wmcms::log-user.show-modal')
 @stop
 
 @push('js')
 @dtdefaults()
 {!! $dataTable->scripts() !!}
 @endpush
+
+@include('wmcms::log-user.show-modal')
