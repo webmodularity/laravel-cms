@@ -4,14 +4,14 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>@yield('title_prefix', config('adminlte.title_prefix', ''))
-@yield('title', config('adminlte.title', 'AdminLTE 2'))
-@yield('title_postfix', config('adminlte.title_postfix', ''))</title>
+        @yield('title', config('adminlte.title', 'AdminLTE 2'))
+        @yield('title_postfix', config('adminlte.title_postfix', ''))</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <link rel="stylesheet" href="{{ mix('css/app.css') }}" />
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ mix('css/AdminLTE.css') }}" />
-
+    <link rel="stylesheet" href="{{ mix('css/dt.css') }}" />
     @yield('adminlte_css')
 
     <!--[if lt IE 9]>
