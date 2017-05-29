@@ -29,7 +29,16 @@ class LogUserController extends Controller
     {
         return response()->json([
             'createdAt' => $logUser->created_at->format('m/d/Y h:i:sa'),
-            $logUser->userAction->slug
+            'userAction' => $logUser->userAction->slug,
+            'requestMethod' => $logUser->logRequest->requestMethod->method,
+            'urlPath' => $logUser->logRequest->urlPath->url_path,
+            'queryString' => $logUser->logRequest->queryString->query_string,
+            'isAjax' => $logUser->logRequest->is_ajax,
+            'socialProvider' => $logUser->socialProvider->getName(),
+            'sessionId' => $logUser->logRequest->session_id,
+            'ipAddress' => $logUser->logRequest->ipAddress->ip,
+            'user' => $logUser->user->person->email,
+            'userAgent' => $logUser->logRequest->userAgent->user_agent
         ]);
     }
 }

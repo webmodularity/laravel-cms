@@ -32,7 +32,7 @@
     <div class="form-group">
         <label class="col-sm-2 control-label">Ajax Request</label>
         <div class="col-sm-10">
-            <p class="form-control-static"></p>
+            <p class="form-control-static" id="userLogIsAjax"></p>
         </div>
     </div>
     <div class="form-group">
@@ -44,7 +44,7 @@
     <div class="form-group">
         <label class="col-sm-2 control-label">Session ID</label>
         <div class="col-sm-10">
-            <p class="form-control-static" style="-ms-word-break: break-all; word-break: break-all; word-break: break-word;"></p>
+            <p class="form-control-static" id="userLogSessionId" style="-ms-word-break: break-all; word-break: break-all; word-break: break-word;"></p>
         </div>
     </div>
     <div class="form-group">
