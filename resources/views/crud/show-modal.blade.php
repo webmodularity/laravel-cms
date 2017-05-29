@@ -8,7 +8,7 @@ $showModalHeader = isset($showModalHeader)
 $showModalSizeClass = isset($showModalSize) && in_array($showModalSize, ['lg', 'sm'])
     ? ' modal-' . $showModalSize
     : '';
-$showModalAjaxUrl = iseet($showModalAjaxUrl)
+$showModalAjaxUrl = isset($showModalAjaxUrl)
     ? $showModalAjaxUrl
     : route(preg_replace("/\.".Route::current()->getActionMethod()."$/", '.index', Route::current()->getName()));
 ?>
