@@ -36,11 +36,25 @@ $showModalSizeClass = isset($showModalSize) && in_array($showModalSize, ['lg', '
         $("#{{ $showModalId }}Modal").on('shown.bs.modal', function(event) {
             $(this).find("div.modal-body").LoadingOverlay("show",
                 {
-                    fontawesome: "fa fa-refresh fa-spin fa-3x fa-fw",
+                    fontawesome: "fa fa-refresh fa-spin fa-2x fa-fw",
                     image: false
                 }
             );
             var showId = $(event.relatedTarget).data('id');
+            $.ajax({
+                type:"POST",
+                url:'{{ $showModalAjaxUrl }}/' + showId,
+                //data:$(this).serialize(),
+                dataType: 'json',
+                success: function(data) {
+                    toastr.success(data);
+                    console.log(data);
+                },
+                error: function(data) {
+                    toastr.error("An error occurred while fetching data!");
+                    console.log(data);
+                }
+            })
         });
         $("#{{ $showModalId }}Modal").on('hide.bs.modal', function(event) {
             $(this).find("div.modal-body").LoadingOverlay("hide");
