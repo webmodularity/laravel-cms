@@ -53,13 +53,9 @@ $showModalSizeClass = isset($showModalSize) && in_array($showModalSize, ['lg', '
                 },
                 error: function(data) {
                     toastr.error("An error occurred while fetching data!");
-                    console.log(data);
+                    modalBody.LoadingOverlay("hide");
                 }
             })
-        });
-        $("#{{ $showModalId }}Modal").on('hide.bs.modal', function(event) {
-            var modalBody = $(this).find("div.modal-body");
-            modalBody.LoadingOverlay("hide");
         });
     });
 </script>
