@@ -70,5 +70,6 @@
 @include('wmcms::crud.show-modal', [
     'showModalId' => 'userLog',
     'showModalHeader' => 'User Log Details',
+    'showModalAjaxUrl' => route('log-user.index'),
     'showModalSize' => 'lg'
 ])

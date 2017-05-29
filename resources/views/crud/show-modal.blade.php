@@ -8,6 +8,9 @@ $showModalHeader = isset($showModalHeader)
 $showModalSizeClass = isset($showModalSize) && in_array($showModalSize, ['lg', 'sm'])
     ? ' modal-' . $showModalSize
     : '';
+$showModalAjaxUrl = iseet($showModalAjaxUrl)
+    ? $showModalAjaxUrl
+    : route(preg_replace("/\.".Route::current()->getActionMethod()."$/", '.index', Route::current()->getName()));
 ?>
 <div id="{{ $showModalId }}Modal" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog{{ $showModalSizeClass }}" role="document">
@@ -43,7 +46,7 @@ $showModalSizeClass = isset($showModalSize) && in_array($showModalSize, ['lg', '
             );
             var showId = $(event.relatedTarget).data('id');
             $.ajax({
-                url:'{{ route(preg_replace("/\.".Route::current()->getActionMethod()."$/", '.index', Route::current()->getName())) }}/' + showId,
+                url:'{{ $showModalAjaxUrl }}/' + showId,
                 dataType: 'json',
                 success: function(data) {
                     $.each(data, function(index, value) {
