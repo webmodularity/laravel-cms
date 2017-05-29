@@ -43,7 +43,7 @@ $showModalSizeClass = isset($showModalSize) && in_array($showModalSize, ['lg', '
             );
             var showId = $(event.relatedTarget).data('id');
             $.ajax({
-                url:'{{ Route::current()->getActionName() }}/' + showId,
+                url:'{{ Route::current()->getActionMethod() }}/' + showId,
                 dataType: 'json',
                 success: function(data) {
                     $.each(data, function(index, value) {
