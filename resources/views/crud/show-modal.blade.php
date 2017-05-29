@@ -47,7 +47,11 @@ $showModalSizeClass = isset($showModalSize) && in_array($showModalSize, ['lg', '
                 dataType: 'json',
                 success: function(data) {
                     $.each(data, function(index, value) {
-                        modalBody.find("#{{ $showModalId }}" + _.upperFirst(index)).html(value);
+                        if (value === null) {
+                            modalBody.find("#{{ $showModalId }}" + _.upperFirst(index)).html('<span class="text-muted"><em>None</em></span>');
+                        } else {
+                            modalBody.find("#{{ $showModalId }}" + _.upperFirst(index)).html(value);
+                        }
                     });
                     modalBody.LoadingOverlay("hide");
                 },
