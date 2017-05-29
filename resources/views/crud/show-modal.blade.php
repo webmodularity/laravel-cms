@@ -52,6 +52,7 @@ $showModalSizeClass = isset($showModalSize) && in_array($showModalSize, ['lg', '
                     modalBody.LoadingOverlay("hide");
                 },
                 error: function(data) {
+                    console.log(data);
                     toastr.error("An error occurred while fetching data!");
                     modalBody.LoadingOverlay("hide");
                 }
