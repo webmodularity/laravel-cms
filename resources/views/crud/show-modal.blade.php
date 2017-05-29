@@ -51,9 +51,9 @@ $showModalAjaxUrl = isset($showModalAjaxUrl)
                 success: function(data) {
                     $.each(data, function(index, value) {
                         if (value === null) {
-                            $("#{{ $showModalId }}" + _.upperFirst(index)).html('<span class="text-muted"><em>None</em></span>');
+                            modalBody.find("#{{ $showModalId }}" + _.upperFirst(index)).html('<span class="text-muted"><em>None</em></span>');
                         } else {
-                            $("#{{ $showModalId }}" + _.upperFirst(index)).html(value);
+                            modalBody.find("#{{ $showModalId }}" + _.upperFirst(index)).html(value);
                         }
                     });
                     modalBody.LoadingOverlay("hide");
