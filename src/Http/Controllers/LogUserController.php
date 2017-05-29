@@ -31,7 +31,8 @@ class LogUserController extends Controller
             'userAction' => $logUser->userAction->slug,
             'requestMethod' => $logUser->logRequest->requestMethod->method,
             'urlPath' => $logUser->logRequest->urlPath->url_path,
-            'queryString' => $logUser->logRequest->queryString->query_string,
+            'queryString' => isset($logUser->logRequest->queryString)
+                ? $logUser->logRequest->queryString->query_string : null,
             'isAjax' => $logUser->logRequest->is_ajax ? 'Yes' : 'No',
             'socialProvider' => $logUser->socialProvider->getName(),
             'sessionId' => $logUser->logRequest->session_id,
