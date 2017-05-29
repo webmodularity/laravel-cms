@@ -34,7 +34,8 @@ $showModalSizeClass = isset($showModalSize) && in_array($showModalSize, ['lg', '
 <script>
     $(function () {
         $("#{{ $showModalId }}Modal").on('shown.bs.modal', function(event) {
-            $(this).find("div.modal-body").LoadingOverlay("show",
+            var modalBody = $(this).find("div.modal-body");
+            modalBody.LoadingOverlay("show",
                 {
                     fontawesome: "fa fa-refresh fa-spin fa-2x fa-fw",
                     image: false
@@ -45,8 +46,10 @@ $showModalSizeClass = isset($showModalSize) && in_array($showModalSize, ['lg', '
                 url:'{{ $showModalAjaxUrl }}/' + showId,
                 dataType: 'json',
                 success: function(data) {
-                    toastr.success(data);
-                    console.log(data);
+                    $.each(data, function(index, value) {
+                        modalBody.find("#{{ $showModalId }}" + _.upperFirst(index)).html(value);
+                    });
+                    modalBody.LoadingOverlay("hide");
                 },
                 error: function(data) {
                     toastr.error("An error occurred while fetching data!");
@@ -55,7 +58,8 @@ $showModalSizeClass = isset($showModalSize) && in_array($showModalSize, ['lg', '
             })
         });
         $("#{{ $showModalId }}Modal").on('hide.bs.modal', function(event) {
-            $(this).find("div.modal-body").LoadingOverlay("hide");
+            var modalBody = $(this).find("div.modal-body");
+            modalBody.LoadingOverlay("hide");
         });
     });
 </script>

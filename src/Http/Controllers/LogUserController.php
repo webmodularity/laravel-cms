@@ -3,7 +3,6 @@
 namespace WebModularity\LaravelCms\Http\Controllers;
 
 use Illuminate\Http\JsonResponse;
-use Illuminate\View\View;
 use WebModularity\LaravelCms\DataTables\LogUserDataTable;
 use WebModularity\LaravelUser\LogUser;
 
