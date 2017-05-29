@@ -9,7 +9,7 @@ use Auth;
 
 class LogUserDataTable extends CmsDataTable
 {
-    protected $actionView = 'wmcms::crud.actions.details';
+    protected $actionView = 'wmcms::crud.actions.show-modal';
 
     /**
      * Build DataTable class.
