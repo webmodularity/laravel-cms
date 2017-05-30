@@ -128,7 +128,6 @@
             });
         });
     </script>
-    <script src="{{ asset('vendor/adminlte/dist/js/app.min.js') }}"></script>
     @stack('js')
     @yield('js')
 @stop
