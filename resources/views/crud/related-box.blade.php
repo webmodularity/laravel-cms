@@ -34,7 +34,7 @@ $relatedTableId = isset($relatedTableId) && !empty($relatedTableId)
             ],
             "paging": true,
             "lengthChange": false,
-            "dom": "@dtmini()",
+            "dom": @dtmini(),
             "searching": true,
             "ordering": true,
             "info": true,
