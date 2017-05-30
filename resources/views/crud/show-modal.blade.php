@@ -36,7 +36,7 @@ $showModalAjaxUrl = isset($showModalAjaxUrl)
 @push('js')
 <script>
     $(function () {
-        $("#{{ $showModalId }}Modal").on('show.bs.modal', function(event) {
+        $("#{{ $showModalId }}Modal").on('shown.bs.modal', function(event) {
             var modalBody = $(this).find("div.modal-body");
             modalBody.LoadingOverlay("show",
                 {
