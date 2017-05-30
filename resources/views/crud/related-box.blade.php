@@ -34,6 +34,7 @@ $relatedTableId = isset($relatedTableId) && !empty($relatedTableId)
             ],
             "paging": true,
             "lengthChange": false,
+            "buttons": false,
             "searching": true,
             "ordering": true,
             "info": true,
