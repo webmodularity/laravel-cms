@@ -49,7 +49,6 @@ $showModalAjaxUrl = isset($showModalAjaxUrl)
                 url:'{{ $showModalAjaxUrl }}/' + showId,
                 dataType: 'json',
                 success: function(data) {
-                    console.log(data);
                     $.each(data, function(index, value) {
                         if (value === null) {
                             modalBody.find("#{{ $showModalId }}" + _.upperFirst(index)).html('<span class="text-muted"><em>None</em></span>');
@@ -60,7 +59,6 @@ $showModalAjaxUrl = isset($showModalAjaxUrl)
                     modalBody.LoadingOverlay("hide");
                 },
                 error: function(data) {
-                    console.log(data);
                     toastr.error("An error occurred while fetching data!");
                     modalBody.LoadingOverlay("hide");
                 }
