@@ -108,6 +108,10 @@ class CmsServiceProvider extends ServiceProvider
 
     private function loadBlade()
     {
+        Blade::directive('dtmini', function() {
+            return "<'row'<'col-sm-12'tr>><'row'<'col-sm-5'i><'col-sm-7'pf>>";
+        });
+
         Blade::directive('dtdefaults', function ($dtTableIds) {
             $inits = [];
             $dtTableIds = $dtTableIds ?: 'dataTableBuilder';
