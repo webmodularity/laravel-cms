@@ -2,6 +2,8 @@
 
 namespace WebModularity\LaravelCms\DataTables;
 
+use Carbon\Carbon;
+
 class UserRecycleDataTable extends UserDataTable
 {
     use RecyclableDataTable;
