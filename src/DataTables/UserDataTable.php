@@ -107,18 +107,7 @@ class UserDataTable extends CmsDataTable
             ->leftJoin('address_person', 'people.id', '=', 'address_person.person_id')
             ->leftJoin('addresses', 'address_person.address_id', '=', 'addresses.id')
             ->leftJoin('address_states', 'addresses.state_id', '=', 'address_states.id')
-            ->with([
-                'role',
-                'person' => function ($query) {
-                    $query->withTrashed();
-                },
-                'person.addresses' => function ($query) {
-                    $query->withTrashed();
-                },
-                'person.phones' => function ($query) {
-                    $query->withTrashed();
-                }
-            ]);
+            ->with(['role', 'person.addresses', 'person.phones']);
 
         return $this->applyScopes($query);
     }
