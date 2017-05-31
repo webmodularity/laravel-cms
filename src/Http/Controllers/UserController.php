@@ -185,9 +185,9 @@ class UserController extends Controller
      */
     public function restore($id)
     {
-        $person = Person::onlyTrashed()->findOrFail($id);
-        if ($person->restore()) {
-            return $this->sendJsonSuccessResponse("You have successfully restored " . $person->email . ".");
+        $user = User::onlyTrashed()->find($id);
+        if (!is_null($user) && $user->restore()) {
+            return $this->sendJsonSuccessResponse("You have successfully restored " . $user->person->email . ".");
         } else {
             return $this->sendJsonFailureResponse();
         }
