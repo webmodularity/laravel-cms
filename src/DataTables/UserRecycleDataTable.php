@@ -8,7 +8,7 @@ class UserRecycleDataTable extends UserDataTable
 {
     use RecyclableDataTable;
 
-    protected $actionView = 'users.actions.recycle';
+    protected $actionView = 'wmcms::users.actions.recycle';
 
     protected function recycleDataTable($dataTable)
     {
