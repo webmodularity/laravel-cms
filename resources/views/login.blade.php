@@ -81,7 +81,7 @@
     </div><!-- /.login-box -->
 @stop
 
-@section('adminlte_js')
+@push('js')
     <script>
         $(function () {
             $('input').iCheck({
@@ -91,5 +91,4 @@
             });
         });
     </script>
-    @yield('js')
-@stop
+@endpush
