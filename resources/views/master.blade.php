@@ -12,7 +12,7 @@
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ mix('css/AdminLTE.css') }}" />
     <link rel="stylesheet" href="{{ mix('css/dt.css') }}" />
-    @stack('styles')
+    @yield('adminlte_css')
 
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -26,6 +26,5 @@
 <script src="{{ mix('/js/app.js') }}"></script>
 <script src="{{ mix('js/dt.js') }}"></script>
 @yield('adminlte_js')
-@stack('scripts')
 </body>
 </html>
