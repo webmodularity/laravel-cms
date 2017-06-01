@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="{{ mix('css/app.css') }}" />
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ mix('css/AdminLTE.css') }}" />
+    <link rel="stylesheet" href="{{ mix('css/dt.css') }}" />
     @stack('styles')
 
     <!--[if lt IE 9]>
@@ -23,6 +24,7 @@
 @yield('body')
 
 <script src="{{ mix('/js/app.js') }}"></script>
+<script src="{{ mix('js/dt.js') }}"></script>
 @stack('scripts')
 
 </body>

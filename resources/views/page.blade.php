@@ -1,13 +1,5 @@
 @extends('wmcms::master')
 
-@push('styles')
-    <link rel="stylesheet" href="{{ mix('css/dt.css') }}" />
-@endpush
-
-@push('scripts')
-    <script src="{{ mix('js/dt.js') }}"></script>
-@endpush
-
 @section('body_class', 'skin-' . config('adminlte.skin', 'blue') . ' sidebar-mini ' . (config('adminlte.layout') ? [
     'boxed' => 'layout-boxed',
     'fixed' => 'fixed',
