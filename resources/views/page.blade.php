@@ -1,10 +1,10 @@
 @extends('wmcms::master')
 
-@push('css')
+@push('styles')
     <link rel="stylesheet" href="{{ mix('css/dt.css') }}" />
 @endpush
 
-@push('js')
+@push('scripts')
     <script src="{{ mix('js/dt.js') }}"></script>
 @endpush
 
