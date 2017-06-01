@@ -23,7 +23,7 @@
 @yield('body')
 
 <script src="{{ mix('/js/app.js') }}"></script>
-@stack('js')
+@stack('wmcms_js')
 
 </body>
 </html>

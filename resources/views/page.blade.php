@@ -4,7 +4,7 @@
     <link rel="stylesheet" href="{{ mix('css/dt.css') }}" />
 @endpush
 
-@push('js')
+@push('wmcms_js')
     <script src="{{ mix('js/dt.js') }}"></script>
 @endpush
 
