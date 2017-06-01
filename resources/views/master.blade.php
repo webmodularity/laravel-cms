@@ -25,6 +25,7 @@
 
 <script src="{{ mix('/js/app.js') }}"></script>
 <script src="{{ mix('js/dt.js') }}"></script>
-@yield('adminlte_js')
+@stack('js')
+@yield('js')
 </body>
 </html>
