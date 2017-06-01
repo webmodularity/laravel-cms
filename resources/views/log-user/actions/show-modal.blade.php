@@ -1,0 +1,1 @@
+@include('wmcms::crud.actions.show-modal', ['modalId' => 'userLog'])
