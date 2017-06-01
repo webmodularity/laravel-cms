@@ -82,7 +82,3 @@
         <!-- /.form-box -->
     </div><!-- /.register-box -->
 @stop
-
-@section('adminlte_js')
-    @yield('js')
-@stop

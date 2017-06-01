@@ -1,5 +1,13 @@
 @extends('wmcms::master')
 
+@push('css')
+    <link rel="stylesheet" href="{{ mix('css/dt.css') }}" />
+@endpush
+
+@push('js')
+    <script src="{{ mix('js/dt.js') }}"></script>
+@endpush
+
 @section('body_class', 'skin-' . config('adminlte.skin', 'blue') . ' sidebar-mini ' . (config('adminlte.layout') ? [
     'boxed' => 'layout-boxed',
     'fixed' => 'fixed',
@@ -117,17 +125,4 @@
 
     </div>
     <!-- ./wrapper -->
-@stop
-
-@section('adminlte_js')
-    <script>
-        $(function() {
-            $('.sidebar-toggle').click(function() {
-                var isCollapsed = $('body').hasClass("sidebar-collapse") ? 0 : 1;
-                $.ajax("{{ route('collapse-sidebar') }}?state="+ isCollapsed);
-            });
-        });
-    </script>
-    @stack('js')
-    @yield('js')
 @stop
