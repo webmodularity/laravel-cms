@@ -26,6 +26,6 @@
 <script src="{{ mix('/js/app.js') }}"></script>
 <script src="{{ mix('js/dt.js') }}"></script>
 @stack('scripts')
-
+@yield('js')
 </body>
 </html>
