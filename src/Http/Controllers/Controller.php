@@ -20,7 +20,7 @@ class Controller extends BaseController
 
     protected function sendJsonFailureResponse($error = null)
     {
-        return response()->json(['error' => $error], 422);
+        return response()->json(['error' => $error], 500);
     }
 
     protected function sendJsonSuccessResponse($successMessage = '')
