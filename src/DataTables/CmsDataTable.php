@@ -170,21 +170,18 @@ $('.perma-delete-confirm-button').click(function(){
             data: {
                 '_method': 'DELETE',
                 '_token': token,
-            },
-            success: function (response, status, xhr) {
-                console.log('success response');
-                console.log(status);
-                console.log(xhr);
+            })
+            .done(function (response) {
                 dtApi.ajax.reload(null, false);
                 toastr.success(response);
                 swal.close();
-            },
-            error: function (xhr, status, error) {
-                console.log('error response');
+            })
+            .fail(function (xhr, status, error) {
+                console.log(error);
                 var errorResponse = JSON.parse(xhr.responseText) || 'An unknown server error was encountered when attempting to restore this record.';
                 toastr.error(errorResponse);
                 swal.close();
-            }
+            });
         });
     });
 });
