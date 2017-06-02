@@ -174,7 +174,7 @@ $('.perma-delete-confirm-button').click(function(){
             dataType: 'text',
         })
         .done(function (response, status, xhr) {
-                console.log(xhr.responseText);
+                console.log(xhr);
                 dtApi.ajax.reload(null, false);
                 toastr.success(response);
                 swal.close();
