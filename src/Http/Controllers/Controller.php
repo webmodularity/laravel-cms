@@ -20,6 +20,7 @@ class Controller extends BaseController
 
     protected function sendJsonFailureResponse($error = null)
     {
+        \Log::warning('Failure JSON:' . $error);
         return response()->json($error, 422);
     }
 
