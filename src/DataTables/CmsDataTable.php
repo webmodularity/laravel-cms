@@ -174,12 +174,13 @@ $('.perma-delete-confirm-button').click(function(){
             dataType: 'text',
         })
         .done(function (response, status, xhr) {
-                console.log(xhr);
+                console.log(xhr.status);
                 dtApi.ajax.reload(null, false);
                 toastr.success(response);
                 swal.close();
         })
         .fail(function (xhr, status, error) {
+                console.log(xhr.status);
                 console.log(status);
                 console.log(error);
                 var errorResponse = 'An unknown server error was encountered when attempting to restore this record.';
