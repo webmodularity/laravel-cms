@@ -181,6 +181,8 @@ $('.perma-delete-confirm-button').click(function(){
         })
         .fail(function (xhr, status, error) {
                 console.log(xhr);
+                console.log(status);
+                console.log(error);
                 var errorResponse = 'An unknown server error was encountered when attempting to restore this record.';
                 toastr.error(errorResponse);
                 swal.close();
