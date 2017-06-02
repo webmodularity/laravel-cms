@@ -171,7 +171,6 @@ $('.perma-delete-confirm-button').click(function(){
                 '_method': 'DELETE',
                 '_token': token,
             },
-            dataType: 'json',
         })
         .done(function (response, status, xhr) {
                 console.log(xhr.responseText);
