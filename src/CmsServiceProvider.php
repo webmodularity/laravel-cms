@@ -2,6 +2,7 @@
 
 namespace WebModularity\LaravelCms;
 
+use Route;
 use View;
 use Auth;
 use Blade;
@@ -9,6 +10,7 @@ use Illuminate\Support\ServiceProvider;
 use WebModularity\LaravelContact\AddressState;
 use WebModularity\LaravelLog\LogServiceProvider;
 use WebModularity\LaravelUser\LogUser;
+use WebModularity\LaravelUser\User;
 use WebModularity\LaravelUser\UserServiceProvider;
 use WebModularity\LaravelUser\UserSocialProvider;
 use Yajra\Datatables\ButtonsServiceProvider;
@@ -55,6 +57,12 @@ class CmsServiceProvider extends ServiceProvider
 
         $this->loadViews();
         $this->loadBlade();
+
+        // Route Binding
+        // User Recycle
+        Route::bind('recycledUser', function ($id) {
+            return User::onlyTrashed()->find($id);
+        });
 
         // View Composers
         //AdminLTE

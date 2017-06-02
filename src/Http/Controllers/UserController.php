@@ -2,6 +2,7 @@
 
 namespace WebModularity\LaravelCms\Http\Controllers;
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\JsonResponse;
 use WebModularity\LaravelCms\Http\Requests\StoreUserSocialLogin;
 use WebModularity\LaravelContact\Address;
@@ -123,7 +124,7 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        if ($user->delete() && $user->person->delete()) {
+        if ($user->delete()) {
             return $this->sendJsonSuccessResponse("You have successfully deleted " . $user->person->email . ".");
         } else {
             return $this->sendJsonFailureResponse("Failed to delete " . $user->person->email . ".");
@@ -180,15 +181,13 @@ class UserController extends Controller
     /**
      * Un-delete the specified resource from the recycle bin.
      *
-     * @param  int $id
+     * @param  User $recycledUser
      * @return JsonResponse
      */
-    public function restore($id)
+    public function restore($recycledUser)
     {
-        $user = User::onlyTrashed()->find($id);
-        if (!is_null($user) && $user->restore()) {
-            $user->person->restore();
-            return $this->sendJsonSuccessResponse("You have successfully restored " . $user->person->email . ".");
+        if ($recycledUser->restore()) {
+            return $this->sendJsonSuccessResponse("You have successfully restored " . $recycledUser->person->email . ".");
         } else {
             return $this->sendJsonFailureResponse();
         }
@@ -197,15 +196,13 @@ class UserController extends Controller
     /**
      * Permanently delete the specified resource.
      *
-     * @param  int $id
+     * @param  User $recycledUser
      * @return JsonResponse
      */
-    public function permaDelete($id)
+    public function permaDelete($recycledUser)
     {
-        $user = User::onlyTrashed()->find($id);
-        if (!is_null($user) && $user->forceDelete()) {
-            $user->person->forceDelete();
-            return $this->sendJsonSuccessResponse("You have permanently deleted " . $user->person->email . ".");
+        if ($recycledUser->forceDelete()) {
+            return $this->sendJsonSuccessResponse("You have permanently deleted " . $recycledUser->person->email . ".");
         } else {
             $this->sendJsonFailureResponse();
         }
