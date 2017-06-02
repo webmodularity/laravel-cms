@@ -170,9 +170,11 @@ $('.perma-delete-confirm-button').click(function(){
             data: {
                 '_method': 'DELETE',
                 '_token': token,
-            }
+            },
+            dataType: 'json',
         })
-        .done(function (response) {
+        .done(function (response, status, xhr) {
+                console.log(JSON.parse(xhr.responseText));
                 dtApi.ajax.reload(null, false);
                 toastr.success(response);
                 swal.close();
