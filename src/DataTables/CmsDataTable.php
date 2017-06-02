@@ -172,12 +172,15 @@ $('.perma-delete-confirm-button').click(function(){
                 '_token': token,
             },
             success: function (response) {
+                console.log('success response');
                 dtApi.ajax.reload(null, false);
                 toastr.success(response);
                 swal.close();
             },
             error: function (xhr, status, error) {
-                toastr.error(JSON.parse(xhr.responseText) || 'An unknown server error was encountered when attempting to delete this record.');
+                console.log('error response');
+                var errorResponse = JSON.parse(xhr.responseText) || 'An unknown server error was encountered when attempting to restore this record.';
+                toastr.error(errorResponse);
                 swal.close();
             }
         });
