@@ -174,7 +174,7 @@ $('.perma-delete-confirm-button').click(function(){
             dataType: 'json',
         })
         .done(function (response, status, xhr) {
-                console.log(JSON.parse(xhr.responseText));
+                console.log(xhr.responseText);
                 dtApi.ajax.reload(null, false);
                 toastr.success(response);
                 swal.close();
