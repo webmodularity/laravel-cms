@@ -187,6 +187,7 @@ class UserController extends Controller
     {
         $user = User::onlyTrashed()->find($id);
         if (!is_null($user) && $user->restore()) {
+            $user->person->restore();
             return $this->sendJsonSuccessResponse("You have successfully restored " . $user->person->email . ".");
         } else {
             return $this->sendJsonFailureResponse();
@@ -201,25 +202,12 @@ class UserController extends Controller
      */
     public function permaDelete($id)
     {
-        $person = Person::onlyTrashed()->findOrFail($id);
-        if ($this->deleteChecks($person) !== false) {
-            return $this->deleteChecks($person);
-        }
-        if ($person->forceDelete()) {
-            return $this->sendJsonSuccessResponse("You have permanently deleted " . $person->email . ".");
+        $user = User::onlyTrashed()->find($id);
+        if (!is_null($user) && $user->forceDelete()) {
+            $user->person->forceDelete();
+            return $this->sendJsonSuccessResponse("You have permanently deleted " . $user->person->email . ".");
         } else {
             $this->sendJsonFailureResponse();
         }
-    }
-
-    protected function deleteChecks($person)
-    {
-        // User
-        if (!is_null($person->user)) {
-            return $this->sendJsonFailureResponse($person->email . ' is associated with one or more '
-                . 'User Profiles. Please remove the associated User before deleting.');
-        }
-
-        return false;
     }
 }
