@@ -12,7 +12,6 @@ use WebModularity\LaravelLog\LogServiceProvider;
 use WebModularity\LaravelUser\LogUser;
 use WebModularity\LaravelUser\User;
 use WebModularity\LaravelUser\UserServiceProvider;
-use WebModularity\LaravelUser\UserSocialProvider;
 use Yajra\Datatables\ButtonsServiceProvider;
 use Yajra\Datatables\DatatablesServiceProvider;
 use JeroenNoten\LaravelAdminLte\ServiceProvider as AdminLteServiceProvider;
