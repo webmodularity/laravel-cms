@@ -18,9 +18,9 @@ class Controller extends BaseController
         return response()->json();
     }
 
-    protected function sendJsonFailureResponse($error = null)
+    protected function sendJsonFailureResponse($error = 'Undefined server error.')
     {
-        return response()->json($error, 422);
+        return response()->json(['error' => $error], 422);
     }
 
     protected function sendJsonSuccessResponse($successMessage = '')
