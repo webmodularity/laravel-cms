@@ -180,9 +180,9 @@ $('.perma-delete-confirm-button').click(function(){
                 swal.close();
         })
         .fail(function (xhr, status, error) {
-                console.log(xhr.error);
+                console.log(xhr.thisFail);
                 console.log(status);
-                console.log(error.error);
+                console.log(error.thisFail);
                 var errorResponse = 'An unknown server error was encountered when attempting to restore this record.';
                 toastr.error(errorResponse);
                 swal.close();
