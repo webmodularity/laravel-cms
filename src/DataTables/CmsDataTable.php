@@ -171,8 +171,9 @@ $('.perma-delete-confirm-button').click(function(){
                 '_method': 'DELETE',
                 '_token': token,
             },
-            success: function (response) {
+            success: function (response, status) {
                 console.log('success response');
+                console.log(status);
                 dtApi.ajax.reload(null, false);
                 toastr.success(response);
                 swal.close();
