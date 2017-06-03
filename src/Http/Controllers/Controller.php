@@ -20,11 +20,10 @@ class Controller extends BaseController
 
     protected function sendJsonFailureResponse($error = 'Undefined server error.')
     {
-        \Log::warning($error);
-        return response()->json(['error' => $error], 422);
+        return response()->json($error, 422);
     }
 
-    protected function sendJsonSuccessResponse($successMessage = '')
+    protected function sendJsonSuccessResponse($successMessage = 'Success')
     {
         return response()->json($successMessage);
     }

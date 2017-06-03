@@ -204,7 +204,7 @@ class UserController extends Controller
         if ($recycledUser->forceDelete()) {
             return $this->sendJsonSuccessResponse("You have permanently deleted " . $recycledUser->person->email . ".");
         } else {
-            $this->sendJsonFailureResponse();
+            return $this->sendJsonFailureResponse("Failed to permanently delete " . $recycledUser->person->email . ".");
         }
     }
 }
