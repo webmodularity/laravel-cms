@@ -171,7 +171,7 @@ $('.perma-delete-confirm-button').click(function(){
                 '_method': 'DELETE',
                 '_token': token,
             },
-            dataType: 'text',
+            dataType: 'json',
         })
         .done(function (response, status, xhr) {
                 dtApi.ajax.reload(null, false);
@@ -179,7 +179,7 @@ $('.perma-delete-confirm-button').click(function(){
                 swal.close();
         })
         .fail(function (xhr, status, error) {
-                var errorResponse = error || 'An unknown server error was encountered when attempting to restore this record.';
+                var errorResponse = xhr.responseText || 'An unknown server error was encountered when attempting to restore this record.';
                 toastr.error(errorResponse);
                 swal.close();
         });
