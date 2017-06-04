@@ -127,7 +127,7 @@ $('.restore-confirm-button').click(function(){
             data: {
                 '_token': token,
             },
-            dataType: 'json
+            dataType: 'json'
         })
         .done(function (response, status, xhr) {
             dtApi.ajax.reload(null, false);
