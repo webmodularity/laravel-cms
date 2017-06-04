@@ -2,7 +2,6 @@
 
 namespace WebModularity\LaravelCms\Http\Controllers;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\JsonResponse;
 use WebModularity\LaravelCms\Http\Requests\StoreUserSocialLogin;
 use WebModularity\LaravelContact\Address;
@@ -28,6 +27,16 @@ class UserController extends Controller
     public function index(UserDataTable $dataTable)
     {
         return $dataTable->render('wmcms::users.index');
+    }
+
+    /**
+     * Display trashed listings.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function recycle(UserRecycleDataTable $dataTable)
+    {
+        return $dataTable->render('wmcms::users.recycle');
     }
 
     /**
@@ -132,6 +141,36 @@ class UserController extends Controller
     }
 
     /**
+     * Un-delete the specified resource from the recycle bin.
+     *
+     * @param  User $recycledUser
+     * @return JsonResponse
+     */
+    public function restore(User $recycledUser)
+    {
+        if ($recycledUser->restore()) {
+            return $this->sendJsonSuccessResponse("You have successfully restored " . $recycledUser->person->email . ".");
+        } else {
+            return $this->sendJsonFailureResponse("Failed to restore " . $recycledUser->person->email . ".");
+        }
+    }
+
+    /**
+     * Permanently delete the specified resource.
+     *
+     * @param  User $recycledUser
+     * @return JsonResponse
+     */
+    public function permaDelete(User $recycledUser)
+    {
+        if ($recycledUser->forceDelete()) {
+            return $this->sendJsonSuccessResponse("You have permanently deleted " . $recycledUser->person->email . ".");
+        } else {
+            return $this->sendJsonFailureResponse("Failed to permanently delete " . $recycledUser->person->email . ".");
+        }
+    }
+
+    /**
      * Attach specified social login to User
      *
      * @param  int $userId
@@ -166,45 +205,5 @@ class UserController extends Controller
         }
 
         return $this->sendJsonFailureResponse('Failed to unlink Social Login.');
-    }
-
-    /**
-     * Display trashed listings.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function recycle(UserRecycleDataTable $dataTable)
-    {
-        return $dataTable->render('wmcms::users.recycle');
-    }
-
-    /**
-     * Un-delete the specified resource from the recycle bin.
-     *
-     * @param  User $recycledUser
-     * @return JsonResponse
-     */
-    public function restore($recycledUser)
-    {
-        if ($recycledUser->restore()) {
-            return $this->sendJsonSuccessResponse("You have successfully restored " . $recycledUser->person->email . ".");
-        } else {
-            return $this->sendJsonFailureResponse();
-        }
-    }
-
-    /**
-     * Permanently delete the specified resource.
-     *
-     * @param  User $recycledUser
-     * @return JsonResponse
-     */
-    public function permaDelete($recycledUser)
-    {
-        if ($recycledUser->forceDelete()) {
-            return $this->sendJsonSuccessResponse("You have permanently deleted " . $recycledUser->person->email . ".");
-        } else {
-            return $this->sendJsonFailureResponse("Failed to permanently delete " . $recycledUser->person->email . ".");
-        }
     }
 }
