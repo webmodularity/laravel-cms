@@ -127,18 +127,17 @@ $('.restore-confirm-button').click(function(){
             data: {
                 '_token': token,
             },
-            success: function (response) {
-                console.log('success response');
-                dtApi.ajax.reload(null, false);
-                toastr.success(response);
-                swal.close();
-            },
-            error: function (xhr, status, error) {
-                console.log('error response');
-                var errorResponse = JSON.parse(xhr.responseText) || 'An unknown server error was encountered when attempting to restore this record.';
-                toastr.error(errorResponse);
-                swal.close();
-            }
+            dataType: 'json
+        })
+        .done(function (response, status, xhr) {
+            dtApi.ajax.reload(null, false);
+            toastr.success(response);
+            swal.close();
+        })
+        .fail(function (xhr, status, error) {
+            var errorResponse = xhr.responseText ? JSON.parse(xhr.responseText) : 'An unknown server error was encountered when attempting to restore this record.';
+            toastr.error(errorResponse);
+            swal.close();
         });
     });
 });
