@@ -4,5 +4,5 @@
     <div><span class="text-muted">{{ $person['email'] }}</span></div>
 </div>
 @else
-    @include('wmcms::partials.name-full', ['person' => $person])
+    {{ $person->email }}
 @endif
