@@ -93,9 +93,10 @@ $('.delete-confirm-button').click(function(){
             dtApi.ajax.reload(null, false);
             toastr.success(response);
             swal.close();
-        }
+        })
         .fail(function (xhr, status, error) {
-            var errorResponse = xhr.responseText ? JSON.parse(xhr.responseText) : 'An unknown server error was encountered when attempting to restore this record.';
+            var errorResponse = xhr.responseText ? JSON.parse(xhr.responseText)
+                : 'An unknown server error was encountered when attempting to restore this record.';
             toastr.error(errorResponse);
             swal.close();
         });
@@ -137,7 +138,8 @@ $('.restore-confirm-button').click(function(){
             swal.close();
         })
         .fail(function (xhr, status, error) {
-            var errorResponse = xhr.responseText ? JSON.parse(xhr.responseText) : 'An unknown server error was encountered when attempting to restore this record.';
+            var errorResponse = xhr.responseText ? JSON.parse(xhr.responseText)
+                : 'An unknown server error was encountered when attempting to restore this record.';
             toastr.error(errorResponse);
             swal.close();
         });
@@ -180,7 +182,8 @@ $('.perma-delete-confirm-button').click(function(){
                 swal.close();
         })
         .fail(function (xhr, status, error) {
-                var errorResponse = xhr.responseText ? JSON.parse(xhr.responseText) : 'An unknown server error was encountered when attempting to restore this record.';
+                var errorResponse = xhr.responseText ? JSON.parse(xhr.responseText)
+                    : 'An unknown server error was encountered when attempting to restore this record.';
                 toastr.error(errorResponse);
                 swal.close();
         });
