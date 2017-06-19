@@ -87,15 +87,18 @@ $('.delete-confirm-button').click(function(){
                 '_method': 'DELETE',
                 '_token': token,
             },
-            success: function (response) {
-                dtApi.ajax.reload(null, false);
-                toastr.success(response);
-                swal.close();
-            },
-            error: function (xhr, status, error) {
-                toastr.error(JSON.parse(xhr.responseText) || 'An unknown server error was encountered when attempting to delete this record.');
-                swal.close();
-            }
+            dataType: 'json'
+        })
+        .done(function (response, status, xhr) {
+            dtApi.ajax.reload(null, false);
+            toastr.success(response);
+            swal.close();
+        }
+        .fail(function (xhr, status, error) {
+            var errorResponse = xhr.responseText ? JSON.parse(xhr.responseText)
+                : 'An unknown server error was encountered when attempting to restore this record.';
+            toastr.error(errorResponse);
+            swal.close();
         });
     });
 });
@@ -135,7 +138,8 @@ $('.restore-confirm-button').click(function(){
             swal.close();
         })
         .fail(function (xhr, status, error) {
-            var errorResponse = xhr.responseText ? JSON.parse(xhr.responseText) : 'An unknown server error was encountered when attempting to restore this record.';
+            var errorResponse = xhr.responseText ? JSON.parse(xhr.responseText)
+                : 'An unknown server error was encountered when attempting to restore this record.';
             toastr.error(errorResponse);
             swal.close();
         });
@@ -170,7 +174,7 @@ $('.perma-delete-confirm-button').click(function(){
                 '_method': 'DELETE',
                 '_token': token,
             },
-            dataType: 'json',
+            dataType: 'json'
         })
         .done(function (response, status, xhr) {
                 dtApi.ajax.reload(null, false);
@@ -178,12 +182,46 @@ $('.perma-delete-confirm-button').click(function(){
                 swal.close();
         })
         .fail(function (xhr, status, error) {
-                var errorResponse = xhr.responseText ? JSON.parse(xhr.responseText) : 'An unknown server error was encountered when attempting to restore this record.';
+                var errorResponse = xhr.responseText ? JSON.parse(xhr.responseText)
+                    : 'An unknown server error was encountered when attempting to restore this record.';
                 toastr.error(errorResponse);
                 swal.close();
         });
     });
 });
 EOT;
+    }
+
+    public static function filterContact($query, $keyword)
+    {
+        if (static::filterContactEmail($query, $keyword) !== true
+            && static::filterContactName($query, $keyword) !== true) {
+            $query->orWhereRaw(
+                "people.email like ? OR people.first_name like ? OR people.middle_name like ? 
+                    OR people.last_name like ?",
+                ["%$keyword%", "%$keyword%", "%$keyword%", "%$keyword%"]
+            );
+        }
+    }
+
+    public static function filterContactEmail($query, $keyword)
+    {
+        if (preg_match('/email:([^\s]+)/', $keyword, $keywordMatch)) {
+            $query->orWhereRaw("people.email like ?", ["%$keywordMatch[1]%"]);
+            return true;
+        }
+        return false;
+    }
+
+    public static function filterContactName($query, $keyword)
+    {
+        if (preg_match('/name:([^\s]+)/', $keyword, $keywordMatch)) {
+            $query->orWhereRaw(
+                "people.first_name like ? OR people.middle_name like ? OR people.last_name like ?",
+                ["%$keywordMatch[1]%", "%$keywordMatch[1]%", "%$keywordMatch[1]%"]
+            );
+            return true;
+        }
+        return false;
     }
 }
