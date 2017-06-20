@@ -233,6 +233,7 @@ EOT;
     public static function filterContact($query, $keyword)
     {
         $columnFilter = static::getColumnFilter($keyword);
+        \Log::warning($columnFilter);
         if ($columnFilter->has('column')) {
             if ($columnFilter->contains('column', 'email')) {
                 static::queryAddOrWhere(
