@@ -217,14 +217,18 @@ EOT;
         ]);
     }
 
-    public static function queryAddOrWhere($query, $dbColumns, $keyword, $operator = null)
+    public static function queryAddWhere($query, $dbColumns, $keyword, $operator = null)
     {
         $operator = !empty($operator) ? $operator : 'LIKE';
         $keywordFormat = strtolower($operator) !== 'like'
             ? $keyword
             : "%$keyword%";
         foreach ($dbColumns as $dbColumn) {
-            $query->orWhere($dbColumn, $operator, $keywordFormat);
+            if ($operator == '<>') {
+                $query->where($dbColumn, $operator, $keywordFormat);
+            } else {
+                $query->orWhere($dbColumn, $operator, $keywordFormat);
+            }
         }
     }
 
