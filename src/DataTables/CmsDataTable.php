@@ -252,13 +252,13 @@ EOT;
         if ($columnFilter->has('column')) {
             if ($columnFilter['column'] == 'email') {
                 $query->where(
-                    '`people`.`email`',
+                    'people.email',
                     $columnFilter['operator'],
                     $columnFilter['keyword']
                 );
             } elseif ($columnFilter['column'] == 'name') {
                 $query->where(
-                    DB::raw("CONCAT_WS(',', `people`.`last_name`, '`people`.`first_name`')"),
+                    DB::raw("CONCAT_WS(',', 'people.last_name', 'people.first_name')"),
                     $columnFilter['operator'],
                     $columnFilter['keyword']
                 );
