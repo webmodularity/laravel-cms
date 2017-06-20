@@ -248,6 +248,17 @@ EOT;
 
     // Shared Filters
 
+    public static function filterId($query, $keyword, $tableName = null)
+    {
+        $columnName = !is_null($tableName) ? $tableName . '.' . 'id' : 'id';
+        $columnFilter = static::getColumnFilter($keyword, ['id']);
+        $query->where(
+            $columnName,
+            $columnFilter['operator'],
+            $columnFilter['keyword']
+        );
+    }
+
     public static function filterContact($query, $keyword)
     {
         $columnFilter = static::getColumnFilter($keyword, ['email', 'name']);
