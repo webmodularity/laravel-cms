@@ -255,7 +255,7 @@ EOT;
                     $columnFilter->get('operator')
                 );
             }
-            \Log::warning($query);
+            \Log::warning($columnFilter->get('keyword'));
         } else {
             static::queryAddOrWhere(
                 $query,
@@ -268,7 +268,7 @@ EOT;
                 $keyword,
                 'LIKE'
             );
-            \Log::warning($query);
+            \Log::warning($keyword);
         }
     }
 }
