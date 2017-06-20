@@ -210,14 +210,6 @@ EOT;
         if (strpos($keyword, ':') !== false
             && preg_match('/^([a-zA-Z_]+):(=|!=|!|>|<|>=|<=)?([^<>=!]+)$/', $keyword, $keywordMatch)
             && in_array($keywordMatch[1], $allowedColumnNames)) {
-            \Log::warning(collect([
-                'column' => $keywordMatch[1],
-                'operator' => static::columnFilterGetDbOperator($keywordMatch[2]),
-                'keywords' => static::columnFilterGetKeywords(
-                    $keywordMatch[3],
-                    static::columnFilterGetDbOperator($keywordMatch[2])
-                )
-            ]));
             return collect([
                 'column' => $keywordMatch[1],
                 'operator' => static::columnFilterGetDbOperator($keywordMatch[2]),
@@ -265,7 +257,8 @@ EOT;
     {
         $columnName = !is_null($tableName) ? $tableName . '.' . 'id' : 'id';
         $columnFilter = static::getColumnFilter($keyword, ['id']);
-        $columnFilter->keywords->each(function ($item, $key) use ($query, $columnName, $columnFilter) {
+        $columnFilter['keywords']->each(function ($item, $key) use ($query, $columnName, $columnFilter) {
+            \Log::warning($this);
             $query->orWhere($columnName, $columnFilter->operator, $item);
         });
     }
