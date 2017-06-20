@@ -234,9 +234,7 @@ EOT;
     {
         $columnFilter = static::getColumnFilter($keyword);
         if ($columnFilter->has('column')) {
-            \Log::warning('has column');
-            if ($columnFilter->contains('column', '=', 'email')) {
-                \Log::warning('contains email');
+            if ($columnFilter['column'] == 'email') {
                 static::queryAddOrWhere(
                     $query,
                     [
@@ -245,8 +243,7 @@ EOT;
                     $columnFilter->get('keyword'),
                     $columnFilter->get('operator')
                 );
-            } elseif ($columnFilter->contains('column', '=', 'name')) {
-                \Log::warning('contains name');
+            } elseif ($columnFilter['column'] == 'name') {
                 static::queryAddOrWhere(
                     $query,
                     [
@@ -257,7 +254,6 @@ EOT;
                     $columnFilter->get('keyword'),
                     $columnFilter->get('operator')
                 );
-                \Log::warning($query);
             }
         } else {
             static::queryAddOrWhere(
