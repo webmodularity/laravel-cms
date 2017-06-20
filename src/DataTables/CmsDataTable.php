@@ -236,6 +236,7 @@ EOT;
         if ($columnFilter->has('column')) {
             \Log::warning('has column');
             if ($columnFilter->contains('column', '=', 'email')) {
+                \Log::warning('contains email');
                 static::queryAddOrWhere(
                     $query,
                     [
