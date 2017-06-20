@@ -2,11 +2,14 @@
 
 namespace WebModularity\LaravelCms\DataTables;
 
+use DB;
 use Yajra\Datatables\Services\DataTable;
 
 class CmsDataTable extends DataTable
 {
     protected $actionView;
+
+    public static $columnFilterDbOperators = ['LIKE', 'NOT LIKE', '=', '!=', '>', '<', '>=', '<='];
 
     public function query()
     {
@@ -196,7 +199,7 @@ EOT;
 
     /**
      * Create a columnFilter collection based on passed keyword
-     * Format: [column_name]:(=|>|<|>=|<=|<>)?[keyword]
+     * Format: [column_name]:(=|!=|!|>|<|>=|<=)?[keyword]
      * If keyword does not contain a : it will be used as the keyword and all columns assumed
      * @param string $keyword
      * @return \Illuminate\Support\Collection
@@ -204,35 +207,41 @@ EOT;
     public static function getColumnFilter($keyword)
     {
         if (strpos($keyword, ':') !== false
-            && preg_match('/^([a-zA-Z_]+):(=|>|<|>=|<=|<>)?([^<>=]+)$/', $keyword, $keywordMatch)) {
+            && preg_match('/^([a-zA-Z_]+):(=|!=|!|>|<|>=|<=)?([^<>=!]+)$/', $keyword, $keywordMatch)) {
             return collect([
                 'column' => $keywordMatch[1],
-                'operator' => $keywordMatch[2],
-                'keyword' => $keywordMatch[3]
+                'operator' => static::columnFilterGetDbOperator($keywordMatch[2]),
+                'keyword' => static::columnFilterFormatKeyword(
+                    $keywordMatch[3],
+                    static::columnFilterGetDbOperator($keywordMatch[2])
+                )
             ]);
         }
 
         return collect([
-            'keyword' => $keyword
+            'operator' => static::columnFilterGetDbOperator(null),
+            'keyword' => static::columnFilterFormatKeyword(
+                $keyword,
+                static::columnFilterGetDbOperator(null)
+            )
         ]);
     }
 
-    public static function queryAddWhere($query, $dbColumns, $keyword, $operator = null)
+    public static function columnFilterFormatKeyword($keyword, $operator)
     {
-        $operator = !empty($operator) ? $operator : 'LIKE';
-        if ($operator == '<>' && count($dbColumns) > 1) {
-            $query->whereRaw(
-                "CONCAT_WS(' ', `people`.`first_name`, `people`.`middle_name`, `people`.`last_name`) NOT LIKE ?",
-                ["%$keyword%"]
-            );
-        } else {
-            $keywordFormat = strtolower($operator) !== 'like'
-                ? $keyword
-                : "%$keyword%";
-            foreach ($dbColumns as $dbColumn) {
-                $query->orWhere($dbColumn, $operator, $keywordFormat);
-            }
+        return strtolower($operator) == 'like' || strtolower($operator) == 'not like'
+            ? "%$keyword%"
+            : $keyword;
+    }
+
+    public static function columnFilterGetDbOperator($inputOperator)
+    {
+        if ($inputOperator == '!') {
+            return 'NOT LIKE';
+        } elseif (!empty($inputOperator) && in_array($inputOperator, static::$columnFilterDbOperators)) {
+            return $inputOperator;
         }
+        return 'LIKE';
     }
 
     // Shared Filters
@@ -242,38 +251,32 @@ EOT;
         $columnFilter = static::getColumnFilter($keyword);
         if ($columnFilter->has('column')) {
             if ($columnFilter['column'] == 'email') {
-                static::queryAddWhere(
-                    $query,
-                    [
-                        'people.email'
-                    ],
-                    $columnFilter->get('keyword'),
-                    $columnFilter->get('operator')
+                $query->where(
+                    '`people`.`email`',
+                    $columnFilter['operator'],
+                    $columnFilter['keyword']
                 );
             } elseif ($columnFilter['column'] == 'name') {
-                static::queryAddWhere(
-                    $query,
-                    [
-                        'people.first_name',
-                        'people.middle_name',
-                        'people.last_name'
-                    ],
-                    $columnFilter->get('keyword'),
-                    $columnFilter->get('operator')
+                $query->where(
+                    DB::raw("CONCAT_WS(',', `people`.`last_name`, '`people`.`first_name`')"),
+                    $columnFilter['operator'],
+                    $columnFilter['keyword']
                 );
             }
         } else {
-            static::queryAddWhere(
-                $query,
-                [
-                    'people.email',
-                    'people.first_name',
-                    'people.middle_name',
-                    'people.last_name'
-                ],
-                $keyword,
-                'LIKE'
-            );
+            $filterColumns =                 [
+                'people.email',
+                'people.first_name',
+                'people.middle_name',
+                'people.last_name'
+            ];
+            foreach ($filterColumns as $filterColumn) {
+                $query->orWhere(
+                    $filterColumn,
+                    $columnFilter['operator'],
+                    $columnFilter['keyword']
+                );
+            }
         }
     }
 }
