@@ -204,7 +204,8 @@ EOT;
     public static function getColumnFilter($keyword)
     {
         if (strpos($keyword, ':') !== false
-            && preg_match('/^([a-zA-Z_]+):(=|>|<|>=|<=|<>)?([A-Za-z0-9]+)$/', $keyword, $keywordMatch)) {
+            && preg_match('/^([a-zA-Z_]+):(=|>|<|>=|<=|<>)?(*+)$/', $keyword, $keywordMatch)) {
+            \Log::warning($keywordMatch[2]);
             return collect([
                 'column' => $keywordMatch[1],
                 'operator' => $keywordMatch[2],
