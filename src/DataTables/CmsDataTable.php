@@ -210,10 +210,18 @@ EOT;
         if (strpos($keyword, ':') !== false
             && preg_match('/^([a-zA-Z_]+):(=|!=|!|>|<|>=|<=)?([^<>=!]+)$/', $keyword, $keywordMatch)
             && in_array($keywordMatch[1], $allowedColumnNames)) {
+            \Log::warning(collect([
+                'column' => $keywordMatch[1],
+                'operator' => static::columnFilterGetDbOperator($keywordMatch[2]),
+                'keywords' => static::columnFilterGetKeywords(
+                    $keywordMatch[3],
+                    static::columnFilterGetDbOperator($keywordMatch[2])
+                )
+            ]));
             return collect([
                 'column' => $keywordMatch[1],
                 'operator' => static::columnFilterGetDbOperator($keywordMatch[2]),
-                'keyword' => static::columnFilterFormatKeyword(
+                'keywords' => static::columnFilterGetKeywords(
                     $keywordMatch[3],
                     static::columnFilterGetDbOperator($keywordMatch[2])
                 )
@@ -222,18 +230,23 @@ EOT;
 
         return collect([
             'operator' => static::columnFilterGetDbOperator(null),
-            'keyword' => static::columnFilterFormatKeyword(
+            'keywords' => static::columnFilterGetKeywords(
                 $keyword,
                 static::columnFilterGetDbOperator(null)
             )
         ]);
     }
 
-    public static function columnFilterFormatKeyword($keyword, $operator)
+    public static function columnFilterGetKeywords($keyword, $operator)
     {
-        return strtolower($operator) == 'like' || strtolower($operator) == 'not like'
-            ? "%$keyword%"
-            : $keyword;
+        $keywordsFormatted = [];
+        $keywords = explode(',', $keyword);
+        foreach ($keywords as $splitKeyword) {
+            $keywords[] = strtolower($operator) == 'like' || strtolower($operator) == 'not like'
+                ? "%$splitKeyword%"
+                : $splitKeyword;
+        }
+        return collect($keywordsFormatted);
     }
 
     public static function columnFilterGetDbOperator($inputOperator)
@@ -252,11 +265,9 @@ EOT;
     {
         $columnName = !is_null($tableName) ? $tableName . '.' . 'id' : 'id';
         $columnFilter = static::getColumnFilter($keyword, ['id']);
-        $query->where(
-            $columnName,
-            $columnFilter['operator'],
-            $columnFilter['keyword']
-        );
+        $columnFilter->keywords->each(function ($item, $key) use ($query, $columnName, $columnFilter) {
+            $query->orWhere($columnName, $columnFilter->operator, $item);
+        });
     }
 
     public static function filterContact($query, $keyword)
