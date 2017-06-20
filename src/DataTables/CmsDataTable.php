@@ -220,9 +220,11 @@ EOT;
     public static function queryAddOrWhere($query, $dbColumns, $keyword, $operator = null)
     {
         $operator = !empty($operator) ? $operator : 'LIKE';
+        \Log::warning($operator);
         $keywordFormat = $operator !== strtolower('like')
             ? $keyword
             : "%$keyword%";
+        \Log::warning($keywordFormat);
         foreach ($dbColumns as $dbColumn) {
             $query->orWhere($dbColumn, $operator, $keywordFormat);
         }
@@ -234,9 +236,7 @@ EOT;
     {
         $columnFilter = static::getColumnFilter($keyword);
         if ($columnFilter->has('column')) {
-            \Log::warning('has column');
             if ($columnFilter['column'] == 'email') {
-                \Log::warning('has email');
                 static::queryAddOrWhere(
                     $query,
                     [
@@ -246,7 +246,6 @@ EOT;
                     $columnFilter->get('operator')
                 );
             } elseif ($columnFilter['column'] == 'name') {
-                \Log::warning('has name');
                 static::queryAddOrWhere(
                     $query,
                     [
@@ -258,7 +257,6 @@ EOT;
                     $columnFilter->get('operator')
                 );
             }
-            \Log::warning($columnFilter->get('keyword'));
         } else {
             static::queryAddOrWhere(
                 $query,
@@ -271,7 +269,6 @@ EOT;
                 $keyword,
                 'LIKE'
             );
-            \Log::warning($keyword);
         }
     }
 }
