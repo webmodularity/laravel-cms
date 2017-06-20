@@ -234,7 +234,9 @@ EOT;
     {
         $columnFilter = static::getColumnFilter($keyword);
         if ($columnFilter->has('column')) {
+            \Log::warning('has column');
             if ($columnFilter['column'] == 'email') {
+                \Log::warning('has email');
                 static::queryAddOrWhere(
                     $query,
                     [
@@ -244,6 +246,7 @@ EOT;
                     $columnFilter->get('operator')
                 );
             } elseif ($columnFilter['column'] == 'name') {
+                \Log::warning('has name');
                 static::queryAddOrWhere(
                     $query,
                     [
