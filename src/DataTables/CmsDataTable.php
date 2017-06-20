@@ -202,12 +202,14 @@ EOT;
      * Format: [column_name]:(=|!=|!|>|<|>=|<=)?[keyword]
      * If keyword does not contain a : it will be used as the keyword and all columns assumed
      * @param string $keyword
+     * @param array $allowedColumnNames
      * @return \Illuminate\Support\Collection
      */
-    public static function getColumnFilter($keyword)
+    public static function getColumnFilter($keyword, $allowedColumnNames = [])
     {
         if (strpos($keyword, ':') !== false
-            && preg_match('/^([a-zA-Z_]+):(=|!=|!|>|<|>=|<=)?([^<>=!]+)$/', $keyword, $keywordMatch)) {
+            && preg_match('/^([a-zA-Z_]+):(=|!=|!|>|<|>=|<=)?([^<>=!]+)$/', $keyword, $keywordMatch)
+            && in_array($keywordMatch[1], $allowedColumnNames)) {
             return collect([
                 'column' => $keywordMatch[1],
                 'operator' => static::columnFilterGetDbOperator($keywordMatch[2]),
@@ -248,7 +250,7 @@ EOT;
 
     public static function filterContact($query, $keyword)
     {
-        $columnFilter = static::getColumnFilter($keyword);
+        $columnFilter = static::getColumnFilter($keyword, ['email', 'name']);
         if ($columnFilter->has('column')) {
             if ($columnFilter['column'] == 'email') {
                 $query->where(
