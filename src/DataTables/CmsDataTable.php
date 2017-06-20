@@ -192,36 +192,81 @@ $('.perma-delete-confirm-button').click(function(){
 EOT;
     }
 
+    // Column Filter
+
+    /**
+     * Create a columnFilter collection based on passed keyword
+     * Format: [column_name]:(=|>|<|>=|<=|<>)?[keyword]
+     * If keyword does not contain a : it will be used as the keyword and all columns assumed
+     * @param string $keyword
+     * @return \Illuminate\Support\Collection
+     */
+    public static function getColumnFilter($keyword)
+    {
+        if (strpos($keyword, ':') !== false
+            && preg_match('/^([a-zA-Z_]+):(=|>|<|>=|<=|<>)?([A-Za-z0-9]+)$/', $keyword, $keywordMatch)) {
+            return collect([
+                'column' => $keywordMatch[1],
+                'operator' => $keywordMatch[2],
+                'keyword' => $keywordMatch[3]
+            ]);
+        }
+
+        return collect([
+            'keyword' => $keyword
+        ]);
+    }
+
+    public static function queryAddOrWhere($query, $dbColumns, $keyword, $operator = null)
+    {
+        $operator = !empty($operator) ? $operator : 'LIKE';
+        $keywordFormat = $operator !== strtolower('like')
+            ? $keyword
+            : "%$keyword%";
+        foreach ($dbColumns as $dbColumn) {
+            $query->orWhere($dbColumn, $operator, $keywordFormat);
+        }
+    }
+
+    // Shared Filters
+
     public static function filterContact($query, $keyword)
     {
-        if (static::filterContactEmail($query, $keyword) !== true
-            && static::filterContactName($query, $keyword) !== true) {
-            $query->orWhereRaw(
-                "people.email like ? OR people.first_name like ? OR people.middle_name like ? 
-                    OR people.last_name like ?",
-                ["%$keyword%", "%$keyword%", "%$keyword%", "%$keyword%"]
+        $columnFilter = static::getColumnFilter($keyword);
+        if ($columnFilter->has('column')) {
+            if ($columnFilter->contains('column', 'email')) {
+                static::queryAddOrWhere(
+                    $query,
+                    [
+                        'people.email'
+                    ],
+                    $columnFilter->get('keyword'),
+                    $columnFilter->get('operator')
+                );
+            } elseif ($columnFilter->contains('column', 'name')) {
+                static::queryAddOrWhere(
+                    $query,
+                    [
+                        'people.first_name',
+                        'people.middle_name',
+                        'people.last_name'
+                    ],
+                    $columnFilter->get('keyword'),
+                    $columnFilter->get('operator')
+                );
+            }
+        } else {
+            static::queryAddOrWhere(
+                $query,
+                [
+                    'people.email',
+                    'people.first_name',
+                    'people.middle_name',
+                    'people.last_name'
+                ],
+                $keyword,
+                'LIKE'
             );
         }
-    }
-
-    public static function filterContactEmail($query, $keyword)
-    {
-        if (preg_match('/email:([^\s]+)/', $keyword, $keywordMatch)) {
-            $query->orWhereRaw("people.email like ?", ["%$keywordMatch[1]%"]);
-            return true;
-        }
-        return false;
-    }
-
-    public static function filterContactName($query, $keyword)
-    {
-        if (preg_match('/name:([^\s]+)/', $keyword, $keywordMatch)) {
-            $query->orWhereRaw(
-                "people.first_name like ? OR people.middle_name like ? OR people.last_name like ?",
-                ["%$keywordMatch[1]%", "%$keywordMatch[1]%", "%$keywordMatch[1]%"]
-            );
-            return true;
-        }
-        return false;
     }
 }
