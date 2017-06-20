@@ -233,8 +233,8 @@ EOT;
     public static function filterContact($query, $keyword)
     {
         $columnFilter = static::getColumnFilter($keyword);
-        \Log::warning($columnFilter);
         if ($columnFilter->has('column')) {
+            \Log::warning('has column');
             if ($columnFilter->contains('column', 'email')) {
                 static::queryAddOrWhere(
                     $query,
@@ -245,6 +245,7 @@ EOT;
                     $columnFilter->get('operator')
                 );
             } elseif ($columnFilter->contains('column', 'name')) {
+                \Log::warning('contains name');
                 static::queryAddOrWhere(
                     $query,
                     [
@@ -255,6 +256,7 @@ EOT;
                     $columnFilter->get('keyword'),
                     $columnFilter->get('operator')
                 );
+                \Log::warning($query);
             }
         } else {
             static::queryAddOrWhere(
