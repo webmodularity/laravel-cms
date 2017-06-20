@@ -239,7 +239,7 @@ EOT;
         $columnFilter = static::getColumnFilter($keyword);
         if ($columnFilter->has('column')) {
             if ($columnFilter['column'] == 'email') {
-                static::queryAddOrWhere(
+                static::queryAddWhere(
                     $query,
                     [
                         'people.email'
@@ -248,7 +248,7 @@ EOT;
                     $columnFilter->get('operator')
                 );
             } elseif ($columnFilter['column'] == 'name') {
-                static::queryAddOrWhere(
+                static::queryAddWhere(
                     $query,
                     [
                         'people.first_name',
@@ -260,7 +260,7 @@ EOT;
                 );
             }
         } else {
-            static::queryAddOrWhere(
+            static::queryAddWhere(
                 $query,
                 [
                     'people.email',
