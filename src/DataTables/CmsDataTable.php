@@ -220,11 +220,9 @@ EOT;
     public static function queryAddOrWhere($query, $dbColumns, $keyword, $operator = null)
     {
         $operator = !empty($operator) ? $operator : 'LIKE';
-        \Log::warning($operator);
-        $keywordFormat = $operator !== strtolower('like')
+        $keywordFormat = strtolower($operator) !== 'like'
             ? $keyword
             : "%$keyword%";
-        \Log::warning($keywordFormat);
         foreach ($dbColumns as $dbColumn) {
             $query->orWhere($dbColumn, $operator, $keywordFormat);
         }
