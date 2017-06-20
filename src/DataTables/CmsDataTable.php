@@ -220,13 +220,16 @@ EOT;
     public static function queryAddWhere($query, $dbColumns, $keyword, $operator = null)
     {
         $operator = !empty($operator) ? $operator : 'LIKE';
-        $keywordFormat = strtolower($operator) !== 'like'
-            ? $keyword
-            : "%$keyword%";
-        foreach ($dbColumns as $dbColumn) {
-            if ($operator == '<>') {
-                $query->where($dbColumn, $operator, $keywordFormat);
-            } else {
+        if ($operator == '<>' && count($dbColumns) > 1) {
+            $query->whereRaw(
+                "CONCAT_WS(' ', `people`.`first_name`, `people`.`middle_name`, `people`.`last_name`) NOT LIKE ?",
+                ["%$keyword%"]
+            );
+        } else {
+            $keywordFormat = strtolower($operator) !== 'like'
+                ? $keyword
+                : "%$keyword%";
+            foreach ($dbColumns as $dbColumn) {
                 $query->orWhere($dbColumn, $operator, $keywordFormat);
             }
         }
