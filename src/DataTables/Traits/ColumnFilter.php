@@ -69,7 +69,7 @@ trait ColumnFilter
                     $query->whereIn($columnName, $columnFilter['keyword']);
                 }
             } else {
-                if (count($columnNames) > 0) {
+                if (count($columnNames) > 0 && !in_array($columnFilter['operator'], ['NOT LIKE', '!='])) {
                     $query->orWhere($columnName, $columnFilter['operator'], $columnFilter['keyword']);
                 } else {
                     $query->where($columnName, $columnFilter['operator'], $columnFilter['keyword']);
