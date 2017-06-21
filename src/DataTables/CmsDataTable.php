@@ -3,10 +3,13 @@
 namespace WebModularity\LaravelCms\DataTables;
 
 use DB;
+use WebModularity\LaravelCms\DataTables\Traits\ColumnFilter;
 use Yajra\Datatables\Services\DataTable;
 
 class CmsDataTable extends DataTable
 {
+    use ColumnFilter;
+
     protected $actionView;
 
     public static $columnFilterDbOperators = ['LIKE', 'NOT LIKE', '=', '!=', '>', '<', '>=', '<='];
@@ -195,72 +198,17 @@ $('.perma-delete-confirm-button').click(function(){
 EOT;
     }
 
-    // Column Filter
-
-    /**
-     * Create a columnFilter collection based on passed keyword
-     * Format: [column_name]:(=|!=|!|>|<|>=|<=)?[keyword]
-     * If keyword does not contain a : it will be used as the keyword and all columns assumed
-     * @param string $keyword
-     * @param array $allowedColumnNames
-     * @return \Illuminate\Support\Collection
-     */
-    public static function getColumnFilter($keyword, $allowedColumnNames = [])
-    {
-        if (strpos($keyword, ':') !== false
-            && preg_match('/^([a-zA-Z_]+):(=|!=|!|>|<|>=|<=)?([^<>=!]+)$/', $keyword, $keywordMatch)
-            && in_array($keywordMatch[1], $allowedColumnNames)) {
-            return collect([
-                'column' => $keywordMatch[1],
-                'operator' => static::columnFilterGetDbOperator($keywordMatch[2]),
-                'keywords' => static::columnFilterGetKeywords(
-                    $keywordMatch[3],
-                    static::columnFilterGetDbOperator($keywordMatch[2])
-                )
-            ]);
-        }
-
-        return collect([
-            'operator' => static::columnFilterGetDbOperator(null),
-            'keywords' => static::columnFilterGetKeywords(
-                $keyword,
-                static::columnFilterGetDbOperator(null)
-            )
-        ]);
-    }
-
-    public static function columnFilterGetKeywords($keyword, $operator)
-    {
-        $keywordsFormatted = [];
-        $keywords = explode(',', $keyword);
-        foreach ($keywords as $splitKeyword) {
-            $keywords[] = strtolower($operator) == 'like' || strtolower($operator) == 'not like'
-                ? "%$splitKeyword%"
-                : $splitKeyword;
-        }
-        return collect($keywordsFormatted);
-    }
-
-    public static function columnFilterGetDbOperator($inputOperator)
-    {
-        if ($inputOperator == '!') {
-            return 'NOT LIKE';
-        } elseif (!empty($inputOperator) && in_array($inputOperator, static::$columnFilterDbOperators)) {
-            return $inputOperator;
-        }
-        return 'LIKE';
-    }
-
     // Shared Filters
 
     public static function filterId($query, $keyword, $tableName = null)
     {
         $columnName = !is_null($tableName) ? $tableName . '.' . 'id' : 'id';
         $columnFilter = static::getColumnFilter($keyword, ['id']);
-        $columnFilter['keywords']->each(function ($item, $key) use ($query, $columnName, $columnFilter) {
-            \Log::warning($this);
-            $query->orWhere($columnName, $columnFilter->operator, $item);
-        });
+        $query->where(
+            $columnName,
+            $columnFilter['operator'],
+            $columnFilter['keyword']
+        );
     }
 
     public static function filterContact($query, $keyword)
