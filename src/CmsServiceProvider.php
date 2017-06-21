@@ -132,6 +132,9 @@ class CmsServiceProvider extends ServiceProvider
         \"<'row'<'col-sm-12'tr>>\" +
         \"<'row'<'col-sm-5'li><'col-sm-7'p>>\",
     });
+        $.extend(DataTable.ext.classes, {
+            sFilterInput: \"form-control\",
+        });
 </script>";
 
         return $script;
