@@ -2,7 +2,7 @@
 
 namespace WebModularity\LaravelCms\DataTables\Traits;
 
-use Illuminate\Support\Collection;
+use Illuminate\Database\Eloquent\Collection;
 
 trait ColumnFilter
 {
@@ -64,6 +64,8 @@ trait ColumnFilter
         foreach ($columnNames as $columnName) {
             if ($columnFilter['keyword'] instanceof Collection) {
                 \Log::warning('keyword column was collection!');
+            } else {
+                \Log::warning('keyword column was NOT collection!');
             }
             $query->orWhere(
                 $columnName,
