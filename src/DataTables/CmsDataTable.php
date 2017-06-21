@@ -212,32 +212,25 @@ EOT;
         $columnFilter = static::getColumnFilter($keyword, ['email', 'name']);
         if ($columnFilter->has('column')) {
             if ($columnFilter['column'] == 'email') {
-                $query->where(
-                    'people.email',
-                    $columnFilter['operator'],
-                    $columnFilter['keyword']
-                );
+                static::columnFilterAddQuery($query, 'people.email', $columnFilter);
             } elseif ($columnFilter['column'] == 'name') {
-                $query->where(
-                    DB::raw("CONCAT_WS(',', people.last_name, people.first_name)"),
-                    $columnFilter['operator'],
-                    $columnFilter['keyword']
+                static::columnFilterAddQuery(
+                    $query,
+                    DB::raw("CONCAT_WS(' ', people.first_name, people.last_name)"),
+                    $columnFilter
                 );
             }
         } else {
-            $filterColumns =                 [
-                'people.email',
-                'people.first_name',
-                'people.middle_name',
-                'people.last_name'
-            ];
-            foreach ($filterColumns as $filterColumn) {
-                $query->orWhere(
-                    $filterColumn,
-                    $columnFilter['operator'],
-                    $columnFilter['keyword']
-                );
-            }
+            static::columnFilterAddQuery(
+                $query,
+                [
+                    'people.email',
+                    'people.first_name',
+                    'people.middle_name',
+                    'people.last_name'
+                ],
+                $columnFilter
+            );
         }
     }
 }
