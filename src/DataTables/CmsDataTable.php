@@ -216,7 +216,7 @@ EOT;
             } elseif ($columnFilter['column'] == 'name') {
                 static::columnFilterAddQuery(
                     $query,
-                    DB::raw("CONCAT_WS(' ', people.first_name, people.last_name)"),
+                    ['people.first_name', 'people.last_name'],
                     $columnFilter
                 );
             }
