@@ -45,7 +45,7 @@ trait ColumnFilter
         } elseif (strpos($keyword, '/') !== false
             && preg_match("/(\d{1,2})\/(\d{1,2})\/(\d{4})(\d{6})?/", $keyword, $keywordMatch)) {
             if (isset($keywordMatch[4]) && !empty($keywordMatch[4])) {
-                $time = str_split($keywordMatch[4]);
+                $time = str_split($keywordMatch[4], 2);
                 return Carbon::create(
                     $keywordMatch[3],
                     $keywordMatch[1],
