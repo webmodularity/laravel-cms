@@ -204,11 +204,7 @@ EOT;
     {
         $columnName = !is_null($tableName) ? $tableName . '.' . 'id' : 'id';
         $columnFilter = static::getColumnFilter($keyword, ['id']);
-        $query->where(
-            $columnName,
-            $columnFilter['operator'],
-            $columnFilter['keyword']
-        );
+        static::columnFilterAddQuery($query, $columnName, $columnFilter);
     }
 
     public static function filterContact($query, $keyword)

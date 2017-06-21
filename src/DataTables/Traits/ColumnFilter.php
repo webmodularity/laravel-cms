@@ -2,6 +2,8 @@
 
 namespace WebModularity\LaravelCms\DataTables\Traits;
 
+use Illuminate\Support\Collection;
+
 trait ColumnFilter
 {
     /**
@@ -46,13 +48,28 @@ trait ColumnFilter
             : $keyword;
     }
 
-    public static function columnFilterGetDbOperator($inputOperator)
+    public static function columnFilterGetDbOperator($operator)
     {
-        if ($inputOperator == '!') {
+        if ($operator == '!') {
             return 'NOT LIKE';
-        } elseif (!empty($inputOperator) && in_array($inputOperator, static::$columnFilterDbOperators)) {
-            return $inputOperator;
+        } elseif (!empty($operator) && in_array($operator, static::$columnFilterDbOperators)) {
+            return $operator;
         }
         return 'LIKE';
+    }
+
+    public static function columnFilterAddQuery($query, $columnNames, $columnFilter)
+    {
+        $columnNames = is_string($columnNames) ? [$columnNames] : $columnNames;
+        foreach ($columnNames as $columnName) {
+            if ($columnFilter['keyword'] instanceof Collection) {
+                \Log::warning('keyword column was collection!');
+            }
+            $query->orWhere(
+                $columnName,
+                $columnFilter['operator'],
+                $columnFilter['keyword']
+            );
+        }
     }
 }
