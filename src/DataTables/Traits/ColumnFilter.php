@@ -62,16 +62,19 @@ trait ColumnFilter
     {
         $columnNames = is_string($columnNames) ? [$columnNames] : $columnNames;
         foreach ($columnNames as $columnName) {
-            if ($columnFilter['keyword'] instanceof Collection) {
-                \Log::warning('keyword column was collection!');
+            if (is_array($columnFilter['keyword'])) {
+                if (strtolower($columnFilter['operator']) == 'not like') {
+                    $query->whereNotIn($columnName, $columnFilter['keyword']);
+                } else {
+                    $query->whereIn($columnName, $columnFilter['keyword']);
+                }
             } else {
-                \Log::warning($columnFilter['keyword']);
+                if (count($columnNames) > 0) {
+                    $query->orWhere($columnName, $columnFilter['operator'], $columnFilter['keyword']);
+                } else {
+                    $query->where($columnName, $columnFilter['operator'], $columnFilter['keyword']);
+                }
             }
-            $query->orWhere(
-                $columnName,
-                $columnFilter['operator'],
-                $columnFilter['keyword']
-            );
         }
     }
 }
