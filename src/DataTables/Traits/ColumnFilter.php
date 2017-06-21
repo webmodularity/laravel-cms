@@ -65,7 +65,7 @@ trait ColumnFilter
             if ($columnFilter['keyword'] instanceof Collection) {
                 \Log::warning('keyword column was collection!');
             } else {
-                \Log::warning('keyword column was NOT collection!');
+                \Log::warning($columnFilter['keyword']);
             }
             $query->orWhere(
                 $columnName,
