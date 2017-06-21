@@ -2,7 +2,7 @@
 
 namespace WebModularity\LaravelCms\DataTables\Traits;
 
-use Illuminate\Database\Eloquent\Collection;
+use Carbon\Carbon;
 
 trait ColumnFilter
 {
@@ -42,6 +42,20 @@ trait ColumnFilter
     {
         if (strpos($keyword, ',') !== false) {
             return explode(',', $keyword);
+        } elseif (strpos($keyword, '/') !== false
+            && preg_match("/(\d{1,2})\/(\d{1,2})\/(\d{4})(\d{6})?/", $keyword, $keywordMatch)) {
+            if (isset($keywordMatch[4]) && !empty($keywordMatch[4])) {
+                $time = str_split($keywordMatch[4]);
+                return Carbon::create(
+                    $keywordMatch[3],
+                    $keywordMatch[1],
+                    $keywordMatch[2],
+                    $time[0],
+                    $time[1],
+                    $time[2]
+                )->format('Y-m-d H:i:s');
+            }
+            return Carbon::createFromDate($keywordMatch[3], $keywordMatch[1], $keywordMatch[2])->format('Y-m-d');
         }
         return strtolower($operator) == 'like' || strtolower($operator) == 'not like'
             ? "%$keyword%"
@@ -69,7 +83,7 @@ trait ColumnFilter
                     $query->whereIn($columnName, $columnFilter['keyword']);
                 }
             } else {
-                if (count($columnNames) > 0 && !in_array($columnFilter['operator'], ['NOT LIKE', '!='])) {
+                if (count($columnNames) > 1 && !in_array($columnFilter['operator'], ['NOT LIKE', '!='])) {
                     $query->orWhere($columnName, $columnFilter['operator'], $columnFilter['keyword']);
                 } else {
                     $query->where($columnName, $columnFilter['operator'], $columnFilter['keyword']);

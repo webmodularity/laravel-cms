@@ -202,9 +202,11 @@ EOT;
 
     public static function filterId($query, $keyword, $tableName = null)
     {
-        $columnName = !is_null($tableName) ? $tableName . '.' . 'id' : 'id';
-        $columnFilter = static::getColumnFilter($keyword, ['id']);
-        static::columnFilterAddQuery($query, $columnName, $columnFilter);
+        static::columnFilterAddQuery(
+            $query,
+            !is_null($tableName) ? $tableName . '.' . 'id' : 'id',
+            static::getColumnFilter($keyword, ['id'])
+        );
     }
 
     public static function filterContact($query, $keyword)
@@ -223,14 +225,18 @@ EOT;
         } else {
             static::columnFilterAddQuery(
                 $query,
-                [
-                    'people.email',
-                    'people.first_name',
-                    'people.middle_name',
-                    'people.last_name'
-                ],
+                ['people.email', 'people.first_name', 'people.last_name'],
                 $columnFilter
             );
         }
+    }
+
+    public static function filterUpdatedAt($query, $keyword, $tableName = null)
+    {
+        static::columnFilterAddQuery(
+            $query,
+            !is_null($tableName) ? $tableName . '.' . 'updated_at' : 'updated_at',
+            static::getColumnFilter($keyword, ['updated_at'])
+        );
     }
 }
