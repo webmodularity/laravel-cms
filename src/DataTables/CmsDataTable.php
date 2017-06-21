@@ -2,7 +2,6 @@
 
 namespace WebModularity\LaravelCms\DataTables;
 
-use DB;
 use WebModularity\LaravelCms\DataTables\Traits\ColumnFilter;
 use Yajra\Datatables\Services\DataTable;
 
