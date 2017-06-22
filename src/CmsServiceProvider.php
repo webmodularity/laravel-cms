@@ -125,19 +125,13 @@ class CmsServiceProvider extends ServiceProvider
     $.extend(true, $.fn.dataTable.defaults, {
         buttons: [],
         language: {
-            search: '<div class="input-group" style="width: 100%">' +
-            '_INPUT_' +
-            '<div class="input-group-btn">' +
-            '<button id="datepicker-updated_at" type="button" class="btn btn-sm btn-primary" title="Updated At"><span class="fa fa-calendar"></span>&nbsp;<span class="fa fa-caret-down"></span></button>' +
-            '<button id="filter" type="button" class="btn btn-sm btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="fa fa-search"></span>&nbsp;<span class="fa fa-caret-down"></span></button>' +
-            '<ul class="dropdown-menu dropdown-menu-right"><li><a href="javascript:void(0);" id="dataTableSearchClear"><span class="fa fa-times"></span>&nbsp;Clear Search</a></li></ul></div></div>',
-            searchPlaceholder: "Filter Results...",
+            search: "",
             lengthMenu: '<div class="btn-group" role="group">' +
             '<button type="button" class="btn btn-sm btn-default">Results per page:</button>' +
             '_MENU_' +
             '</div>'
         },
-        dom: "<'row'<'col-sm-9'B><'col-sm-3'<'pull-right'f>>>" +
+        dom: "<'row'<'col-sm-9'B><'col-sm-3'<'input-group'<'input-group-btn'>f<'input-group-btn'>>>>" +
         "<'row'<'col-sm-12'tr>>" +
         "<'row'<'col-sm-5'il><'col-sm-7'p>>"
     });
