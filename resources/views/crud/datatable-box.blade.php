@@ -17,7 +17,9 @@
     $(function () {
         var resultsPerPageSelect = $('#dataTableBuilder_length').find('select');
         resultsPerPageSelect.selectpicker({
-            style: 'btn-default btn-sm'
+            style: 'btn-default btn-sm',
+            width: 'fit',
+            dropdownAlignRight: true
         });
     });
 </script>
