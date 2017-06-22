@@ -125,9 +125,10 @@ class CmsServiceProvider extends ServiceProvider
     $.extend(true, $.fn.dataTable.defaults, {
         buttons: [],
         language: {
-            search: "<div class='has-feedback'>_INPUT_<span class='glyphicon glyphicon-search form-control-feedback'></span></div>",
-            searchPlaceholder: "Search...",
-            lengthMenu: "_MENU_"
+            lengthMenu: '<div class="btn-group" role="group">' +
+            '<button type="button" class="btn btn-sm btn-default" disabled>' +
+            '_MENU_' +
+            '</div>'
         },
         dom: "<'row'<'col-sm-9'B><'col-sm-3'<'pull-right'l>>>" +
         "<'row'<'col-sm-12'tr>>" +
