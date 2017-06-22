@@ -125,13 +125,13 @@ class CmsServiceProvider extends ServiceProvider
     $.extend(true, $.fn.dataTable.defaults, {
         buttons: [],
         language: {
-            search: '<div class="input-group"><div class="input-group-btn"><button type="button" class="btn btn-sm btn-default" disabled>Filter Results:</button></div>' +
+            search: '<div class="input-group">' +
             '_INPUT_' +
             '<div class="input-group-btn">' +
             '<button id="datepicker-updated_at" type="button" class="btn btn-sm btn-primary" title="Updated At"><span class="fa fa-calendar"></span>&nbsp;<span class="fa fa-caret-down"></span></button>' +
             '<button id="filter" type="button" class="btn btn-sm btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="fa fa-search"></span>&nbsp;<span class="fa fa-caret-down"></span></button>' +
             '<ul class="dropdown-menu dropdown-menu-right"><li><a href="javascript:void(0);" id="dataTableSearchClear"><span class="fa fa-times"></span>&nbsp;Clear Search</a></li></ul></div></div>',
-            searchPlaceholder: "Search...",
+            searchPlaceholder: "Filter Results...",
             lengthMenu: '<div class="btn-group" role="group">' +
             '<button type="button" class="btn btn-sm btn-default">Results per page:</button>' +
             '_MENU_' +
