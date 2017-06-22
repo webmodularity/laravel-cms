@@ -127,7 +127,7 @@ class CmsServiceProvider extends ServiceProvider
         language: {
             search: "<div class='has-feedback'>_INPUT_<span class='glyphicon glyphicon-search form-control-feedback'></span></div>",
             searchPlaceholder: "Search...",
-            lengthMenu: "Results per page: _MENU_"
+            lengthMenu: "_MENU_"
         },
         dom: "<'row'<'col-sm-9'B><'col-sm-3'<'pull-right'l>>>" +
         "<'row'<'col-sm-12'tr>>" +

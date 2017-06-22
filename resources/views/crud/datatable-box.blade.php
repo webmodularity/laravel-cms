@@ -11,3 +11,15 @@
     </div>
     <!-- /.box-body -->
 </div>
+
+@push('js')
+<script>
+    $(function () {
+        var resultsPerPageSelect = $('#dataTableBuilder_length').find('select');
+        resultsPerPageSelect.selectpicker({
+            style: 'btn-info',
+            size: 4
+        });
+    });
+</script>
+@endpush
