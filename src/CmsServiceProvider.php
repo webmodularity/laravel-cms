@@ -126,7 +126,7 @@ class CmsServiceProvider extends ServiceProvider
         buttons: [],
         language: {
             lengthMenu: '<div class="btn-group" role="group">' +
-            '<button type="button" class="btn btn-sm btn-default" disabled>' +
+            '<button type="button" class="btn btn-sm btn-default" disabled>Results per page:</button>' +
             '_MENU_' +
             '</div>'
         },
