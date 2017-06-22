@@ -129,9 +129,9 @@ class CmsServiceProvider extends ServiceProvider
             searchPlaceholder: "Search...",
             lengthMenu: "Results per page: _MENU_"
         },
-        dom: "<'row'<'col-sm-9'B><'col-sm-3'i>>" +
+        dom: "<'row'<'col-sm-9'B><'col-sm-3'<'pull-right'l>>>" +
         "<'row'<'col-sm-12'tr>>" +
-        "<'row'<'col-sm-5'l><'col-sm-7'p>>"
+        "<'row'<'col-sm-5'i><'col-sm-7'p>>"
     });
     $.extend($.fn.dataTable.ext.classes, {
         sFilterInput: "form-control",
