@@ -125,15 +125,14 @@ class CmsServiceProvider extends ServiceProvider
     $.extend(true, $.fn.dataTable.defaults, {
         buttons: [],
         language: {
-            search: "",
             lengthMenu: '<div class="btn-group" role="group">' +
             '<button type="button" class="btn btn-sm btn-default">Results per page:</button>' +
             '_MENU_' +
             '</div>'
         },
-        dom: "<'row'<'col-sm-9'B><'col-sm-3'<'input-group'<'input-group-btn'>f<'input-group-btn'>>>>" +
+        dom: "<'row'<'col-sm-9'B><'col-sm-3'<'pull-right'l>>>" +
         "<'row'<'col-sm-12'tr>>" +
-        "<'row'<'col-sm-5'il><'col-sm-7'p>>"
+        "<'row'<'col-sm-5'i><'col-sm-7'p>>"
     });
     
     $.extend($.fn.dataTable.ext.classes, {
