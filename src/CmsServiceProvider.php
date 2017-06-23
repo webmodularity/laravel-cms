@@ -125,7 +125,7 @@ class CmsServiceProvider extends ServiceProvider
     $.extend(true, $.fn.dataTable.defaults, {
         buttons: [],
         language: {
-            lengthMenu: '<div class="pull-right"' +
+            lengthMenu: '<div class="pull-right">' +
                 '<div class="btn-group" role="group">' +
                 '<button type="button" class="btn btn-sm btn-default">Results per page:</button>' +
                 '_MENU_' +
