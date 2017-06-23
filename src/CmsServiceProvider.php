@@ -137,7 +137,7 @@ class CmsServiceProvider extends ServiceProvider
             '_MENU_' +
             '</div>'
         },
-        dom: "<'row'<'col-sm-8'B><'col-sm-4'<'#dataTableFilter.pull-right'f>>>" +
+        dom: "<'row'<'col-sm-8'B><'col-sm-4'f>>" +
         "<'row'<'col-sm-12'tr>>" +
         "<'row'<'col-sm-5'li><'col-sm-7'p>>"
     });
