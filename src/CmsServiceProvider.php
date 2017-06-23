@@ -126,16 +126,13 @@ class CmsServiceProvider extends ServiceProvider
         buttons: [],
         language: {
             lengthMenu: '<div class="btn-group" role="group">' +
-                '<button type="button" class="btn btn-sm btn-default" id="dataTableLengthReset" title="Reset to Default"><span class="text-muted">Results per page:</span></button>' +
+                '<button type="button" class="btn btn-sm btn-default" id="dataTableLengthReset" title="Reset to Default" disabled><span class="text-muted">Results per page:</span></button>' +
                 '_MENU_' +
                 '</div>'
         },
         dom: "<'row'<'col-sm-8'B><'col-sm-4'<'pull-right'l>>>" +
             "<'row'<'col-sm-12'tr>>" +
             "<'row'<'col-sm-5'i><'col-sm-7'p>>"
-    });
-     $.extend($.fn.dataTable.ext.classes, {
-        sLengthSelect: "form-control input-sm selectpicker",
     });
 </script>
 EOT;
