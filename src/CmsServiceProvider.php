@@ -134,6 +134,9 @@ class CmsServiceProvider extends ServiceProvider
             "<'row'<'col-sm-12'tr>>" +
             "<'row'<'col-sm-5'i><'col-sm-7'p>>"
     });
+     $.extend($.fn.dataTable.ext.classes, {
+        sLengthSelect: "form-control input-sm selectpicker",
+    });
 </script>
 EOT;
         });
