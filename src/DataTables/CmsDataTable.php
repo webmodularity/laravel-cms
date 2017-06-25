@@ -11,10 +11,12 @@ class CmsDataTable extends DataTable
 
     protected $actionView;
     protected $order = [[0, 'asc']];
+    protected $buttons = ['wmcopy', 'wmcolvis', 'export'];
     protected $responsive = false;
     protected $pageLength = 10;
     protected $lengthMenu = [10, 25, 50, 100];
     protected $filename;
+    protected $deleteConfirm = false;
 
     public static $columnFilterDbOperators = ['LIKE', 'NOT LIKE', '=', '!=', '>', '<', '>=', '<='];
 
@@ -42,12 +44,14 @@ class CmsDataTable extends DataTable
 
     protected function getButtons()
     {
-        return ['wmcopy', 'wmcolvis', 'export'];
+        return $this->buttons;
     }
 
     protected function getDrawCallback()
     {
-        //
+        if ($this->deleteConfirm === true) {
+            return $this->getDeleteConfirmAlert();
+        }
     }
 
     protected function getColumns()
