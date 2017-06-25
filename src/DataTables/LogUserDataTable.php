@@ -10,6 +10,9 @@ use Auth;
 class LogUserDataTable extends CmsDataTable
 {
     protected $actionView = 'wmcms::log-user.actions.show-modal';
+    protected $order = [[0, "desc"]];
+    protected $responsive = true;
+    protected $pageLength = 50;
 
     /**
      * Build DataTable class.
@@ -169,31 +172,5 @@ class LogUserDataTable extends CmsDataTable
                 ]
             )
         ];
-    }
-
-    protected function getBuilderParameters()
-    {
-        return array_merge(
-            parent::getBuilderParameters(),
-            [
-                'responsive' => true,
-                'pageLength' => 50
-            ]
-        );
-    }
-
-    protected function getOrder()
-    {
-        return [[0, "desc"]];
-    }
-
-    /**
-     * Get filename for export.
-     *
-     * @return string
-     */
-    protected function filename()
-    {
-        return 'userlogdatatable_' . time();
     }
 }

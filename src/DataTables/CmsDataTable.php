@@ -10,6 +10,11 @@ class CmsDataTable extends DataTable
     use ColumnFilter;
 
     protected $actionView;
+    protected $order = [[0, 'asc']];
+    protected $responsive = false;
+    protected $pageLength = 10;
+    protected $lengthMenu = [10, 25, 50, 100];
+    protected $filename;
 
     public static $columnFilterDbOperators = ['LIKE', 'NOT LIKE', '=', '!=', '>', '<', '>=', '<='];
 
@@ -50,9 +55,16 @@ class CmsDataTable extends DataTable
         return [];
     }
 
-    protected function getOrder()
+    /**
+     * Get filename for export.
+     *
+     * @return string
+     */
+    protected function filename()
     {
-        return [[0, 'asc']];
+        return !is_null($this->filename)
+            ? $this->filename . time()
+            : (new \ReflectionClass($this))->getShortName() . time();
     }
 
     protected function getBuilderParameters()
@@ -62,7 +74,10 @@ class CmsDataTable extends DataTable
             'drawCallback' => "function( settings ) {
                 ".$this->getDrawCallback()."
             }",
-            'order' => $this->getOrder()
+            'order' => (array) $this->order,
+            'responsive' => (bool) $this->responsive,
+            'pageLength' => (int) $this->pageLength,
+            'lengthMenu' => (array) $this->lengthMenu
         ];
     }
 
