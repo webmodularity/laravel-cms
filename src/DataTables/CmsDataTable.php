@@ -51,8 +51,8 @@ class CmsDataTable extends DataTable
     {
         return $this->recycle === true
             ? collect($this->buttons)->reject(function ($value) {
-                return $value == 'create';
-            })->flatten()->all()
+                return $value == 'create' || $value == 'recycle';
+            })->prepend('recycle')->flatten()->all()
             : $this->buttons;
     }
 
