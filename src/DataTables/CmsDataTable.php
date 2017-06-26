@@ -106,6 +106,7 @@ class CmsDataTable extends DataTable
 
     public static function recycleColumns($columns)
     {
+        \Log::warning($columns);
         $filtered = array_where($columns, function ($value, $key) {
             return !is_string($value) || ($value != 'updated_at' && $value != 'created_at');
         });
