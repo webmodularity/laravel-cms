@@ -13,7 +13,7 @@ class CmsDataTable extends DataTable
     public static $actionView;
     public static $order = [[0, 'asc']];
     public static $buttons = ['wmcopy', 'wmcolvis', 'export'];
-    public static $filename;
+    public static $exportFilename;
     public static $deleteConfirm = true;
     public static $responsive = false;
     public static $pageLength = 10;
@@ -90,8 +90,8 @@ class CmsDataTable extends DataTable
      */
     protected function filename()
     {
-        return !is_null(static::$filename)
-            ? static::$filename . time()
+        return !is_null(static::$exportFilename)
+            ? static::$exportFilename . time()
             : (new \ReflectionClass($this))->getShortName() . time();
     }
 
