@@ -104,6 +104,16 @@ class CmsDataTable extends DataTable
             });
     }
 
+    public static function recycleColumns($columns)
+    {
+        $filtered = array_where($columns, function ($value, $key) {
+            return !is_string($value) || ($value != 'updated_at' && $value != 'created_at');
+        });
+        array_push($filtered, 'deleted_at');
+
+        return $filtered;
+    }
+
     protected function getBuilderParameters()
     {
         return [
