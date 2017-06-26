@@ -109,7 +109,7 @@ class CmsDataTable extends DataTable
         if ($columns.contains('name', 'created_at')) {
             $builder->removeColumn('created_at');
         }
-        $builder->addColumn('deleted_at', function ($model) {
+        $builder->html->addColumn('deleted_at', function ($model) {
             return $model->deleted_at ? with(new Carbon($model->deleted_at))->format('m/d/Y h:i:sa') : null;
         });
     }
