@@ -2,6 +2,7 @@
 
 namespace WebModularity\LaravelCms\DataTables;
 
+use Carbon\Carbon;
 use WebModularity\LaravelCms\DataTables\Traits\ColumnFilter;
 use Yajra\Datatables\Services\DataTable;
 
@@ -51,10 +52,20 @@ class CmsDataTable extends DataTable
         return $this->buttons;
     }
 
+    protected function getActionView()
+    {
+        return $this->recycle === true ? $this->recycleActionView : $this->actionView;
+    }
+
     protected function getDrawCallback()
     {
         if ($this->deleteConfirm === true) {
-            return $this->getDeleteConfirmAlert();
+            if ($this->recycle === true) {
+                return $this->getRestoreConfirmAlert() . "\n"
+                    . $this->getPermaDeleteConfirmAlert();
+            } else {
+                return $this->getDeleteConfirmAlert();
+            }
         }
     }
 
@@ -73,6 +84,15 @@ class CmsDataTable extends DataTable
         return !is_null($this->filename)
             ? $this->filename . time()
             : (new \ReflectionClass($this))->getShortName() . time();
+    }
+
+    protected function recycleDataTable($dataTable)
+    {
+        return $dataTable
+            ->onlyTrashed()
+            ->editColumn('deleted_at', function ($model) {
+                return $model->deleted_at ? with(new Carbon($model->deleted_at))->format('m/d/Y h:i:sa') : null;
+            });
     }
 
     protected function getBuilderParameters()
