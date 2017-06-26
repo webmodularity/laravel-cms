@@ -1,6 +1,6 @@
 <?php
 
-namespace WebModularity\LaravelCms\DataTables;
+namespace WebModularity\LaravelCms\DataTables\Traits;
 
 use Carbon\Carbon;
 

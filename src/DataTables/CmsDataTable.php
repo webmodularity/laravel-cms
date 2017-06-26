@@ -12,13 +12,24 @@ class CmsDataTable extends DataTable
     protected $actionView;
     protected $order = [[0, 'asc']];
     protected $buttons = ['wmcopy', 'wmcolvis', 'export'];
+    protected $filename;
+    protected $deleteConfirm = true;
     protected $responsive = false;
     protected $pageLength = 10;
     protected $lengthMenu = [10, 25, 50, 100];
-    protected $filename;
-    protected $deleteConfirm = false;
+    // Recycle
+    public $recyclable = false;
+    protected $recycleActionView;
+    protected $recycleOrder;
 
     public static $columnFilterDbOperators = ['LIKE', 'NOT LIKE', '=', '!=', '>', '<', '>=', '<='];
+
+    public function __construct(Datatables $datatables, Factory $viewFactory)
+    {
+        parent::__construct($datatables, $viewFactory);
+
+
+    }
 
     public function query()
     {
