@@ -10,7 +10,7 @@ class CmsDataTable extends DataTable
 {
     use ColumnFilter;
 
-    protected $actionView;
+    public static $actionView;
     protected $order = [[0, 'asc']];
     protected $buttons = ['wmcopy', 'wmcolvis', 'export'];
     protected $filename;
@@ -20,8 +20,8 @@ class CmsDataTable extends DataTable
     protected $lengthMenu = [10, 25, 50, 100];
     // Recycle
     public $recycle = false;
-    protected $recycleActionView;
-    protected $recycleOrder;
+    public static $recycleActionView;
+    public static $recycleOrder;
 
     public static $columnFilterDbOperators = ['LIKE', 'NOT LIKE', '=', '!=', '>', '<', '>=', '<='];
 
@@ -115,7 +115,7 @@ class CmsDataTable extends DataTable
         }
         $builder->removeColumn('action');
         $builder->addColumn(['data' => 'deleted_at']);
-        $builder->addAction($this->recycleActionView);
+        $builder->addAction(static::$recycleActionView);
     }
 
     protected function getBuilderParameters()
