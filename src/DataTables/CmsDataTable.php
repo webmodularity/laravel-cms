@@ -114,7 +114,8 @@ class CmsDataTable extends DataTable
             $builder->removeColumn('created_at');
         }
         $builder->addCOlumn([
-            'name' => 'deleted_at'
+            'name' => 'deleted_at',
+            'title' => 'Deleted At'
         ]);
     }
 
