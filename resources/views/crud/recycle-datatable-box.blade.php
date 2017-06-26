@@ -13,5 +13,5 @@
 </div>
 
 @push('js')
-@include('wmcms::crud.datatable-style')
+@include('wmcms::crud.datatable-common')
 @endpush
