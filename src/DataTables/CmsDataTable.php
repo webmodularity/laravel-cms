@@ -104,15 +104,15 @@ class CmsDataTable extends DataTable
             });
     }
 
-    public static function recycleColumns($columns)
+    public static function recycleColumns($builder)
     {
-        \Log::warning($columns);
-        $filtered = array_where($columns, function ($value, $key) {
-            return !is_string($value) || ($value != 'updated_at' && $value != 'created_at');
-        });
-        array_push($filtered, 'deleted_at');
-
-        return $filtered;
+        $columns = $builder->getColumns();
+        if ($columns.contains('name', 'updated_at')) {
+            $builder->removeColumn('updated_at');
+        }
+        if ($columns.contains('name', 'created_at')) {
+            $builder->removeColumn('created_at');
+        }
     }
 
     protected function getBuilderParameters()
