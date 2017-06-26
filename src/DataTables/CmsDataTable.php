@@ -116,7 +116,7 @@ class CmsDataTable extends DataTable
         $action = $columns->pop();
         $columns->push(['data' => 'deleted_at', 'title' => 'Deleted At']);
         $columns->push($action);
-        $builder->columns($columns);
+        $builder->columns($columns->all());
     }
 
     protected function getBuilderParameters()
