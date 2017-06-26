@@ -11,3 +11,7 @@
     </div>
     <!-- /.box-body -->
 </div>
+
+@push('js')
+@include('wmcms::crud.datatable-style')
+@endpush
