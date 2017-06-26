@@ -97,7 +97,11 @@ class CmsDataTable extends DataTable
 
     public static function recycleDataTable($dataTable)
     {
-        return $dataTable->onlyTrashed();
+        return $dataTable
+            ->onlyTrashed()
+            ->editColumn('deleted_at', function ($model) {
+                return $model->deleted_at ? with(new Carbon($model->deleted_at))->format('m/d/Y h:i:sa') : null;
+            });
     }
 
     public static function recycleColumns($builder)
@@ -109,9 +113,9 @@ class CmsDataTable extends DataTable
         if ($columns.contains('name', 'created_at')) {
             $builder->removeColumn('created_at');
         }
-        $builder->html->addColumn('deleted_at', function ($model) {
-            return $model->deleted_at ? with(new Carbon($model->deleted_at))->format('m/d/Y h:i:sa') : null;
-        });
+        $builder->addCOlumn([
+            'name' => 'deleted_at'
+        ]);
     }
 
     protected function getBuilderParameters()
