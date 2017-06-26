@@ -42,7 +42,7 @@ class CmsDataTable extends DataTable
             ->ajax('')
             ->parameters($this->getBuilderParameters());
 
-        return $this->actionView
+        return $this->getActionView()
             ? $builder->addAction(['printable' => false, 'className' => 'all text-center'])
             : $builder;
     }
@@ -58,12 +58,12 @@ class CmsDataTable extends DataTable
 
     protected function getActionView()
     {
-        return $this->recycle === true ? $this->recycleActionView : $this->actionView;
+        return $this->recycle === true ? static::$recycleActionView : static::$actionView;
     }
 
     protected function getOrder()
     {
-        return $this->recycle === true ? $this->recycleOrder : $this->order;
+        return $this->recycle === true ? static::$recycleOrder : $this->order;
     }
 
     protected function getDrawCallback()
@@ -113,9 +113,10 @@ class CmsDataTable extends DataTable
         if ($columns.contains('name', 'created_at')) {
             $builder->removeColumn('created_at');
         }
-        $builder->removeColumn('action');
-        $builder->addColumn(['data' => 'deleted_at', 'title' => 'Deleted At']);
-        $builder->addAction(['data' => 'action', 'title' => 'Action']);
+        $action = $columns->pop();
+        $columns->push(['data' => 'deleted_at', 'title' => 'Deleted At']);
+        $columns->push($action);
+        $builder->columns($columns);
     }
 
     protected function getBuilderParameters()
