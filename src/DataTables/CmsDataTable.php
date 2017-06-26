@@ -90,9 +90,11 @@ class CmsDataTable extends DataTable
      */
     protected function filename()
     {
+        $addRecycled = $this->recycle === true ? 'recycled' : '';
+        $uniqueString = $addRecycled . time();
         return !is_null(static::$exportFilename)
-            ? static::$exportFilename . time()
-            : (new \ReflectionClass($this))->getShortName() . time();
+            ? static::$exportFilename . $uniqueString
+            : (new \ReflectionClass($this))->getShortName() . $uniqueString;
     }
 
     public static function recycleDataTable($dataTable)
