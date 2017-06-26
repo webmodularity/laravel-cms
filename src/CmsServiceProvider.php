@@ -55,7 +55,6 @@ class CmsServiceProvider extends ServiceProvider
         $this->publishes([__DIR__ . '/../config/cms.php' => config_path('wm/cms.php')], 'config');
 
         $this->loadViews();
-        $this->loadBlade();
 
         // Route Binding
         // User Recycle
@@ -111,31 +110,5 @@ class CmsServiceProvider extends ServiceProvider
         $viewsPath = __DIR__ . '/../resources/views';
         $this->loadViewsFrom($viewsPath, 'wmcms');
         $this->publishes([$viewsPath => base_path('resources/views/vendor/wmcms')], 'views');
-    }
-
-    private function loadBlade()
-    {
-        Blade::directive('dtmini', function() {
-            return "\"<'row'<'col-sm-12'tr>><'row'<'col-sm-5'i><'col-sm-7'pf>>\"";
-        });
-
-        Blade::directive('dtdefaults', function () {
-            return <<< EOT
-<script>
-    $.extend(true, $.fn.dataTable.defaults, {
-        buttons: [],
-        language: {
-            lengthMenu: '<div class="btn-group" role="group">' +
-                '<button type="button" class="btn btn-sm btn-default" id="dataTableLengthReset"><span class="text-muted">Results per page:</span></button>' +
-                '_MENU_' +
-                '</div>'
-        },
-        dom: "<'row'<'col-sm-8'B><'col-sm-4'<'pull-right'l>>>" +
-            "<'row'<'col-sm-12'tr>>" +
-            "<'row'<'col-sm-5'i><'col-sm-7'p>>"
-    });
-</script>
-EOT;
-        });
     }
 }
