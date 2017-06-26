@@ -18,7 +18,7 @@ class CmsDataTable extends DataTable
     protected $pageLength = 10;
     protected $lengthMenu = [10, 25, 50, 100];
     // Recycle
-    public $recyclable = false;
+    public $recycle = false;
     protected $recycleActionView;
     protected $recycleOrder;
 
