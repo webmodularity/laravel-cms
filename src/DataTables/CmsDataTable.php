@@ -106,13 +106,13 @@ class CmsDataTable extends DataTable
 
     public static function recycleColumns($builder)
     {
-        $columns = $builder->getColumns();
         if ($columns.contains('name', 'updated_at')) {
             $builder->removeColumn('updated_at');
         }
         if ($columns.contains('name', 'created_at')) {
             $builder->removeColumn('created_at');
         }
+        $columns = $builder->getColumns();
         $action = $columns->pop();
         $columns->push(['data' => 'deleted_at', 'title' => 'Deleted At']);
         $columns->push($action);
