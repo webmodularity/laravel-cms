@@ -129,7 +129,7 @@ class CmsDataTable extends DataTable
     {
         return [
             'buttons' => $this->getButtons(),
-            'drawCallback' => "function() {
+            'drawCallback' => "function( settings ) {
                 ".$this->getDrawCallback()."
             }",
             'order' => $this->getOrder(),
