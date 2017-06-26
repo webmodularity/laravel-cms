@@ -24,13 +24,6 @@ class CmsDataTable extends DataTable
 
     public static $columnFilterDbOperators = ['LIKE', 'NOT LIKE', '=', '!=', '>', '<', '>=', '<='];
 
-    public function __construct(Datatables $datatables, Factory $viewFactory)
-    {
-        parent::__construct($datatables, $viewFactory);
-
-
-    }
-
     public function query()
     {
         //
