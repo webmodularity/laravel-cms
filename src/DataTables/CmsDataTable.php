@@ -115,7 +115,7 @@ class CmsDataTable extends DataTable
         }
         $builder->removeColumn('action');
         $builder->addColumn(['data' => 'deleted_at', 'title' => 'Deleted At']);
-        $builder->addAction(['data' => static::$recycleActionView, 'title' => 'Action']);
+        $builder->addAction(['data' => 'action', 'title' => 'Action']);
     }
 
     protected function getBuilderParameters()
