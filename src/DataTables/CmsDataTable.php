@@ -47,12 +47,8 @@ class CmsDataTable extends DataTable
             : $builder;
     }
 
-    protected function getButtons()
+    protected function getWmcmsButtons()
     {
-        $recycleButtons = array_filter($this->buttons, function ($value) {
-            return $value != 'create';
-        });
-        \Log::warning($recycleButtons);
         return $this->recycle === true
             ? array_filter($this->buttons, function ($value) {
                 return $value != 'create';
@@ -106,7 +102,7 @@ class CmsDataTable extends DataTable
     protected function getBuilderParameters()
     {
         return [
-            'buttons' => $this->getButtons(),
+            'buttons' => $this->getWmcmsButtons(),
             'drawCallback' => "function( settings ) {
                 ".$this->getDrawCallback()."
             }",
