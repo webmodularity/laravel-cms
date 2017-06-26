@@ -11,13 +11,13 @@ class CmsDataTable extends DataTable
     use ColumnFilter;
 
     public static $actionView;
-    protected $order = [[0, 'asc']];
-    protected $buttons = ['wmcopy', 'wmcolvis', 'export'];
-    protected $filename;
-    protected $deleteConfirm = true;
-    protected $responsive = false;
-    protected $pageLength = 10;
-    protected $lengthMenu = [10, 25, 50, 100];
+    public static $order = [[0, 'asc']];
+    public static $buttons = ['wmcopy', 'wmcolvis', 'export'];
+    public static $filename;
+    public static $deleteConfirm = true;
+    public static $responsive = false;
+    public static $pageLength = 10;
+    public static $lengthMenu = [10, 25, 50, 100];
     // Recycle
     public $recycle = false;
     public static $recycleActionView;
@@ -50,10 +50,10 @@ class CmsDataTable extends DataTable
     protected function getButtons()
     {
         return $this->recycle === true
-            ? collect($this->buttons)->reject(function ($value) {
+            ? collect(static::$buttons)->reject(function ($value) {
                 return $value == 'create' || $value == 'recycle';
             })->prepend('recycle')->flatten()->all()
-            : $this->buttons;
+            : static::$buttons;
     }
 
     protected function getActionView()
@@ -63,17 +63,17 @@ class CmsDataTable extends DataTable
 
     protected function getOrder()
     {
-        return $this->recycle === true ? static::$recycleOrder : $this->order;
+        return $this->recycle === true ? static::$recycleOrder : static::$order;
     }
 
     protected function getDrawCallback()
     {
-        if ($this->deleteConfirm === true) {
+        if (static::$deleteConfirm === true) {
             if ($this->recycle === true) {
-                return $this->getRestoreConfirmAlert() . "\n"
-                    . $this->getPermaDeleteConfirmAlert();
+                return static::getRestoreConfirmAlert() . "\n"
+                    . static::getPermaDeleteConfirmAlert();
             } else {
-                return $this->getDeleteConfirmAlert();
+                return static::getDeleteConfirmAlert();
             }
         }
     }
@@ -90,8 +90,8 @@ class CmsDataTable extends DataTable
      */
     protected function filename()
     {
-        return !is_null($this->filename)
-            ? $this->filename . time()
+        return !is_null(static::$filename)
+            ? static::$filename . time()
             : (new \ReflectionClass($this))->getShortName() . time();
     }
 
@@ -104,6 +104,10 @@ class CmsDataTable extends DataTable
             });
     }
 
+    /**
+     * Modify HTML Builder columns to replace created_at|updated_at columns with deleted_at
+     * @param \Yajra\Datatables\Html\Builder $builder
+     */
     public static function recycleColumns($builder)
     {
         if ($builder->getColumns().contains('name', 'updated_at')) {
@@ -123,17 +127,17 @@ class CmsDataTable extends DataTable
     {
         return [
             'buttons' => $this->getButtons(),
-            'drawCallback' => "function( settings ) {
+            'drawCallback' => "function() {
                 ".$this->getDrawCallback()."
             }",
             'order' => $this->getOrder(),
-            'responsive' => (bool) $this->responsive,
-            'pageLength' => (int) $this->pageLength,
-            'lengthMenu' => (array) $this->lengthMenu
+            'responsive' => (bool) static::$responsive,
+            'pageLength' => (int) static::$pageLength,
+            'lengthMenu' => (array) static::$lengthMenu
         ];
     }
 
-    protected function getDeleteConfirmAlert()
+    public static function getDeleteConfirmAlert()
     {
         return <<< EOT
 $('.delete-confirm-button').click(function(){
@@ -177,7 +181,7 @@ $('.delete-confirm-button').click(function(){
 EOT;
     }
 
-    protected function getRestoreConfirmAlert()
+    public static function getRestoreConfirmAlert()
     {
         return <<< EOT
 $('.restore-confirm-button').click(function(){
@@ -220,7 +224,7 @@ $('.restore-confirm-button').click(function(){
 EOT;
     }
 
-    protected function getPermaDeleteConfirmAlert()
+    public static function getPermaDeleteConfirmAlert()
     {
         return <<< EOT
 $('.perma-delete-confirm-button').click(function(){
