@@ -86,7 +86,7 @@ class CmsDataTable extends DataTable
             : (new \ReflectionClass($this))->getShortName() . time();
     }
 
-    protected function recycleDataTable($dataTable)
+    public static function recycleDataTable($dataTable)
     {
         return $dataTable
             ->onlyTrashed()
