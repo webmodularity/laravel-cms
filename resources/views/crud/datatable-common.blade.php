@@ -11,30 +11,32 @@
         "<'row'<'col-sm-5'i><'col-sm-7'p>>"
     });
 
-    // lengthMenu
-    var dataTableLengthSelect = $('#dataTableBuilder_length').find('select').selectpicker({
-        style: 'btn-default btn-sm',
-        width: 'fit',
-        dropdownAlignRight: true
-    });
+    $(function () {
+        // lengthMenu
+        var dataTableLengthSelect = $('#dataTableBuilder_length').find('select').selectpicker({
+            style: 'btn-default btn-sm',
+            width: 'fit',
+            dropdownAlignRight: true
+        });
 
-    $('#dataTableLengthReset').click(function(event) {
-        event.stopPropagation();
-        dataTableLengthSelect.selectpicker('toggle');
-    });
+        $('#dataTableLengthReset').click(function (event) {
+            event.stopPropagation();
+            dataTableLengthSelect.selectpicker('toggle');
+        });
 
-    // filter
-    $('#dataTableFilterReset').click(function(event) {
-        var searchInput = $('#dataTableSearch');
-        searchInput.val('');
-        searchInput.trigger('keyup');
-    });
+        // filter
+        $('#dataTableFilterReset').click(function (event) {
+            var searchInput = $('#dataTableSearch');
+            searchInput.val('');
+            searchInput.trigger('keyup');
+        });
 
-    $('#columnFilterHelper').click(function(event) {
-        WMCMS.DT.FILTER.columnFilter(
-            $(event.target).data("column-filter-name"),
-            $(event.target).data("column-filter-value"),
-            $(event.target).data("column-filter-replace") !== false
-        );
+        $('#columnFilterHelper').click(function (event) {
+            WMCMS.DT.FILTER.columnFilter(
+                $(event.target).data("column-filter-name"),
+                $(event.target).data("column-filter-value"),
+                $(event.target).data("column-filter-replace") !== false
+            );
+        });
     });
 </script>
