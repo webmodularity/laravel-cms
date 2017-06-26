@@ -61,6 +61,11 @@ class CmsDataTable extends DataTable
         return $this->recycle === true ? $this->recycleActionView : $this->actionView;
     }
 
+    protected function getOrder()
+    {
+        return $this->recycle === true ? $this->recycleOrder : $this->order;
+    }
+
     protected function getDrawCallback()
     {
         if ($this->deleteConfirm === true) {
@@ -106,7 +111,7 @@ class CmsDataTable extends DataTable
             'drawCallback' => "function( settings ) {
                 ".$this->getDrawCallback()."
             }",
-            'order' => (array) $this->order,
+            'order' => $this->getOrder(),
             'responsive' => (bool) $this->responsive,
             'pageLength' => (int) $this->pageLength,
             'lengthMenu' => (array) $this->lengthMenu
