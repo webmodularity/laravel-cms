@@ -113,10 +113,13 @@ class CmsDataTable extends DataTable
         if ($columns.contains('name', 'created_at')) {
             $builder->removeColumn('created_at');
         }
-        $builder->addCOlumn([
+        $action = $columns->pop();
+        $builder->addColumn([
             'data' => 'deleted_at',
             'title' => 'Deleted At'
         ]);
+        $columns->push($action);
+        $builder->columns($columns);
     }
 
     protected function getBuilderParameters()
