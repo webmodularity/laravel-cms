@@ -49,14 +49,11 @@ class CmsDataTable extends DataTable
 
     protected function getButtons()
     {
-        if ($this->recycle === true) {
-            $buttons = collect($this->buttons);
-            $filteredButtons = $buttons->reject(function ($value, $key) {
-                return ($value == 'create');
-            });
-            return $filteredButtons->all();
-        }
-        return $this->buttons;
+        return $this->recycle === true
+            ? array_filter($this->buttons, function ($value) {
+                return $value != 'create';
+            })
+            : $this->buttons;
     }
 
     protected function getActionView()
