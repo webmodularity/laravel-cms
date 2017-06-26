@@ -12,6 +12,11 @@
     });
 
     $(function () {
+        var dataTable = $('#dataTableBuilder').DataTable();
+        $('#dataTableSearch').keyup(function() {
+            dataTable.search($(this).val()).draw();
+        });
+
         // lengthMenu
         var dataTableLengthSelect = $('#dataTableBuilder_length').find('select').selectpicker({
             style: 'btn-default btn-sm',
