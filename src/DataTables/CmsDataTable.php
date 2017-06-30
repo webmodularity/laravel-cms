@@ -8,7 +8,7 @@ use WebModularity\LaravelCms\DataTables\Traits\ColumnFilter;
 use Yajra\Datatables\Datatables;
 use Yajra\Datatables\Services\DataTable;
 
-abstract class CmsDataTable extends DataTable
+class CmsDataTable extends DataTable
 {
     use ColumnFilter;
 
@@ -41,6 +41,11 @@ abstract class CmsDataTable extends DataTable
             ->eloquent($this->query())
             ->addColumn('action', $this->getActionView())
             ->rawColumns(['action']);
+    }
+
+    public function query()
+    {
+        //
     }
 
     /**
