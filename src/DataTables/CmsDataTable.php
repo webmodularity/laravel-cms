@@ -78,6 +78,15 @@ class CmsDataTable extends DataTable
         }
     }
 
+    protected function applyScopes($query)
+    {
+        if ($this->recycle === true) {
+            $query->onlyTrashed();
+        }
+
+        return parent::applyScopes($query);
+    }
+
     protected function getColumns()
     {
         return [];
