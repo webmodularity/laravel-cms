@@ -3,12 +3,10 @@
 namespace WebModularity\LaravelCms\DataTables;
 
 use Carbon\Carbon;
-use Illuminate\Contracts\View\Factory;
 use WebModularity\LaravelCms\DataTables\Traits\ColumnFilter;
-use Yajra\Datatables\Datatables;
 use Yajra\Datatables\Services\DataTable;
 
-class CmsDataTable extends DataTable
+abstract class CmsDataTable extends DataTable
 {
     use ColumnFilter;
 
@@ -28,27 +26,6 @@ class CmsDataTable extends DataTable
     public static $columnFilterDbOperators = ['LIKE', 'NOT LIKE', '=', '!=', '>', '<', '>=', '<='];
 
     /**
-     * DataTable constructor.
-     *
-     * @param \Yajra\Datatables\Datatables $datatables
-     * @param \Illuminate\Contracts\View\Factory $viewFactory
-     */
-    public function __construct(Datatables $datatables, Factory $viewFactory)
-    {
-        parent::__construct($datatables, $viewFactory);
-
-        $this->datatables
-            ->eloquent($this->query())
-            ->addColumn('action', $this->getActionView())
-            ->rawColumns(['action']);
-    }
-
-    public function query()
-    {
-        //
-    }
-
-    /**
      * Optional method if you want to use html builder.
      *
      * @return \Yajra\Datatables\Html\Builder
@@ -64,8 +41,6 @@ class CmsDataTable extends DataTable
             ? $builder->addAction(['printable' => false, 'className' => 'all text-center'])
             : $builder;
     }
-
-
 
     protected function getButtons()
     {
