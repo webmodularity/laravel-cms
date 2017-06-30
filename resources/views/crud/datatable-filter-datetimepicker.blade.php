@@ -1,7 +1,6 @@
 <?php
 $datepickerColName = isset($datepickerColName) ? $datepickerColName : 'updated_at';
 ?>
-@push('js')
 <script>
     $(function () {
         $('#datepicker-{{ $datepickerColName }}').daterangepicker({
@@ -54,4 +53,3 @@ $datepickerColName = isset($datepickerColName) ? $datepickerColName : 'updated_a
         });
     });
 </script>
-@endpush
