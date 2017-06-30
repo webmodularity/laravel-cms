@@ -38,7 +38,7 @@ class CmsDataTable extends DataTable
         parent::__construct($datatables, $viewFactory);
 
         $this->datatables
-        //    ->eloquent($this->query())
+            ->eloquent($this->query())
             ->addColumn('action', $this->getActionView())
             ->rawColumns(['action']);
     }
