@@ -8,7 +8,7 @@ $datepickerColName = isset($datepickerColName) ? $datepickerColName : null;
     <input type="text" id="dataTableSearch" class="form-control input-sm" placeholder="Search...">
     <div class="input-group-btn">
         @if($datepickerColName)
-            <button id="datepicker-{{ $datepickerColName }}" type="button" class="btn btn-sm btn-primary" title="{{ ucwords(str_replace_array('_', ' ', $datepickerColName)) }}">
+            <button id="datepicker-{{ $datepickerColName }}" type="button" class="btn btn-sm btn-primary" title="{{ ucwords(str_replace('_', ' ', $datepickerColName)) }}">
                 <span class="fa fa-calendar"></span>
                 &nbsp;
                 <span class="fa fa-caret-down"></span>
