@@ -13,5 +13,6 @@
 </div>
 
 @push('js')
-@include('wmcms::crud.datatable-common')
+    {!! $dataTable->scripts() !!}
+    @include('wmcms::crud.datatable-common')
 @endpush
