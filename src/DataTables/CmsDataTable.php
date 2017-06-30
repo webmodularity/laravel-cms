@@ -105,7 +105,6 @@ abstract class CmsDataTable extends DataTable
     {
         return $dataTable
             ->onlyTrashed()
-            ->editColumn('action', static::$recycleActionView)
             ->editColumn('deleted_at', function ($model) {
                 return $model->deleted_at ? with(new Carbon($model->deleted_at))->format('m/d/Y h:i:sa') : null;
             });
