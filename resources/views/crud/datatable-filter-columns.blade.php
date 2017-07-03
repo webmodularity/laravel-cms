@@ -17,6 +17,7 @@
             }
             ?>
             @foreach ($columnFilterData as $filterData)
+                <?php \Log::warning($filterData) ?>
                 <li><a data-column-filter-name="{{ $filterData['name'] }}"{!! array_key_exists('value', $filterData) ? ' data-column-filter-value="' . $filterData['value'] . '"' : '' !!} href="javascript:void(0)">{{ $filterData['display'] }}</a></li>
             @endforeach
         @endif
