@@ -8,6 +8,9 @@ $daterangepickers = (array) $daterangepicker;
     <input type="text" id="dataTableSearch" class="form-control input-sm" placeholder="Search...">
     <div class="input-group-btn">
         @foreach($daterangepickers as $daterangepicker)
+            <?php
+                $daterangepicker = is_array($daterangepicker) ? key($daterangepicker) : $daterangepicker;
+            ?>
             <button id="daterangepicker_{{ $daterangepicker }}" type="button" class="btn btn-sm btn-primary" title="{{ ucwords(str_replace('_', ' ', $daterangepicker)) }}">
                 <span class="fa fa-calendar"></span>
                 &nbsp;
@@ -38,8 +41,16 @@ $daterangepickers = (array) $daterangepicker;
 <script>
     $(function () {
         @foreach($daterangepickers as $daterangepicker)
+        <?php
+            if (is_array($daterangepicker)) {
+                $useTime = isset($daterangepicker['time']) && !$daterangepicker['time'] ? 'false' : 'true';
+                $daterangepicker = key($daterangepicker);
+            } else {
+                $useTime = 'true';
+            }
+        ?>
         $('#daterangepicker_{{ $daterangepicker }}').daterangepicker({
-            "timePicker": true,
+            "timePicker": {{ $useTime }},
             "timePickerIncrement": 1,
             "linkedCalendars": false,
             "opens": "left",
