@@ -1,6 +1,5 @@
 <?php
-$daterangepickers = (array) $daterangepicker;
-
+$daterangepickers = isset($daterangepicker) ? (array) $daterangepicker : [];
 ?>
 <div class="input-group" style="width:35vw;min-width:400px;">
     <div class="input-group-btn">
