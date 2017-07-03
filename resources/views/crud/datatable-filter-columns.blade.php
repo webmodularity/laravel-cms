@@ -6,13 +6,13 @@
             <?php
             $columnFilterData = [];
             if (array_key_exists('name', $columnFilter) && !is_array($columnFilter['name'])) {
-                \Log::warning('triggered 1st on:' . $columnFilter);
+                \Log::warning('triggered 1st on:');
                 if (!array_key_exists('display', $columnFilter)) {
                     $columnFilter['display'] = ucwords(str_replace('_', ' ', $columnFilter['name']));
                 }
                 $columnFilterData = [$columnFilter];
             } else {
-                \Log::warning('triggered 2nd on:' . $columnFilter);
+                \Log::warning('triggered 2nd on:');
                 foreach ($columnFilter as $columnFilterKey => $columnFilterValue) {
                     $columnFilterData[] = array_merge($columnFilterValue, ['name' => $columnFilterKey]);
                 }
