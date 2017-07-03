@@ -1,5 +1,6 @@
 <?php
 $daterangepickers = (array) $daterangepicker;
+
 ?>
 <div class="input-group" style="width:35vw;min-width:400px;">
     <div class="input-group-btn">
@@ -22,18 +23,11 @@ $daterangepickers = (array) $daterangepicker;
             &nbsp;
             <span class="fa fa-caret-down"></span>
         </button>
-        <ul class="dropdown-menu dropdown-menu-right" id="columnFilterHelper">
-            <li class="dropdown-header">Columns</li>
-            <li><a data-column-filter-name="name" href="javascript:void(0)">Name</a></li>
-            <li><a data-column-filter-name="email" href="javascript:void(0)">Email</a></li>
-            <li><a data-column-filter-name="branch" href="javascript:void(0)">Branch</a></li>
-            <li role="separator" class="divider"></li>
-            <li class="dropdown-header">Order Status</li>
-            <li><a data-column-filter-name="status" data-column-filter-value="=open" href="javascript:void(0)">Open</a></li>
-            <li><a data-column-filter-name="status" data-column-filter-value="=shipping" href="javascript:void(0)">Shipping</a></li>
-            <li><a data-column-filter-name="status" data-column-filter-value="=shipped" href="javascript:void(0)">Shipped</a></li>
-            <li><a data-column-filter-name="status" data-column-filter-value="=closed" href="javascript:void(0)">Closed</a></li>
-        </ul>
+            @if(isset($columnFilters))
+                <ul class="dropdown-menu dropdown-menu-right" id="columnFilterHelper">
+                    @include('wmcms::crud.datatable-filter-columns')
+                </ul>
+            @endif
     </div>
 </div>
 
