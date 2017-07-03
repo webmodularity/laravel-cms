@@ -7,9 +7,9 @@ $daterangepickers = (array) $daterangepicker;
     </div>
     <input type="text" id="dataTableSearch" class="form-control input-sm" placeholder="Search...">
     <div class="input-group-btn">
-        @foreach($daterangepickers as $daterangepicker)
+        @foreach($daterangepickers as $daterangepickerKey => $daterangepicker)
             <?php
-                $daterangepickerColName = is_array($daterangepicker) ? key($daterangepicker) : $daterangepicker;
+                $daterangepickerColName = is_array($daterangepicker) ? $daterangepickerKey : $daterangepicker;
             ?>
             <button id="daterangepicker_{{ $daterangepickerColName }}" type="button" class="btn btn-sm btn-primary" title="{{ ucwords(str_replace('_', ' ', $daterangepickerColName)) }}">
                 <span class="fa fa-calendar"></span>
@@ -40,16 +40,17 @@ $daterangepickers = (array) $daterangepicker;
 @push('js')
 <script>
     $(function () {
-        @foreach($daterangepickers as $daterangepicker)
+        @foreach($daterangepickers as $daterangepickerKey => $daterangepicker)
         <?php
             if (is_array($daterangepicker)) {
                 $useTime = isset($daterangepicker['time']) && !$daterangepicker['time'] ? 'false' : 'true';
-                $daterangepicker = key($daterangepicker);
+                $daterangepickerColName = $daterangepickerKey;
             } else {
                 $useTime = 'true';
+                $daterangepickerColName = $daterangepicker;
             }
         ?>
-        $('#daterangepicker_{{ $daterangepicker }}').daterangepicker({
+        $('#daterangepicker_{{ $daterangepickerColName }}').daterangepicker({
             "timePicker": {{ $useTime }},
             "timePickerIncrement": 1,
             "linkedCalendars": false,
@@ -89,10 +90,10 @@ $daterangepickers = (array) $daterangepicker;
             },
         }).on('apply.daterangepicker', function(ev, picker) {
             $('#dataTableSearch').val(function(index, val) {
-                return WMCMS.DT.FILTER.getAllKeywords(val, '{{ $daterangepicker }}').concat(
+                return WMCMS.DT.FILTER.getAllKeywords(val, '{{ $daterangepickerColName }}').concat(
                     [
-                        '{{ $daterangepicker }}:>=' + picker.startDate.format('MM/DD/YYYYHHmmss'),
-                        '{{ $daterangepicker }}:<=' + picker.endDate.format('MM/DD/YYYYHHmmss')
+                        '{{ $daterangepickerColName }}:>=' + picker.startDate.format('MM/DD/YYYY{{ $useTime ? 'HHmmss' : '' }}'),
+                        '{{ $daterangepickerColName }}:<=' + picker.endDate.format('MM/DD/YYYY{{ $useTime ? 'HHmmss' : '' }}')
                     ]
                 ).join(" ");
             }).trigger('keyup');
