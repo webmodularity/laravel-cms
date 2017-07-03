@@ -38,7 +38,7 @@ $daterangepickers = (array) $daterangepicker;
 <script>
     $(function () {
         @foreach($daterangepickers as $daterangepicker)
-        $('#datepicker_{{ $daterangepicker }}').daterangepicker({
+        $('#daterangepicker_{{ $daterangepicker }}').daterangepicker({
             "timePicker": true,
             "timePickerIncrement": 1,
             "linkedCalendars": false,
