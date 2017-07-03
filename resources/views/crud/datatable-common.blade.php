@@ -34,6 +34,7 @@
             var searchInput = $('#dataTableSearch');
             searchInput.val('');
             searchInput.trigger('keyup');
+            searchInput.focus();
         });
 
         $('#columnFilterHelper').click(function (event) {
