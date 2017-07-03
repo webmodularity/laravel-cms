@@ -17,16 +17,18 @@ $daterangepickers = isset($daterangepicker) ? (array) $daterangepicker : [];
                 <span class="fa fa-caret-down"></span>
             </button>
         @endforeach
-        <button id="filter" type="button" class="btn btn-sm btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <span class="fa fa-search"></span>
-            &nbsp;
-            <span class="fa fa-caret-down"></span>
-        </button>
-            @if(isset($columnFilters))
-                <ul class="dropdown-menu dropdown-menu-right" id="columnFilterHelper">
-                    @include('wmcms::crud.datatable-filter-columns')
-                </ul>
-            @endif
+
+        @if(isset($columnFilters))
+            <button id="filter" type="button" class="btn btn-sm btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="fa fa-search"></span>
+                &nbsp;
+                <span class="fa fa-caret-down"></span>
+            </button>
+
+            <ul class="dropdown-menu dropdown-menu-right" id="columnFilterHelper">
+                @include('wmcms::crud.datatable-filter-columns')
+            </ul>
+        @endif
     </div>
 </div>
 
