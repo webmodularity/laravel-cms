@@ -13,9 +13,11 @@
                 $columnFilterData = [$columnFilter];
             } else {
                 \Log::warning('triggered 2nd on:');
+                \Log::warning($columnFilter);
                 foreach ($columnFilter as $columnFilterKey => $columnFilterValue) {
                     $columnFilterData[] = array_merge($columnFilterValue, ['name' => $columnFilterKey]);
                 }
+                \Log::warning($columnFilterData);
             }
             ?>
             @foreach ($columnFilterData as $filterData)
