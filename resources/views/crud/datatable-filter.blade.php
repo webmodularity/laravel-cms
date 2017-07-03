@@ -92,8 +92,8 @@ $daterangepickers = (array) $daterangepicker;
             $('#dataTableSearch').val(function(index, val) {
                 return WMCMS.DT.FILTER.getAllKeywords(val, '{{ $daterangepickerColName }}').concat(
                     [
-                        '{{ $daterangepickerColName }}:>=' + picker.startDate.format('MM/DD/YYYY{{ $useTime ? 'HHmmss' : '' }}'),
-                        '{{ $daterangepickerColName }}:<=' + picker.endDate.format('MM/DD/YYYY{{ $useTime ? 'HHmmss' : '' }}')
+                        '{{ $daterangepickerColName }}:>=' + picker.startDate.format('MM/DD/YYYY{{ $useTime == 'true' ? 'HHmmss' : '' }}'),
+                        '{{ $daterangepickerColName }}:<=' + picker.endDate.format('MM/DD/YYYY{{ $useTime == 'true' ? 'HHmmss' : '' }}')
                     ]
                 ).join(" ");
             }).trigger('keyup');
