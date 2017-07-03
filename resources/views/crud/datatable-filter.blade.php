@@ -1,5 +1,5 @@
 <?php
-$datepickerColName = isset($datepickerColName) ? $datepickerColName : null;
+$daterangepickers = (array) $daterangepicker;
 ?>
 <div class="input-group" style="width:35vw;min-width:400px;">
     <div class="input-group-btn">
@@ -7,13 +7,13 @@ $datepickerColName = isset($datepickerColName) ? $datepickerColName : null;
     </div>
     <input type="text" id="dataTableSearch" class="form-control input-sm" placeholder="Search...">
     <div class="input-group-btn">
-        @if($datepickerColName)
-            <button id="datepicker-{{ $datepickerColName }}" type="button" class="btn btn-sm btn-primary" title="{{ ucwords(str_replace('_', ' ', $datepickerColName)) }}">
+        @foreach($daterangepickers as $daterangepicker)
+            <button id="daterangepicker_{{ $daterangepicker }}" type="button" class="btn btn-sm btn-primary" title="{{ ucwords(str_replace('_', ' ', $daterangepicker)) }}">
                 <span class="fa fa-calendar"></span>
                 &nbsp;
                 <span class="fa fa-caret-down"></span>
             </button>
-        @endif
+        @endforeach
         <button id="filter" type="button" class="btn btn-sm btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <span class="fa fa-search"></span>
             &nbsp;
@@ -36,9 +36,9 @@ $datepickerColName = isset($datepickerColName) ? $datepickerColName : null;
 
 @push('js')
 <script>
-    @if($datepickerColName)
-            $(function () {
-        $('#datepicker-{{ $datepickerColName }}').daterangepicker({
+    $(function () {
+        @foreach($daterangepickers as $daterangepicker)
+        $('#datepicker_{{ $daterangepicker }}').daterangepicker({
             "timePicker": true,
             "timePickerIncrement": 1,
             "linkedCalendars": false,
@@ -78,15 +78,15 @@ $datepickerColName = isset($datepickerColName) ? $datepickerColName : null;
             },
         }).on('apply.daterangepicker', function(ev, picker) {
             $('#dataTableSearch').val(function(index, val) {
-                return WMCMS.DT.FILTER.getAllKeywords(val, '{{ $datepickerColName }}').concat(
+                return WMCMS.DT.FILTER.getAllKeywords(val, '{{ $daterangepicker }}').concat(
                     [
-                        '{{ $datepickerColName }}:>=' + picker.startDate.format('MM/DD/YYYYHHmmss'),
-                        '{{ $datepickerColName }}:<=' + picker.endDate.format('MM/DD/YYYYHHmmss')
+                        '{{ $daterangepicker }}:>=' + picker.startDate.format('MM/DD/YYYYHHmmss'),
+                        '{{ $daterangepicker }}:<=' + picker.endDate.format('MM/DD/YYYYHHmmss')
                     ]
                 ).join(" ");
             }).trigger('keyup');
         });
+        @endforeach
     });
-    @endif
 </script>
 @endpush
