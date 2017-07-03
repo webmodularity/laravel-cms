@@ -9,9 +9,9 @@ $daterangepickers = (array) $daterangepicker;
     <div class="input-group-btn">
         @foreach($daterangepickers as $daterangepicker)
             <?php
-                $daterangepicker = is_array($daterangepicker) ? key($daterangepicker) : $daterangepicker;
+                $daterangepickerColName = is_array($daterangepicker) ? key($daterangepicker) : $daterangepicker;
             ?>
-            <button id="daterangepicker_{{ $daterangepicker }}" type="button" class="btn btn-sm btn-primary" title="{{ ucwords(str_replace('_', ' ', $daterangepicker)) }}">
+            <button id="daterangepicker_{{ $daterangepickerColName }}" type="button" class="btn btn-sm btn-primary" title="{{ ucwords(str_replace('_', ' ', $daterangepickerColName)) }}">
                 <span class="fa fa-calendar"></span>
                 &nbsp;
                 <span class="fa fa-caret-down"></span>
