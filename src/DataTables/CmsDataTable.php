@@ -2,7 +2,6 @@
 
 namespace WebModularity\LaravelCms\DataTables;
 
-use Carbon\Carbon;
 use WebModularity\LaravelCms\DataTables\Traits\ColumnFilter;
 use Yajra\Datatables\Services\DataTable;
 
@@ -99,34 +98,6 @@ abstract class CmsDataTable extends DataTable
         return !is_null(static::$exportFilename)
             ? static::$exportFilename . $uniqueString
             : (new \ReflectionClass($this))->getShortName() . $uniqueString;
-    }
-
-    public static function recycleDataTable($dataTable)
-    {
-        return $dataTable
-            ->onlyTrashed()
-            ->editColumn('deleted_at', function ($model) {
-                return $model->deleted_at ? with(new Carbon($model->deleted_at))->format('m/d/Y h:i:sa') : null;
-            });
-    }
-
-    /**
-     * Modify HTML Builder columns to replace created_at|updated_at columns with deleted_at
-     * @param \Yajra\Datatables\Html\Builder $builder
-     */
-    public static function recycleColumns($builder)
-    {
-        if ($builder->getColumns().contains('name', 'updated_at')) {
-            $builder->removeColumn('updated_at');
-        }
-        if ($builder->getColumns().contains('name', 'created_at')) {
-            $builder->removeColumn('created_at');
-        }
-        $columns = $builder->getColumns();
-        $action = $columns->pop();
-        $columns->push(['data' => 'deleted_at', 'title' => 'Deleted At']);
-        $columns->push($action);
-        $builder->columns($columns->all());
     }
 
     protected function getBuilderParameters()
