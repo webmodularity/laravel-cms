@@ -315,4 +315,13 @@ EOT;
             static::getColumnFilter($keyword, ['updated_at'])
         );
     }
+
+    public static function filterDeletedAt($query, $keyword, $tableName = null)
+    {
+        static::columnFilterAddQuery(
+            $query,
+            !is_null($tableName) ? $tableName . '.' . 'deleted_at' : 'deleted_at',
+            static::getColumnFilter($keyword, ['deleted_at'])
+        );
+    }
 }
