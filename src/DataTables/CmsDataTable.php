@@ -105,11 +105,8 @@ abstract class CmsDataTable extends DataTable
     {
         return $dataTable
             ->onlyTrashed()
-            ->addColumn('deleted_at', function ($model) {
+            ->editColumn('deleted_at', function ($model) {
                 return $model->deleted_at ? with(new Carbon($model->deleted_at))->format('m/d/Y h:i:sa') : null;
-            })
-            ->filterColumn('deleted_at', function ($query, $keyword) {
-                static::filterDeletedAt($query, $keyword, 'equipment_models');
             });
     }
 
