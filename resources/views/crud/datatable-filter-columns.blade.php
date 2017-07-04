@@ -17,6 +17,8 @@
         @endforeach
     @elseif($columnFilter == 'SEPARATOR' || $columnFilter == 'DIVIDER')
         <li role="separator" class="divider"></li>
+    @elseif($columnFilter == 'ID')
+        <li><a data-column-filter-name="id" data-column-filter-value="=" data-column-filter-replace="false" href="javascript:void(0)">ID</a></li>
     @elseif(substr($columnFilter, 0, 7) == 'HEADER:')
         <li class="dropdown-header">{{ substr($columnFilter, 7) }}</li>
     @else()
