@@ -76,19 +76,20 @@ trait ColumnFilter
     public static function columnFilterAddQuery($query, $columnNames, $columnFilter, $whereExists = [])
     {
         $columnNames = is_string($columnNames) ? [$columnNames] : $columnNames;
+        $singleColumnName = count($columnNames) > 1 ? false : true;
 
         if (!empty($whereExists)) {
-            $query->whereExists(function ($query) use ($whereExists, $columnNames, $columnFilter) {
+            $query->whereExists(function ($query) use ($whereExists, $columnNames, $columnFilter, $singleColumnName) {
                 $query->select(DB::raw(1))
                     ->from($whereExists['table'])
                     ->whereRaw($whereExists['where']);
                 foreach ($columnNames as $columnName) {
-                    static::addColumnFilterWhere($query, $columnName, $columnFilter, (bool) count($columnNames));
+                    static::addColumnFilterWhere($query, $columnName, $columnFilter, $singleColumnName);
                 }
             });
         } else {
             foreach ($columnNames as $columnName) {
-                static::addColumnFilterWhere($query, $columnName, $columnFilter, (bool) count($columnNames));
+                static::addColumnFilterWhere($query, $columnName, $columnFilter, $singleColumnName);
             }
         }
     }
