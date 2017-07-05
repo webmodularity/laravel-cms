@@ -3,6 +3,7 @@
 namespace WebModularity\LaravelCms\DataTables\Traits;
 
 use Carbon\Carbon;
+use DB;
 
 trait ColumnFilter
 {
@@ -72,22 +73,39 @@ trait ColumnFilter
         return 'LIKE';
     }
 
-    public static function columnFilterAddQuery($query, $columnNames, $columnFilter)
+    public static function columnFilterAddQuery($query, $columnNames, $columnFilter, $whereExists = [])
     {
         $columnNames = is_string($columnNames) ? [$columnNames] : $columnNames;
-        foreach ($columnNames as $columnName) {
-            if (is_array($columnFilter['keyword'])) {
-                if (strtolower($columnFilter['operator']) == 'not like') {
-                    $query->whereNotIn($columnName, $columnFilter['keyword']);
-                } else {
-                    $query->whereIn($columnName, $columnFilter['keyword']);
+
+        if (!empty($whereExists)) {
+            $query->whereExists(function ($query) use ($whereExists, $columnNames, $columnFilter) {
+                $query->select(DB::raw(1))
+                    ->from($whereExists['table'])
+                    ->whereRaw($whereExists['where']);
+                foreach ($columnNames as $columnName) {
+                    static::addColumnFilterWhere($query, $columnName, $columnFilter, (bool) count($columnNames));
                 }
+            });
+        } else {
+            foreach ($columnNames as $columnName) {
+                static::addColumnFilterWhere($query, $columnName, $columnFilter, (bool) count($columnNames));
+            }
+        }
+    }
+
+    public static function addColumnFilterWhere($query, $columnName, $columnFilter, $singleColumnName = true)
+    {
+        if (is_array($columnFilter['keyword'])) {
+            if (strtolower($columnFilter['operator']) == 'not like') {
+                $query->whereNotIn($columnName, $columnFilter['keyword']);
             } else {
-                if (count($columnNames) > 1 && !in_array($columnFilter['operator'], ['NOT LIKE', '!='])) {
-                    $query->orWhere($columnName, $columnFilter['operator'], $columnFilter['keyword']);
-                } else {
-                    $query->where($columnName, $columnFilter['operator'], $columnFilter['keyword']);
-                }
+                $query->whereIn($columnName, $columnFilter['keyword']);
+            }
+        } else {
+            if (!$singleColumnName && !in_array($columnFilter['operator'], ['NOT LIKE', '!='])) {
+                $query->orWhere($columnName, $columnFilter['operator'], $columnFilter['keyword']);
+            } else {
+                $query->where($columnName, $columnFilter['operator'], $columnFilter['keyword']);
             }
         }
     }
