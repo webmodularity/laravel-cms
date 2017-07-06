@@ -14,6 +14,7 @@ use WebModularity\LaravelUser\LogUser;
 use WebModularity\LaravelUser\LogUserAction;
 use WebModularity\LaravelUser\User;
 use WebModularity\LaravelUser\UserServiceProvider;
+use WebModularity\LaravelUser\UserSocialProvider;
 use Yajra\Datatables\ButtonsServiceProvider;
 use Yajra\Datatables\DatatablesServiceProvider;
 use JeroenNoten\LaravelAdminLte\ServiceProvider as AdminLteServiceProvider;
@@ -90,6 +91,10 @@ class CmsServiceProvider extends ServiceProvider
                     ->get()
                     ->toArray()
             );
+        });
+        // User Social Providers
+        View::composer(['wmcms::users.edit', 'wmcms::log-user.filter'], function ($view) {
+            $view->with('socialProviders', UserSocialProvider::isActive()->get());
         });
         // User Roles
         View::composer(['wmcms::users.form', 'wmcms::users.filter'], function ($view) {
