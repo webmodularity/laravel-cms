@@ -73,16 +73,15 @@ trait ColumnFilter
         return 'LIKE';
     }
 
-    public static function columnFilterAddQuery($query, $columnNames, $columnFilter, $whereExists = [])
+    public static function columnFilterAddQuery($query, $columnNames, $columnFilter, $whereExistsTable = null)
     {
         $columnNames = is_string($columnNames) ? [$columnNames] : $columnNames;
         $singleColumnName = count($columnNames) > 1 ? false : true;
 
-        if (!empty($whereExists)) {
-            $query->whereExists(function ($query) use ($whereExists, $columnNames, $columnFilter, $singleColumnName) {
+        if (!empty($whereExistsTable)) {
+            $query->whereExists(function ($query) use ($whereExistsTable, $columnNames, $columnFilter, $singleColumnName) {
                 $query->select(DB::raw(1))
-                    ->from($whereExists['table'])
-                    ->whereRaw($whereExists['where']);
+                    ->from($whereExistsTable);
                 foreach ($columnNames as $columnName) {
                     static::addColumnFilterWhere($query, $columnName, $columnFilter, $singleColumnName);
                 }
