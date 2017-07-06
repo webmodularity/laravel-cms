@@ -6,6 +6,7 @@ use WebModularity\LaravelUser\User;
 use Carbon\Carbon;
 use Yajra\Datatables\Html\Column;
 use Auth;
+use DB;
 
 class UserDataTable extends CmsDataTable
 {
