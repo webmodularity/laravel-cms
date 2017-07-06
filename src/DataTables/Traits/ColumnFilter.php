@@ -73,18 +73,21 @@ trait ColumnFilter
         return 'LIKE';
     }
 
-    public static function columnFilterAddQuery($query, $columnNames, $columnFilter, $whereExistsTable = null)
+    public static function columnFilterAddQuery($query, $columnNames, $columnFilter, $whereExists = [])
     {
         $columnNames = is_string($columnNames) ? [$columnNames] : $columnNames;
         $singleColumnName = count($columnNames) > 1 ? false : true;
 
-        if (!empty($whereExistsTable)) {
-            $query->whereExists(function ($query) use ($whereExistsTable, $columnNames, $columnFilter, $singleColumnName) {
+        if (!empty($whereExists)) {
+            $query->whereExists(function ($query) use ($whereExists, $columnNames, $columnFilter, $singleColumnName) {
                 $query->select(DB::raw(1))
-                    ->from($whereExistsTable);
-                foreach ($columnNames as $columnName) {
-                    static::addColumnFilterWhere($query, $columnName, $columnFilter, $singleColumnName);
-                }
+                    ->from($whereExists['table'])
+                    ->where($whereExists['where'])
+                    ->where(function ($query) use ($columnNames, $columnFilter, $singleColumnName) {
+                        foreach ($columnNames as $columnName) {
+                            static::addColumnFilterWhere($query, $columnName, $columnFilter, $singleColumnName);
+                        }
+                    });
             });
         } else {
             foreach ($columnNames as $columnName) {
