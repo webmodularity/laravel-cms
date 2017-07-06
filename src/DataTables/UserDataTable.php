@@ -9,7 +9,13 @@ use Auth;
 
 class UserDataTable extends CmsDataTable
 {
-    protected $actionView = 'wmcms::users.actions.index';
+    public static $actionView = 'wmcms::users.actions.index';
+    public static $order = [[1, "asc"]];
+    public static $buttons = ['create', 'wmcopy', 'wmcolvis', 'export', 'recycle'];
+    public static $exportFilename = 'user';
+    // Recycle
+    public static $recycleActionView = 'wmcms::users.actions.recycle';
+    public static $recycleOrder = [[6, "desc"]];
 
     /**
      * Build DataTable class.
@@ -20,7 +26,7 @@ class UserDataTable extends CmsDataTable
     {
         return $this->datatables
             ->eloquent($this->query())
-            ->addColumn('action', $this->actionView)
+            ->addColumn('action', $this->getActionView())
             ->addColumn('full_name', function (User $user) {
                 return view('wmcms::partials.name-full')->with('person', $user->person);
             })
@@ -157,32 +163,7 @@ class UserDataTable extends CmsDataTable
                     'title' => 'Address'
                 ]
             ),
-            'updated_at'
+            $this->recycle ? 'deleted_at' : 'updated_at'
         ];
-    }
-
-    protected function getButtons()
-    {
-        return ['create', 'wmcopy', 'wmcolvis', 'export', 'recycle'];
-    }
-
-    protected function getDrawCallback()
-    {
-        return $this->getDeleteConfirmAlert();
-    }
-
-    protected function getOrder()
-    {
-        return [[1, "asc"]];
-    }
-
-    /**
-     * Get filename for export.
-     *
-     * @return string
-     */
-    protected function filename()
-    {
-        return 'user_' . time();
     }
 }
