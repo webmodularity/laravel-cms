@@ -75,7 +75,7 @@ trait ColumnFilter
 
     public static function columnFilterAddQuery($query, $columnNames, $columnFilter, $whereExists = [])
     {
-        $columnNames = is_string($columnNames) ? [$columnNames] : $columnNames;
+        $columnNames = !is_array($columnNames) ? [$columnNames] : $columnNames;
         $singleColumnName = count($columnNames) > 1 ? false : true;
 
         if (!empty($whereExists)) {
