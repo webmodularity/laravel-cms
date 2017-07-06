@@ -26,12 +26,13 @@ class LogUserDataTable extends CmsDataTable
         return $this->datatables
             ->eloquent($this->query())
             ->addColumn('action', $this->getActionView())
-            ->addColumn('ip_address', function (LogUser $logUser) {
+            ->editColumn('ip_address', function (LogUser $logUser) {
                 return isset($logUser->logRequest->ipAddress) && !empty($logUser->logRequest->ipAddress->ip)
                     ? $logUser->logRequest->ipAddress->ip
                     : null;
             })
             ->filterColumn('ip_address', function ($query, $keyword) {
+                \Log::warning('filtering ip address!');
                 static::columnFilterAddQuery(
                     $query,
                     DB::raw("INET6_NTOA(ip)"),
