@@ -82,7 +82,7 @@ trait ColumnFilter
             $query->whereExists(function ($query) use ($whereExists, $columnNames, $columnFilter, $singleColumnName) {
                 $query->select(DB::raw(1))
                     ->from($whereExists['table'])
-                    ->where($whereExists['where'])
+                    ->whereRaw($whereExists['where'])
                     ->where(function ($query) use ($columnNames, $columnFilter, $singleColumnName) {
                         foreach ($columnNames as $columnName) {
                             static::addColumnFilterWhere($query, $columnName, $columnFilter, $singleColumnName);
