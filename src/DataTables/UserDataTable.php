@@ -84,7 +84,7 @@ class UserDataTable extends CmsDataTable
                         'user_roles.slug',
                         DB::raw("REPLACE(user_roles.slug, '-', '')"),
                     ],
-                    static::getColumnFilter($keyword, ['email'])
+                    static::getColumnFilter($keyword, ['role'])
                 );
             })
             ->orderColumn('user_role', 'user_roles.slug $1')
