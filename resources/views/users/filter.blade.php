@@ -16,6 +16,7 @@ foreach ($userRoles as $userRole) {
         'name',
         'phone',
         'address',
+        'SEPARATOR',
         'HEADER:User Roles',
         $userRolesColumnFilter
      ]
