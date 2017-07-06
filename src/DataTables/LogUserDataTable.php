@@ -107,6 +107,7 @@ class LogUserDataTable extends CmsDataTable
             ->leftJoin('log_user_actions', 'log_users.user_action_id', '=', 'log_user_actions.id')
             ->leftJoin('log_requests', 'log_users.log_request_id', '=', 'log_requests.id')
             ->leftJoin('log_request_methods', 'log_requests.request_method_id', '=', 'log_request_methods.id')
+            ->leftJoin('log_url_paths', 'log_requests.url_path_id', '=', 'log_url_path.id')
             ->leftJoin('log_ip_addresses', 'log_requests.ip_address_id', '=', 'log_ip_addresses.id')
             ->leftJoin('user_social_providers', 'log_users.social_provider_id', '=', 'user_social_providers.id')
             ->leftJoin('users', 'log_users.user_id', '=', 'users.id')
