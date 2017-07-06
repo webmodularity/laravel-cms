@@ -279,6 +279,15 @@ EOT;
         }
     }
 
+    public static function filterCreatedAt($query, $keyword, $tableName = null)
+    {
+        static::columnFilterAddQuery(
+            $query,
+            !is_null($tableName) ? $tableName . '.' . 'created_at' : 'created_at',
+            static::getColumnFilter($keyword, ['created_at'])
+        );
+    }
+
     public static function filterUpdatedAt($query, $keyword, $tableName = null)
     {
         static::columnFilterAddQuery(

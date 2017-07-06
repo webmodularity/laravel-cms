@@ -9,13 +9,13 @@
     <li class="active">User Log</li>
 @endsection
 
+@section('box-tools')
+    @include('wmcms::log-user.filter')
+@endsection
+
 @section('content')
     @include('wmcms::crud.datatable-box', [
         'boxTitle' => 'User Log'
     ])
     @include('wmcms::log-user.show-modal')
 @stop
-
-@push('js')
-{!! $dataTable->scripts() !!}
-@endpush

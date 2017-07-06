@@ -6,11 +6,15 @@ use Carbon\Carbon;
 use WebModularity\LaravelUser\LogUser;
 use Yajra\Datatables\Html\Column;
 use Auth;
+use DB;
 
 class LogUserDataTable extends CmsDataTable
 {
-    protected $actionView = 'wmcms::log-user.actions.show-modal';
-    protected $order = [[0, "desc"]];
+    public static $actionView = 'wmcms::log-user.actions.show-modal';
+    public static $order = [[0, "desc"]];
+    public static $buttons = ['create', 'wmcopy', 'wmcolvis', 'export', 'recycle'];
+    public static $exportFilename = 'user';
+
     protected $responsive = true;
     protected $pageLength = 50;
 
@@ -23,30 +27,38 @@ class LogUserDataTable extends CmsDataTable
     {
         return $this->datatables
             ->eloquent($this->query())
-            ->addColumn('action', $this->actionView)
+            ->addColumn('action', $this->getActionView())
+            ->filterColumn('id', function ($query, $keyword) {
+                return static::filterId($query, $keyword, 'people');
+            })
             ->addColumn('ip_address', function (LogUser $logUser) {
                 return isset($logUser->logRequest->ipAddress) && !empty($logUser->logRequest->ipAddress->ip)
                     ? $logUser->logRequest->ipAddress->ip
                     : null;
             })
             ->filterColumn('ip_address', function ($query, $keyword) {
-                $query->whereRaw("INET6_NTOA(ip) like ?", ["%$keyword%"]);
+                static::columnFilterAddQuery(
+                    $query,
+                    DB::raw("INET6_NTOA(ip)"),
+                    static::getColumnFilter($keyword, ['ip'])
+                );
             })
             ->orderColumn('ip_address', 'ip $1')
             ->editColumn('created_at', function (LogUser $logUser) {
                 return $logUser->created_at ? with(new Carbon($logUser->created_at))->format('m/d/Y h:i:sa') : '';
             })
             ->filterColumn('created_at', function ($query, $keyword) {
-                $query->whereRaw("DATE_FORMAT(`log_users`.created_at,'%m/%d/%Y %h:%i:%s%p') like ?", ["%$keyword%"]);
+                return static::filterCreatedAt($query, $keyword, 'log_users');
             })
             ->orderColumn('created_at', '`log_users`.created_at $1')
             ->addColumn('social_provider_name', function (LogUser $logUser) {
                 return !is_null($logUser->socialProvider) ? $logUser->socialProvider->getName() : null;
             })
             ->filterColumn('social_provider_name', function ($query, $keyword) {
-                $query->whereRaw(
-                    "user_social_providers.slug like ?",
-                    ["%$keyword%"]
+                static::columnFilterAddQuery(
+                    $query,
+                    'user_social_providers.slug',
+                    static::getColumnFilter($keyword, ['social:'])
                 );
             })
             ->orderColumn('social_provider_name', 'user_social_providers.slug $1')
