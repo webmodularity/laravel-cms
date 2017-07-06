@@ -63,7 +63,7 @@ class LogUserDataTable extends CmsDataTable
             ->filterColumn('logRequest.urlPath.url_path', function ($query, $keyword) {
                 static::columnFilterAddQuery(
                     $query,
-                    'log_url_paths.slug',
+                    'log_url_paths.url_path',
                     static::getColumnFilter($keyword, ['url'])
                 );
             })
