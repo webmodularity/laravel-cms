@@ -8,7 +8,6 @@ use WebModularity\LaravelContact\Address;
 use WebModularity\LaravelContact\Person;
 use WebModularity\LaravelContact\Phone;
 use WebModularity\LaravelCms\DataTables\UserDataTable;
-use WebModularity\LaravelCms\DataTables\UserRecycleDataTable;
 use WebModularity\LaravelUser\LogUser;
 use WebModularity\LaravelUser\User;
 use WebModularity\LaravelCms\Http\Requests\StoreUser;
@@ -34,9 +33,12 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function recycle(UserRecycleDataTable $dataTable)
+    public function recycle(UserDataTable $dataTable)
     {
-        return $dataTable->render('wmcms::users.recycle');
+        $recycleDataTable->recycle = true;
+        return $recycleDataTable->before(function ($dataTable) {
+            return $dataTable->onlyTrashed();
+        })->render('wmcms::users.recycle');
     }
 
     /**
