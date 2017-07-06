@@ -3,7 +3,7 @@ $userRolesColumnFilter = ['type' => []];
 foreach ($userRoles as $userRole) {
     $userRolesColumnFilter['type'][] = [
         'value' => '=' . $userRole['slug'],
-        'display' => studly_case($userRole['slug']
+        'display' => studly_case($userRole['slug'])
     ];
 }
 ?>
