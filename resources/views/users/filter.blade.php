@@ -1,7 +1,7 @@
 <?php
 $userRolesColumnFilter = ['type' => []];
 foreach ($userRoles as $userRole) {
-    $userRolesColumnFilter['type'][] = [
+    $userRolesColumnFilter['role'][] = [
         'value' => '=' . $userRole['slug'],
         'display' => studly_case($userRole['slug'])
     ];
