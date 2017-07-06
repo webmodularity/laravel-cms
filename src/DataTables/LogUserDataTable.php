@@ -12,11 +12,9 @@ class LogUserDataTable extends CmsDataTable
 {
     public static $actionView = 'wmcms::log-user.actions.show-modal';
     public static $order = [[0, "desc"]];
-    public static $buttons = ['create', 'wmcopy', 'wmcolvis', 'export', 'recycle'];
     public static $exportFilename = 'user';
-
-    protected $responsive = true;
-    protected $pageLength = 50;
+    public static $responsive = true;
+    public static $pageLength = 50;
 
     /**
      * Build DataTable class.
