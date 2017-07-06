@@ -56,7 +56,7 @@ class LogUserDataTable extends CmsDataTable
             ->filterColumn('logRequest.requestMethod.method', function ($query, $keyword) {
                 static::columnFilterAddQuery(
                     $query,
-                    'log_request_methods.slug',
+                    'log_request_methods.method',
                     static::getColumnFilter($keyword, ['method'])
                 );
             })
