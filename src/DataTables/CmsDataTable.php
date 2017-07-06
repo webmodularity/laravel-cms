@@ -4,6 +4,7 @@ namespace WebModularity\LaravelCms\DataTables;
 
 use WebModularity\LaravelCms\DataTables\Traits\ColumnFilter;
 use Yajra\Datatables\Services\DataTable;
+use DB;
 
 abstract class CmsDataTable extends DataTable
 {
@@ -293,6 +294,51 @@ EOT;
             $query,
             !is_null($tableName) ? $tableName . '.' . 'deleted_at' : 'deleted_at',
             static::getColumnFilter($keyword, ['deleted_at'])
+        );
+    }
+
+    public static function filterPhonePerson($query, $keyword)
+    {
+        static::columnFilterAddQuery(
+            $query,
+            [
+                'phones.area_code',
+                'phones.number',
+                DB::raw("CONCAT('(', area_code, ')', SUBSTR(number, 1, 3), '-', SUBSTR(number, 4, 4))"),
+                DB::raw("CONCAT(SUBSTR(number, 1, 3), '-', SUBSTR(number, 4, 4))")
+            ],
+            static::getColumnFilter($keyword, ['phone']),
+            [
+                'table' => DB::raw('phones LEFT JOIN person_phone ON phones.id = person_phone.phone_id'),
+                'where' => DB::raw('people.id = person_phone.person_id')
+            ]
+        );
+    }
+
+    public static function filterAddress($query, $keyword)
+    {
+        static::columnFilterAddQuery(
+            $query,
+            [
+                'addresses.city',
+                'addresses.zip',
+                'address_states.name',
+                'address_states.iso'
+            ],
+            static::getColumnFilter($keyword, ['address'])
+        );
+    }
+
+    public static function filterFullName($query, $keyword)
+    {
+        static::columnFilterAddQuery(
+            $query,
+            [
+                'first_name',
+                'middle_name',
+                'last_name'
+            ],
+            static::getColumnFilter($keyword, ['name'])
         );
     }
 }

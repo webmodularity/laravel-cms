@@ -27,18 +27,28 @@ class UserDataTable extends CmsDataTable
         return $this->datatables
             ->eloquent($this->query())
             ->addColumn('action', $this->getActionView())
+            ->editColumn('updated_at', function (Person $person) {
+                return with(new Carbon($person->updated_at))->format('m/d/Y h:i:sa');
+            })
+            ->editColumn('deleted_at', function (Person $person) {
+                return $person->deleted_at
+                    ? with(new Carbon($person->deleted_at))->format('m/d/Y h:i:sa')
+                    : null;
+            })
+            ->filterColumn('id', function ($query, $keyword) {
+                return static::filterId($query, $keyword, 'people');
+            })
+            ->filterColumn('updated_at', function ($query, $keyword) {
+                return static::filterUpdatedAt($query, $keyword, 'people');
+            })
+            ->filterColumn('deleted_at', function ($query, $keyword) {
+                return static::filterDeletedAt($query, $keyword, 'people');
+            })
             ->addColumn('full_name', function (User $user) {
                 return view('wmcms::partials.name-full')->with('person', $user->person);
             })
             ->filterColumn('full_name', function ($query, $keyword) {
-                $query->whereRaw(
-                    "first_name like ?
-                        OR middle_name like ?
-                        OR last_name like ?
-                        OR CONCAT(first_name, ' ', last_name) like ?
-                        OR CONCAT(first_name, ' ', middle_name, ' ', last_name) like ?",
-                    ["$keyword%", "$keyword%", "$keyword%", "$keyword%", "$keyword%"]
-                );
+                static::filterFullName($query, $keyword);
             })
             ->orderColumn('full_name', 'last_name $1, first_name $1, middle_name $1')
             ->addColumn('phones', function (User $user) {
@@ -50,19 +60,7 @@ class UserDataTable extends CmsDataTable
                 })->implode('<br />');
             })
             ->filterColumn('phones', function ($query, $keyword) {
-                $query->orWhereRaw(
-                    "(
-                    select count(1) from `phones` inner join `person_phone` 
-                    ON `phones`.`id` = `person_phone`.`phone_id` where `people`.`id` = `person_phone`.`person_id`
-                        AND (
-                        CONCAT('(', area_code, ')', SUBSTR(number, 1, 3), '-', SUBSTR(number, 4, 4)) like ?
-                        OR CONCAT(SUBSTR(number, 1, 3), '-', SUBSTR(number, 4, 4)) = ?
-                        OR number like ?
-                        OR CONCAT('x', extension) like ?
-                        )
-                    ) >= 1",
-                    ["$keyword%", "$keyword", "%$keyword%", "%$keyword%", "$keyword%"]
-                );
+                static::filterPhonePerson($query, $keyword);
             })
             ->addColumn('address_primary', function (User $user) {
                 if (is_null($user->person->addresses) || $user->person->addresses->count() < 1) {
@@ -72,27 +70,21 @@ class UserDataTable extends CmsDataTable
                 return view('wmcms::partials.address', ['address' => $user->person->addresses->first()->toArray()]);
             })
             ->filterColumn('address_primary', function ($query, $keyword) {
-                $query->orWhereRaw(
-                    "(street like ? 
-                        OR city like ? 
-                        OR address_states.name like ? 
-                        OR zip like ? 
-                        OR CONCAT(city, ', ', iso) like ?)",
-                    ["%$keyword%", "%$keyword%", "%$keyword%", "%$keyword%", "$keyword%"]
-                );
+                static::filterPhonePerson($query, $keyword);
             })
             ->orderColumn('address_primary', 'city $1, iso $1, zip, $1, street $1')
-            ->editColumn('updated_at', function (User $user) {
-                return with(new Carbon($user->updated_at))->format('m/d/Y h:i:sa');
-            })
-            ->filterColumn('updated_at', function ($query, $keyword) {
-                $query->whereRaw("DATE_FORMAT(users.updated_at,'%m/%d/%Y %h:%i:%s%p') like ?", ["%$keyword%"]);
-            })
             ->addColumn('user_role', function (User $user) {
                 return studly_case($user->role->slug);
             })
             ->filterColumn('user_role', function ($query, $keyword) {
-                $query->orWhereRaw("REPLACE(user_roles.slug, '-', '') like ?", ["%$keyword%"]);
+                static::columnFilterAddQuery(
+                    $query,
+                    [
+                        'user_roles.slug',
+                        DB::raw("REPLACE(user_roles.slug, '-', '')"),
+                    ],
+                    static::getColumnFilter($keyword, ['email'])
+                );
             })
             ->orderColumn('user_role', 'user_roles.slug $1')
             ->rawColumns(['phones', 'address_primary', 'action']);

@@ -10,14 +10,13 @@
     <li class="active text-red">Recycle Bin</li>
 @endsection
 
+@section('box-tools')
+    @include('wmcms::users.filter')
+@endsection
+
 @section('content')
     @include('wmcms::crud.recycle-warning')
     @include('wmcms::crud.recycle-datatable-box', [
         'boxTitle' => 'Users - Recycle Bin'
     ])
 @stop
-
-@push('js')
-@dtdefaults()
-{!! $dataTable->scripts() !!}
-@endpush
