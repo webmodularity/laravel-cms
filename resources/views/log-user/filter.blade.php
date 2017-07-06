@@ -8,14 +8,14 @@ foreach ($logUserActions as $logUserAction) {
 }
 $logRequestMethodsColumnFilter = ['type' => []];
 foreach ($logRequestMethods as $logRequestMethod) {
-    $logRequestMethodsColumnFilter['action'][] = [
+    $logRequestMethodsColumnFilter['method'][] = [
         'value' => '=' . $logRequestMethod['method'],
         'display' => studly_case($logRequestMethod['method'])
     ];
 }
 $socialProvidersColumnFilter = ['type' => []];
 foreach ($socialProviders as $socialProvider) {
-    $socialProvidersColumnFilter['action'][] = [
+    $socialProvidersColumnFilter['social'][] = [
         'value' => '=' . $socialProvider['slug'],
         'display' => $socialProvider->getName()
     ];
