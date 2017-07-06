@@ -21,7 +21,7 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\View\View
      */
     public function index(UserDataTable $dataTable)
     {
@@ -31,9 +31,9 @@ class UserController extends Controller
     /**
      * Display trashed listings.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\View\View
      */
-    public function recycle(UserDataTable $dataTable)
+    public function recycle(UserDataTable $recycleDataTable)
     {
         $recycleDataTable->recycle = true;
         return $recycleDataTable->before(function ($dataTable) {
