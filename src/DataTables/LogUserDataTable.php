@@ -88,7 +88,7 @@ class LogUserDataTable extends CmsDataTable
                 static::columnFilterAddQuery(
                     $query,
                     'user_social_providers.slug',
-                    static::getColumnFilter($keyword, ['social:'])
+                    static::getColumnFilter($keyword, ['social'])
                 );
             })
             ->orderColumn('social_provider_name', 'user_social_providers.slug $1')
