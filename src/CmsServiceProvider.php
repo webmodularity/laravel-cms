@@ -90,7 +90,7 @@ class CmsServiceProvider extends ServiceProvider
             );
         });
         // User Roles
-        View::composer(['wmcms::users.form'], function ($view) {
+        View::composer(['wmcms::users.form', 'wmcms::users.filter'], function ($view) {
             $view->with(
                 'userRoles',
                 UserRole::select(['id', 'slug'])
