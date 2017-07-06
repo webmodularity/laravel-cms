@@ -27,22 +27,22 @@ class UserDataTable extends CmsDataTable
         return $this->datatables
             ->eloquent($this->query())
             ->addColumn('action', $this->getActionView())
-            ->editColumn('updated_at', function (Person $person) {
-                return with(new Carbon($person->updated_at))->format('m/d/Y h:i:sa');
+            ->editColumn('updated_at', function (User $user) {
+                return with(new Carbon($user->person->updated_at))->format('m/d/Y h:i:sa');
             })
-            ->editColumn('deleted_at', function (Person $person) {
-                return $person->deleted_at
-                    ? with(new Carbon($person->deleted_at))->format('m/d/Y h:i:sa')
+            ->editColumn('deleted_at', function (User $user) {
+                return $user->person->deleted_at
+                    ? with(new Carbon($user->person->deleted_at))->format('m/d/Y h:i:sa')
                     : null;
             })
             ->filterColumn('id', function ($query, $keyword) {
-                return static::filterId($query, $keyword, 'people');
+                return static::filterId($query, $keyword, 'users');
             })
             ->filterColumn('updated_at', function ($query, $keyword) {
-                return static::filterUpdatedAt($query, $keyword, 'people');
+                return static::filterUpdatedAt($query, $keyword, 'users');
             })
             ->filterColumn('deleted_at', function ($query, $keyword) {
-                return static::filterDeletedAt($query, $keyword, 'people');
+                return static::filterDeletedAt($query, $keyword, 'users');
             })
             ->addColumn('full_name', function (User $user) {
                 return view('wmcms::partials.name-full')->with('person', $user->person);
