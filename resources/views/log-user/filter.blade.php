@@ -13,13 +13,6 @@ foreach ($logRequestMethods as $logRequestMethod) {
         'display' => studly_case($logRequestMethod['method'])
     ];
 }
-$socialProvidersColumnFilter = ['type' => []];
-foreach ($socialProviders as $socialProvider) {
-    $socialProvidersColumnFilter['action'][] = [
-        'value' => '=' . $socialProvider['slug'],
-        'display' => $socialProvider->getName()
-    ];
-}
 ?>
 @include('wmcms::crud.datatable-filter', [
     'daterangepicker' => 'created_at',
@@ -35,9 +28,6 @@ foreach ($socialProviders as $socialProvider) {
         $logUserActionsColumnFilter,
         'SEPARATOR',
         'HEADER:Request Method',
-        $logRequestMethodsColumnFilter,
-        'SEPARATOR',
-        'HEADER:Social Providers',
-        $socialProvidersColumnFilter
+        $logRequestMethodsColumnFilter
      ]
 ])
