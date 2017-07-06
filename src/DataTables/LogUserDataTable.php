@@ -46,21 +46,21 @@ class LogUserDataTable extends CmsDataTable
                     static::getColumnFilter($keyword, ['user'])
                 );
             })
-            ->filterColumn('user_action.slug', function ($query, $keyword) {
+            ->filterColumn('userAction.slug', function ($query, $keyword) {
                 static::columnFilterAddQuery(
                     $query,
                     'log_user_actions.slug',
                     static::getColumnFilter($keyword, ['action'])
                 );
             })
-            ->filterColumn('log_request.request_method.method', function ($query, $keyword) {
+            ->filterColumn('logRequest.requestMethod.method', function ($query, $keyword) {
                 static::columnFilterAddQuery(
                     $query,
                     'log_request_methods.slug',
                     static::getColumnFilter($keyword, ['method'])
                 );
             })
-            ->filterColumn('log_request.url_path.url_path', function ($query, $keyword) {
+            ->filterColumn('logRequest.urlPath.url_path', function ($query, $keyword) {
                 static::columnFilterAddQuery(
                     $query,
                     'log_url_paths.slug',
