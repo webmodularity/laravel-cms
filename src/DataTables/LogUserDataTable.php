@@ -26,9 +26,6 @@ class LogUserDataTable extends CmsDataTable
         return $this->datatables
             ->eloquent($this->query())
             ->addColumn('action', $this->getActionView())
-            ->filterColumn('id', function ($query, $keyword) {
-                return static::filterId($query, $keyword, 'people');
-            })
             ->addColumn('ip_address', function (LogUser $logUser) {
                 return isset($logUser->logRequest->ipAddress) && !empty($logUser->logRequest->ipAddress->ip)
                     ? $logUser->logRequest->ipAddress->ip
@@ -70,7 +67,7 @@ class LogUserDataTable extends CmsDataTable
                     static::getColumnFilter($keyword, ['url'])
                 );
             })
-            ->filterColumn('log_request.session_id', function ($query, $keyword) {
+            ->filterColumn('logRequest.session_id', function ($query, $keyword) {
                 static::columnFilterAddQuery(
                     $query,
                     'log_requests.session_id',
