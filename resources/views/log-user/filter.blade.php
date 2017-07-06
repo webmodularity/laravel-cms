@@ -6,11 +6,11 @@ foreach ($logUserActions as $logUserAction) {
         'display' => studly_case($logUserAction['slug'])
     ];
 }
-$logRequestMethodsColumnFilter = ['type' => []];
-foreach ($logRequestMethods as $logRequestMethod) {
-    $logRequestMethodsColumnFilter['action'][] = [
-        'value' => '=' . $logRequestMethod['method'],
-        'display' => studly_case($logRequestMethod['method'])
+$socialProvidersColumnFilter = ['type' => []];
+foreach ($socialProviders as $socialProvider) {
+    $socialProvidersColumnFilter['action'][] = [
+        'value' => '=' . $socialProvider['slug'],
+        'display' => $socialProvider->getName()
     ];
 }
 ?>
@@ -27,7 +27,7 @@ foreach ($logRequestMethods as $logRequestMethod) {
         'HEADER:Action',
         $logUserActionsColumnFilter,
         'SEPARATOR',
-        'HEADER:Request Method',
-        $logRequestMethodsColumnFilter
+        'HEADER:Social Providers',
+        $socialProvidersColumnFilter
      ]
 ])
