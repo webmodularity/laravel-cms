@@ -9,8 +9,8 @@ foreach ($logUserActions as $logUserAction) {
 $logRequestMethodsColumnFilter = ['type' => []];
 foreach ($logRequestMethods as $logRequestMethod) {
     $logRequestMethodsColumnFilter['action'][] = [
-        'value' => '=' . $logRequestMethod['slug'],
-        'display' => studly_case($logRequestMethod['slug'])
+        'value' => '=' . $logRequestMethod['method'],
+        'display' => studly_case($logRequestMethod['method'])
     ];
 }
 $socialProvidersColumnFilter = ['type' => []];
