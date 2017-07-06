@@ -42,6 +42,41 @@ class LogUserDataTable extends CmsDataTable
                 );
             })
             ->orderColumn('ip_address', 'ip $1')
+            ->filterColumn('user.person.email', function ($query, $keyword) {
+                static::columnFilterAddQuery(
+                    $query,
+                    'people.email',
+                    static::getColumnFilter($keyword, ['user'])
+                );
+            })
+            ->filterColumn('user_action.slug', function ($query, $keyword) {
+                static::columnFilterAddQuery(
+                    $query,
+                    'log_user_actions.slug',
+                    static::getColumnFilter($keyword, ['action'])
+                );
+            })
+            ->filterColumn('log_request.request_method.method', function ($query, $keyword) {
+                static::columnFilterAddQuery(
+                    $query,
+                    'log_request_methods.slug',
+                    static::getColumnFilter($keyword, ['method'])
+                );
+            })
+            ->filterColumn('log_request.url_path.url_path', function ($query, $keyword) {
+                static::columnFilterAddQuery(
+                    $query,
+                    'log_url_paths.slug',
+                    static::getColumnFilter($keyword, ['url'])
+                );
+            })
+            ->filterColumn('log_request.session_id', function ($query, $keyword) {
+                static::columnFilterAddQuery(
+                    $query,
+                    'log_requests.session_id',
+                    static::getColumnFilter($keyword, ['session'])
+                );
+            })
             ->editColumn('created_at', function (LogUser $logUser) {
                 return $logUser->created_at ? with(new Carbon($logUser->created_at))->format('m/d/Y h:i:sa') : '';
             })

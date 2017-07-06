@@ -8,8 +8,10 @@ use Auth;
 use Blade;
 use Illuminate\Support\ServiceProvider;
 use WebModularity\LaravelContact\AddressState;
+use WebModularity\LaravelLog\LogRequestMethod;
 use WebModularity\LaravelLog\LogServiceProvider;
 use WebModularity\LaravelUser\LogUser;
+use WebModularity\LaravelUser\LogUserAction;
 use WebModularity\LaravelUser\User;
 use WebModularity\LaravelUser\UserServiceProvider;
 use Yajra\Datatables\ButtonsServiceProvider;
@@ -96,6 +98,26 @@ class CmsServiceProvider extends ServiceProvider
                 UserRole::select(['id', 'slug'])
                     ->where('id', '<=', Auth::user()->role_id)
                     ->orderBy('id', 'asc')
+                    ->get()
+                    ->toArray()
+            );
+        });
+        // Log Request Methods
+        View::composer(['wmcms::log-user.filter'], function ($view) {
+            $view->with(
+                'logRequestMethods',
+                LogRequestMethod::select(['id', 'method'])
+                    ->orderBy('method', 'asc')
+                    ->get()
+                    ->toArray()
+            );
+        });
+        // Log User Actions
+        View::composer(['wmcms::log-user.filter'], function ($view) {
+            $view->with(
+                'logUserActions',
+                LogUserAction::select(['id', 'slug'])
+                    ->orderBy('slug', 'asc')
                     ->get()
                     ->toArray()
             );
