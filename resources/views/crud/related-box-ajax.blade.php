@@ -58,7 +58,7 @@ $relatedAjaxTableHeader = isset($relatedAjaxTableHeader)
             ],
             "paging": true,
             "lengthChange": false,
-            "dom": @dtmini,
+            "dom": "<'row'<'col-sm-12'tr>><'row'<'col-sm-5'i><'col-sm-7'pf>>",
             "searching": false,
             "ordering": true,
             "info": true,

@@ -18,7 +18,6 @@ $relatedTableId = isset($relatedTableId) && !empty($relatedTableId)
 </div>
 
 @push('js')
-@dtdefaults('{{ $relatedTableId }}')
 <script>
     $(function () {
         $.fn.dataTable.moment('m/d/Y h:i:sa');
@@ -34,7 +33,7 @@ $relatedTableId = isset($relatedTableId) && !empty($relatedTableId)
             ],
             "paging": true,
             "lengthChange": false,
-            "dom": @dtmini(),
+            "dom": "<'row'<'col-sm-12'tr>><'row'<'col-sm-5'i><'col-sm-7'pf>>",
             "searching": true,
             "ordering": true,
             "info": true,
