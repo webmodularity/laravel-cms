@@ -46,5 +46,6 @@ $relatedTableId = isset($relatedTableId) && !empty($relatedTableId)
         });
     });
     $('#{{ $relatedTableId }}_filter').appendTo($('#{{ $relatedTableId }}').closest('div.box').find('div.box-header div.box-tools'));
+    console.log($('#{{ $relatedTableId }}_filter'));
 </script>
 @endpush
