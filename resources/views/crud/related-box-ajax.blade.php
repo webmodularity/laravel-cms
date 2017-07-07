@@ -60,6 +60,10 @@ $relatedAjaxTableHeader = isset($relatedAjaxTableHeader)
             "paging": true,
             "lengthChange": false,
             "dom": "<'row'<'col-sm-12'tr>><'row'<'col-sm-5'i><'col-sm-7'pf>>",
+            "language": {
+                "search": "<div class='has-feedback'>_INPUT_<span class='glyphicon glyphicon-search form-control-feedback'></span></div>",
+                "searchPlaceholder": "Search..."
+            },
             "searching": false,
             "ordering": true,
             "info": true,
