@@ -41,5 +41,6 @@ $relatedTableId = isset($relatedTableId) && !empty($relatedTableId)
             "order": {!! $defaultOrder or '[[0, "asc"]]' !!}
         });
     });
+    $('#{{ $relatedTableId }}_filter').appendTo($('#{{ $relatedTableId }}').closest('div.box').find('div.box-header div.box-tools'));
 </script>
 @endpush

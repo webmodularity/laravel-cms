@@ -46,6 +46,7 @@ $relatedAjaxTableHeader = isset($relatedAjaxTableHeader)
 @push('js')
 <script>
     $(function () {
+        $('#{{ $relatedTableId }}_filter').appendTo($('#{{ $relatedTableId }}').closest('div.box').find('div.box-header div.box-tools'));
         var {{ $relatedAjaxTableId }}DataTable = $('#{{ $relatedAjaxTableId }}Table').DataTable({
             data: [
                 @yield($relatedAjaxTableId . 'Data')
