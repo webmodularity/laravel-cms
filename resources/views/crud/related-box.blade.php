@@ -4,10 +4,6 @@ $relatedTableId = isset($relatedTableId) && !empty($relatedTableId)
     : 'relatedTable';
 ?>
 
-@include('wmcms::crud.datatable-box-mini', [
-    'tableId' => $relatedTableId
-])
-
 @push('js')
 <script>
     $(function () {
@@ -26,3 +22,7 @@ $relatedTableId = isset($relatedTableId) && !empty($relatedTableId)
     });
 </script>
 @endpush
+
+@include('wmcms::crud.datatable-box-mini', [
+    'tableId' => $relatedTableId
+])
