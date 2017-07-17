@@ -16,7 +16,8 @@
 
 @section('content')
     @include('wmcms::crud.recycle-warning')
-    @include('wmcms::crud.recycle-datatable-box', [
-        'boxTitle' => 'Users - Recycle Bin'
+    @include('wmcms::crud.datatable-box', [
+        'boxTitle' => 'Users - Recycle Bin',
+        'recycle' => true
     ])
 @stop
