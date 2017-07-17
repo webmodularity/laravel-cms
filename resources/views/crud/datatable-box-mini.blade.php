@@ -35,6 +35,7 @@ $tableId = isset($tableId) && !empty($tableId)
     });
 
     $(function () {
+        $.fn.dataTable.moment('m/d/Y h:i:sa');
         var dataTable{{ $tableId }} = $('#{{ $tableId }}').DataTable();
         $('#{{ $tableId }}Search').keyup(function() {
             dataTable{{ $tableId }}.search($(this).val()).draw();

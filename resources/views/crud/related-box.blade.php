@@ -7,7 +7,6 @@ $relatedTableId = isset($relatedTableId) && !empty($relatedTableId)
 @push('js')
 <script>
     $(function () {
-        $.fn.dataTable.moment('m/d/Y h:i:sa');
         $('#{{ $relatedTableId }}').DataTable({
             data: [
                 @yield($relatedTableId . 'Data')
