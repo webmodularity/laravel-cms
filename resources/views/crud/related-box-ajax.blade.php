@@ -6,19 +6,9 @@ $relatedAjaxTableHeader = isset($relatedAjaxTableHeader)
     ? $relatedAjaxTableHeader
     : 'Create New Record';
 ?>
-<div class="box box-primary">
-    <div class="box-header with-border">
-        <h3 class="box-title">{!! $boxTitle !!}</h3>
-        <div class="box-tools pull-right">
-            <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#{{ $relatedAjaxTableId }}Modal"><span class="fa fa-plus"></span></button>
-        </div>
-    </div>
-    <!-- /.box-header -->
-    <div class="box-body">
-        <table id="{{ $relatedAjaxTableId }}Table" class="table table-hover table-bordered"></table>
-    </div>
-    <!-- /.box-body -->
-</div>
+@section('box-tools')
+    <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#{{ $relatedAjaxTableId }}Modal"><span class="fa fa-plus"></span></button>
+@endsection
 
 <div id="{{ $relatedAjaxTableId }}Modal" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
@@ -46,8 +36,7 @@ $relatedAjaxTableHeader = isset($relatedAjaxTableHeader)
 @push('js')
 <script>
     $(function () {
-        $('#{{ $relatedTableId }}_filter').appendTo($('#{{ $relatedTableId }}').closest('div.box').find('div.box-header div.box-tools'));
-        var {{ $relatedAjaxTableId }}DataTable = $('#{{ $relatedAjaxTableId }}Table').DataTable({
+        WMCMS.DT.TABLES[{{ $relatedAjaxTableId }}] = $('#{{ $relatedAjaxTableId }}Table').DataTable({
             data: [
                 @yield($relatedAjaxTableId . 'Data')
             ],
@@ -57,19 +46,7 @@ $relatedAjaxTableHeader = isset($relatedAjaxTableHeader)
             columnDefs: [
                 @yield($relatedAjaxTableId . 'ColumnDefs')
             ],
-            "paging": true,
-            "lengthChange": false,
-            "dom": "<'row'<'col-sm-12'tr>><'row'<'col-sm-5'i><'col-sm-7'pf>>",
-            "language": {
-                "search": "<div class='has-feedback'>_INPUT_<span class='glyphicon glyphicon-search form-control-feedback'></span></div>",
-                "searchPlaceholder": "Search..."
-            },
-            "searching": false,
-            "ordering": true,
-            "info": true,
-            "autoWidth": true,
-            "order": {!! $order or '[[0, "asc"]]' !!},
-            "drawCallback": function (settings) {
+            drawCallback: function (settings) {
                 $("#{{ $relatedAjaxTableId }}Table").find(".delete-confirm-button").click(function(){
                     var id = $(this).data("id");
                     var token = $(this).data("token");
@@ -94,7 +71,7 @@ $relatedAjaxTableHeader = isset($relatedAjaxTableHeader)
                                     '_token': token,
                                 },
                                 success: function (response) {
-                                    {{ $relatedAjaxTableId }}DataTable.row(row).remove().draw();
+                                    WMCMS.DT.TABLES[{{ $relatedAjaxTableId }}].row(row).remove().draw();
                                     toastr.success(response);
                                     swal.close();
                                 },
@@ -128,7 +105,7 @@ $relatedAjaxTableHeader = isset($relatedAjaxTableHeader)
                     submitButton.html('<i class="fa fa-check"></i>&nbsp;Saved<span class="sr-only">Saved</span>');
                     submitButton.removeClass("btn-primary").addClass("btn-success");
                     @yield($relatedAjaxTableId . 'RowAddData')
-                    {{ $relatedAjaxTableId }}DataTable.row.add(rowAddData).draw();
+                        WMCMS.DT.TABLES[{{ $relatedAjaxTableId }}].row.add(rowAddData).draw();
                     setTimeout(function() {
                         submitButton.html(submitHtmlOrig);
                         submitButton.removeClass("btn-success").addClass("btn-primary");
@@ -152,3 +129,7 @@ $relatedAjaxTableHeader = isset($relatedAjaxTableHeader)
     });
 </script>
 @endpush
+
+@include('wmcms::crud.datatable-box-mini', [
+    'tableId' => $relatedTableId
+])

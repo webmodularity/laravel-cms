@@ -3,7 +3,6 @@ $relatedTableId = isset($relatedTableId) && !empty($relatedTableId)
     ? $relatedTableId
     : 'relatedTable';
 ?>
-
 @push('js')
 <script>
     $(function () {
