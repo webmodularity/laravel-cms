@@ -7,11 +7,9 @@ $tableId = isset($tableId) && !empty($tableId)
     <div class="box-header with-border">
         <h3 class="box-title">{!! $boxTitle !!}</h3>
         <div class="box-tools pull-right">
-            <div class="input-group input-group-sm" style="width: 150px;">
+            <div class="form-group form-group-sm has-feedback">
                 <input class="form-control pull-right" placeholder="Search..." type="text">
-                <div class="input-group-btn">
-                    <button type="button" class="btn btn-default"><i class="fa fa-search"></i></button>
-                </div>
+                <span class="fa fa-search"></span>
             </div>
             @yield('box-tools')
         </div><!-- /.box-tools -->
