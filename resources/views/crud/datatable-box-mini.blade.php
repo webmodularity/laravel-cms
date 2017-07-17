@@ -33,5 +33,12 @@ $tableId = isset($tableId) && !empty($tableId)
         autoWidth: true,
         order: {!! $defaultOrder or '[[0, "asc"]]' !!}
     });
+
+    $(function () {
+        var dataTable{{ $tableId }} = $('#{{ $tableId }}').DataTable();
+        $('#{{ $tableId }}Search').keyup(function() {
+            dataTable{{ $tableId }}.search($(this).val()).draw();
+        });
+    });
 </script>
 @endpush
