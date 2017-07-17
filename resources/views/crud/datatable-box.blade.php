@@ -27,9 +27,9 @@
     });
 
     $(function () {
-        var dataTable = $('#dataTableBuilder').DataTable();
+        WMCMS.DT.TABLES['dataTableBuilder'] = $('#dataTableBuilder').DataTable();
         $('#dataTableSearch').keyup(function() {
-            dataTable.search($(this).val()).draw();
+            WMCMS.DT.TABLES['dataTableBuilder'].search($(this).val()).draw();
         });
 
         // lengthMenu
