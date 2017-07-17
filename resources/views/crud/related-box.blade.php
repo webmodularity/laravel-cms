@@ -7,7 +7,7 @@ $relatedTableId = isset($relatedTableId) && !empty($relatedTableId)
 @push('js')
 <script>
     $(function () {
-        $('#{{ $relatedTableId }}').DataTable({
+        var dataTable{{ $relatedTableId }} = $('#{{ $relatedTableId }}').DataTable({
             data: [
                 @yield($relatedTableId . 'Data')
             ],
