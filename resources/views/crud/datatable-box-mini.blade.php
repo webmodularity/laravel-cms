@@ -9,7 +9,7 @@ $tableId = isset($tableId) && !empty($tableId)
         <div class="box-tools pull-right">
             <div class="form-group has-feedback">
                 <input class="form-control" placeholder="Search..." type="text" style="width: 150px;">
-                <span class="fa fa-search"></span>
+                <span class="fa fa-search form-control-feedback"></span>
             </div>
             @yield('box-tools')
         </div><!-- /.box-tools -->
