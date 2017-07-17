@@ -37,7 +37,7 @@ $tableId = isset($tableId) && !empty($tableId)
     $(function () {
         $.fn.dataTable.moment('m/d/Y h:i:sa');
         $('#{{ $tableId }}Search').keyup(function() {
-            window.dataTable{{ $tableId }}.search($(this).val()).draw();
+            DT.TABLES[{{ $tableId }}].search($(this).val()).draw();
         });
     });
 </script>
