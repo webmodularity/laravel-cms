@@ -17,8 +17,7 @@
 
 @section('recentColumns')
     { title: "ID" },
-    { title: "Email" },
-    { title: "Name" },
+    { title: "Person" },
     { title: "Role" },
     { title: "Created At" },
     { title: "Edit", orderable: false, searchable: false }
@@ -29,10 +28,10 @@
         [
         {{ $recent->id }},
         "{{ $recent->person->email }}",
-        "@include('wmcms::partials.name-full', ['person' => $recent->person])",
         "{{ studly_case($recent->role->slug) }}",
         "{{ $recent->created_at->format('m/d/Y h:i:sa') }}",
-        {{ $recent->id }}
+        {{ $recent->id }},
+        "@include('wmcms::partials.name-full', ['person' => $recent->person])"
         ],
     @endforeach
 @endsection
@@ -45,6 +44,12 @@
     width: "20px",
     "className": "text-center",
     targets: 5
+    },
+    {
+    render: function (data, type, row) {
+        return WMCMS.DT.RENDER.contact(data, row[5]);
+    },
+    targets: 1
     }
 @endsection
 
