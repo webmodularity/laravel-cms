@@ -30,8 +30,7 @@ $tableId = isset($tableId) && !empty($tableId)
         searching: true,
         ordering: true,
         info: true,
-        autoWidth: true,
-        order: {!! $defaultOrder or '[[0, "asc"]]' !!}
+        autoWidth: true
     });
 
     $(function () {

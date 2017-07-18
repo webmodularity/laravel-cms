@@ -46,6 +46,7 @@ $relatedAjaxTableHeader = isset($relatedAjaxTableHeader)
             columnDefs: [
                 @yield($relatedAjaxTableId . 'ColumnDefs')
             ],
+            order: {!! $defaultOrder or '[[0, "asc"]]' !!},
             drawCallback: function (settings) {
                 $("#{{ $relatedAjaxTableId }}").find(".delete-confirm-button").click(function(){
                     var id = $(this).data("id");
@@ -131,6 +132,5 @@ $relatedAjaxTableHeader = isset($relatedAjaxTableHeader)
 @endpush
 
 @include('wmcms::crud.datatable-box-mini', [
-    'tableId' => $relatedAjaxTableId,
-    'defaultOrder' => isset($defaultOrder) ? $defaultOrder : null
+    'tableId' => $relatedAjaxTableId
 ])

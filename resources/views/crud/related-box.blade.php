@@ -15,13 +15,13 @@ $relatedTableId = isset($relatedTableId) && !empty($relatedTableId)
             ],
             columnDefs: [
                 @yield($relatedTableId . 'ColumnDefs')
-            ]
+            ],
+            order: {!! $defaultOrder or '[[0, "asc"]]' !!}
         });
     });
 </script>
 @endpush
 
 @include('wmcms::crud.datatable-box-mini', [
-    'tableId' => $relatedTableId,
-    'defaultOrder' => isset($defaultOrder) ? $defaultOrder : null
+    'tableId' => $relatedTableId
 ])
