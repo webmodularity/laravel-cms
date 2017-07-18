@@ -7,7 +7,7 @@ $tableId = isset($tableId) && !empty($tableId)
     <div class="box-header with-border">
         <h3 class="box-title">{!! $boxTitle !!}</h3>
         <div class="box-tools pull-right">
-            <div class="form-group form-group-sm has-feedback pull-right">
+            <div class="form-group form-group-sm has-feedback pull-right" style="margin-left: 10px;">
                 <input id="{{ $tableId }}Search" class="form-control input-sm" placeholder="Quick Search..." type="text">
                 <span class="fa fa-search form-control-feedback"></span>
             </div>
