@@ -37,6 +37,7 @@ $relatedAjaxTableHeader = isset($relatedAjaxTableHeader)
 <script>
     $(function () {
         WMCMS.DT.TABLES['{{ $relatedAjaxTableId }}'] = $('#{{ $relatedAjaxTableId }}').DataTable({
+            order: {!! $defaultOrder or '[[2, "asc"]]' !!},
             data: [
                 @yield($relatedAjaxTableId . 'Data')
             ],
@@ -46,7 +47,6 @@ $relatedAjaxTableHeader = isset($relatedAjaxTableHeader)
             columnDefs: [
                 @yield($relatedAjaxTableId . 'ColumnDefs')
             ],
-            order: {!! $defaultOrder or '[[0, "asc"]]' !!},
             drawCallback: function (settings) {
                 $("#{{ $relatedAjaxTableId }}").find(".delete-confirm-button").click(function(){
                     var id = $(this).data("id");
