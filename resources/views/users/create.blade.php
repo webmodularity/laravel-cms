@@ -15,38 +15,50 @@
     @include('wmcms::users.form')
 @endsection
 
-@section('recent-header')
-    <tr>
-        <th>ID</th>
-        <th>Email</th>
-        <th>Role</th>
-        <th>Name</th>
-        <th>Created At</th>
-    </tr>
+@section('recentColumns')
+    { title: "ID" },
+    { title: "Email" },
+    { title: "Name" },
+    { title: "Role" },
+    { title: "Created At" },
+    { title: "Edit", orderable: false, searchable: false }
 @endsection
 
-@section('recent-rows')
+@section('recentData')
     @foreach($recentlyAdded as $recent)
-        <tr>
-            <td><a href="{{ route('users.edit', ['id' => $recent->id]) }}">{{ $recent->id }}</a></td>
-            <td>{{ $recent->person->email }}</td>
-            <td>{{ studly_case($recent->role->slug) }}</td>
-            <td>@include('wmcms::partials.name-full', ['person' => $recent->person])</td>
-            <td>{{ $recent->created_at->format('m/d/Y h:i:sa') }}</td>
-        </tr>
+        [
+        {{ $recent->id }},
+        "{{ $recent->person->email }}",
+        "@include('wmcms::partials.name-full', ['person' => $recent->person])",
+        "{{ studly_case($recent->role->slug) }}",
+        "{{ $recent->created_at->format('m/d/Y h:i:sa') }}",
+        {{ $recent->id }}
+        ],
     @endforeach
+@endsection
+
+@section('recentColumnDefs')
+    {
+    render: function (data, type, row) {
+    return '<a href="{{ route('users.index') }}/'+data+'/edit" class="btn btn-xs btn-primary"><i class="fa fa-pencil"></i></a>';
+    },
+    width: "20px",
+    "className": "text-center",
+    targets: 5
+    }
 @endsection
 
 @section('content')
     <div class="row">
-        <div class="col-sm-6">
+        <div class="col-lg-6">
             @include('wmcms::crud.create-box', [
                 'boxTitle' => 'Create User'
             ])
         </div>
-        <div class="col-sm-6">
+        <div class="col-lg-6">
             @include('wmcms::crud.create-recent-box', [
-                'boxTitle' => 'Recently Added Users'
+                'boxTitle' => 'Recently Added Users',
+                'defaultOrder' => '[[4, "desc"]]'
             ])
         </div>
     </div>

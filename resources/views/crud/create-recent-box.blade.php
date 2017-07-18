@@ -1,7 +1,6 @@
 @push('js')
 <script>
     $(function () {
-        $.fn.dataTable.moment('m/d/Y h:i:sa');
         WMCMS.DT.TABLES['recent'] = $('#recent').DataTable({
             data: [
                 @yield('recentData')
