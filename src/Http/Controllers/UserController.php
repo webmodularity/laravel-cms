@@ -103,6 +103,10 @@ class UserController extends Controller
             })
         ];
         $userLogs = LogUser::where('user_id', $user->id)
+            ->with([
+                'userAction',
+                'logRequest.ipAddress'
+            ])
             ->limit(50)
             ->get();
         return view('wmcms::users.edit', compact(['user', 'primaryAddress', 'phones', 'userLogs']));
