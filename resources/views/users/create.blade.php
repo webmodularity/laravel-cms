@@ -63,7 +63,7 @@
         <div class="col-lg-6">
             @include('wmcms::crud.create-recent-box', [
                 'boxTitle' => 'Recently Added Users',
-                'defaultOrder' => '[[4, "desc"]]'
+                'defaultOrder' => '[[3, "desc"]]'
             ])
         </div>
     </div>
