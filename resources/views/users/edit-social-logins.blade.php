@@ -83,5 +83,6 @@
     'relatedAjaxTableHeader' => 'Link Social Login',
     'boxTitle' => "Linked Social Logins",
     'deleteUrl' => "location.pathname.replace(/\/?$/, '') + '/social-logins/' +id",
-    'postUrl' => route('users.social.attach', ['user_id' => $user->id])
+    'postUrl' => route('users.social.attach', ['user_id' => $user->id]),
+    'defaultOrder' => '[[1, "asc"]]'
 ])

@@ -37,7 +37,7 @@ $relatedAjaxTableHeader = isset($relatedAjaxTableHeader)
 <script>
     $(function () {
         WMCMS.DT.TABLES['{{ $relatedAjaxTableId }}'] = $('#{{ $relatedAjaxTableId }}').DataTable({
-            order: {!! $defaultOrder or '[[2, "asc"]]' !!},
+            order: {!! $defaultOrder or '[[0, "asc"]]' !!},
             data: [
                 @yield($relatedAjaxTableId . 'Data')
             ],
