@@ -114,7 +114,7 @@
                 <div class="input-group-addon">
                     <i class="fa fa-mobile-phone fa-fw"></i>
                 </div>
-                <input type="tel" name="phones[mobile]" class="form-control" data-inputmask="'mask': '(999) 999-9999'"
+                <input type="tel" name="phones[mobile]" class="form-control"
                        value="{{ old('phones.mobile', isset($phones) && !is_null($phones['mobile']) ? $phones['mobile']->area_code . $phones['mobile']->number : null) }}" placeholder="Mobile Phone">
             </div>
             @if ($errors->has('phones.mobile'))
@@ -133,7 +133,7 @@
                 <div class="input-group-addon">
                     <i class="fa fa-phone fa-fw"></i>
                 </div>
-                <input type="tel" name="phones[office]" class="form-control" data-inputmask="'mask': '(999) 999-9999 [x9999999]'"
+                <input type="tel" name="phones[office]" class="form-control"
                        value="{{ old('phones.office', isset($phones) && !is_null($phones['office']) ? $phones['office']->area_code . $phones['office']->number . $phones['office']->extension : null) }}" placeholder="Office Phone">
             </div>
             @if ($errors->has('phones.office'))
@@ -150,7 +150,7 @@
                 <div class="input-group-addon">
                     <i class="fa fa-fax fa-fw"></i>
                 </div>
-                <input type="tel" name="phones[fax]" class="form-control" data-inputmask="'mask': '(999) 999-9999 [x9999999]'"
+                <input type="tel" name="phones[fax]" class="form-control"
                        value="{{ old('phones.fax', isset($phones) && !is_null($phones['fax']) ? $phones['fax']->area_code . $phones['fax']->number . $phones['fax']->extension : null) }}" placeholder="Fax">
             </div>
             @if ($errors->has('phones.fax'))
@@ -162,3 +162,10 @@
         </div>
     </div>
 </div>
+@push('js')
+<script>
+    $(function() {
+        $("input[name^='phones']").inputmask({"mask": "(999) 999-9999 [x9999999]"});
+    });
+</script>
+@endpush
