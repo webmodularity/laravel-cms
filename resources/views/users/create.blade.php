@@ -43,7 +43,7 @@
     },
     width: "20px",
     "className": "text-center",
-    targets: 5
+    targets: 4
     },
     {
     render: function (data, type, row) {
