@@ -22,5 +22,6 @@ $relatedTableId = isset($relatedTableId) && !empty($relatedTableId)
 @endpush
 
 @include('wmcms::crud.datatable-box-mini', [
-    'tableId' => $relatedTableId
+    'tableId' => $relatedTableId,
+    'defaultOrder' => isset($defaultOrder) ? $defaultOrder : null
 ])

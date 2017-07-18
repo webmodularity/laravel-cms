@@ -131,5 +131,6 @@ $relatedAjaxTableHeader = isset($relatedAjaxTableHeader)
 @endpush
 
 @include('wmcms::crud.datatable-box-mini', [
-    'tableId' => $relatedAjaxTableId
+    'tableId' => $relatedAjaxTableId,
+    'defaultOrder' => isset($defaultOrder) ? $defaultOrder : null
 ])
