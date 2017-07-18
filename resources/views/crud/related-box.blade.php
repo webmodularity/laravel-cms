@@ -6,7 +6,7 @@ $relatedTableId = isset($relatedTableId) && !empty($relatedTableId)
 @push('js')
 <script>
     $(function () {
-        WMCMS.DT.TABLES[{{ $relatedTableId }}] = $('#{{ $relatedTableId }}').DataTable({
+        WMCMS.DT.TABLES['{{ $relatedTableId }}'] = $('#{{ $relatedTableId }}').DataTable({
             data: [
                 @yield($relatedTableId . 'Data')
             ],

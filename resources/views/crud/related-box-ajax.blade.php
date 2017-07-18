@@ -36,7 +36,7 @@ $relatedAjaxTableHeader = isset($relatedAjaxTableHeader)
 @push('js')
 <script>
     $(function () {
-        WMCMS.DT.TABLES[{{ $relatedAjaxTableId }}] = $('#{{ $relatedAjaxTableId }}Table').DataTable({
+        WMCMS.DT.TABLES['{{ $relatedAjaxTableId }}'] = $('#{{ $relatedAjaxTableId }}Table').DataTable({
             data: [
                 @yield($relatedAjaxTableId . 'Data')
             ],
@@ -71,7 +71,7 @@ $relatedAjaxTableHeader = isset($relatedAjaxTableHeader)
                                     '_token': token,
                                 },
                                 success: function (response) {
-                                    WMCMS.DT.TABLES[{{ $relatedAjaxTableId }}].row(row).remove().draw();
+                                    WMCMS.DT.TABLES['{{ $relatedAjaxTableId }}'].row(row).remove().draw();
                                     toastr.success(response);
                                     swal.close();
                                 },
@@ -105,7 +105,7 @@ $relatedAjaxTableHeader = isset($relatedAjaxTableHeader)
                     submitButton.html('<i class="fa fa-check"></i>&nbsp;Saved<span class="sr-only">Saved</span>');
                     submitButton.removeClass("btn-primary").addClass("btn-success");
                     @yield($relatedAjaxTableId . 'RowAddData')
-                        WMCMS.DT.TABLES[{{ $relatedAjaxTableId }}].row.add(rowAddData).draw();
+                        WMCMS.DT.TABLES['{{ $relatedAjaxTableId }}'].row.add(rowAddData).draw();
                     setTimeout(function() {
                         submitButton.html(submitHtmlOrig);
                         submitButton.removeClass("btn-success").addClass("btn-primary");
