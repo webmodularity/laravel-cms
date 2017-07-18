@@ -7,11 +7,11 @@ $tableId = isset($tableId) && !empty($tableId)
     <div class="box-header with-border">
         <h3 class="box-title">{!! $boxTitle !!}</h3>
         <div class="box-tools pull-right">
-            @yield('box-tools')
-            <div class="form-group form-group-sm has-feedback">
+            <div class="form-group form-group-sm has-feedback pull-right">
                 <input id="{{ $tableId }}Search" class="form-control input-sm" placeholder="Quick Search..." type="text">
                 <span class="fa fa-search form-control-feedback"></span>
             </div>
+            @yield('box-tools')
         </div><!-- /.box-tools -->
     </div><!-- /.box-header -->
     <!-- /.box-header -->
