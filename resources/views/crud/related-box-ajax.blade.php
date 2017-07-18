@@ -36,7 +36,7 @@ $relatedAjaxTableHeader = isset($relatedAjaxTableHeader)
 @push('js')
 <script>
     $(function () {
-        WMCMS.DT.TABLES['{{ $relatedAjaxTableId }}'] = $('#{{ $relatedAjaxTableId }}Table').DataTable({
+        WMCMS.DT.TABLES['{{ $relatedAjaxTableId }}'] = $('#{{ $relatedAjaxTableId }}').DataTable({
             data: [
                 @yield($relatedAjaxTableId . 'Data')
             ],
@@ -47,7 +47,7 @@ $relatedAjaxTableHeader = isset($relatedAjaxTableHeader)
                 @yield($relatedAjaxTableId . 'ColumnDefs')
             ],
             drawCallback: function (settings) {
-                $("#{{ $relatedAjaxTableId }}Table").find(".delete-confirm-button").click(function(){
+                $("#{{ $relatedAjaxTableId }}").find(".delete-confirm-button").click(function(){
                     var id = $(this).data("id");
                     var token = $(this).data("token");
                     var recordIdent = $(this).data("record-ident");
