@@ -162,10 +162,3 @@
         </div>
     </div>
 </div>
-@push('js')
-<script>
-    $(function() {
-        $("input[name^='phones']").inputmask({"mask": "(999) 999-9999 [x9999999]"});
-    });
-</script>
-@endpush
