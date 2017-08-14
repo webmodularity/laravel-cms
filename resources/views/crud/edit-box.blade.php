@@ -19,8 +19,17 @@
         </div>
 
         <div class="box-footer">
-            <button type="reset" class="btn btn-default pull-left">Cancel</button>
-            <button type="submit" class="btn btn-primary pull-right">Update</button>
+            <button type="button" class="btn btn-danger pull-left" id="record-delete-button"><i class="fa fa-times"></i>&nbsp;Delete</button>
+            @hasSection('editUpdateButton')
+                @yield('editUpdateButton')
+            @else
+                <button type="submit" class="btn btn-primary pull-right">Update</button>
+            @endif
+        </div>
+
+        <div class="box-footer">
+
+
         </div>
     </form>
 </div>
