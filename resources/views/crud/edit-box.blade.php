@@ -26,10 +26,5 @@
                 <button type="submit" class="btn btn-primary pull-right">Update</button>
             @endif
         </div>
-
-        <div class="box-footer">
-
-
-        </div>
     </form>
 </div>
