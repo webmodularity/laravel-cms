@@ -126,7 +126,7 @@ $('.delete-confirm-button').click(function(){
     swal({
         title: 'Delete This Record?',
         text: recordIdent,
-        type: 'warning',
+        type: 'error',
         showCancelButton: true,
         confirmButtonClass: 'btn-danger',
         confirmButtonText: 'Yes, delete it!',

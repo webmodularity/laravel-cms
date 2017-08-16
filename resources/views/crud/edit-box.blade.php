@@ -19,12 +19,20 @@
         </div>
 
         <div class="box-footer">
-            <button type="button" class="btn btn-danger pull-left" id="record-delete-button"><i class="fa fa-times"></i>&nbsp;Delete</button>
-            @hasSection('editUpdateButton')
-                @yield('editUpdateButton')
+            @if (isset($deleteButton) && !empty($deleteButton))
+                @if (is_array($deleteButton))
+                    @include('wmcms::crud.buttons.delete', ['deleteButton' => $deleteButton])
+                @else
+                    @include($deleteButton)
+                @endif
+            @endif
+
+            @if (isset($updateButton) && !empty($updateButton))
+                @include('wmcms::crud.buttons.update')
             @else
-                <button type="submit" class="btn btn-primary pull-right">Update</button>
+                @include($updateButton)
             @endif
         </div>
     </form>
 </div>
+
