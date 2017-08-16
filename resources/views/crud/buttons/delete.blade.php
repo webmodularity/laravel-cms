@@ -5,7 +5,7 @@
             $('#delete-button-confirm').click(function () {
                 swal({
                         title: 'Delete this Equipment Request?',
-                        text: '{{ $recordIdent }}',
+                        text: '{{ $deleteButton['recordIdent'] }}',
                         type: 'error',
                         showCancelButton: true,
                         confirmButtonClass: 'btn-danger',
@@ -15,8 +15,7 @@
                     },
                     function () {
                         $.ajax({
-                            url: '{{ $deleteUrl }}',
-                            url: '{{ route('equipment.requests.destroy', ['id' => $equipmentRequest->id]) }}',
+                            url: '{{ $deleteButton['deleteUrl'] }}',
                             method: 'POST',
                             data: {
                                 '_method': 'DELETE',
@@ -27,11 +26,11 @@
                             .done(function (response, status, xhr) {
                                 swal({
                                         title: 'Record Deleted Successfully',
-                                        text: 'The {{ $recordIdent }} record has been successfully removed.',
+                                        text: 'The {{ $deleteButton['recordIdent'] }} record has been successfully removed.',
                                         type: 'success'
                                     },
                                     function() {
-                                        window.location.replace("{{ $indexUrl }}");
+                                        window.location.replace("{{ $deleteButton['indexUrl'] }}");
                                         window.location.replace("{{ route('equipment.requests.index') }}");
                                     });
                             })
