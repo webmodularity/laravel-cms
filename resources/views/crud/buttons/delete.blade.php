@@ -4,7 +4,7 @@
         $(function() {
             $('#delete-button-confirm').click(function () {
                 swal({
-                        title: 'Delete this Record?',
+                        title: 'Delete This Record?',
                         text: '{{ $deleteButton['recordIdent'] }}',
                         type: 'error',
                         showCancelButton: true,
@@ -30,7 +30,7 @@
                                         type: 'success'
                                     },
                                     function() {
-                                        window.location.replace("{{ $deleteButton['indexUrl'] }}");
+                                        window.location.replace("{{ $deleteButton['redirectUrl'] }}");
                                     });
                             })
                             .fail(function (xhr, status, error) {
