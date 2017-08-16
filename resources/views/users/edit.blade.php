@@ -29,7 +29,12 @@
         <div class="col-sm-6">
             @include('wmcms::crud.edit-box', [
                 'boxTitle' => $user->person->email,
-                'recordId' => $user->id
+                'recordId' => $user->id,
+                'deleteButton' => [
+                    'recordIdent' => $user->person->email,
+                    'deleteUrl' => route('users.destroy', ['id' => $user->id]),
+                    'redirectUrl' => route('users.index')
+                ]
             ])
         </div>
         <div class="col-sm-6">
