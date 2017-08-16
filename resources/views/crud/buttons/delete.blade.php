@@ -4,7 +4,7 @@
         $(function() {
             $('#delete-button-confirm').click(function () {
                 swal({
-                        title: 'Delete this Equipment Request?',
+                        title: 'Delete this Record?',
                         text: '{{ $deleteButton['recordIdent'] }}',
                         type: 'error',
                         showCancelButton: true,
