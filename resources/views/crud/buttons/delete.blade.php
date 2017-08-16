@@ -31,7 +31,6 @@
                                     },
                                     function() {
                                         window.location.replace("{{ $deleteButton['indexUrl'] }}");
-                                        window.location.replace("{{ route('equipment.requests.index') }}");
                                     });
                             })
                             .fail(function (xhr, status, error) {
