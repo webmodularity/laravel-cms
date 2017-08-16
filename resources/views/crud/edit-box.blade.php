@@ -28,9 +28,9 @@
             @endif
 
             @if (isset($updateButton) && !empty($updateButton))
-                @include('wmcms::crud.buttons.update')
-            @else
                 @include($updateButton)
+            @else
+                @include('wmcms::crud.buttons.update')
             @endif
         </div>
     </form>
