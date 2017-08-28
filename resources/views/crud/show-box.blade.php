@@ -9,7 +9,9 @@
     <!-- /.box-header -->
     <!-- form start -->
     <div class="box-body">
-    @yield('form-show')
+        <form class="form-horizontal">
+            @yield('form-show')
+        </form>
     <!-- /.box-body -->
     </div>
 </div>
