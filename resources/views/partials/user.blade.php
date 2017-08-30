@@ -4,5 +4,5 @@
         <div><a href="{{ route('users.edit', ['id' => $user->id]) }}">{{ $user->person->email }}</a></div>
     </div>
 @else
-    <a href="{{ route('users.edit', ['id' => $user->id]) }}">{{ $user->person->email }}</a>
+    <p class="form-control-static"><a href="{{ route('users.edit', ['id' => $user->id]) }}">{{ $user->person->email }}</a></p>
 @endif
