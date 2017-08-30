@@ -4,11 +4,11 @@
     <div><span class="text-muted">{{ $person['email'] }}</span></div>
 </div>
 @else
-    @if($formStatic)
+    @if(isset($formStatic) && $formStatic)
         <p class="form-control-static">
     @endif
     {{ $person->email }}
-    @if($formStatic)
+    @if(isset($formStatic) && $formStatic)
         </p>
     @endif
 @endif
