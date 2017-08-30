@@ -1,20 +1,27 @@
-@if(!empty($person['first_name']))
-    <div class="{{ isset($formStatic) && $formStatic ? 'form-control-static' : ''}}">
-        <div>@include('wmcms::partials.name-full', ['person' => $person])</div>
+<?php
+$nameEmpty = empty($person['first_name']);
+?>
+<{{ $nameEmpty ? 'p' : 'div' }} class="{{ isset($class) && $class ? $class : ''}}">
+    @if(!$nameEmpty)
         <div>
-            @if(isset($link) && $link)
-                <a href="{{ $link }}">
-            @else
-                <span class="text-muted">
-            @endif
-            {{ $person['email'] }}
-            @if(isset($link) && $link)
-                </a>
-            @else
-                </span>
-            @endif
+            @include('wmcms::partials.name-full', ['person' => $person])
         </div>
-    </div>
-@else
-    <p class="{{ isset($formStatic) && $formStatic ? 'form-control-static' : ''}}">{{ $person->email }}</p>
-@endif
+        <div>
+    @endif
+
+    @if(isset($link) && $link)
+        <a href="{{ $link }}">
+    @elseif(!$nameEmpty)
+        <span class="text-muted">
+    @endif
+    {{ $person['email'] }}
+    @if(isset($link) && $link)
+        </a>
+    @elseif(!$nameEmpty)
+        </span>
+    @endif
+
+    @if(!$nameEmpty)
+        </div>
+    @endif
+</{{ $nameEmpty ? 'p' : 'div' }}>
