@@ -4,5 +4,5 @@
         <div><a href="{{ route('users.edit', ['id' => $user->id]) }}">{{ $user->person->email }}</a></div>
     </div>
 @else
-    {{ $user->person->email }}
+    <a href="{{ route('users.edit', ['id' => $user->id]) }}">{{ $user->person->email }}</a>
 @endif
