@@ -4,5 +4,5 @@
     <div><span class="text-muted">{{ $person['email'] }}</span></div>
 </div>
 @else
-    {{ $person->email }}
+    <p class="form-control-static">{{ $person->email }}</p>
 @endif
