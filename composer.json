@@ -23,10 +23,10 @@
     "webmod/laravel-user": "*",
     "webmod/laravel-log": "*",
     "jeroennoten/laravel-adminlte": "^1.19",
+    "aws/aws-sdk-php": "~3.0",
     "yajra/laravel-datatables-oracle": "^7.2",
     "yajra/laravel-datatables-buttons": "^1.1",
     "maatwebsite/excel": "~2.1.0",
-    "mpdf/mpdf": "^6.1",
-    "sineld/bladeset": "^5.3"
+    "mpdf/mpdf": "^6.1"
   }
 }
