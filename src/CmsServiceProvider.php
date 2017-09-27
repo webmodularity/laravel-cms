@@ -45,9 +45,6 @@ class CmsServiceProvider extends ServiceProvider
         // Register AdminLTE
         $this->app->register(ExcelServiceProvider::class);
 
-        // Blade Set
-        $this->app->register(BladeSetServiceProvider::class);
-
         // Config
         $this->mergeConfigFrom(__DIR__ . '/../config/cms.php', 'wm.cms');
     }
