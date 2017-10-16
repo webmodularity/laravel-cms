@@ -18,14 +18,14 @@
     }
   },
   "require": {
-    "php": ">=5.6.4",
-    "laravel/framework": "~5.4.0",
+    "php": ">=7.0.0",
+    "laravel/framework": "5.5.*",
     "webmod/laravel-user": "*",
     "webmod/laravel-log": "*",
-    "jeroennoten/laravel-adminlte": "^1.19",
+    "jeroennoten/laravel-adminlte": "^1.20",
     "aws/aws-sdk-php": "~3.0",
-    "yajra/laravel-datatables-oracle": "^7.2",
-    "yajra/laravel-datatables-buttons": "^1.1",
+    "yajra/laravel-datatables-oracle": "8.*",
+    "yajra/laravel-datatables-buttons": "3.*",
     "maatwebsite/excel": "~2.1.0",
     "mpdf/mpdf": "^6.1"
   }
