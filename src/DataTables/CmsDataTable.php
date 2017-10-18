@@ -3,7 +3,7 @@
 namespace WebModularity\LaravelCms\DataTables;
 
 use WebModularity\LaravelCms\DataTables\Traits\ColumnFilter;
-use Yajra\Datatables\Services\DataTable;
+use Yajra\DataTables\Services\DataTable;
 use DB;
 
 abstract class CmsDataTable extends DataTable
@@ -28,7 +28,7 @@ abstract class CmsDataTable extends DataTable
     /**
      * Optional method if you want to use html builder.
      *
-     * @return \Yajra\Datatables\Html\Builder
+     * @return \Yajra\DataTables\Html\Builder
      */
     public function html()
     {

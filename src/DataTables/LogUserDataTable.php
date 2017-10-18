@@ -4,7 +4,7 @@ namespace WebModularity\LaravelCms\DataTables;
 
 use Carbon\Carbon;
 use WebModularity\LaravelUser\LogUser;
-use Yajra\Datatables\Html\Column;
+use Yajra\DataTables\Html\Column;
 use Auth;
 use DB;
 
@@ -19,7 +19,7 @@ class LogUserDataTable extends CmsDataTable
     /**
      * Build DataTable class.
      *
-     * @return \Yajra\Datatables\Engines\BaseEngine
+     * @return \Yajra\DataTables\Engines\BaseEngine
      */
     public function dataTable()
     {

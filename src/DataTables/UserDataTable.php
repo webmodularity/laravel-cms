@@ -4,7 +4,7 @@ namespace WebModularity\LaravelCms\DataTables;
 
 use WebModularity\LaravelUser\User;
 use Carbon\Carbon;
-use Yajra\Datatables\Html\Column;
+use Yajra\DataTables\Html\Column;
 use Auth;
 use DB;
 
@@ -21,7 +21,7 @@ class UserDataTable extends CmsDataTable
     /**
      * Build DataTable class.
      *
-     * @return \Yajra\Datatables\Engines\BaseEngine
+     * @return \Yajra\DataTables\Engines\BaseEngine
      */
     public function dataTable()
     {
