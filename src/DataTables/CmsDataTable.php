@@ -75,7 +75,7 @@ abstract class CmsDataTable extends DataTable
 
     protected function applyScopes($query)
     {
-        \Log::warning(var_dump($query->getModel()));
+        \Log::warning(get_class($query->getModel()));
         if ($this->recycle === true) {
             $query->getModel()->onlyTrashed();
         }
