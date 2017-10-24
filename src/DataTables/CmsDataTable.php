@@ -73,15 +73,6 @@ abstract class CmsDataTable extends DataTable
         }
     }
 
-    protected function applyScopes($query)
-    {
-        if ($this->recycle === true) {
-            $query->addOnlyTrashed();
-        }
-
-        return parent::applyScopes($query);
-    }
-
     protected function getColumns()
     {
         return [];
