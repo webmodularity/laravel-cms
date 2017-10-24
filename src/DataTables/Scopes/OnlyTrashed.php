@@ -1,6 +1,6 @@
 <?php
 
-namespace LaravelCms\DataTables\Scopes;
+namespace WebModularity\LaravelCms\DataTables\Scopes;
 
 use Yajra\DataTables\Contracts\DataTableScope;
 
