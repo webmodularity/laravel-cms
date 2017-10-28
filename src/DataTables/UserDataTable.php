@@ -5,6 +5,7 @@ namespace WebModularity\LaravelCms\DataTables;
 use WebModularity\LaravelUser\User;
 use Carbon\Carbon;
 use Yajra\DataTables\Html\Column;
+use Yajra\DataTables\EloquentDataTable;
 use Auth;
 use DB;
 
@@ -21,12 +22,12 @@ class UserDataTable extends CmsDataTable
     /**
      * Build DataTable class.
      *
-     * @return \Yajra\DataTables\Engines\BaseEngine
+     * @return \Yajra\DataTables\EloquentDataTable
      */
-    public function dataTable()
+    public function dataTable($query)
     {
-        return $this->datatables
-            ->eloquent($this->query())
+        $dataTable = new EloquentDataTable($query);
+        return $dataTable
             ->addColumn('action', $this->getActionView())
             ->editColumn('updated_at', function (User $user) {
                 return with(new Carbon($user->person->updated_at))->format('m/d/Y h:i:sa');
