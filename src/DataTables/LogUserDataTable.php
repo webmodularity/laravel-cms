@@ -33,7 +33,6 @@ class LogUserDataTable extends CmsDataTable
                     : null;
             })
             ->filterColumn('ip_address', function ($query, $keyword) {
-                \Log::warning('filtering ip address!');
                 static::columnFilterAddQuery(
                     $query,
                     DB::raw("INET6_NTOA(ip)"),
