@@ -5,6 +5,7 @@ namespace WebModularity\LaravelCms\DataTables;
 use Carbon\Carbon;
 use WebModularity\LaravelUser\LogUser;
 use Yajra\DataTables\Html\Column;
+use Yajra\DataTables\EloquentDataTable;
 use Auth;
 use DB;
 
@@ -19,12 +20,12 @@ class LogUserDataTable extends CmsDataTable
     /**
      * Build DataTable class.
      *
-     * @return \Yajra\DataTables\Engines\BaseEngine
+     * @return \Yajra\DataTables\EloquentDataTable
      */
-    public function dataTable()
+    public function dataTable($query)
     {
-        return $this->datatables
-            ->eloquent($this->query())
+        $dataTable = new EloquentDataTable($query);
+        return $dataTable
             ->addColumn('action', $this->getActionView())
             ->editColumn('ip_address', function (LogUser $logUser) {
                 return isset($logUser->logRequest->ipAddress) && !empty($logUser->logRequest->ipAddress->ip)
