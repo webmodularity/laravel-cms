@@ -101,7 +101,7 @@ $relatedAjaxTableHeader = isset($relatedAjaxTableHeader)
                 url:'{!! $postUrl !!}',
                 data:$(this).serialize(),
                 dataType: 'json',
-                success: function(data) {
+                success: function(data, status, jqxhr) {
                     toastr.success(data.message);
                     submitButton.html('<i class="fa fa-check"></i>&nbsp;Saved<span class="sr-only">Saved</span>');
                     submitButton.removeClass("btn-primary").addClass("btn-success");
@@ -115,11 +115,11 @@ $relatedAjaxTableHeader = isset($relatedAjaxTableHeader)
                         $("#{{ $relatedAjaxTableId }}Modal").modal('hide');
                     }, 1000);
                 },
-                error: function(data) {
-                    toastr.error("An error occurred while saving. Please correct the errors and resubmit.");
+                error: function(jqxhr, status, error) {
+                    toastr.error(error);
                     submitButton.html(submitHtmlOrig);
                     submitButton.prop('disabled', false);
-                    $.each(data.responseJSON, function (index, value) {
+                    $.each(jqxhr.responseJSON, function (index, value) {
                         var errorFormGroup = form.find(":input[name='"+index+"']").parent('div.form-group');
                         errorFormGroup.addClass('has-error');
                         errorFormGroup.append("<span class=\"help-block\">"+value+"</span>");

@@ -194,7 +194,7 @@ class UserController extends Controller
             ]);
         }
 
-        return response()->json(['message' => 'Failed to link Social Login.'], 422);
+        return response()->json('Failed to link Social Login.', 422);
     }
 
     /**
@@ -214,6 +214,6 @@ class UserController extends Controller
             ]);
         }
 
-        return response()->json(['message' => 'Failed to unlink Social Login.'], 422);
+        return response()->json('Failed to unlink Social Login.', 422);
     }
 }
