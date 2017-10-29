@@ -116,8 +116,7 @@ $relatedAjaxTableHeader = isset($relatedAjaxTableHeader)
                     }, 1000);
                 },
                 error: function(jqxhr, status, error) {
-                    console.log(jqxhr);
-                    toastr.error(status + ': ' + error);
+                    toastr.error(jqhxr.responseJSON.message);
                     submitButton.html(submitHtmlOrig);
                     submitButton.prop('disabled', false);
                     $.each(jqxhr.responseJSON, function (index, value) {
