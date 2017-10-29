@@ -102,7 +102,7 @@ $relatedAjaxTableHeader = isset($relatedAjaxTableHeader)
                 data:$(this).serialize(),
                 dataType: 'json',
                 success: function(data) {
-                    toastr.success(data);
+                    toastr.success(data.message);
                     submitButton.html('<i class="fa fa-check"></i>&nbsp;Saved<span class="sr-only">Saved</span>');
                     submitButton.removeClass("btn-primary").addClass("btn-success");
                     @yield($relatedAjaxTableId . 'RowAddData')
