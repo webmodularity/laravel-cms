@@ -136,13 +136,11 @@ $('.delete-confirm-button').click(function(){
         })
         .done(function (response, status, xhr) {
             dtApi.ajax.reload(null, false);
-            toastr.success(response);
+            toastr.success(response.message);
             swal.close();
         })
         .fail(function (xhr, status, error) {
-            var errorResponse = xhr.responseText ? JSON.parse(xhr.responseText)
-                : 'An unknown server error was encountered when attempting to restore this record.';
-            toastr.error(errorResponse);
+            toastr.error(JSON.parse(xhr.responseText.message));
             swal.close();
         });
     });
@@ -179,13 +177,11 @@ $('.restore-confirm-button').click(function(){
         })
         .done(function (response, status, xhr) {
             dtApi.ajax.reload(null, false);
-            toastr.success(response);
+            toastr.success(response.message);
             swal.close();
         })
         .fail(function (xhr, status, error) {
-            var errorResponse = xhr.responseText ? JSON.parse(xhr.responseText)
-                : 'An unknown server error was encountered when attempting to restore this record.';
-            toastr.error(errorResponse);
+            toastr.error(JSON.parse(xhr.responseText.message));
             swal.close();
         });
     });
@@ -223,13 +219,11 @@ $('.perma-delete-confirm-button').click(function(){
         })
         .done(function (response, status, xhr) {
                 dtApi.ajax.reload(null, false);
-                toastr.success(response);
+                toastr.success(response.message);
                 swal.close();
         })
         .fail(function (xhr, status, error) {
-                var errorResponse = xhr.responseText ? JSON.parse(xhr.responseText)
-                    : 'An unknown server error was encountered when attempting to restore this record.';
-                toastr.error(errorResponse);
+                toastr.error(JSON.parse(xhr.responseText.message));
                 swal.close();
         });
     });

@@ -73,11 +73,11 @@ $relatedAjaxTableHeader = isset($relatedAjaxTableHeader)
                                 },
                                 success: function (response) {
                                     WMCMS.DT.TABLES['{{ $relatedAjaxTableId }}'].row(row).remove().draw();
-                                    toastr.success(response);
+                                    toastr.success(response.message);
                                     swal.close();
                                 },
                                 error: function (xhr, status, error) {
-                                    toastr.error(JSON.parse(xhr.responseText) || 'An unknown server error was encountered when attempting to delete this record.');
+                                    toastr.error(JSON.parse(xhr.responseText.message));
                                     swal.close();
                                 }
                             });

@@ -34,8 +34,7 @@
                                     });
                             })
                             .fail(function (xhr, status, error) {
-                                var errorResponse = JSON.parse(xhr.responseText) ? JSON.parse(xhr.responseText) : 'An unknown server error was encountered when attempting to delete this record.';
-                                toastr.error(errorResponse);
+                                toastr.error(JSON.parse(xhr.responseText.message));
                                 swal.close();
                             });
                     }

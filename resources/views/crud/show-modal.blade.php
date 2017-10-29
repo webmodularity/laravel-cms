@@ -58,7 +58,7 @@ $showModalAjaxUrl = isset($showModalAjaxUrl)
                     });
                     modalBody.LoadingOverlay("hide");
                 },
-                error: function(data) {
+                error: function(jqxhr, status, error) {
                     toastr.error("An error occurred while fetching data!");
                     modalBody.LoadingOverlay("hide");
                 }
