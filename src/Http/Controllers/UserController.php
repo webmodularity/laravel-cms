@@ -188,11 +188,13 @@ class UserController extends Controller
         $socialProvider = UserSocialProvider::find(request('social_provider_id'));
         if (!is_null($user) && !is_null($socialProvider)) {
             $user->socialProviders()->attach($socialProvider, request(['uid', 'email', 'avatar_url']));
-            return $this->sendJsonSuccessResponse("".$socialProvider->getName()." social login has been 
-             added to " . $user->person->email . ".");
+            return response()->json([
+                'message' => "".$socialProvider->getName()." social login has been added to 
+                    " . $user->person->email . "."
+            ]);
         }
 
-        return $this->sendJsonFailureResponse('Failed to link Social Login.');
+        return response()->json(['message' => 'Failed to link Social Login.'], 422);
     }
 
     /**
@@ -206,10 +208,12 @@ class UserController extends Controller
         $user = User::find($userId);
         $socialProvider = UserSocialProvider::find($id);
         if (!is_null($user) && !is_null($socialProvider) && $user->socialProviders()->detach($socialProvider) > 0) {
-            return $this->sendJsonSuccessResponse("".$socialProvider->getName()." social login has been 
-             removed from " . $user->person->email . ".");
+            return response()->json([
+                'message' => "".$socialProvider->getName()." social login has been removed from 
+                    " . $user->person->email . "."
+            ]);
         }
 
-        return $this->sendJsonFailureResponse('Failed to unlink Social Login.');
+        return response()->json(['message' => 'Failed to unlink Social Login.'], 422);
     }
 }
