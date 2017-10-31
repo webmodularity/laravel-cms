@@ -17,14 +17,4 @@ class Controller extends BaseController
         session(['collapse-sidebar' => $toggleState]);
         return response()->json();
     }
-
-    protected function sendJsonFailureResponse($error = 'Undefined server error.')
-    {
-        return response()->json($error, 422);
-    }
-
-    protected function sendJsonSuccessResponse($successMessage = 'Success')
-    {
-        return response()->json($successMessage);
-    }
 }

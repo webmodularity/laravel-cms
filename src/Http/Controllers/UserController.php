@@ -13,6 +13,7 @@ use WebModularity\LaravelUser\User;
 use WebModularity\LaravelCms\Http\Requests\StoreUser;
 use WebModularity\LaravelContact\Http\Controllers\SyncsInputToPerson;
 use WebModularity\LaravelUser\UserSocialProvider;
+use WebModularity\LaravelCms\DataTables\Scopes\OnlyTrashed;
 
 class UserController extends Controller
 {
@@ -36,9 +37,7 @@ class UserController extends Controller
     public function recycle(UserDataTable $recycleDataTable)
     {
         $recycleDataTable->recycle = true;
-        return $recycleDataTable->before(function ($dataTable) {
-            return $dataTable->onlyTrashed();
-        })->render('wmcms::users.recycle');
+        return $recycleDataTable->addScope(new OnlyTrashed)->render('wmcms::users.recycle');
     }
 
     /**
@@ -140,9 +139,9 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         if ($user->delete()) {
-            return $this->sendJsonSuccessResponse("You have successfully deleted " . $user->person->email . ".");
+            return response()->json(['message' => "You have successfully deleted " . $user->person->email . "."]);
         } else {
-            return $this->sendJsonFailureResponse("Failed to delete " . $user->person->email . ".");
+            return response()->json(['message' => "Failed to delete " . $user->person->email . "."], 422);
         }
     }
 
@@ -155,9 +154,9 @@ class UserController extends Controller
     public function restore(User $recycledUser)
     {
         if ($recycledUser->restore()) {
-            return $this->sendJsonSuccessResponse("You have successfully restored " . $recycledUser->person->email . ".");
+            return response()->json(['message' => "You have successfully restored " . $recycledUser->person->email . "."]);
         } else {
-            return $this->sendJsonFailureResponse("Failed to restore " . $recycledUser->person->email . ".");
+            return response()->json(['message' => "Failed to restore " . $recycledUser->person->email . "."], 422);
         }
     }
 
@@ -170,46 +169,40 @@ class UserController extends Controller
     public function permaDelete(User $recycledUser)
     {
         if ($recycledUser->forceDelete()) {
-            return $this->sendJsonSuccessResponse("You have permanently deleted " . $recycledUser->person->email . ".");
+            return response()->json(['message' => "You have permanently deleted " . $recycledUser->person->email . "."]);
         } else {
-            return $this->sendJsonFailureResponse("Failed to permanently delete " . $recycledUser->person->email . ".");
+            return response()->json(['message' => "Failed to permanently delete " . $recycledUser->person->email . "."], 422);
         }
     }
 
     /**
      * Attach specified social login to User
      *
-     * @param  int $userId
+     * @param  User $user
      * @return JsonResponse
      */
-    public function attachSocialLogin($userId, StoreUserSocialLogin $request)
+    public function attachSocialLogin(User $user, StoreUserSocialLogin $request)
     {
-        $user = User::find($userId);
-        $socialProvider = UserSocialProvider::find(request('social_provider_id'));
-        if (!is_null($user) && !is_null($socialProvider)) {
-            $user->socialProviders()->attach($socialProvider, request(['uid', 'email', 'avatar_url']));
-            return response()->json([
-                'message' => "".$socialProvider->getName()." social login has been added to 
+        $socialProvider = UserSocialProvider::findOrFail($request->input('social_provider_id'));
+        $user->socialProviders()->attach($socialProvider, request(['uid', 'email', 'avatar_url']));
+        return response()->json([
+            'message' => "".$socialProvider->getName()." social login has been added to 
                     " . $user->person->email . "."
-            ]);
-        }
-
-        return response()->json('Failed to link Social Login.', 422);
+        ]);
     }
 
     /**
      * Detach specified social login from User
      *
-     * @param  int $id
+     * @param  User $user
+     * @param  UserSocialProvider $userSocialProvider
      * @return JsonResponse
      */
-    public function detachSocialLogin($userId, $id)
+    public function detachSocialLogin(User $user, UserSocialProvider $userSocialProvider)
     {
-        $user = User::find($userId);
-        $socialProvider = UserSocialProvider::find($id);
-        if (!is_null($user) && !is_null($socialProvider) && $user->socialProviders()->detach($socialProvider) > 0) {
+        if ($user->socialProviders()->detach($userSocialProvider) > 0) {
             return response()->json([
-                'message' => "".$socialProvider->getName()." social login has been removed from 
+                'message' => "".$userSocialProvider->getName()." social login has been removed from 
                     " . $user->person->email . "."
             ]);
         }
