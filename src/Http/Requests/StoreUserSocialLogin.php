@@ -41,7 +41,7 @@ class StoreUserSocialLogin extends FormRequest
     public function withValidator($validator)
     {
         $validator->after(function ($validator) {
-            $user = User::find($this->user_id);
+            $user = $this->route()->user;
             if (is_null($user) || $user->socialProviders->where('id', request('social_provider_id'))->count() > 0) {
                 $validator->errors()->add('social_provider_id', 'A record already exists for this User/Social Provider combo.');
             }
