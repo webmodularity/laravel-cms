@@ -223,6 +223,8 @@ $('.perma-delete-confirm-button').click(function(){
                 swal.close();
         })
         .fail(function (xhr, status, error) {
+                console.log(xhr.responseText);
+                console.log(xhr.responseText.message);
                 toastr.error(JSON.parse(xhr.responseText.message));
                 swal.close();
         });
