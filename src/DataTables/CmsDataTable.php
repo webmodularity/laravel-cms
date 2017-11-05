@@ -224,7 +224,6 @@ $('.perma-delete-confirm-button').click(function(){
         })
         .fail(function (xhr, status, error) {
                 response = JSON.parse(xhr.responseText);
-                console.log(response.message);
                 toastr.error(response.message);
                 swal.close();
         });
