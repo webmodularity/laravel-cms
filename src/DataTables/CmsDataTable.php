@@ -10,6 +10,7 @@ abstract class CmsDataTable extends DataTable
 {
     use ColumnFilter;
 
+    public static $tableName = 'table';
     public static $actionView;
     public static $order = [[0, 'asc']];
     public static $buttons = ['wmcopy', 'wmcolvis', 'export'];
